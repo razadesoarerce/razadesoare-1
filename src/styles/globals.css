@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    font-size: clamp(1rem, 1vw, 1.1rem);
+    line-height: 1.6;
+    background-color: #ffffff;
+    color: #111827;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    line-height: 1.3;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  button {
+    font-family: inherit;
+  }
+
+  /* Full-width sections; content centered via .container */
+  .topbar,
+  header.navbar,
+  main,
+  .footer {
+    width: 100%;
+  }
+
+  /* Reusable .container – centered content, no fixed width */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }

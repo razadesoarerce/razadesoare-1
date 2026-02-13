@@ -1,0 +1,84 @@
+.navbar {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 28px; /* înălțimea topbar-ului */
+  z-index: 1000;
+}
+
+.navbar-container {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #1e3a8a;
+    font-weight: 600;
+  }
+  
+  .logo-img {
+    height: 40px;
+    width: auto;
+  }
+  
+  .logo-text {
+    font-size: 1rem;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+  }
+  
+  .nav-links a,
+  .dropdown span {
+    text-decoration: none;
+    color: #585c66;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .nav-links a:hover,
+  .dropdown span:hover {
+    color: #111111;
+  }
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background: rgba(112, 112, 112, 0.877);
+    padding: 10px 0;
+    min-width: 200px;
+    border-radius: 6px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+  }
+  
+  .dropdown-menu a {
+    padding: 8px 15px;
+    display: block;
+    color: #323233;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: #e2e3e4;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: flex;
+  }
