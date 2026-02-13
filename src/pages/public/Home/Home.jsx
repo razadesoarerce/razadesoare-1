@@ -62,6 +62,48 @@ const Home = () => {
             </a>
         </div>
       </section>
+
+      <section className="news-section" aria-labelledby="news-heading">
+        <div className="container">
+          <h2 id="news-heading" className="news-title">
+            <span className="news-title-gray">Ultimele</span>{" "}
+            <span className="news-title-green">Știri</span>
+          </h2>
+          <div className="news-grid">
+            <article className="news-card">
+              <div className="news-image" aria-hidden />
+              <h3>Participare la Olimpiada Incluziunii</h3>
+              <span className="news-date">12 Martie 2026</span>
+              <p>
+                Elevii Școlii Speciale Rază de Soare au participat la un eveniment
+                dedicat incluziunii și performanței educaționale, demonstrând
+                implicare și progres constant.
+              </p>
+              <a href="/evenimente" className="news-read-more">Read more</a>
+            </article>
+            <article className="news-card">
+              <div className="news-image" aria-hidden />
+              <h3>Atelier Creativ de Primăvară</h3>
+              <span className="news-date">3 Martie 2026</span>
+              <p>
+                Activitatea a oferit elevilor oportunitatea de a-și dezvolta
+                abilitățile artistice și sociale într-un cadru colaborativ.
+              </p>
+              <a href="/evenimente" className="news-read-more">Read more</a>
+            </article>
+            <article className="news-card">
+              <div className="news-image" aria-hidden />
+              <h3>Parteneriat Educațional Nou</h3>
+              <span className="news-date">20 Februarie 2026</span>
+              <p>
+                Școala noastră a încheiat un nou parteneriat menit să sprijine
+                integrarea elevilor prin programe educaționale adaptate.
+              </p>
+              <a href="/evenimente" className="news-read-more">Read more</a>
+            </article>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
