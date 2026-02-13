@@ -1,16 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
 import "./navbar.css";
-import logo from "../../assets/logo.svg";
+//import logo from "../../assets/logo.svg";
 
 
 const Navbar = () => {
   return (
     <nav className="navbar" aria-label="Navigare principală">
       <div className="navbar-container container">
-      <Link to="/" className="logo">
-  <img src={logo} alt="Logo Rază de Soare" className="logo-img" />
-  <span className="logo-text">Raza de Soare</span>
-</Link>
+      <a href="/" className="logo">
+  Școala Specială Rază de Soare
+</a>
 
         <div className="nav-links" role="navigation">
           <NavLink to="/">Acasă</NavLink>

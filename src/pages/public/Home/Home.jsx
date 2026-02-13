@@ -15,15 +15,10 @@ const Home = () => {
                 aria-hidden
               />
               <span className="feature-card__overlay" aria-hidden />
-              <div className="feature-card__content">
-                <h3 className="feature-card__title">Curriculum adaptat</h3>
-                <div className="feature-card__panel">
-                  <h3 className="feature-card__panel-title">Curriculum adaptat</h3>
-                  <p className="feature-card__desc">
-                    Curriculum adaptat la nevoile fiecărui elev, pentru o dezvoltare armonioasă.
-                  </p>
-                  <span className="feature-card__btn">Learn More</span>
-                </div>
+              <div className="feature-content">
+                <h2>Curriculum adaptat</h2>
+                <p>Curriculum adaptat la nevoile fiecărui elev, pentru o dezvoltare armonioasă.</p>
+                <span className="read-more">Read more</span>
               </div>
             </a>
             <a href="/educatie/terapii-aba" className="feature-card">
@@ -33,15 +28,10 @@ const Home = () => {
                 aria-hidden
               />
               <span className="feature-card__overlay" aria-hidden />
-              <div className="feature-card__content">
-                <h3 className="feature-card__title">Terapii ABA</h3>
-                <div className="feature-card__panel">
-                  <h3 className="feature-card__panel-title">Terapii ABA</h3>
-                  <p className="feature-card__desc">
-                    Terapii ABA pentru sprijin comportamental și învățare structurată.
-                  </p>
-                  <span className="feature-card__btn">Learn More</span>
-                </div>
+              <div className="feature-content">
+                <h2>Terapii ABA</h2>
+                <p>Terapii ABA pentru sprijin comportamental și învățare structurată.</p>
+                <span className="read-more">Read more</span>
               </div>
             </a>
             <a href="/evenimente" className="feature-card">
@@ -51,15 +41,10 @@ const Home = () => {
                 aria-hidden
               />
               <span className="feature-card__overlay" aria-hidden />
-              <div className="feature-card__content">
-                <h3 className="feature-card__title">Evenimente</h3>
-                <div className="feature-card__panel">
-                  <h3 className="feature-card__panel-title">Evenimente</h3>
-                  <p className="feature-card__desc">
-                    Evenimente, ateliere și activități pentru elevi și familii.
-                  </p>
-                  <span className="feature-card__btn">Learn More</span>
-                </div>
+              <div className="feature-content">
+                <h2>Evenimente</h2>
+                <p>Evenimente, ateliere și activități pentru elevi și familii.</p>
+                <span className="read-more">Read more</span>
               </div>
             </a>
             <a href="/despre/viziune" className="feature-card">
@@ -69,15 +54,10 @@ const Home = () => {
                 aria-hidden
               />
               <span className="feature-card__overlay" aria-hidden />
-              <div className="feature-card__content">
-                <h3 className="feature-card__title">Comunitate</h3>
-                <div className="feature-card__panel">
-                  <h3 className="feature-card__panel-title">Comunitate</h3>
-                  <p className="feature-card__desc">
-                    Colaborare cu familiile, parteneri și comunitatea pentru dezvoltarea elevilor.
-                  </p>
-                  <span className="feature-card__btn">Learn More</span>
-                </div>
+              <div className="feature-content">
+                <h2>Comunitate</h2>
+                <p>Colaborare cu familiile, parteneri și comunitatea pentru dezvoltarea elevilor.</p>
+                <span className="read-more">Read more</span>
               </div>
             </a>
         </div>

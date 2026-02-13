@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="footer-container container">
 
       <div className="footer-column">
-    <h3>Școala Specială Raza de Soare</h3>
+    <h4>Școala Specială Raza de Soare</h4>
   
   <p>
     Educație adaptată, sprijin și dezvoltare pentru fiecare copil.
