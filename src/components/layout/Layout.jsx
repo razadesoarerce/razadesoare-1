@@ -10,8 +10,10 @@ const Layout = () => {
 
   return (
     <>
-      <TopBar />
-      <Navbar />
+      <header className="site-header">
+        <TopBar />
+        <Navbar />
+      </header>
 
       <AnimatePresence mode="wait">
         <motion.main
@@ -20,14 +22,9 @@ const Layout = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          style={{ 
-            minHeight: "80vh",
-            paddingTop: "98px"  // topbar + navbar aproximativ
-          }}
+          style={{ minHeight: "80vh" }}
         >
-          <div className="container">
-            <Outlet />
-          </div>
+          <Outlet />
         </motion.main>
       </AnimatePresence>
 

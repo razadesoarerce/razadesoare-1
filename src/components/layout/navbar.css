@@ -2,9 +2,6 @@
   width: 100%;
   background-color: #ffffff;
   border-bottom: 1px solid #e5e7eb;
-  position: sticky;
-  top: 28px; /* înălțimea topbar-ului */
-  z-index: 1000;
 }
 
 .navbar-container {

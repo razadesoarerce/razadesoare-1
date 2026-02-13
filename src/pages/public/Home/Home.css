@@ -11,48 +11,46 @@
   border: 0;
 }
 
-/* Feature Grid section – full-width, container inside */
-.feature-grid-section {
-  width: 100%;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
+/* Feature Grid section – edge-to-edge, no container */
 .feature-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
-  grid-auto-rows: minmax(380px, auto);
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-@media (min-width: 768px) {
-  .feature-grid {
+.feature-grid .grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+@media (max-width: 1200px) {
+  .feature-grid .grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 1024px) {
-  .feature-grid {
-    grid-template-columns: repeat(3, 1fr);
+@media (max-width: 768px) {
+  .feature-grid .grid {
+    grid-template-columns: 1fr;
   }
 }
 
-/* Card: clickable link, rounded, shadow, overflow for zoom */
+/* Card: full-bleed, 5:2, no radius or shadow */
 .feature-card {
   display: block;
   position: relative;
-  min-height: 380px;
-  height: 100%;
-  border-radius: 16px;
+  aspect-ratio: 5 / 2;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+  box-shadow: none;
   text-decoration: none;
   color: inherit;
-  transition: box-shadow 0.5s ease;
+  transition: opacity 0.4s ease;
 }
 
 .feature-card:hover {
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  opacity: 1;
 }
 
 /* Background image layer – zooms on hover */
@@ -116,7 +114,7 @@
   padding: 24px;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(6px);
-  border-radius: 12px;
+  border-radius: 0;
   opacity: 0;
   transition: opacity 0.5s ease;
   z-index: 2;
@@ -157,7 +155,7 @@
   color: #1e3a8a;
   background: transparent;
   border: 2px solid #1e3a8a;
-  border-radius: 8px;
+  border-radius: 0;
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.5s ease, transform 0.5s ease, background 0.3s ease, color 0.3s ease;

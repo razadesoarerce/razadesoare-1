@@ -3,16 +3,11 @@ import "./Home.css";
 const Home = () => {
   return (
     <>
-      <div style={{ padding: "40px" }}>
-        <h1>Acasă</h1>
-      </div>
-
-      <section className="feature-grid-section" aria-labelledby="feature-grid-heading">
-        <div className="container">
-          <h2 id="feature-grid-heading" className="visually-hidden">
-            Oferte și programe
-          </h2>
-          <div className="feature-grid">
+      <section className="feature-grid" aria-labelledby="feature-grid-heading">
+        <h2 id="feature-grid-heading" className="visually-hidden">
+          Oferte și programe
+        </h2>
+        <div className="grid">
             <a href="/educatie/curriculum-adaptat" className="feature-card">
               <span
                 className="feature-card__image"
@@ -67,7 +62,24 @@ const Home = () => {
                 </div>
               </div>
             </a>
-          </div>
+            <a href="/despre/viziune" className="feature-card">
+              <span
+                className="feature-card__image"
+                style={{ backgroundImage: "url(https://picsum.photos/600/400?random=4)" }}
+                aria-hidden
+              />
+              <span className="feature-card__overlay" aria-hidden />
+              <div className="feature-card__content">
+                <h3 className="feature-card__title">Comunitate</h3>
+                <div className="feature-card__panel">
+                  <h3 className="feature-card__panel-title">Comunitate</h3>
+                  <p className="feature-card__desc">
+                    Colaborare cu familiile, parteneri și comunitatea pentru dezvoltarea elevilor.
+                  </p>
+                  <span className="feature-card__btn">Learn More</span>
+                </div>
+              </div>
+            </a>
         </div>
       </section>
     </>

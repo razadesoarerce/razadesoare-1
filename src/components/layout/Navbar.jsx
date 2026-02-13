@@ -5,14 +5,14 @@ import logo from "../../assets/logo.svg";
 
 const Navbar = () => {
   return (
-    <header className="navbar">
+    <nav className="navbar" aria-label="Navigare principală">
       <div className="navbar-container container">
       <Link to="/" className="logo">
   <img src={logo} alt="Logo Rază de Soare" className="logo-img" />
   <span className="logo-text">Raza de Soare</span>
 </Link>
 
-        <nav className="nav-links">
+        <div className="nav-links" role="navigation">
           <NavLink to="/">Acasă</NavLink>
 
           <div className="dropdown">
@@ -46,9 +46,9 @@ const Navbar = () => {
           </div>
 
           <NavLink to="/evenimente">Evenimente</NavLink>
-        </nav>
+        </div>
       </div>
-    </header>
+    </nav>
   );
 };
 
