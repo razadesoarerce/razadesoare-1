@@ -23,7 +23,11 @@
   },
   "about": {
     "sectionTitle": "Despre Noi",
-    "history": "Istoric",
+    "history": {
+      "label": "Istoric",
+      "seoTitle": "Istoric | Școala Specială Rază de Soare",
+      "seoDescription": "Descoperă istoricul Școlii Speciale Rază de Soare din Arad, fondată în 2002 pentru a sprijini copiii cu cerințe educaționale speciale."
+    },
     "missionVision": "Misiune & Viziune",
     "team": "Echipa"
   },

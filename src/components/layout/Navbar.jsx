@@ -32,7 +32,7 @@ const Navbar = () => {
           <div className="dropdown">
             <span>{t("nav.about")}</span>
             <div className="dropdown-menu">
-              <NavLink to="/despre/istoric">{t("about.history")}</NavLink>
+              <NavLink to="/despre/istoric">{t("about.history.label")}</NavLink>
               <NavLink to="/despre/misiune-viziune">{t("about.missionVision")}</NavLink>
               <NavLink to="/despre/echipa">{t("about.team")}</NavLink>
             </div>

@@ -4,10 +4,10 @@ const Istoric = () => {
   return (
     <>
       <SEO titleKey="about.history.seoTitle" descriptionKey="about.history.seoDescription" />
-      <section className="page-content-section">
-        <h2>Istoricul Școlii Speciale „Rază de Soare”</h2>
-        <p>
-          Școala Specială „Rază de Soare” își are începuturile în contextul unei nevoie reale din comunitatea Aradului.
+      <section className="page-content-section editorial-content">
+        <h2 className="editorial-title">Istoricul Școlii Speciale „Rază de Soare”</h2>
+        <p className="lead-paragraph">
+          Școala Specială „Rază de Soare” își are începuturile în contextul unei nevoi reale din comunitatea Aradului.
         </p>
         <p>
           În ianuarie 2002, ca răspuns la necesitatea unei educații incluzive și specializate pentru copii cu cerințe educaționale speciale, a fost fondată instituția noastră. Inițiativa a pornit din dorința de a crea un loc în care copiii cu dizabilități intelectuale de grad mediu, sever și profund să poată urma un program educațional adecvat, într-un mediu prietenos și sigur.

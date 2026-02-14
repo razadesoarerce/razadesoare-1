@@ -11,7 +11,7 @@ const Home = () => {
           Oferte și programe
         </h2>
         <div className="grid">
-            <a href="/despre/viziune" className="feature-card">
+            <a href="/despre/misiune-viziune" className="feature-card">
               <span
                 className="feature-card__image"
                 style={{ backgroundImage: "url(https://picsum.photos/600/400?random=1)" }}

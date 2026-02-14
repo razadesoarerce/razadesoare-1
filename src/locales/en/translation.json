@@ -23,7 +23,11 @@
   },
   "about": {
     "sectionTitle": "About Us",
-    "history": "History",
+    "history": {
+      "label": "History",
+      "seoTitle": "History | Rază de Soare Special School",
+      "seoDescription": "Discover the history of Rază de Soare Special School in Arad, founded in 2002 to support children with special educational needs."
+    },
     "missionVision": "Mission & Vision",
     "team": "Team"
   },

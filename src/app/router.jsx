@@ -42,10 +42,10 @@ const router = createBrowserRouter([
         path: "despre",
         element: (
           <PageLayout
-            heroImage="/images/despre.jpg"
+            heroImage="/images/home/hero-vision2.jpg"
             heroTitleKey="about.sectionTitle"
             sidebarItems={[
-              { path: "/despre/istoric", labelKey: "about.history" },
+              { path: "/despre/istoric", labelKey: "about.history.label" },
               { path: "/despre/misiune-viziune", labelKey: "about.missionVision" },
               { path: "/despre/echipa", labelKey: "about.team" },
             ]}
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
         ),
         handle: { breadcrumbKey: "about.sectionTitle" },
         children: [
-          { path: "istoric", element: <Istoric />, handle: { breadcrumbKey: "about.history" } },
+          { path: "istoric", element: <Istoric />, handle: { breadcrumbKey: "about.history.label" } },
           { path: "misiune-viziune", element: <MissionVision />, handle: { breadcrumbKey: "about.missionVision" } },
           { path: "echipa", element: <Echipa />, handle: { breadcrumbKey: "about.team" } },
         ],
