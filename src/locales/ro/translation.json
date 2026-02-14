@@ -42,5 +42,41 @@
   },
   "events": {
     "sectionTitle": "Evenimente"
+  },
+  "home": {
+    "hero": {
+      "vision": {
+        "title": "Viziune",
+        "description": "Colaborare cu familiile, parteneri și comunitatea pentru dezvoltarea elevilor.",
+        "cta": "Citește mai mult"
+      },
+      "curriculum": {
+        "title": "Curriculum",
+        "description": "Curriculum adaptat la nevoile fiecărui elev, pentru o dezvoltare armonioasă.",
+        "cta": "Citește mai mult"
+      },
+      "events": {
+        "title": "Evenimente",
+        "description": "Evenimente, ateliere și activități pentru elevi și familii.",
+        "cta": "Citește mai mult"
+      },
+      "aba": {
+        "title": "Terapii ABA",
+        "description": "Terapii ABA pentru sprijin comportamental și învățare structurată.",
+        "cta": "Citește mai mult"
+      }
+    },
+    "news": {
+      "sectionTitle": "Ultimele Știri",
+      "sectionTitlePart1": "Ultimele",
+      "sectionTitlePart2": "Știri",
+      "readMore": "Citește mai mult"
+    }
+  },
+  "footer": {
+    "phone": "Telefon",
+    "email": "Email",
+    "address": "Adresă",
+    "rights": "Toate drepturile rezervate"
   }
 }

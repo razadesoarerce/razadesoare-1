@@ -42,5 +42,41 @@
   },
   "events": {
     "sectionTitle": "Events"
+  },
+  "home": {
+    "hero": {
+      "vision": {
+        "title": "Vision",
+        "description": "Collaboration with families, partners and the community for the development of students.",
+        "cta": "Read more"
+      },
+      "curriculum": {
+        "title": "Curriculum",
+        "description": "Curriculum adapted to each student's needs for balanced development.",
+        "cta": "Read more"
+      },
+      "events": {
+        "title": "Events",
+        "description": "Events, workshops and activities for students and families.",
+        "cta": "Read more"
+      },
+      "aba": {
+        "title": "ABA Therapy",
+        "description": "ABA therapy for behavioural support and structured learning.",
+        "cta": "Read more"
+      }
+    },
+    "news": {
+      "sectionTitle": "Latest News",
+      "sectionTitlePart1": "Latest",
+      "sectionTitlePart2": "News",
+      "readMore": "Read more"
+    }
+  },
+  "footer": {
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "rights": "All rights reserved"
   }
 }

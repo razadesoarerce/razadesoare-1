@@ -170,14 +170,23 @@
   font-size: clamp(2rem, 3vw, 2.6rem);
 }
 
-.news-title-gray {
+.news-section-title {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-bottom: 50px;
+}
+
+.news-title-grey {
   color: #585c66;
-  font-weight: 500;
 }
 
 .news-title-green {
   color: #7dc242;
-  font-weight: 600;
+}
+
+.news-title-gray {
+  color: #585c66;
+  font-weight: 500;
 }
 
 .news-grid {

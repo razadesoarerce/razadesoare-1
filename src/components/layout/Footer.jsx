@@ -1,7 +1,10 @@
+import { useTranslation } from "react-i18next";
 import "./footer.css";
 import logo from "../../assets/logo.svg";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer">
 
@@ -60,14 +63,14 @@ const Footer = () => {
 
         <div className="footer-column">
           <h4>Contact</h4>
-          <p>Adresă: Arad, Str Diogene nr 12</p>
-          <p>Email: contact@razadesoare.ro</p>
-          <p>Telefon: 0257 257 257</p>
+          <p>{t("footer.address")}: Arad, Str Diogene nr 12</p>
+          <p>{t("footer.email")}: contact@razadesoare.ro</p>
+          <p>{t("footer.phone")}: 0257 257 257</p>
         </div>
       </div>
 
       <div className="footer-bottom">
-        © {new Date().getFullYear()} Școala Specială Raza de Soare. Toate drepturile rezervate.
+        © {new Date().getFullYear()} Școala Specială Raza de Soare. {t("footer.rights")}.
       </div>
     </footer>
   );

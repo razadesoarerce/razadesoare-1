@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import "./Home.css";
 
 const Home = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <section className="feature-grid" aria-labelledby="feature-grid-heading">
@@ -16,9 +19,9 @@ const Home = () => {
               />
               <span className="feature-card__overlay" aria-hidden />
               <div className="feature-content">
-                <h2>Curriculum adaptat</h2>
-                <p>Curriculum adaptat la nevoile fiecărui elev, pentru o dezvoltare armonioasă.</p>
-                <span className="read-more">Read more</span>
+                <h2>{t("home.hero.curriculum.title")}</h2>
+                <p>{t("home.hero.curriculum.description")}</p>
+                <span className="read-more">{t("home.hero.curriculum.cta")}</span>
               </div>
             </a>
             <a href="/educatie/terapii-aba" className="feature-card">
@@ -29,9 +32,9 @@ const Home = () => {
               />
               <span className="feature-card__overlay" aria-hidden />
               <div className="feature-content">
-                <h2>Terapii ABA</h2>
-                <p>Terapii ABA pentru sprijin comportamental și învățare structurată.</p>
-                <span className="read-more">Read more</span>
+                <h2>{t("home.hero.aba.title")}</h2>
+                <p>{t("home.hero.aba.description")}</p>
+                <span className="read-more">{t("home.hero.aba.cta")}</span>
               </div>
             </a>
             <a href="/evenimente" className="feature-card">
@@ -42,9 +45,9 @@ const Home = () => {
               />
               <span className="feature-card__overlay" aria-hidden />
               <div className="feature-content">
-                <h2>Evenimente</h2>
-                <p>Evenimente, ateliere și activități pentru elevi și familii.</p>
-                <span className="read-more">Read more</span>
+                <h2>{t("home.hero.events.title")}</h2>
+                <p>{t("home.hero.events.description")}</p>
+                <span className="read-more">{t("home.hero.events.cta")}</span>
               </div>
             </a>
             <a href="/despre/viziune" className="feature-card">
@@ -55,9 +58,9 @@ const Home = () => {
               />
               <span className="feature-card__overlay" aria-hidden />
               <div className="feature-content">
-                <h2>Comunitate</h2>
-                <p>Colaborare cu familiile, parteneri și comunitatea pentru dezvoltarea elevilor.</p>
-                <span className="read-more">Read more</span>
+                <h2>{t("home.hero.vision.title")}</h2>
+                <p>{t("home.hero.vision.description")}</p>
+                <span className="read-more">{t("home.hero.vision.cta")}</span>
               </div>
             </a>
         </div>
@@ -65,9 +68,10 @@ const Home = () => {
 
       <section className="news-section" aria-labelledby="news-heading">
         <div className="container">
-          <h2 id="news-heading" className="news-title">
-            <span className="news-title-gray">Ultimele</span>{" "}
-            <span className="news-title-green">Știri</span>
+          <h2 id="news-heading" className="news-section-title">
+            <span className="news-title-grey">{t("home.news.sectionTitlePart1")}</span>
+            {" "}
+            <span className="news-title-green">{t("home.news.sectionTitlePart2")}</span>
           </h2>
           <div className="news-grid">
             <article className="news-card">
@@ -79,7 +83,7 @@ const Home = () => {
                 dedicat incluziunii și performanței educaționale, demonstrând
                 implicare și progres constant.
               </p>
-              <a href="/evenimente" className="news-read-more">Read more</a>
+              <a href="/evenimente" className="news-read-more">{t("home.news.readMore")}</a>
             </article>
             <article className="news-card">
               <div className="news-image" aria-hidden />
@@ -89,7 +93,7 @@ const Home = () => {
                 Activitatea a oferit elevilor oportunitatea de a-și dezvolta
                 abilitățile artistice și sociale într-un cadru colaborativ.
               </p>
-              <a href="/evenimente" className="news-read-more">Read more</a>
+              <a href="/evenimente" className="news-read-more">{t("home.news.readMore")}</a>
             </article>
             <article className="news-card">
               <div className="news-image" aria-hidden />
@@ -99,7 +103,7 @@ const Home = () => {
                 Școala noastră a încheiat un nou parteneriat menit să sprijine
                 integrarea elevilor prin programe educaționale adaptate.
               </p>
-              <a href="/evenimente" className="news-read-more">Read more</a>
+              <a href="/evenimente" className="news-read-more">{t("home.news.readMore")}</a>
             </article>
           </div>
         </div>
