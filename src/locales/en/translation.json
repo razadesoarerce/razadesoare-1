@@ -20,5 +20,27 @@
     "information": "Information",
     "schoolYearStructure": "School year structure",
     "location": "Location"
+  },
+  "about": {
+    "sectionTitle": "About Us",
+    "history": "History",
+    "vision": "Vision",
+    "organization": "Organization"
+  },
+  "education": {
+    "sectionTitle": "Education",
+    "curriculum": "Adapted Curriculum",
+    "aba": "ABA Therapy",
+    "counseling": "Counseling",
+    "speech": "Speech Therapy",
+    "kinesiotherapy": "Kinesiotherapy"
+  },
+  "information": {
+    "sectionTitle": "Information",
+    "structure": "School Year Structure",
+    "location": "Location"
+  },
+  "events": {
+    "sectionTitle": "Events"
   }
 }

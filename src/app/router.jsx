@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/layout/Layout";
+import PageLayout from "../components/layout/PageLayout";
 import AdminLayout from "../components/layout/AdminLayout";
 import ProtectedRoute from "../components/common/ProtectedRoute";
 
@@ -36,24 +37,81 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
 
       // DESPRE NOI
-      { path: "despre/istoric", element: <Istoric /> },
-      { path: "despre/viziune", element: <Viziune /> },
-      { path: "despre/organigrama", element: <Organigrama /> },
+      {
+        path: "despre",
+        element: (
+          <PageLayout
+            heroImage="/images/despre.jpg"
+            heroTitleKey="about.sectionTitle"
+            sidebarItems={[
+              { path: "/despre/istoric", labelKey: "about.history" },
+              { path: "/despre/viziune", labelKey: "about.vision" },
+              { path: "/despre/organigrama", labelKey: "about.organization" },
+            ]}
+          />
+        ),
+        handle: { breadcrumbKey: "about.sectionTitle" },
+        children: [
+          { path: "istoric", element: <Istoric />, handle: { breadcrumbKey: "about.history" } },
+          { path: "viziune", element: <Viziune />, handle: { breadcrumbKey: "about.vision" } },
+          { path: "organigrama", element: <Organigrama />, handle: { breadcrumbKey: "about.organization" } },
+        ],
+      },
 
       // EDUCATIE
-      { path: "educatie/curriculum-adaptat", element: <Curriculum /> },
-      { path: "educatie/terapii-aba", element: <ABA /> },
-      { path: "educatie/consiliere", element: <Consiliere /> },
-      { path: "educatie/logopedie", element: <Logopedie /> },
-      { path: "educatie/kinetoterapie", element: <Kinetoterapie /> },
+      {
+        path: "educatie",
+        element: (
+          <PageLayout
+            heroTitleKey="education.sectionTitle"
+            sidebarItems={[
+              { path: "/educatie/curriculum-adaptat", labelKey: "education.curriculum" },
+              { path: "/educatie/terapii-aba", labelKey: "education.aba" },
+              { path: "/educatie/consiliere", labelKey: "education.counseling" },
+              { path: "/educatie/logopedie", labelKey: "education.speech" },
+              { path: "/educatie/kinetoterapie", labelKey: "education.kinesiotherapy" },
+            ]}
+          />
+        ),
+        handle: { breadcrumbKey: "education.sectionTitle" },
+        children: [
+          { path: "curriculum-adaptat", element: <Curriculum />, handle: { breadcrumbKey: "education.curriculum" } },
+          { path: "terapii-aba", element: <ABA />, handle: { breadcrumbKey: "education.aba" } },
+          { path: "consiliere", element: <Consiliere />, handle: { breadcrumbKey: "education.counseling" } },
+          { path: "logopedie", element: <Logopedie />, handle: { breadcrumbKey: "education.speech" } },
+          { path: "kinetoterapie", element: <Kinetoterapie />, handle: { breadcrumbKey: "education.kinesiotherapy" } },
+        ],
+      },
 
       // INFORMATII
-      { path: "informatii/structura-anului-scolar", element: <StructuraAnului /> },
-      { path: "informatii/locatie", element: <Location /> },
+      {
+        path: "informatii",
+        element: (
+          <PageLayout
+            heroTitleKey="information.sectionTitle"
+            sidebarItems={[
+              { path: "/informatii/structura-anului-scolar", labelKey: "information.structure" },
+              { path: "/informatii/locatie", labelKey: "information.location" },
+            ]}
+          />
+        ),
+        handle: { breadcrumbKey: "information.sectionTitle" },
+        children: [
+          { path: "structura-anului-scolar", element: <StructuraAnului />, handle: { breadcrumbKey: "information.structure" } },
+          { path: "locatie", element: <Location />, handle: { breadcrumbKey: "information.location" } },
+        ],
+      },
 
       // EVENIMENTE
-      { path: "evenimente", element: <Events /> },
-      { path: "evenimente/:id", element: <EventDetails /> },
+      {
+        path: "evenimente",
+        element: <PageLayout heroTitleKey="events.sectionTitle" />,
+        handle: { breadcrumbKey: "events.sectionTitle" },
+        children: [
+          { index: true, element: <Events />, handle: { breadcrumbKey: "events.sectionTitle" } },
+          { path: ":id", element: <EventDetails />, handle: { breadcrumbKey: "events.details" } },
+        ],
+      },
     ],
   },
 

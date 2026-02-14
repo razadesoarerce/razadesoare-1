@@ -1,0 +1,87 @@
+.page-hero {
+  width: 100%;
+}
+
+.page-hero-image {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  min-height: 520px;
+  max-height: 750px;
+  background-color: #f3f4f6;
+  display: flex;
+  align-items: center;
+}
+
+.page-hero-title-wrapper {
+  display: inline-block;
+  background: #ffffff;
+  padding: 30px 60px 20px 60px;
+  border-bottom: 4px solid #7dc242;
+}
+
+.page-hero-title {
+  margin: 0;
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  color: #585c66;
+  font-weight: 600;
+}
+
+.page-body {
+  padding: 80px 0;
+}
+
+.page-breadcrumb {
+  font-size: 0.85rem;
+  margin-bottom: 40px;
+}
+
+.page-breadcrumb a {
+  color: #7dc242;
+}
+
+.page-breadcrumb .active {
+  color: #585c66;
+}
+
+.page-content-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 60px;
+}
+
+.page-sidebar {
+  border-right: 1px solid #e5e7eb;
+  padding-right: 30px;
+}
+
+.page-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.page-sidebar li {
+  margin-bottom: 20px;
+}
+
+.sidebar-link {
+  color: #585c66;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sidebar-link.active {
+  color: #7dc242;
+  font-weight: 600;
+}
+
+.page-content h1 {
+  color: #7dc242;
+  margin-bottom: 20px;
+}
+
+.page-content p {
+  color: #585c66;
+  line-height: 1.8;
+}

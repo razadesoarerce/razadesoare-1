@@ -20,5 +20,27 @@
     "information": "Informații",
     "schoolYearStructure": "Structura anului școlar",
     "location": "Locație"
+  },
+  "about": {
+    "sectionTitle": "Despre Noi",
+    "history": "Istoric",
+    "vision": "Viziune",
+    "organization": "Organigramă"
+  },
+  "education": {
+    "sectionTitle": "Educație",
+    "curriculum": "Curriculum Adaptat",
+    "aba": "Terapie ABA",
+    "counseling": "Consiliere",
+    "speech": "Logopedie",
+    "kinesiotherapy": "Kinetoterapie"
+  },
+  "information": {
+    "sectionTitle": "Informații",
+    "structure": "Structura Anului Școlar",
+    "location": "Locație"
+  },
+  "events": {
+    "sectionTitle": "Evenimente"
   }
 }

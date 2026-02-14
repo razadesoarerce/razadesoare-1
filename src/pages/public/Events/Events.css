@@ -1,0 +1,33 @@
+.events-list {
+  padding: 80px 0;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.event-item {
+  margin-bottom: 60px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.event-item h2 a {
+  color: #7dc242;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.event-item h2 a:hover {
+  opacity: 0.8;
+}
+
+.event-date {
+  display: block;
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.event-item p {
+  color: #585c66;
+  line-height: 1.8;
+}
