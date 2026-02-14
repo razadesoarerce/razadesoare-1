@@ -107,6 +107,56 @@
     color: #1f2937;
   }
 
+.language-switch {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.language-slider {
+  position: relative;
+  display: flex;
+  gap: 12px;
+}
+
+.language-slider button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #585c66;
+  padding: 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.language-slider button:hover {
+  color: #111827;
+}
+
+.language-slider button.active {
+  color: #7dc242;
+  font-weight: 600;
+}
+
+.language-slider button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  background-color: #7dc242;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.language-slider button.active::after {
+  transform: scaleX(1);
+}
+
 @media (max-width: 768px) {
   .burger-button {
     display: flex;

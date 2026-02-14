@@ -1,3 +1,24 @@
 {
-  "test": "Test"
+  "test": "Test",
+  "nav": {
+    "about": "Despre noi",
+    "events": "Evenimente",
+    "history": "Istoric",
+    "vision": "Viziune",
+    "organization": "Organigramă",
+    "home": "Acasă",
+    "schoolName": "Școala Specială Rază de Soare",
+    "ariaLabel": "Navigare principală",
+    "openMenu": "Deschide meniul",
+    "closeMenu": "Închide meniul",
+    "education": "Educație",
+    "curriculum": "Curriculum adaptat",
+    "aba": "Terapii ABA",
+    "counselling": "Consiliere",
+    "speechTherapy": "Logopedie",
+    "physiotherapy": "Kinetoterapie",
+    "information": "Informații",
+    "schoolYearStructure": "Structura anului școlar",
+    "location": "Locație"
+  }
 }

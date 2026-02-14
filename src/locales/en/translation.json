@@ -1,3 +1,24 @@
 {
-  "test": "Test"
+  "test": "Test",
+  "nav": {
+    "about": "About Us",
+    "events": "Events",
+    "history": "History",
+    "vision": "Vision",
+    "organization": "Organization",
+    "home": "Home",
+    "schoolName": "Școala Specială Rază de Soare",
+    "ariaLabel": "Main navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "education": "Education",
+    "curriculum": "Adapted curriculum",
+    "aba": "ABA therapy",
+    "counselling": "Counselling",
+    "speechTherapy": "Speech therapy",
+    "physiotherapy": "Physiotherapy",
+    "information": "Information",
+    "schoolYearStructure": "School year structure",
+    "location": "Location"
+  }
 }
