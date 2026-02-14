@@ -11,10 +11,23 @@ const Home = () => {
           Oferte și programe
         </h2>
         <div className="grid">
-            <a href="/educatie/curriculum-adaptat" className="feature-card">
+            <a href="/despre/viziune" className="feature-card">
               <span
                 className="feature-card__image"
                 style={{ backgroundImage: "url(https://picsum.photos/600/400?random=1)" }}
+                aria-hidden
+              />
+              <span className="feature-card__overlay" aria-hidden />
+              <div className="feature-content">
+                <h2>{t("home.hero.vision.title")}</h2>
+                <p>{t("home.hero.vision.description")}</p>
+                <span className="read-more">{t("home.hero.vision.cta")}</span>
+              </div>
+            </a>
+            <a href="/educatie/curriculum-adaptat" className="feature-card">
+              <span
+                className="feature-card__image"
+                style={{ backgroundImage: "url(https://picsum.photos/600/400?random=2)" }}
                 aria-hidden
               />
               <span className="feature-card__overlay" aria-hidden />
@@ -27,7 +40,7 @@ const Home = () => {
             <a href="/educatie/terapii-aba" className="feature-card">
               <span
                 className="feature-card__image"
-                style={{ backgroundImage: "url(https://picsum.photos/600/400?random=2)" }}
+                style={{ backgroundImage: "url(https://picsum.photos/600/400?random=3)" }}
                 aria-hidden
               />
               <span className="feature-card__overlay" aria-hidden />
@@ -40,7 +53,7 @@ const Home = () => {
             <a href="/evenimente" className="feature-card">
               <span
                 className="feature-card__image"
-                style={{ backgroundImage: "url(https://picsum.photos/600/400?random=3)" }}
+                style={{ backgroundImage: "url(https://picsum.photos/600/400?random=4)" }}
                 aria-hidden
               />
               <span className="feature-card__overlay" aria-hidden />
@@ -48,19 +61,6 @@ const Home = () => {
                 <h2>{t("home.hero.events.title")}</h2>
                 <p>{t("home.hero.events.description")}</p>
                 <span className="read-more">{t("home.hero.events.cta")}</span>
-              </div>
-            </a>
-            <a href="/despre/viziune" className="feature-card">
-              <span
-                className="feature-card__image"
-                style={{ backgroundImage: "url(https://picsum.photos/600/400?random=4)" }}
-                aria-hidden
-              />
-              <span className="feature-card__overlay" aria-hidden />
-              <div className="feature-content">
-                <h2>{t("home.hero.vision.title")}</h2>
-                <p>{t("home.hero.vision.description")}</p>
-                <span className="read-more">{t("home.hero.vision.cta")}</span>
               </div>
             </a>
         </div>

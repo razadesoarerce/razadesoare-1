@@ -51,18 +51,31 @@
 .feature-card::before {
   content: "";
   position: absolute;
-  inset: 20px;
-  border: 2px solid white;
-  opacity: 0;
-  transform: scale(1.1);
-  transition: all 0.35s ease;
-  pointer-events: none;
-  z-index: 2;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  transition: transform 0.5s ease;
 }
 
 .feature-card:hover::before {
-  opacity: 1;
-  transform: scale(1);
+  transform: scale(1.05);
+}
+
+.feature-card:nth-child(1)::before {
+  background-image: url("/images/home/hero-vision.jpg");
+}
+
+.feature-card:nth-child(2)::before {
+  background-image: url("/images/home/hero-curriculum.jpg");
+}
+
+.feature-card:nth-child(3)::before {
+  background-image: url("/images/home/hero-therapy.jpg");
+}
+
+.feature-card:nth-child(4)::before {
+  background-image: url("/images/home/hero-events.jpg");
 }
 
 .feature-card::after {
@@ -80,17 +93,12 @@
   opacity: 1;
 }
 
-/* Background image layer – zooms on hover */
+/* Image span – no background so ::before shows; keeps layout */
 .feature-card__image {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.5s ease;
-}
-
-.feature-card:hover .feature-card__image {
-  transform: scale(1.05);
+  background-image: none !important;
+  pointer-events: none;
 }
 
 /* Dark overlay – subtle, no increase on hover (::after handles hover darkening) */
