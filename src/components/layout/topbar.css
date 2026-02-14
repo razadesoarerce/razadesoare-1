@@ -22,3 +22,33 @@
 .topbar-right {
   margin-left: auto;
 }
+
+@media (max-width: 768px) {
+  .topbar-secondary {
+    display: none;
+  }
+
+  .topbar-container {
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .topbar-left,
+  .topbar-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .topbar-left {
+    margin-left: 0;
+  }
+
+  .topbar-right {
+    margin-left: 0;
+  }
+
+  .topbar {
+    font-size: 0.75rem;
+  }
+}

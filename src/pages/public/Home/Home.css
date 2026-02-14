@@ -256,4 +256,8 @@
   .news-grid {
     grid-template-columns: 1fr;
   }
+
+  .news-card {
+    height: auto;
+  }
 }

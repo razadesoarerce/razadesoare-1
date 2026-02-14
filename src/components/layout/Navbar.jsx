@@ -1,15 +1,28 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./navbar.css";
-//import logo from "../../assets/logo.svg";
-
 
 const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
-    <nav className="navbar" aria-label="Navigare principală">
+    <nav className={`navbar ${mobileMenuOpen ? "mobile-menu-open" : ""}`} aria-label="Navigare principală">
       <div className="navbar-container container">
-      <a href="/" className="logo">
-  Școala Specială Rază de Soare
-</a>
+        <Link to="/" className="logo" onClick={() => setMobileMenuOpen(false)}>
+          Școala Specială Rază de Soare
+        </Link>
+
+        <button
+          type="button"
+          className="burger-button"
+          aria-expanded={mobileMenuOpen}
+          aria-label={mobileMenuOpen ? "Închide meniul" : "Deschide meniul"}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          <span className="burger-bar" aria-hidden />
+          <span className="burger-bar" aria-hidden />
+          <span className="burger-bar" aria-hidden />
+        </button>
 
         <div className="nav-links" role="navigation">
           <NavLink to="/">Acasă</NavLink>
