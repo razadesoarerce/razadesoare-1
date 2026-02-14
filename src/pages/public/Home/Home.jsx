@@ -37,7 +37,7 @@ const Home = () => {
                 <span className="read-more">{t("home.hero.curriculum.cta")}</span>
               </div>
             </a>
-            <a href="/educatie/terapii-aba" className="feature-card">
+            <a href="/educatie/consiliere" className="feature-card">
               <span
                 className="feature-card__image"
                 style={{ backgroundImage: "url(https://picsum.photos/600/400?random=3)" }}
@@ -45,9 +45,9 @@ const Home = () => {
               />
               <span className="feature-card__overlay" aria-hidden />
               <div className="feature-content">
-                <h2>{t("home.hero.aba.title")}</h2>
-                <p>{t("home.hero.aba.description")}</p>
-                <span className="read-more">{t("home.hero.aba.cta")}</span>
+                <h2>{t("home.hero.therapies.title")}</h2>
+                <p>{t("home.hero.therapies.description")}</p>
+                <span className="read-more">{t("home.hero.therapies.cta")}</span>
               </div>
             </a>
             <a href="/evenimente" className="feature-card">

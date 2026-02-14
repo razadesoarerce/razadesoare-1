@@ -24,24 +24,30 @@
   "about": {
     "sectionTitle": "About Us",
     "history": "History",
-    "vision": "Vision",
-    "organization": "Organization"
+    "missionVision": "Mission & Vision",
+    "team": "Team"
   },
   "education": {
     "sectionTitle": "Education",
     "curriculum": "Adapted Curriculum",
-    "aba": "ABA Therapy",
     "counseling": "Counseling",
-    "speech": "Speech Therapy",
-    "kinesiotherapy": "Kinesiotherapy"
+    "logopedie": "Speech Therapy",
+    "kinetoterapie": "Physiotherapy"
   },
   "information": {
     "sectionTitle": "Information",
     "structure": "School Year Structure",
     "location": "Location"
   },
+  "info": {
+    "admission": "Admission / Enrollment",
+    "documents": "Documents",
+    "structure": "School Year Structure",
+    "location": "Location"
+  },
   "events": {
-    "sectionTitle": "Events"
+    "navLabel": "Events",
+    "sectionTitle": "News & Activities"
   },
   "home": {
     "hero": {
@@ -60,10 +66,10 @@
         "description": "Events, workshops and activities for students and families.",
         "cta": "Read more"
       },
-      "aba": {
-        "title": "ABA Therapy",
-        "description": "ABA therapy for behavioural support and structured learning.",
-        "cta": "Read more"
+      "therapies": {
+        "title": "Therapies",
+        "description": "Personalized support services for each child's balanced development.",
+        "cta": "Learn more"
       }
     },
     "news": {

@@ -32,34 +32,33 @@ const Navbar = () => {
           <div className="dropdown">
             <span>{t("nav.about")}</span>
             <div className="dropdown-menu">
-              <NavLink to="/despre/istoric">{t("nav.history")}</NavLink>
-              <NavLink to="/despre/viziune">{t("nav.vision")}</NavLink>
-              <NavLink to="/despre/organigrama">{t("nav.organization")}</NavLink>
+              <NavLink to="/despre/istoric">{t("about.history")}</NavLink>
+              <NavLink to="/despre/misiune-viziune">{t("about.missionVision")}</NavLink>
+              <NavLink to="/despre/echipa">{t("about.team")}</NavLink>
             </div>
           </div>
 
           <div className="dropdown">
             <span>{t("nav.education")}</span>
             <div className="dropdown-menu">
-              <NavLink to="/educatie/curriculum-adaptat">{t("nav.curriculum")}</NavLink>
-              <NavLink to="/educatie/terapii-aba">{t("nav.aba")}</NavLink>
-              <NavLink to="/educatie/consiliere">{t("nav.counselling")}</NavLink>
-              <NavLink to="/educatie/logopedie">{t("nav.speechTherapy")}</NavLink>
-              <NavLink to="/educatie/kinetoterapie">{t("nav.physiotherapy")}</NavLink>
+              <NavLink to="/educatie/curriculum-adaptat">{t("education.curriculum")}</NavLink>
+              <NavLink to="/educatie/consiliere">{t("education.counseling")}</NavLink>
+              <NavLink to="/educatie/logopedie">{t("education.logopedie")}</NavLink>
+              <NavLink to="/educatie/kinetoterapie">{t("education.kinetoterapie")}</NavLink>
             </div>
           </div>
 
           <div className="dropdown">
             <span>{t("nav.information")}</span>
             <div className="dropdown-menu">
-              <NavLink to="/informatii/structura-anului-scolar">
-                {t("nav.schoolYearStructure")}
-              </NavLink>
-              <NavLink to="/informatii/locatie">{t("nav.location")}</NavLink>
+              <NavLink to="/informatii/admitere">{t("info.admission")}</NavLink>
+              <NavLink to="/informatii/documente">{t("info.documents")}</NavLink>
+              <NavLink to="/informatii/structura-anului-scolar">{t("info.structure")}</NavLink>
+              <NavLink to="/informatii/locatie">{t("info.location")}</NavLink>
             </div>
           </div>
 
-          <NavLink to="/evenimente">{t("nav.events")}</NavLink>
+          <NavLink to="/evenimente">{t("events.navLabel")}</NavLink>
         </div>
 
         <div className="language-switch">

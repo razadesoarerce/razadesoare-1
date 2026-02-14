@@ -24,24 +24,30 @@
   "about": {
     "sectionTitle": "Despre Noi",
     "history": "Istoric",
-    "vision": "Viziune",
-    "organization": "Organigramă"
+    "missionVision": "Misiune & Viziune",
+    "team": "Echipa"
   },
   "education": {
     "sectionTitle": "Educație",
-    "curriculum": "Curriculum Adaptat",
-    "aba": "Terapie ABA",
+    "curriculum": "Curriculum adaptat",
     "counseling": "Consiliere",
-    "speech": "Logopedie",
-    "kinesiotherapy": "Kinetoterapie"
+    "logopedie": "Logopedie",
+    "kinetoterapie": "Kinetoterapie"
   },
   "information": {
     "sectionTitle": "Informații",
     "structure": "Structura Anului Școlar",
     "location": "Locație"
   },
+  "info": {
+    "admission": "Admitere / Înscriere",
+    "documents": "Documente",
+    "structure": "Structura anului școlar",
+    "location": "Locație"
+  },
   "events": {
-    "sectionTitle": "Evenimente"
+    "navLabel": "Evenimente",
+    "sectionTitle": "Știri & Activități"
   },
   "home": {
     "hero": {
@@ -60,9 +66,9 @@
         "description": "Evenimente, ateliere și activități pentru elevi și familii.",
         "cta": "Citește mai mult"
       },
-      "aba": {
-        "title": "Terapii ABA",
-        "description": "Terapii ABA pentru sprijin comportamental și învățare structurată.",
+      "therapies": {
+        "title": "Terapii",
+        "description": "Servicii de sprijin personalizate pentru dezvoltarea armonioasă a fiecărui copil.",
         "cta": "Citește mai mult"
       }
     },

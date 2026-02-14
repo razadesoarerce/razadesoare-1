@@ -7,13 +7,14 @@ import ProtectedRoute from "../components/common/ProtectedRoute";
 // Public Pages
 import Home from "../pages/public/Home/Home";
 import Istoric from "../pages/public/About/Istoric";
-import Viziune from "../pages/public/About/Viziune";
-import Organigrama from "../pages/public/About/Organigrama";
+import MissionVision from "../pages/public/About/MissionVision";
+import Echipa from "../pages/public/About/Echipa";
 import Curriculum from "../pages/public/Education/Curriculum";
-import ABA from "../pages/public/Education/ABA";
 import Consiliere from "../pages/public/Education/Consiliere";
 import Logopedie from "../pages/public/Education/Logopedie";
 import Kinetoterapie from "../pages/public/Education/Kinetoterapie";
+import Admitere from "../pages/public/Information/Admitere";
+import Documente from "../pages/public/Information/Documente";
 import StructuraAnului from "../pages/public/Information/StructuraAnului";
 import Location from "../pages/public/Information/Location";
 import Events from "../pages/public/Events/Events";
@@ -45,16 +46,16 @@ const router = createBrowserRouter([
             heroTitleKey="about.sectionTitle"
             sidebarItems={[
               { path: "/despre/istoric", labelKey: "about.history" },
-              { path: "/despre/viziune", labelKey: "about.vision" },
-              { path: "/despre/organigrama", labelKey: "about.organization" },
+              { path: "/despre/misiune-viziune", labelKey: "about.missionVision" },
+              { path: "/despre/echipa", labelKey: "about.team" },
             ]}
           />
         ),
         handle: { breadcrumbKey: "about.sectionTitle" },
         children: [
           { path: "istoric", element: <Istoric />, handle: { breadcrumbKey: "about.history" } },
-          { path: "viziune", element: <Viziune />, handle: { breadcrumbKey: "about.vision" } },
-          { path: "organigrama", element: <Organigrama />, handle: { breadcrumbKey: "about.organization" } },
+          { path: "misiune-viziune", element: <MissionVision />, handle: { breadcrumbKey: "about.missionVision" } },
+          { path: "echipa", element: <Echipa />, handle: { breadcrumbKey: "about.team" } },
         ],
       },
 
@@ -63,23 +64,22 @@ const router = createBrowserRouter([
         path: "educatie",
         element: (
           <PageLayout
+            heroImage="/images/educatie.jpg"
             heroTitleKey="education.sectionTitle"
             sidebarItems={[
               { path: "/educatie/curriculum-adaptat", labelKey: "education.curriculum" },
-              { path: "/educatie/terapii-aba", labelKey: "education.aba" },
               { path: "/educatie/consiliere", labelKey: "education.counseling" },
-              { path: "/educatie/logopedie", labelKey: "education.speech" },
-              { path: "/educatie/kinetoterapie", labelKey: "education.kinesiotherapy" },
+              { path: "/educatie/logopedie", labelKey: "education.logopedie" },
+              { path: "/educatie/kinetoterapie", labelKey: "education.kinetoterapie" },
             ]}
           />
         ),
         handle: { breadcrumbKey: "education.sectionTitle" },
         children: [
           { path: "curriculum-adaptat", element: <Curriculum />, handle: { breadcrumbKey: "education.curriculum" } },
-          { path: "terapii-aba", element: <ABA />, handle: { breadcrumbKey: "education.aba" } },
           { path: "consiliere", element: <Consiliere />, handle: { breadcrumbKey: "education.counseling" } },
-          { path: "logopedie", element: <Logopedie />, handle: { breadcrumbKey: "education.speech" } },
-          { path: "kinetoterapie", element: <Kinetoterapie />, handle: { breadcrumbKey: "education.kinesiotherapy" } },
+          { path: "logopedie", element: <Logopedie />, handle: { breadcrumbKey: "education.logopedie" } },
+          { path: "kinetoterapie", element: <Kinetoterapie />, handle: { breadcrumbKey: "education.kinetoterapie" } },
         ],
       },
 
@@ -88,24 +88,29 @@ const router = createBrowserRouter([
         path: "informatii",
         element: (
           <PageLayout
+            heroImage="/images/informatii.jpg"
             heroTitleKey="information.sectionTitle"
             sidebarItems={[
-              { path: "/informatii/structura-anului-scolar", labelKey: "information.structure" },
-              { path: "/informatii/locatie", labelKey: "information.location" },
+              { path: "/informatii/admitere", labelKey: "info.admission" },
+              { path: "/informatii/documente", labelKey: "info.documents" },
+              { path: "/informatii/structura-anului-scolar", labelKey: "info.structure" },
+              { path: "/informatii/locatie", labelKey: "info.location" },
             ]}
           />
         ),
         handle: { breadcrumbKey: "information.sectionTitle" },
         children: [
-          { path: "structura-anului-scolar", element: <StructuraAnului />, handle: { breadcrumbKey: "information.structure" } },
-          { path: "locatie", element: <Location />, handle: { breadcrumbKey: "information.location" } },
+          { path: "admitere", element: <Admitere />, handle: { breadcrumbKey: "info.admission" } },
+          { path: "documente", element: <Documente />, handle: { breadcrumbKey: "info.documents" } },
+          { path: "structura-anului-scolar", element: <StructuraAnului />, handle: { breadcrumbKey: "info.structure" } },
+          { path: "locatie", element: <Location />, handle: { breadcrumbKey: "info.location" } },
         ],
       },
 
       // EVENIMENTE
       {
         path: "evenimente",
-        element: <PageLayout heroTitleKey="events.sectionTitle" />,
+        element: <PageLayout heroImage="/images/evenimente.jpg" heroTitleKey="events.sectionTitle" sidebarItems={[]} />,
         handle: { breadcrumbKey: "events.sectionTitle" },
         children: [
           { index: true, element: <Events />, handle: { breadcrumbKey: "events.sectionTitle" } },
