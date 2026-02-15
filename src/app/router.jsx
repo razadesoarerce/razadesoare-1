@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         path: "educatie",
         element: (
           <PageLayout
-            heroImage="/images/educatie.jpg"
+            heroImage="/images/home/hero-curriculum.jpg"
             heroTitleKey="education.sectionTitle"
             sidebarItems={[
               { path: "/educatie/curriculum-adaptat", labelKey: "education.curriculum" },
@@ -88,7 +88,7 @@ const router = createBrowserRouter([
         path: "informatii",
         element: (
           <PageLayout
-            heroImage="/images/informatii.jpg"
+            heroImage="/images/home/hero-informatii.jpg"
             heroTitleKey="information.sectionTitle"
             sidebarItems={[
               { path: "/informatii/admitere", labelKey: "info.admission" },
@@ -110,7 +110,7 @@ const router = createBrowserRouter([
       // EVENIMENTE
       {
         path: "evenimente",
-        element: <PageLayout heroImage="/images/evenimente.jpg" heroTitleKey="events.sectionTitle" sidebarItems={[]} />,
+        element: <PageLayout heroImage="/images/home/hero-events.jpg" heroTitleKey="events.sectionTitle" sidebarItems={[]} />,
         handle: { breadcrumbKey: "events.sectionTitle" },
         children: [
           { index: true, element: <Events />, handle: { breadcrumbKey: "events.sectionTitle" } },
