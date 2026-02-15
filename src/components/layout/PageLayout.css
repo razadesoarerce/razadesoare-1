@@ -112,3 +112,44 @@
 .editorial-content p {
   margin-bottom: 32px;
 }
+
+/* Mission & Vision page – premium editorial */
+.mission-vision-content {
+  max-width: 780px;
+  margin: 0 auto;
+  font-size: 1.08rem;
+  line-height: 1.9;
+  color: #4b5563;
+}
+
+.editorial-main-title {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  margin-bottom: 40px;
+  color: #7dc242;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  color: #1f2937;
+}
+
+.mission-vision-content p {
+  margin-bottom: 28px;
+}
+
+.mission-list {
+  margin: 30px 0 40px 20px;
+  padding-left: 20px;
+}
+
+.mission-list li {
+  margin-bottom: 12px;
+}
+
+.mission-vision-content .lead-paragraph {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #374151;
+}
