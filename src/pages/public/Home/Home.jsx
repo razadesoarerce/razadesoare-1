@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./Home.css";
 
@@ -11,7 +12,7 @@ const Home = () => {
           Oferte și programe
         </h2>
         <div className="grid">
-            <a href="/despre/misiune-viziune" className="feature-card">
+            <Link to="/despre/misiune-viziune" className="feature-card">
               <span
                 className="feature-card__image"
                 style={{ backgroundImage: "url(https://picsum.photos/600/400?random=1)" }}
@@ -23,8 +24,8 @@ const Home = () => {
                 <p>{t("home.hero.vision.description")}</p>
                 <span className="read-more">{t("home.hero.vision.cta")}</span>
               </div>
-            </a>
-            <a href="/educatie/curriculum-adaptat" className="feature-card">
+            </Link>
+            <Link to="/educatie/curriculum-adaptat" className="feature-card">
               <span
                 className="feature-card__image"
                 style={{ backgroundImage: "url(https://picsum.photos/600/400?random=2)" }}
@@ -36,8 +37,8 @@ const Home = () => {
                 <p>{t("home.hero.curriculum.description")}</p>
                 <span className="read-more">{t("home.hero.curriculum.cta")}</span>
               </div>
-            </a>
-            <a href="/educatie/consiliere" className="feature-card">
+            </Link>
+            <Link to="/educatie/consiliere" className="feature-card">
               <span
                 className="feature-card__image"
                 style={{ backgroundImage: "url(https://picsum.photos/600/400?random=3)" }}
@@ -49,8 +50,8 @@ const Home = () => {
                 <p>{t("home.hero.therapies.description")}</p>
                 <span className="read-more">{t("home.hero.therapies.cta")}</span>
               </div>
-            </a>
-            <a href="/evenimente" className="feature-card">
+            </Link>
+            <Link to="/evenimente" className="feature-card">
               <span
                 className="feature-card__image"
                 style={{ backgroundImage: "url(https://picsum.photos/600/400?random=4)" }}
@@ -62,7 +63,7 @@ const Home = () => {
                 <p>{t("home.hero.events.description")}</p>
                 <span className="read-more">{t("home.hero.events.cta")}</span>
               </div>
-            </a>
+            </Link>
         </div>
       </section>
 
@@ -83,7 +84,7 @@ const Home = () => {
                 dedicat incluziunii și performanței educaționale, demonstrând
                 implicare și progres constant.
               </p>
-              <a href="/evenimente" className="news-read-more">{t("home.news.readMore")}</a>
+              <Link to="/evenimente" className="news-read-more">{t("home.news.readMore")}</Link>
             </article>
             <article className="news-card">
               <div className="news-image" aria-hidden />
@@ -93,7 +94,7 @@ const Home = () => {
                 Activitatea a oferit elevilor oportunitatea de a-și dezvolta
                 abilitățile artistice și sociale într-un cadru colaborativ.
               </p>
-              <a href="/evenimente" className="news-read-more">{t("home.news.readMore")}</a>
+              <Link to="/evenimente" className="news-read-more">{t("home.news.readMore")}</Link>
             </article>
             <article className="news-card">
               <div className="news-image" aria-hidden />
@@ -103,7 +104,7 @@ const Home = () => {
                 Școala noastră a încheiat un nou parteneriat menit să sprijine
                 integrarea elevilor prin programe educaționale adaptate.
               </p>
-              <a href="/evenimente" className="news-read-more">{t("home.news.readMore")}</a>
+              <Link to="/evenimente" className="news-read-more">{t("home.news.readMore")}</Link>
             </article>
           </div>
         </div>
