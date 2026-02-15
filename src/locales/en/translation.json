@@ -103,7 +103,104 @@
     "curriculum": "Adapted Curriculum",
     "counseling": "Counseling",
     "logopedie": "Speech Therapy",
-    "kinetoterapie": "Physiotherapy"
+    "kinetoterapie": "Physiotherapy",
+    "curriculumPage": {
+      "title": "Adapted Curriculum",
+      "lead": "The adapted curriculum of Rază de Soare Special School is built upon the real needs of each child. The educational process does not pursue uniform academic performance standards, but the progressive development of autonomy, communication, and functional skills necessary for community integration.",
+      "paragraph1": "Each student benefits from an individualized educational plan, adapted to their developmental level, personal learning pace, and cognitive and emotional particularities.",
+      "principlesTitle": "Fundamental Principles",
+      "principlesList": [
+        "Individualization of educational intervention",
+        "Respect for individual developmental pace",
+        "Setting functional and realistic objectives",
+        "Continuous collaboration with the family",
+        "Ongoing evaluation and permanent adaptation"
+      ],
+      "domainsTitle": "Development Areas",
+      "domains": {
+        "cognitive": {
+          "title": "Cognitive Development",
+          "text": "Stimulation of learning processes through activities adapted to each student's level of understanding."
+        },
+        "communication": {
+          "title": "Communication and Language",
+          "text": "Development of functional communication, verbal or alternative, depending on individual needs."
+        },
+        "autonomy": {
+          "title": "Personal Autonomy",
+          "text": "Formation of self-care skills and independence in daily activities."
+        },
+        "social": {
+          "title": "Social Skills",
+          "text": "Practicing social interactions, community rules, and appropriate behaviors."
+        },
+        "lifeSkills": {
+          "title": "Practical Life Skills",
+          "text": "Learning competencies necessary for functional integration into family and social environments."
+        }
+      },
+      "structureTitle": "Organization and Structure",
+      "structureParagraph1": "Classes consist of 6–8 students and are coordinated by two teachers, allowing personalized intervention and consistent attention for each child.",
+      "structureParagraph2": "Educational activity is complemented through collaboration with specialists (counselor, speech therapist, physiotherapist), ensuring a multidisciplinary approach.",
+      "evaluationTitle": "Evaluation and Progress",
+      "evaluationParagraph1": "Progress evaluation is carried out continuously through observation of individual development and adaptation of educational objectives.",
+      "evaluationParagraph2": "The emphasis is on real progress, measured through concrete steps toward autonomy and integration."
+    },
+    "counselingPage": {
+      "title": "Counseling",
+      "lead": "The counseling service within Rază de Soare Special School provides psychological support adapted to the needs of children with special educational requirements. The intervention aims to support emotional, behavioral, and social development within a safe and structured environment.",
+      "paragraph1": "Counseling is an integral part of the school's multidisciplinary approach, contributing to a balance between the educational process and each child's individual needs.",
+      "objectivesTitle": "Intervention Objectives",
+      "objectivesList": [
+        "Development of emotional self-regulation",
+        "Reduction of maladaptive behaviors",
+        "Improvement of adaptation to the school environment",
+        "Support of functional communication",
+        "Family guidance in managing difficulties"
+      ],
+      "methodsTitle": "Intervention Methods",
+      "methodsParagraph1": "Psychological intervention is carried out through individual sessions, group activities, and constant collaboration with teaching staff.",
+      "methodsParagraph2": "The counselor works closely with the family, offering recommendations and support to ensure continuity of intervention at home.",
+      "roleTitle": "Role within the Multidisciplinary Team",
+      "roleParagraph": "The counselor is part of the school's multidisciplinary team, collaborating with teachers, the speech therapist, and the physiotherapist to ensure coherent and individualized intervention."
+    },
+    "logopediePage": {
+      "mainTitle": "Speech Therapy",
+      "lead": "Speech therapy at Rază de Soare Special School is addressed to children with moderate, severe and profound intellectual disabilities, where language disorders are frequently associated with cognitive and global developmental difficulties.",
+      "intro": "The intervention is not limited to correcting isolated sounds, as often happens in mainstream education, but focuses on developing functional communication from its basic level, starting with receptive language, compliance with simple instructions and stimulation of communicative intent.",
+      "contextTitle": "Intervention context",
+      "contextText": "A significant percentage of the students present language delay associated with intellectual disability, and many of them are nonverbal. In such cases, speech therapy aims at initiating communication and gradually building communication skills.",
+      "directionsTitle": "Main intervention directions",
+      "directions": {
+        "d1": "Stimulation of receptive language and understanding of simple commands",
+        "d2": "Development of communicative intent",
+        "d3": "Initiation of speech and functional vocalizations",
+        "d4": "Oro-motor coordination exercises",
+        "d5": "Building compliance and ability to follow instructions"
+      },
+      "methodsTitle": "Methods used",
+      "methodsText1": "Intervention includes the use of Augmentative and Alternative Communication (AAC), pictograms, visual supports, functional gestures and other tools adapted to each child's level.",
+      "methodsText2": "The goal is to develop the most functional form of communication possible — verbal or alternative — so that the child can express needs, preferences and emotions.",
+      "roleTitle": "Role within the multidisciplinary team",
+      "roleText": "The speech therapist collaborates constantly with teachers, the counselor and the physiotherapist to integrate communication objectives into daily educational activities and ensure coherent intervention."
+    },
+    "kinetotherapyPage": {
+      "title": "Physiotherapy",
+      "lead": "The physiotherapy service within Rază de Soare Special School focuses on the recovery and functional development of motor abilities in children with intellectual disabilities and associated disorders.",
+      "paragraph1": "Physiotherapy intervention supports the development of global coordination, balance, and muscle tone, contributing to increased independence in daily activities.",
+      "objectivesTitle": "Intervention Objectives",
+      "objective1": "Improving global motor coordination",
+      "objective2": "Developing balance and postural stability",
+      "objective3": "Increasing muscle tone and physical endurance",
+      "objective4": "Developing motor skills necessary for independence",
+      "objective5": "Preventing motor regression and associated complications",
+      "interventionTitle": "Intervention Methods",
+      "intervention1": "Physiotherapy activities are adapted to each child's developmental level and include structured exercises for coordination, mobility, balance, and postural control.",
+      "intervention2": "Intervention may be individual or integrated into group activities, depending on the objectives established in the individualized educational plan.",
+      "integrationTitle": "Integration into Educational Activity",
+      "integration1": "The physiotherapist collaborates with teachers and other specialists to integrate motor objectives into daily activities, facilitating the transfer of acquired skills into real functional contexts.",
+      "integration2": "Motor development is closely linked to personal autonomy, participation capacity, and the child's integration into the school and community environment."
+    }
   },
   "information": {
     "sectionTitle": "Information",

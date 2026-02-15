@@ -1,47 +1,44 @@
+import { useTranslation } from "react-i18next";
 import SEO from "../../../components/common/SEO";
 
 const Consiliere = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <SEO titleKey="education.counseling" descriptionKey="education.sectionTitle" />
 
       <section className="page-content-section editorial-content therapy-content">
-        <h2 className="editorial-main-title">Consiliere</h2>
+        <h2 className="editorial-main-title">
+          {t("education.counselingPage.title")}
+        </h2>
 
         <p className="lead-paragraph">
-          Serviciul de consiliere din cadrul Școlii Speciale „Rază de Soare” oferă sprijin psihologic adaptat nevoilor copiilor cu cerințe educaționale speciale. Intervenția urmărește susținerea dezvoltării emoționale, comportamentale și sociale, într-un cadru sigur și structurat.
+          {t("education.counselingPage.lead")}
         </p>
 
         <p>
-          Consilierea este parte integrantă a abordării multidisciplinare a școlii, contribuind la crearea unui echilibru între procesul educațional și nevoile individuale ale fiecărui copil.
+          {t("education.counselingPage.paragraph1")}
         </p>
 
         <div className="therapy-section">
-          <h3>Obiectivele intervenției</h3>
+          <h3>{t("education.counselingPage.objectivesTitle")}</h3>
           <ul className="therapy-list">
-            <li>Dezvoltarea autoreglării emoționale</li>
-            <li>Reducerea comportamentelor dezadaptative</li>
-            <li>Creșterea capacității de adaptare la mediul școlar</li>
-            <li>Susținerea comunicării funcționale</li>
-            <li>Sprijin pentru familie în gestionarea dificultăților</li>
+            {t("education.counselingPage.objectivesList", { returnObjects: true }).map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
           </ul>
         </div>
 
         <div className="therapy-section">
-          <h3>Modalități de intervenție</h3>
-          <p>
-            Intervenția psihologică se desfășoară prin sesiuni individuale, activități de grup și colaborare constantă cu cadrele didactice.
-          </p>
-          <p>
-            Consilierul lucrează în strânsă legătură cu familia, oferind recomandări și sprijin pentru continuitatea intervenției în mediul de acasă.
-          </p>
+          <h3>{t("education.counselingPage.methodsTitle")}</h3>
+          <p>{t("education.counselingPage.methodsParagraph1")}</p>
+          <p>{t("education.counselingPage.methodsParagraph2")}</p>
         </div>
 
         <div className="therapy-section">
-          <h3>Rolul în echipa multidisciplinară</h3>
-          <p>
-            Consilierul face parte din echipa multidisciplinară a școlii, colaborând cu profesorii, logopedul și kinetoterapeutul pentru a asigura o intervenție coerentă și adaptată fiecărui copil.
-          </p>
+          <h3>{t("education.counselingPage.roleTitle")}</h3>
+          <p>{t("education.counselingPage.roleParagraph")}</p>
         </div>
       </section>
     </>
