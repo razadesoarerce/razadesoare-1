@@ -64,7 +64,7 @@ const Home = () => {
             <Link to="/despre/misiune-viziune" className="feature-card">
               <span
                 className="feature-card__image"
-                style={{ backgroundImage: "url(https://picsum.photos/600/400?random=1)" }}
+                style={{ backgroundImage: "url(/images/home/hero-vision.jpg)" }}
                 aria-hidden
               />
               <span className="feature-card__overlay" aria-hidden />
@@ -77,7 +77,7 @@ const Home = () => {
             <Link to="/educatie/curriculum-adaptat" className="feature-card">
               <span
                 className="feature-card__image"
-                style={{ backgroundImage: "url(https://picsum.photos/600/400?random=2)" }}
+                style={{ backgroundImage: "url(/images/home/hero-curriculum.jpg)" }}
                 aria-hidden
               />
               <span className="feature-card__overlay" aria-hidden />
@@ -103,7 +103,7 @@ const Home = () => {
             <Link to="/evenimente" className="feature-card">
               <span
                 className="feature-card__image"
-                style={{ backgroundImage: "url(https://picsum.photos/600/400?random=4)" }}
+                style={{ backgroundImage: "url(/images/home/hero-events.jpg)" }}
                 aria-hidden
               />
               <span className="feature-card__overlay" aria-hidden />

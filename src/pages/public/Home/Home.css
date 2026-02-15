@@ -48,36 +48,6 @@
   color: inherit;
 }
 
-.feature-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  z-index: 0;
-  transition: transform 0.5s ease;
-}
-
-.feature-card:hover::before {
-  transform: scale(1.05);
-}
-
-.feature-card:nth-child(1)::before {
-  background-image: url("/images/home/hero-vision2.jpg");
-}
-
-.feature-card:nth-child(2)::before {
-  background-image: url("/images/home/hero-curriculum.jpg");
-}
-
-.feature-card:nth-child(3)::before {
-  background-image: url("/images/home/hero-informatii.jpg");
-}
-
-.feature-card:nth-child(4)::before {
-  background-image: url("/images/home/hero-events.jpg");
-}
-
 .feature-card::after {
   content: "";
   position: absolute;
@@ -93,12 +63,19 @@
   opacity: 1;
 }
 
-/* Image span – no background so ::before shows; keeps layout */
+/* Image span – background from JSX */
 .feature-card__image {
   position: absolute;
   inset: 0;
-  background-image: none !important;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+  z-index: 0;
   pointer-events: none;
+}
+
+.feature-card:hover .feature-card__image {
+  transform: scale(1.05);
 }
 
 /* Dark overlay – subtle, no increase on hover (::after handles hover darkening) */
