@@ -55,24 +55,24 @@
   },
   "home": {
     "hero": {
-      "vision": {
-        "title": "Viziune",
+      "mission": {
+        "title": "Misiune",
         "description": "Colaborare cu familiile, parteneri și comunitatea pentru dezvoltarea elevilor.",
         "cta": "Citește mai mult"
       },
-      "curriculum": {
-        "title": "Curriculum",
+      "education": {
+        "title": "Educație",
         "description": "Curriculum adaptat la nevoile fiecărui elev, pentru o dezvoltare armonioasă.",
+        "cta": "Citește mai mult"
+      },
+      "information": {
+        "title": "Informații",
+        "description": "Admitere, documente și informații utile pentru familii.",
         "cta": "Citește mai mult"
       },
       "events": {
         "title": "Evenimente",
         "description": "Evenimente, ateliere și activități pentru elevi și familii.",
-        "cta": "Citește mai mult"
-      },
-      "therapies": {
-        "title": "Terapii",
-        "description": "Servicii de sprijin personalizate pentru dezvoltarea armonioasă a fiecărui copil.",
         "cta": "Citește mai mult"
       }
     },

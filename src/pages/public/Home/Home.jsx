@@ -69,9 +69,9 @@ const Home = () => {
               />
               <span className="feature-card__overlay" aria-hidden />
               <div className="feature-content">
-                <h2>{t("home.hero.vision.title")}</h2>
-                <p>{t("home.hero.vision.description")}</p>
-                <span className="read-more">{t("home.hero.vision.cta")}</span>
+                <h2>{t("home.hero.mission.title")}</h2>
+                <p>{t("home.hero.mission.description")}</p>
+                <span className="read-more">{t("home.hero.mission.cta")}</span>
               </div>
             </Link>
             <Link to="/educatie/curriculum-adaptat" className="feature-card">
@@ -82,22 +82,22 @@ const Home = () => {
               />
               <span className="feature-card__overlay" aria-hidden />
               <div className="feature-content">
-                <h2>{t("home.hero.curriculum.title")}</h2>
-                <p>{t("home.hero.curriculum.description")}</p>
-                <span className="read-more">{t("home.hero.curriculum.cta")}</span>
+                <h2>{t("home.hero.education.title")}</h2>
+                <p>{t("home.hero.education.description")}</p>
+                <span className="read-more">{t("home.hero.education.cta")}</span>
               </div>
             </Link>
-            <Link to="/educatie/consiliere" className="feature-card">
+            <Link to="/informatii/admitere" className="feature-card">
               <span
                 className="feature-card__image"
-                style={{ backgroundImage: "url(https://picsum.photos/600/400?random=3)" }}
+                style={{ backgroundImage: "url(/images/home/hero-informatii.jpg)" }}
                 aria-hidden
               />
               <span className="feature-card__overlay" aria-hidden />
               <div className="feature-content">
-                <h2>{t("home.hero.therapies.title")}</h2>
-                <p>{t("home.hero.therapies.description")}</p>
-                <span className="read-more">{t("home.hero.therapies.cta")}</span>
+                <h2>{t("home.hero.information.title")}</h2>
+                <p>{t("home.hero.information.description")}</p>
+                <span className="read-more">{t("home.hero.information.cta")}</span>
               </div>
             </Link>
             <Link to="/evenimente" className="feature-card">

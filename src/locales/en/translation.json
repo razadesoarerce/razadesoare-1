@@ -55,25 +55,25 @@
   },
   "home": {
     "hero": {
-      "vision": {
-        "title": "Vision",
+      "mission": {
+        "title": "Mission",
         "description": "Collaboration with families, partners and the community for the development of students.",
         "cta": "Read more"
       },
-      "curriculum": {
-        "title": "Curriculum",
+      "education": {
+        "title": "Education",
         "description": "Curriculum adapted to each student's needs for balanced development.",
+        "cta": "Read more"
+      },
+      "information": {
+        "title": "Information",
+        "description": "Admission, documents and useful information for families.",
         "cta": "Read more"
       },
       "events": {
         "title": "Events",
         "description": "Events, workshops and activities for students and families.",
         "cta": "Read more"
-      },
-      "therapies": {
-        "title": "Therapies",
-        "description": "Personalized support services for each child's balanced development.",
-        "cta": "Learn more"
       }
     },
     "news": {
