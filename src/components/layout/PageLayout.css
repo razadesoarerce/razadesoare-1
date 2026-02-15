@@ -279,3 +279,236 @@
 .therapy-list li {
   margin-bottom: 10px;
 }
+
+/* Admitere page – editorial */
+.admission-content {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+.admission-section {
+  margin-top: 60px;
+}
+
+.admission-section h3 {
+  color: #7dc242;
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+.admission-list {
+  margin: 20px 0 40px 20px;
+  padding-left: 20px;
+}
+
+.admission-list li {
+  margin-bottom: 10px;
+}
+
+.admission-note {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* Documente page – premium editorial */
+.documents-content {
+  max-width: 950px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+.documents-block {
+  margin-top: 60px;
+}
+
+.documents-block h3 {
+  font-size: 1.4rem;
+  color: #7dc242;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+.documents-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.document-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 25px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.document-item:hover {
+  border-color: #7dc242;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.document-info h4 {
+  margin: 0 0 6px 0;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.document-info p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.document-download {
+  background-color: #7dc242;
+  color: #ffffff;
+  padding: 10px 18px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.document-download:hover {
+  background-color: #6ab236;
+}
+
+.legal-reference {
+  margin-bottom: 25px;
+}
+
+.legal-reference h4 {
+  margin-bottom: 6px;
+  color: #585c66;
+}
+
+@media (max-width: 768px) {
+  .document-item {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .document-download {
+    align-self: flex-start;
+  }
+}
+
+/* Structura anului școlar – editorial + calendar */
+.structure-content {
+  max-width: 950px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+.structure-section {
+  margin-top: 60px;
+}
+
+.structure-section h3 {
+  font-size: 1.4rem;
+  color: #7dc242;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+/* Calendar – vertical grid */
+.academic-calendar {
+  margin-top: 60px;
+}
+
+.academic-calendar h3 {
+  font-size: 1.4rem;
+  color: #7dc242;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.calendar-item {
+  padding: 25px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.calendar-item strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.calendar-item span {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.calendar-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.04);
+}
+
+/* Past periods */
+.past-period {
+  background-color: #f3f4f6;
+  border-left: 4px solid #d1d5db;
+  opacity: 0.7;
+}
+
+/* Current + Future periods */
+.upcoming-period {
+  background-color: rgba(125, 194, 66, 0.08);
+  border-left: 4px solid #7dc242;
+}
+
+/* Active period stays highlighted */
+.active-period {
+  border: 2px solid #7dc242 !important;
+  box-shadow: 0 0 0 3px rgba(125, 194, 66, 0.15);
+  position: relative;
+  opacity: 1 !important;
+}
+
+.active-period::after {
+  content: "Perioada curentă";
+  position: absolute;
+  top: -12px;
+  right: 15px;
+  background-color: #7dc242;
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+  .calendar-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.calendar-note {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: #6b7280;
+  font-style: italic;
+}
