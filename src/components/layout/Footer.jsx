@@ -12,24 +12,20 @@ const Footer = () => {
 
       <div className="footer-column">
     <h4>Școala Specială Raza de Soare</h4>
-  
-  <p>
-    Educație adaptată, sprijin și dezvoltare pentru fiecare copil.
-  </p>
+  <p>{t("footer.motto")}</p>
 </div>
 
         <div className="footer-column">
-          <h4>Navigare rapidă</h4>
+          <h4>{t("footer.quickNav")}</h4>
           <ul>
-            <li><a href="/despre/istoric">Despre noi</a></li>
-            <li><a href="/educatie/curriculum-adaptat">Educație</a></li>
-            <li><a href="/evenimente">Evenimente</a></li>
-            <li><a href="/informatii/locatie">Contact</a></li>
+            <li><a href="/despre/istoric">{t("footer.about")}</a></li>
+            <li><a href="/educatie/curriculum-adaptat">{t("footer.education")}</a></li>
+            <li><a href="/evenimente">{t("footer.events")}</a></li>
           </ul>
         </div>
 
         <div className="footer-column">
-          <h4>Link-uri utile</h4>
+          <h4>{t("footer.usefulLinks")}</h4>
           <ul>
             <li>
               <a

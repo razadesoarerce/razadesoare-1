@@ -84,6 +84,12 @@
     }
   },
   "footer": {
+    "motto": "Adaptive education, support and development for every child.",
+    "quickNav": "Quick navigation",
+    "usefulLinks": "Useful links",
+    "about": "About us",
+    "education": "Education",
+    "events": "Events",
     "phone": "Phone",
     "email": "Email",
     "address": "Address",

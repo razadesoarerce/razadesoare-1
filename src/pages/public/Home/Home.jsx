@@ -3,7 +3,56 @@ import { useTranslation } from "react-i18next";
 import "./Home.css";
 
 const Home = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language.startsWith("en") ? "en" : "ro";
+
+  const newsItems = [
+    {
+      id: 1,
+      title: {
+        ro: "Participare la Olimpiada Incluziunii",
+        en: "Participation in the Inclusion Olympiad"
+      },
+      date: {
+        ro: "12 Martie 2026",
+        en: "March 12, 2026"
+      },
+      excerpt: {
+        ro: "Elevii Școlii Speciale Rază de Soare au participat la un eveniment dedicat incluziunii și performanței educaționale, demonstrând implicare și progres constant.",
+        en: "Students of Rază de Soare Special School participated in an event dedicated to inclusion and educational performance, demonstrating engagement and steady progress."
+      }
+    },
+    {
+      id: 2,
+      title: {
+        ro: "Atelier Creativ de Primăvară",
+        en: "Spring Creative Workshop"
+      },
+      date: {
+        ro: "3 Martie 2026",
+        en: "March 3, 2026"
+      },
+      excerpt: {
+        ro: "Activitatea a oferit elevilor oportunitatea de a-și dezvolta abilitățile artistice și sociale într-un cadru colaborativ.",
+        en: "The activity provided students with the opportunity to develop artistic and social skills in a collaborative environment."
+      }
+    },
+    {
+      id: 3,
+      title: {
+        ro: "Parteneriat Educațional Nou",
+        en: "New Educational Partnership"
+      },
+      date: {
+        ro: "20 Februarie 2026",
+        en: "February 20, 2026"
+      },
+      excerpt: {
+        ro: "Școala noastră a încheiat un nou parteneriat menit să sprijine integrarea elevilor prin programe educaționale adaptate.",
+        en: "Our school has established a new partnership aimed at supporting student integration through adapted educational programs."
+      }
+    }
+  ];
 
   return (
     <>
@@ -75,37 +124,17 @@ const Home = () => {
             <span className="news-title-green">{t("home.news.sectionTitlePart2")}</span>
           </h2>
           <div className="news-grid">
-            <article className="news-card">
-              <div className="news-image" aria-hidden />
-              <h3>Participare la Olimpiada Incluziunii</h3>
-              <span className="news-date">12 Martie 2026</span>
-              <p>
-                Elevii Școlii Speciale Rază de Soare au participat la un eveniment
-                dedicat incluziunii și performanței educaționale, demonstrând
-                implicare și progres constant.
-              </p>
-              <Link to="/evenimente" className="news-read-more">{t("home.news.readMore")}</Link>
-            </article>
-            <article className="news-card">
-              <div className="news-image" aria-hidden />
-              <h3>Atelier Creativ de Primăvară</h3>
-              <span className="news-date">3 Martie 2026</span>
-              <p>
-                Activitatea a oferit elevilor oportunitatea de a-și dezvolta
-                abilitățile artistice și sociale într-un cadru colaborativ.
-              </p>
-              <Link to="/evenimente" className="news-read-more">{t("home.news.readMore")}</Link>
-            </article>
-            <article className="news-card">
-              <div className="news-image" aria-hidden />
-              <h3>Parteneriat Educațional Nou</h3>
-              <span className="news-date">20 Februarie 2026</span>
-              <p>
-                Școala noastră a încheiat un nou parteneriat menit să sprijine
-                integrarea elevilor prin programe educaționale adaptate.
-              </p>
-              <Link to="/evenimente" className="news-read-more">{t("home.news.readMore")}</Link>
-            </article>
+            {newsItems.map((item) => (
+              <article key={item.id} className="news-card">
+                <div className="news-image" aria-hidden />
+                <h3>{item.title[lang]}</h3>
+                <span className="news-date">{item.date[lang]}</span>
+                <p>{item.excerpt[lang]}</p>
+                <Link to="/evenimente" className="news-read-more">
+                  {t("home.news.readMore")}
+                </Link>
+              </article>
+            ))}
           </div>
         </div>
       </section>
