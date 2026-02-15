@@ -1,44 +1,44 @@
 import SEO from "../../../components/common/SEO";
+import { useTranslation } from "react-i18next";
 
 const Admitere = () => {
+  const { t } = useTranslation();
+
   return (
     <>
-      <SEO titleKey="info.admission" descriptionKey="information.sectionTitle" />
+      <SEO
+        titleKey="info.admission.seoTitle"
+        descriptionKey="info.admission.seoTitle"
+      />
 
       <section className="page-content-section editorial-content admission-content">
-        <h2 className="editorial-main-title">Admitere / Înscriere</h2>
+        <h2 className="editorial-main-title">
+          {t("info.admission.title")}
+        </h2>
 
         <div className="admission-section">
-          <h3>Criterii de admitere</h3>
+          <h3>{t("info.admission.criteriaTitle")}</h3>
 
-          <p>
-            Școala Specială „Rază de Soare” se adresează copiilor și tinerilor diagnosticați cu dizabilitate intelectuală de grad mediu, sever sau profund.
-          </p>
-
-          <p>
-            Pentru admitere este necesară existența unui certificat de încadrare în grad de handicap și a unui certificat de orientare școlară către învățământ special.
-          </p>
-
-          <p>
-            Procesul de admitere include un interviu cu părinții sau reprezentanții legali și o evaluare a copilului, în vederea stabilirii compatibilității cu specificul instituției și a identificării nevoilor educaționale.
-          </p>
+          <p>{t("info.admission.criteriaText1")}</p>
+          <p>{t("info.admission.criteriaText2")}</p>
+          <p>{t("info.admission.criteriaText3")}</p>
         </div>
 
         <div className="admission-section">
-          <h3>Documente necesare pentru înscriere</h3>
+          <h3>{t("info.admission.documentsTitle")}</h3>
 
           <ul className="admission-list">
-            <li>Certificatul de naștere al copilului (copie)</li>
-            <li>Documentul de identitate al părintelui / reprezentantului legal</li>
-            <li>Certificat de divorț (dacă este cazul)</li>
-            <li>Certificat medical NPI, format A5, cu diagnosticul copilului</li>
-            <li>Certificat de încadrare în grad de handicap</li>
-            <li>Certificat de orientare școlară către învățământ special</li>
-            <li>Alte documente medicale relevante pentru condiția copilului</li>
+            <li>{t("info.admission.doc1")}</li>
+            <li>{t("info.admission.doc2")}</li>
+            <li>{t("info.admission.doc3")}</li>
+            <li>{t("info.admission.doc4")}</li>
+            <li>{t("info.admission.doc5")}</li>
+            <li>{t("info.admission.doc6")}</li>
+            <li>{t("info.admission.doc7")}</li>
           </ul>
 
           <p className="admission-note">
-            Documentele medicale suplimentare sunt importante în situații precum epilepsie, alergii severe sau tratamente psihiatrice, pentru a asigura siguranța și buna îngrijire a copilului în mediul școlar.
+            {t("info.admission.note")}
           </p>
         </div>
       </section>

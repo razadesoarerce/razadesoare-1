@@ -90,7 +90,7 @@ const router = createBrowserRouter([
             heroImage="/images/home/hero-informatii.jpg"
             heroTitleKey="information.sectionTitle"
             sidebarItems={[
-              { path: "/informatii/admitere", labelKey: "info.admission" },
+              { path: "/informatii/admitere", labelKey: "info.admission.title" },
               { path: "/informatii/documente", labelKey: "info.documents" },
               { path: "/informatii/structura-anului-scolar", labelKey: "info.structure" },
             ]}
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
         ),
         handle: { breadcrumbKey: "information.sectionTitle" },
         children: [
-          { path: "admitere", element: <Admitere />, handle: { breadcrumbKey: "info.admission" } },
+          { path: "admitere", element: <Admitere />, handle: { breadcrumbKey: "info.admission.title" } },
           { path: "documente", element: <Documente />, handle: { breadcrumbKey: "info.documents" } },
           { path: "structura-anului-scolar", element: <StructuraAnului />, handle: { breadcrumbKey: "info.structure" } },
         ],

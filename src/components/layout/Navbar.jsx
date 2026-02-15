@@ -51,7 +51,7 @@ const Navbar = () => {
           <div className="dropdown">
             <span>{t("nav.information")}</span>
             <div className="dropdown-menu">
-              <NavLink to="/informatii/admitere">{t("info.admission")}</NavLink>
+              <NavLink to="/informatii/admitere">{t("info.admission.title")}</NavLink>
               <NavLink to="/informatii/documente">{t("info.documents")}</NavLink>
               <NavLink to="/informatii/structura-anului-scolar">{t("info.structure")}</NavLink>
             </div>

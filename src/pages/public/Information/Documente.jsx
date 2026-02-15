@@ -1,107 +1,151 @@
+import { useTranslation } from "react-i18next";
 import SEO from "../../../components/common/SEO";
 
 const Documente = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <SEO titleKey="info.documents" descriptionKey="information.sectionTitle" />
 
       <section className="page-content-section editorial-content documents-content">
-        <h2 className="editorial-main-title">Documente și Informații</h2>
+        <h2 className="editorial-main-title">
+          {t("documents.pageTitle")}
+        </h2>
 
         <p className="lead-paragraph">
-          Pe această pagină găsiți documentele și formularele necesare pentru înscrierea la Școala Specială „Rază de Soare”, precum și referințe la cadrul legal aplicabil copiilor cu dizabilități.
+          {t("documents.intro")}
         </p>
 
+        {/* DOCUMENTE INTERNE */}
         <div className="documents-block">
-          <h3>Documente interne – Școala Specială „Rază de Soare”</h3>
+          <h3>{t("documents.internal.title")}</h3>
+
           <div className="documents-list">
+
             <div className="document-item">
               <div className="document-info">
-                <h4>Formular de înscriere</h4>
-                <p>Formular oficial pentru cererea de înscriere a copilului la școală.</p>
+                <h4>{t("documents.internal.enrollmentForm.title")}</h4>
+                <p>{t("documents.internal.enrollmentForm.desc")}</p>
               </div>
-              <a href="#" className="document-download">Descarcă</a>
+              <a href="#" className="document-download">
+                {t("documents.download")}
+              </a>
             </div>
+
             <div className="document-item">
               <div className="document-info">
-                <h4>Regulament de organizare</h4>
-                <p>Regulamentul intern al școlii, norme de funcționare și drepturi.</p>
+                <h4>{t("documents.internal.rules.title")}</h4>
+                <p>{t("documents.internal.rules.desc")}</p>
               </div>
-              <a href="#" className="document-download">Descarcă</a>
+              <a href="#" className="document-download">
+                {t("documents.download")}
+              </a>
             </div>
+
             <div className="document-item">
               <div className="document-info">
-                <h4>Contract educațional</h4>
-                <p>Acordul între școală și familie privind programul educațional individualizat.</p>
+                <h4>{t("documents.internal.contract.title")}</h4>
+                <p>{t("documents.internal.contract.desc")}</p>
               </div>
-              <a href="#" className="document-download">Descarcă</a>
+              <a href="#" className="document-download">
+                {t("documents.download")}
+              </a>
             </div>
+
             <div className="document-item">
               <div className="document-info">
-                <h4>Acord GDPR</h4>
-                <p>Consimțământ pentru prelucrarea datelor personale în scop educațional.</p>
+                <h4>{t("documents.internal.gdpr.title")}</h4>
+                <p>{t("documents.internal.gdpr.desc")}</p>
               </div>
-              <a href="#" className="document-download">Descarcă</a>
+              <a href="#" className="document-download">
+                {t("documents.download")}
+              </a>
             </div>
+
           </div>
         </div>
 
+        {/* FORMULARE OFICIALE */}
         <div className="documents-block">
-          <h3>Formulare oficiale</h3>
+          <h3>{t("documents.official.title")}</h3>
+
           <div className="documents-list">
+
             <div className="document-item">
               <div className="document-info">
-                <h4>Formular 230</h4>
-                <p>Declarație fiscală pentru deduceri și drepturi sociale.</p>
+                <h4>{t("documents.official.form230.title")}</h4>
+                <p>{t("documents.official.form230.desc")}</p>
               </div>
-              <a href="#" className="document-download">Descarcă</a>
+              <a href="#" className="document-download">
+                {t("documents.download")}
+              </a>
             </div>
+
             <div className="document-item">
               <div className="document-info">
-                <h4>Certificat încadrare handicap</h4>
-                <p>Certificat medical de încadrare în grad de handicap.</p>
+                <h4>{t("documents.official.disability.title")}</h4>
+                <p>{t("documents.official.disability.desc")}</p>
               </div>
-              <a href="#" className="document-download">Descarcă</a>
+              <a href="#" className="document-download">
+                {t("documents.download")}
+              </a>
             </div>
+
             <div className="document-item">
               <div className="document-info">
-                <h4>Certificat orientare școlară</h4>
-                <p>Certificat de orientare către învățământ special.</p>
+                <h4>{t("documents.official.orientation.title")}</h4>
+                <p>{t("documents.official.orientation.desc")}</p>
               </div>
-              <a href="#" className="document-download">Descarcă</a>
+              <a href="#" className="document-download">
+                {t("documents.download")}
+              </a>
             </div>
+
             <div className="document-item">
               <div className="document-info">
-                <h4>Certificat medical A5 (NPI)</h4>
-                <p>Certificat medical cu diagnosticul și recomandările NPI.</p>
+                <h4>{t("documents.official.npi.title")}</h4>
+                <p>{t("documents.official.npi.desc")}</p>
               </div>
-              <a href="#" className="document-download">Descarcă</a>
+              <a href="#" className="document-download">
+                {t("documents.download")}
+              </a>
             </div>
+
             <div className="document-item">
               <div className="document-info">
-                <h4>Documente pentru drepturi sociale</h4>
-                <p>Informații și formulare pentru alocații și drepturi sociale.</p>
+                <h4>{t("documents.official.social.title")}</h4>
+                <p>{t("documents.official.social.desc")}</p>
               </div>
-              <a href="#" className="document-download">Descarcă</a>
+              <a href="#" className="document-download">
+                {t("documents.download")}
+              </a>
             </div>
+
           </div>
         </div>
 
+        {/* CADRU LEGAL */}
         <div className="documents-block">
-          <h3>Drepturile copilului cu dizabilitate</h3>
+          <h3>{t("documents.legal.title")}</h3>
+
           <div className="legal-reference">
-            <h4>Legea 448/2006</h4>
-            <p>Legea privind protecția și promovarea drepturilor persoanelor cu handicap.</p>
+            <h4>{t("documents.legal.law448.title")}</h4>
+            <p>{t("documents.legal.law448.desc")}</p>
           </div>
+
           <div className="legal-reference">
-            <h4>Legea educației 1/2011</h4>
-            <p>Legea educației naționale – dispoziții privind educația incluzivă și specială.</p>
+            <h4>{t("documents.legal.law1.title")}</h4>
+            <p>{t("documents.legal.law1.desc")}</p>
           </div>
+
           <div className="legal-reference">
-            <h4>Convenția ONU</h4>
-            <p>Convenția ONU privind drepturile persoanelor cu dizabilități (ratificată de România).</p>
+            <h4>{t("documents.legal.un.title")}</h4>
+            <p>{t("documents.legal.un.desc")}</p>
           </div>
+
         </div>
+
       </section>
     </>
   );

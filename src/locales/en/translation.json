@@ -208,10 +208,116 @@
     "location": "Location"
   },
   "info": {
-    "admission": "Admission / Enrollment",
+    "admission": {
+      "seoTitle": "Admission / Enrollment",
+      "title": "Admission / Enrollment",
+      "criteriaTitle": "Admission criteria",
+      "criteriaText1": "Rază de Soare Special School is dedicated to children and young people diagnosed with moderate, severe, or profound intellectual disabilities.",
+      "criteriaText2": "Admission requires a valid disability certificate and a school orientation certificate directing the child to special education.",
+      "criteriaText3": "The admission process includes an interview with the parents or legal guardians and an evaluation of the child to determine compatibility with the institution's profile and identify educational needs.",
+      "documentsTitle": "Required enrollment documents",
+      "doc1": "Child's birth certificate (copy)",
+      "doc2": "Identity document of the parent / legal guardian",
+      "doc3": "Divorce certificate (if applicable)",
+      "doc4": "Medical certificate (NPI format A5) including the child's diagnosis",
+      "doc5": "Disability classification certificate",
+      "doc6": "School orientation certificate for special education",
+      "doc7": "Other relevant medical documents regarding the child's condition",
+      "note": "Additional medical documents are important in cases such as epilepsy, severe allergies, or psychiatric treatment, to ensure the child's safety and proper care within the school environment."
+    },
     "documents": "Documents",
     "structure": "School Year Structure",
     "location": "Location"
+  },
+  "documents": {
+    "pageTitle": "Documents and Information",
+    "intro": "On this page you can find the documents and forms required for enrollment at \"Rază de Soare\" Special School, as well as references to the legal framework applicable to children with disabilities.",
+    "download": "Download",
+    "internal": {
+      "title": "Internal Documents – \"Rază de Soare\" Special School",
+      "enrollmentForm": {
+        "title": "Enrollment Form",
+        "desc": "Official form for submitting the child's enrollment request."
+      },
+      "rules": {
+        "title": "School Regulations",
+        "desc": "Internal rules, operational norms and rights."
+      },
+      "contract": {
+        "title": "Educational Contract",
+        "desc": "Agreement between the school and the family regarding the individualized educational program."
+      },
+      "gdpr": {
+        "title": "GDPR Agreement",
+        "desc": "Consent for processing personal data for educational purposes."
+      }
+    },
+    "official": {
+      "title": "Official Forms",
+      "form230": {
+        "title": "Form 230",
+        "desc": "Fiscal declaration for deductions and social rights."
+      },
+      "disability": {
+        "title": "Disability Certificate",
+        "desc": "Medical certificate confirming the disability classification."
+      },
+      "orientation": {
+        "title": "Educational Orientation Certificate",
+        "desc": "Certificate directing the child to special education."
+      },
+      "npi": {
+        "title": "Medical Certificate A5 (NPI)",
+        "desc": "Medical certificate including diagnosis and NPI recommendations."
+      },
+      "social": {
+        "title": "Social Rights Documents",
+        "desc": "Information and forms for allowances and social benefits."
+      }
+    },
+    "legal": {
+      "title": "Rights of the Child with Disabilities",
+      "law448": {
+        "title": "Law 448/2006",
+        "desc": "Law regarding the protection and promotion of the rights of persons with disabilities."
+      },
+      "law1": {
+        "title": "Education Law 1/2011",
+        "desc": "National education law – provisions regarding inclusive and special education."
+      },
+      "un": {
+        "title": "UN Convention",
+        "desc": "UN Convention on the Rights of Persons with Disabilities (ratified by Romania)."
+      }
+    }
+  },
+  "structure": {
+    "title": "School Year Structure",
+    "lead": "The school year at Rază de Soare Special School is organised on a modular system, with teaching periods alternating with inter-module holidays. This structure allows regular breaks for students and staff, ensuring a sustainable pace of learning and recovery.",
+    "modularTitle": "Modular organisation",
+    "modularText1": "The school year is divided into five teaching modules, separated by inter-module holidays. Each module covers a focused period of educational activity, followed by a break that allows students to recover and families to align with the school rhythm.",
+    "modularText2": "The modular structure is adapted to the needs of children with special educational needs, reducing fatigue and maintaining a balance between demands and rest periods. The calendar is communicated in advance to families and is aligned with the norms of the Ministry of Education.",
+    "calendarTitle": "School year calendar 2025–2026",
+    "note": "*The school year structure is adapted according to the calendar established for Arad county and may be subject to changes depending on decisions by the educational authorities.*",
+    "specialTitle": "Particularities in special education",
+    "specialText1": "In special education, the school year structure and daily schedule are adapted to the pace and capacities of the students. Concentration periods are shorter, and activities are alternated to maintain attention and reduce fatigue.",
+    "specialText2": "Progress is assessed continuously, and educational objectives are reviewed each module according to each child's development.",
+    "activitiesTitle": "Complementary activities",
+    "activitiesText": "Throughout the school year, extracurricular activities and educational projects – workshops, trips, school celebrations – are run and integrated into the modular programme. These enhance the learning experience and students' opportunities for socialisation.",
+    "conclusionTitle": "Conclusion",
+    "conclusionText": "The modular structure of the school year reflects the school's commitment to a balanced educational environment adapted to the needs of children with special requirements. The exact calendar (start and end dates for each module) is displayed at the school and communicated to families at the beginning of the school year.",
+    "periods": {
+      "module1": "Module I",
+      "module2": "Module II",
+      "module3": "Module III",
+      "module4": "Module IV",
+      "module5": "Module V",
+      "autumnBreak": "Break",
+      "winterBreak": "Winter break",
+      "springBreak": "Spring break",
+      "summerBreak": "Summer holiday",
+      "interBreak": "Break"
+    }
   },
   "events": {
     "navLabel": "Events",

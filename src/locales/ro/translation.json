@@ -208,10 +208,116 @@
     "location": "Locație"
   },
   "info": {
-    "admission": "Admitere / Înscriere",
+    "admission": {
+      "seoTitle": "Admitere / Înscriere",
+      "title": "Admitere / Înscriere",
+      "criteriaTitle": "Criterii de admitere",
+      "criteriaText1": "Școala Specială „Rază de Soare” se adresează copiilor și tinerilor diagnosticați cu dizabilitate intelectuală de grad mediu, sever sau profund.",
+      "criteriaText2": "Pentru admitere este necesară existența unui certificat de încadrare în grad de handicap și a unui certificat de orientare școlară către învățământ special.",
+      "criteriaText3": "Procesul de admitere include un interviu cu părinții sau reprezentanții legali și o evaluare a copilului, în vederea stabilirii compatibilității cu specificul instituției și a identificării nevoilor educaționale.",
+      "documentsTitle": "Documente necesare pentru înscriere",
+      "doc1": "Certificatul de naștere al copilului (copie)",
+      "doc2": "Documentul de identitate al părintelui / reprezentantului legal",
+      "doc3": "Certificat de divorț (dacă este cazul)",
+      "doc4": "Certificat medical NPI, format A5, cu diagnosticul copilului",
+      "doc5": "Certificat de încadrare în grad de handicap",
+      "doc6": "Certificat de orientare școlară către învățământ special",
+      "doc7": "Alte documente medicale relevante pentru condiția copilului",
+      "note": "Documentele medicale suplimentare sunt importante în situații precum epilepsie, alergii severe sau tratamente psihiatrice, pentru a asigura siguranța și buna îngrijire a copilului în mediul școlar."
+    },
     "documents": "Documente",
     "structure": "Structura anului școlar",
     "location": "Locație"
+  },
+  "documents": {
+    "pageTitle": "Documente și Informații",
+    "intro": "Pe această pagină găsiți documentele și formularele necesare pentru înscrierea la Școala Specială „Rază de Soare”, precum și referințe la cadrul legal aplicabil copiilor cu dizabilități.",
+    "download": "Descarcă",
+    "internal": {
+      "title": "Documente interne – Școala Specială „Rază de Soare”",
+      "enrollmentForm": {
+        "title": "Formular de înscriere",
+        "desc": "Formular oficial pentru cererea de înscriere a copilului la școală."
+      },
+      "rules": {
+        "title": "Regulament de organizare",
+        "desc": "Regulamentul intern al școlii, norme de funcționare și drepturi."
+      },
+      "contract": {
+        "title": "Contract educațional",
+        "desc": "Acordul între școală și familie privind programul educațional individualizat."
+      },
+      "gdpr": {
+        "title": "Acord GDPR",
+        "desc": "Consimțământ pentru prelucrarea datelor personale în scop educațional."
+      }
+    },
+    "official": {
+      "title": "Formulare oficiale",
+      "form230": {
+        "title": "Formular 230",
+        "desc": "Declarație fiscală pentru deduceri și drepturi sociale."
+      },
+      "disability": {
+        "title": "Certificat încadrare handicap",
+        "desc": "Certificat medical de încadrare în grad de handicap."
+      },
+      "orientation": {
+        "title": "Certificat orientare școlară",
+        "desc": "Certificat de orientare către învățământ special."
+      },
+      "npi": {
+        "title": "Certificat medical A5 (NPI)",
+        "desc": "Certificat medical cu diagnosticul și recomandările NPI."
+      },
+      "social": {
+        "title": "Documente pentru drepturi sociale",
+        "desc": "Informații și formulare pentru alocații și drepturi sociale."
+      }
+    },
+    "legal": {
+      "title": "Drepturile copilului cu dizabilitate",
+      "law448": {
+        "title": "Legea 448/2006",
+        "desc": "Legea privind protecția și promovarea drepturilor persoanelor cu handicap."
+      },
+      "law1": {
+        "title": "Legea educației 1/2011",
+        "desc": "Legea educației naționale – dispoziții privind educația incluzivă și specială."
+      },
+      "un": {
+        "title": "Convenția ONU",
+        "desc": "Convenția ONU privind drepturile persoanelor cu dizabilități (ratificată de România)."
+      }
+    }
+  },
+  "structure": {
+    "title": "Structura Anului Școlar",
+    "lead": "Anul școlar la Școala Specială „Rază de Soare” este organizat pe sistem modular, cu perioade de cursuri alternate cu vacanțe intermodulare. Această structură permite o pauză regulată pentru elevi și cadre, asigurând un ritm sustenabil de învățare și recuperare.",
+    "modularTitle": "Organizare modulară",
+    "modularText1": "Anul școlar este împărțit în cinci module de cursuri, separate între ele de vacanțe intermodulare. Fiecare modul cuprinde o perioadă concentrată de activitate educațională, urmată de o pauză care permite elevilor să se recupereze și familiilor să se aliniereze la ritmul școlii.",
+    "modularText2": "Structura modulară este adaptată nevoilor copiilor cu cerințe educaționale speciale, reducând oboseala și menținând un echilibru între solicitări și perioade de odihnă. Calendarul este comunicat în avans familiilor și este aliniat cu normele Ministerului Educației.",
+    "calendarTitle": "Calendarul anului școlar 2025–2026",
+    "note": "*Structura anului școlar este adaptată conform calendarului stabilit pentru județul Arad și poate suferi modificări în funcție de deciziile autorităților educaționale.*",
+    "specialTitle": "Particularități în învățământ special",
+    "specialText1": "În învățământul special, structura anului școlar și programul zilnic sunt adaptate ritmului și capacităților elevilor. Perioadele de concentrare sunt mai scurte, iar activitățile sunt alternante pentru a menține atenția și a reduce oboseala.",
+    "specialText2": "Evaluarea progresului se face continuu, iar obiectivele educaționale sunt revizuite la fiecare modul în funcție de evoluția fiecărui copil.",
+    "activitiesTitle": "Activități complementare",
+    "activitiesText": "Pe parcursul anului școlar se desfășoară activități extrașcolare și proiecte educative – ateliere, excursii, sărbători școlare – integrate în programul modular. Acestea sporesc experiența de învățare și oportunitățile de socializare ale elevilor.",
+    "conclusionTitle": "Concluzie",
+    "conclusionText": "Structura modulară a anului școlar reflectă angajamentul școlii față de un mediu educațional echilibrat și adaptat nevoilor copiilor cu cerințe speciale. Calendarul exact (date de început și sfârșit pentru fiecare modul) este afișat la școală și comunicat familiilor la începutul anului școlar.",
+    "periods": {
+      "module1": "Modul I",
+      "module2": "Modul II",
+      "module3": "Modul III",
+      "module4": "Modul IV",
+      "module5": "Modul V",
+      "autumnBreak": "Vacanță",
+      "winterBreak": "Vacanță de iarnă",
+      "springBreak": "Vacanță de primăvară",
+      "summerBreak": "Vacanța de vară",
+      "interBreak": "Vacanță"
+    }
   },
   "events": {
     "navLabel": "Evenimente",
