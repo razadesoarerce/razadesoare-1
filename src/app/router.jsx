@@ -16,7 +16,6 @@ import Kinetoterapie from "../pages/public/Education/Kinetoterapie";
 import Admitere from "../pages/public/Information/Admitere";
 import Documente from "../pages/public/Information/Documente";
 import StructuraAnului from "../pages/public/Information/StructuraAnului";
-import Location from "../pages/public/Information/Location";
 import Events from "../pages/public/Events/Events";
 import EventDetails from "../pages/public/Events/EventDetails";
 import NotFound from "../pages/public/NotFound";
@@ -94,7 +93,6 @@ const router = createBrowserRouter([
               { path: "/informatii/admitere", labelKey: "info.admission" },
               { path: "/informatii/documente", labelKey: "info.documents" },
               { path: "/informatii/structura-anului-scolar", labelKey: "info.structure" },
-              { path: "/informatii/locatie", labelKey: "info.location" },
             ]}
           />
         ),
@@ -103,7 +101,6 @@ const router = createBrowserRouter([
           { path: "admitere", element: <Admitere />, handle: { breadcrumbKey: "info.admission" } },
           { path: "documente", element: <Documente />, handle: { breadcrumbKey: "info.documents" } },
           { path: "structura-anului-scolar", element: <StructuraAnului />, handle: { breadcrumbKey: "info.structure" } },
-          { path: "locatie", element: <Location />, handle: { breadcrumbKey: "info.location" } },
         ],
       },
 

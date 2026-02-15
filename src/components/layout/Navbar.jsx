@@ -54,7 +54,6 @@ const Navbar = () => {
               <NavLink to="/informatii/admitere">{t("info.admission")}</NavLink>
               <NavLink to="/informatii/documente">{t("info.documents")}</NavLink>
               <NavLink to="/informatii/structura-anului-scolar">{t("info.structure")}</NavLink>
-              <NavLink to="/informatii/locatie">{t("info.location")}</NavLink>
             </div>
           </div>
 

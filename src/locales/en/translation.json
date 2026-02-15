@@ -25,11 +25,78 @@
     "sectionTitle": "About Us",
     "history": {
       "label": "History",
-      "seoTitle": "History | Rază de Soare Special School",
-      "seoDescription": "Discover the history of Rază de Soare Special School in Arad, founded in 2002 to support children with special educational needs."
+      "seoTitle": "History",
+      "seoDescription": "History of Rază de Soare Special School in Arad.",
+      "pageTitle": "History of „Rază de Soare” Special School",
+      "paragraphs": {
+        "p1": "Rază de Soare Special School was established in response to a real need within the Arad community.",
+        "p2": "In January 2002, as a response to the need for inclusive and specialized education for children with special educational needs, our institution was founded. The initiative aimed to create a place where children with moderate, severe, and profound intellectual disabilities could follow an adapted educational program in a safe and supportive environment.",
+        "p3": "The school operates within the Christian Foundation „RCE Speranța Copiilor”, a non-profit organization that supports and promotes social and educational services dedicated to children and families in the community.",
+        "p4": "Over the years, „Rază de Soare” has steadily developed, offering adapted education for children aged between 3 and 18 years. The program covers kindergarten (starting with the small group) up to the 10th grade, with small class sizes (6–8 students) coordinated by two teachers, ensuring personalized attention and meaningful development for each student.",
+        "p5": "Throughout time, our mission has extended beyond teaching, becoming a holistic support center that promotes inclusion, personal development, and the dignity of every child."
+      }
     },
     "missionVision": "Mission & Vision",
-    "team": "Team"
+    "team": "Team",
+    "missionVisionPage": {
+      "title": "Mission & Vision",
+      "missionTitle": "Our Mission",
+      "missionLead": "Rază de Soare Special School is committed to providing each child with special educational needs a safe, stable, and individualized environment where personal development, autonomy, and communication are fundamental priorities.",
+      "missionParagraph1": "Our activity addresses children and young people with moderate, severe, and profound intellectual disabilities who require structured educational interventions, consistent support, and a framework in which progress is measured through real steps toward independence and social integration.",
+      "missionList": [
+        "development of practical life skills and personal autonomy;",
+        "stimulation of functional communication and emotional expression;",
+        "building social competencies necessary for community integration;",
+        "supporting families through educational partnership and ongoing guidance."
+      ],
+      "missionParagraph2": "Small classes of 6–8 students, coordinated by two teachers, allow for personalized approaches and interventions tailored to each child. Emphasis is placed on individual progress, personal rhythm, and valuing every achievement.",
+      "missionParagraph3": "At the heart of our educational mission stands respect for human dignity and the conviction that every child deserves genuine opportunities for development.",
+      "visionTitle": "Our Vision",
+      "visionParagraph1": "The vision of Rază de Soare Special School is that of an educational community where difference is not a limitation, but a starting point for support, understanding, and growth.",
+      "visionParagraph2": "We envision a society in which children and young people with intellectual disabilities are viewed through the lens of their potential rather than their limitations. A society where inclusion means real participation and integration is supported through adapted education and responsible intervention.",
+      "visionParagraph3": "Within the RCE 'Speranța Copiilor' Foundation, our school promotes values such as respect for life and human dignity, responsibility toward others, compassion, and mutual support.",
+      "visionParagraph4": "We believe true education does not mean standardization, but attentive guidance and continuous support. Every child is unique, and the educational process must respond to that uniqueness.",
+      "visionParagraph5": "Through our work, we aim to contribute to the development of young people who are as autonomous as possible, able to communicate, participate in community life, and build the skills necessary for a more independent life."
+    },
+    "teamPage": {
+      "title": "Our Team",
+      "intro1": "The team of Rază de Soare Special School consists of teachers and specialists experienced in working with children with special educational needs. Our activity is based on interdisciplinary collaboration, professional responsibility, and respect for the dignity of every child.",
+      "intro2": "Through individualized approaches and teamwork, we aim to develop autonomy, communication, and practical skills necessary for community integration.",
+      "categories": {
+        "management": {
+          "title": "Management",
+          "members": [
+            { "name": "Name Surname", "role": "Director", "details": "Special Education • 18 years of experience" },
+            { "name": "Name Surname", "role": "Educational Coordinator", "details": "Educational Management • 14 years of experience" }
+          ]
+        },
+        "teachers": {
+          "title": "Teaching Staff",
+          "members": [
+            { "name": "Name Surname", "role": "Special Education Teacher", "details": "Special Pedagogy • 12 years of experience" },
+            { "name": "Name Surname", "role": "Special Education Teacher", "details": "Individualized Educational Intervention • 9 years of experience" },
+            { "name": "Name Surname", "role": "Educator", "details": "Occupational Therapy Training • 7 years of experience" },
+            { "name": "Name Surname", "role": "Educator", "details": "Cognitive Stimulation • 10 years of experience" }
+          ]
+        },
+        "specialists": {
+          "title": "Specialists",
+          "members": [
+            { "name": "Name Surname", "role": "Psychological Counselor", "details": "Clinical Psychology • 11 years of experience" },
+            { "name": "Name Surname", "role": "Speech Therapist", "details": "Speech Therapy • 8 years of experience" },
+            { "name": "Name Surname", "role": "Physiotherapist", "details": "Neuromotor Rehabilitation • 13 years of experience" }
+          ]
+        },
+        "auxiliary": {
+          "title": "Support Staff",
+          "members": [
+            { "name": "Name Surname", "role": "Caregiver", "details": "Daily Support Activities • 10 years of experience" },
+            { "name": "Name Surname", "role": "Administrative Staff", "details": "Administrative Management • 15 years of experience" },
+            { "name": "Name Surname", "role": "Cook", "details": "Adapted Nutrition • 9 years of experience" }
+          ]
+        }
+      }
+    }
   },
   "education": {
     "sectionTitle": "Education",

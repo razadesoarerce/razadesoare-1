@@ -25,11 +25,78 @@
     "sectionTitle": "Despre Noi",
     "history": {
       "label": "Istoric",
-      "seoTitle": "Istoric | Școala Specială Rază de Soare",
-      "seoDescription": "Descoperă istoricul Școlii Speciale Rază de Soare din Arad, fondată în 2002 pentru a sprijini copiii cu cerințe educaționale speciale."
+      "seoTitle": "Istoric",
+      "seoDescription": "Istoricul Școlii Speciale Rază de Soare din Arad.",
+      "pageTitle": "Istoricul Școlii Speciale „Rază de Soare”",
+      "paragraphs": {
+        "p1": "Școala Specială „Rază de Soare” își are începuturile în contextul unei nevoie reale din comunitatea Aradului.",
+        "p2": "În ianuarie 2002, ca răspuns la necesitatea unei educații incluzive și specializate pentru copii cu cerințe educaționale speciale, a fost fondată instituția noastră. Inițiativa a pornit din dorința de a crea un loc în care copiii cu dizabilități intelectuale de grad mediu, sever și profund să poată urma un program educațional adecvat, într-un mediu prietenos și sigur.",
+        "p3": "Școala funcționează în cadrul Fundației Creștine „RCE Speranța Copiilor”, organizație non-guvernamentală non-profit care susține și promovează servicii sociale și educaționale dedicate copiilor și familiilor din comunitate.",
+        "p4": "Pe parcursul anilor, „Rază de Soare” s-a dezvoltat constant, oferind educație adaptată copiilor cu vârste cuprinse între 3 și 18 ani. Programul nostru acoperă nivelurile de grădiniță (grupa mică) până la clasa a 10-a, cu clase formate dintr-un număr restrâns de copii (6–8 elevi) și coordonate de doi profesori la clasă, pentru a asigura o atenție personalizată și un progres real pentru fiecare elev.",
+        "p5": "De-a lungul timpului, misiunea noastră s-a extins dincolo de simpla predare, devenind un centru de sprijin holistic care promovează incluziunea, dezvoltarea personală și creșterea demnității fiecărui copil."
+      }
     },
     "missionVision": "Misiune & Viziune",
-    "team": "Echipa"
+    "team": "Echipa",
+    "missionVisionPage": {
+      "title": "Misiune & Viziune",
+      "missionTitle": "Misiunea noastră",
+      "missionLead": "Școala Specială „Rază de Soare” își asumă misiunea de a oferi fiecărui copil cu cerințe educaționale speciale un mediu sigur, stabil și adaptat nevoilor sale individuale, în care dezvoltarea personală, autonomia și comunicarea să fie priorități fundamentale.",
+      "missionParagraph1": "Activitatea noastră se adresează copiilor și tinerilor cu dizabilități intelectuale de grad mediu, sever și profund, care au nevoie de intervenții educaționale structurate, susținere constantă și un cadru în care progresul este măsurat prin pași reali în direcția independenței și a integrării sociale.",
+      "missionList": [
+        "dezvoltarea abilităților de viață practică și autonomie personală;",
+        "stimularea comunicării funcționale și a exprimării emoționale;",
+        "formarea competențelor sociale necesare integrării în comunitate;",
+        "susținerea familiilor prin parteneriat educațional și sprijin constant."
+      ],
+      "missionParagraph2": "Clasele restrânse, formate din 6–8 elevi și coordonate de doi profesori, permit o abordare personalizată și o intervenție adaptată fiecărui copil. Accentul este pus pe progres individual, ritm propriu și valorizarea fiecărei reușite.",
+      "missionParagraph3": "În centrul demersului nostru educațional stă respectul pentru demnitatea fiecărei persoane și convingerea că fiecare copil are dreptul la șanse reale de dezvoltare.",
+      "visionTitle": "Viziunea noastră",
+      "visionParagraph1": "Viziunea Școlii Speciale „Rază de Soare” este aceea a unei comunități educaționale în care diferența nu reprezintă o limită, ci un punct de plecare pentru sprijin, înțelegere și creștere.",
+      "visionParagraph2": "Ne dorim o societate în care copiii și tinerii cu dizabilități intelectuale să fie priviți prin prisma potențialului lor, nu a limitărilor. O societate în care incluziunea înseamnă participare reală, iar integrarea în comunitate este susținută prin educație adaptată și intervenții responsabile.",
+      "visionParagraph3": "În cadrul fundației RCE „Speranța Copiilor”, școala noastră promovează valori precum respectul pentru viață și demnitatea umană, responsabilitatea față de aproapele, compasiunea și sprijinul reciproc.",
+      "visionParagraph4": "Credem că adevărata educație nu înseamnă uniformizare, ci însoțire atentă și susținere continuă. Fiecare copil este o persoană unică, iar procesul educațional trebuie să răspundă acestei unicitați.",
+      "visionParagraph5": "Prin activitatea noastră, ne propunem să contribuim la formarea unor tineri cât mai autonomi, capabili să comunice, să participe la viața comunității și să își dezvolte abilitățile necesare unei vieți cât mai independente."
+    },
+    "teamPage": {
+      "title": "Echipa Noastră",
+      "intro1": "Echipa Școlii Speciale „Rază de Soare” este formată din cadre didactice și specialiști cu experiență în lucrul cu copii cu cerințe educaționale speciale. Activitatea noastră se bazează pe colaborare interdisciplinară, responsabilitate profesională și respect pentru demnitatea fiecărui copil.",
+      "intro2": "Printr-o abordare individualizată și prin muncă în echipă, urmărim dezvoltarea autonomiei, a comunicării și a abilităților practice necesare integrării în comunitate.",
+      "categories": {
+        "management": {
+          "title": "Conducere",
+          "members": [
+            { "name": "Nume Prenume", "role": "Director", "details": "Psihopedagogie specială • 18 ani experiență" },
+            { "name": "Nume Prenume", "role": "Coordonator educațional", "details": "Management educațional • 14 ani experiență" }
+          ]
+        },
+        "teachers": {
+          "title": "Cadre didactice",
+          "members": [
+            { "name": "Nume Prenume", "role": "Profesor învățământ special", "details": "Pedagogie specială • 12 ani experiență" },
+            { "name": "Nume Prenume", "role": "Profesor învățământ special", "details": "Intervenție educațională personalizată • 9 ani experiență" },
+            { "name": "Nume Prenume", "role": "Educator", "details": "Formare în terapie ocupațională • 7 ani experiență" },
+            { "name": "Nume Prenume", "role": "Educator", "details": "Stimulare cognitivă • 10 ani experiență" }
+          ]
+        },
+        "specialists": {
+          "title": "Specialiști",
+          "members": [
+            { "name": "Nume Prenume", "role": "Consilier psihologic", "details": "Psihologie clinică • 11 ani experiență" },
+            { "name": "Nume Prenume", "role": "Logoped", "details": "Terapie logopedică • 8 ani experiență" },
+            { "name": "Nume Prenume", "role": "Kinetoterapeut", "details": "Recuperare neuromotorie • 13 ani experiență" }
+          ]
+        },
+        "auxiliary": {
+          "title": "Personal auxiliar",
+          "members": [
+            { "name": "Nume Prenume", "role": "Îngrijitor", "details": "Suport activități zilnice • 10 ani experiență" },
+            { "name": "Nume Prenume", "role": "Personal administrativ", "details": "Gestionare administrativă • 15 ani experiență" },
+            { "name": "Nume Prenume", "role": "Bucătăreasă", "details": "Alimentație adaptată • 9 ani experiență" }
+          ]
+        }
+      }
+    }
   },
   "education": {
     "sectionTitle": "Educație",
