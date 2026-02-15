@@ -209,3 +209,73 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Curriculum page – editorial */
+.curriculum-content {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+.curriculum-section {
+  margin-top: 60px;
+}
+
+.curriculum-section h3 {
+  color: #7dc242;
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+.curriculum-list {
+  margin: 20px 0 40px 20px;
+  padding-left: 20px;
+}
+
+.curriculum-list li {
+  margin-bottom: 10px;
+}
+
+.curriculum-domain {
+  margin-bottom: 35px;
+}
+
+.curriculum-domain h4 {
+  font-size: 1.1rem;
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+/* Consiliere (therapy) page – editorial */
+.therapy-content {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+.therapy-section {
+  margin-top: 60px;
+}
+
+.therapy-section h3 {
+  color: #7dc242;
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+.therapy-list {
+  margin: 20px 0 40px 20px;
+  padding-left: 20px;
+}
+
+.therapy-list li {
+  margin-bottom: 10px;
+}
