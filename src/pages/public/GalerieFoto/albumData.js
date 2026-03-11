@@ -24,7 +24,7 @@ const photos = [
 export const ALBUM_DEMO = {
   id: "demo",
   title: "1 Martie",
-  cover: img8,
+  cover: img1,
   photos: photos.map((src, i) => ({ id: i + 1, src, alt: `Foto ${i + 1}` })),
 };
 
