@@ -23,6 +23,8 @@
 
 /* ─── Page: scales with flipbook size ─── */
 .album-page {
+  position: relative;
+
   width: 100%;
   height: 100%;
 
@@ -39,6 +41,74 @@
   box-shadow:
     inset -12px 0 18px rgba(0,0,0,0.06),
     inset 12px 0 18px rgba(0,0,0,0.06);
+}
+
+/* Left pages: paper highlight on outer edge */
+.stf__item--left .album-page::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    to left,
+    rgba(255,255,255,0.35),
+    rgba(255,255,255,0.15),
+    transparent
+  );
+}
+
+/* Right pages: paper highlight on outer edge */
+.stf__item--right .album-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,0.35),
+    rgba(255,255,255,0.15),
+    transparent
+  );
+}
+
+/* Left page flipping: shadow on page beneath */
+.stf__item--left.stf__item--active .album-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    to left,
+    rgba(0,0,0,0.18),
+    rgba(0,0,0,0.08),
+    transparent
+  );
+}
+
+/* Right page flipping: shadow on page beneath */
+.stf__item--right.stf__item--active .album-page::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.18),
+    rgba(0,0,0,0.08),
+    transparent
+  );
 }
 
 /* ─── Cover page (image 9) ─── */
@@ -120,7 +190,7 @@
   width: 100%;
   height: 100%;
 
-  object-fit: cover;
+  object-fit: contain;
 }
 
 /* Orientation only affects aspect when in flexible layout; frames stay within grid cell */
@@ -130,6 +200,97 @@
 
 .photo-frame.frame-portrait {
   aspect-ratio: 3 / 4;
+}
+
+/* ─── Hero page: single image, cover ─── */
+.layout-hero-inner {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-frame.frame-hero {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: 100%;
+}
+
+.photo-frame.frame-hero img {
+  object-fit: cover;
+}
+
+/* ─── Portrait / landscape pair: vertical stack ─── */
+.layout-portrait-pair .layout-pair-inner,
+.layout-landscape-pair .layout-pair-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.layout-pair-inner .photo-frame {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* Portrait and landscape pair frames: contain (no crop) */
+.layout-portrait-pair .photo-frame img,
+.layout-landscape-pair .photo-frame img {
+  object-fit: contain;
+}
+
+/* ─── Square layouts (end of album) ─── */
+.layout-square-inner {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.layout-square-4-inner {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.layout-square-3-inner {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.layout-square-3-inner .photo-frame:first-child {
+  grid-column: span 2;
+}
+
+.layout-square-2-inner {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.layout-square-1-inner {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.layout-square-inner .photo-frame {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.layout-square-inner .photo-frame img {
+  object-fit: contain;
 }
 
 /* ─── Layout containers: consistent gap ─── */
@@ -148,9 +309,20 @@
   min-height: 0;
 }
 
-/* Layout B */
+/* Layout A: landscape stacked (two rows); single photo spans full height */
+.layout-a-inner {
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+}
+
+.layout-a-inner .photo-frame:only-child {
+  grid-row: span 2;
+}
+
+/* Layout B: portrait side-by-side (two columns) */
 .layout-b-inner {
   grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
 .layout-b-inner .photo-frame {

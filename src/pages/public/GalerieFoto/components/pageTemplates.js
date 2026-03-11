@@ -1,46 +1,106 @@
 /**
- * Page template definitions for the photobook.
- * Each layout has a unique key and a fixed number of photo slots.
+ * Orientation-based page layout generator.
+ * Returns { layout, photoCount } for PhotoFlipBook to slice photos.
  */
-export const LAYOUT_A = "A"; // 1 large photo
-export const LAYOUT_B = "B"; // 2 photos side by side
-export const LAYOUT_C = "C"; // 3 photos (2 top, 1 bottom)
-export const LAYOUT_D = "D"; // 4 photos grid (2x2)
 
-export const SLOTS_PER_LAYOUT = {
-  [LAYOUT_A]: 1,
-  [LAYOUT_B]: 2,
-  [LAYOUT_C]: 3,
-  [LAYOUT_D]: 4,
-};
+export function classify(photo) {
+  const width = photo.width || 1;
+  const height = photo.height || 1;
 
-/**
- * Page sequence for the album. Photos are distributed in this order.
- * Total slots: 1+2+3+2+4+4+2 = 18
- */
-export const PAGE_SEQUENCE = [
-  LAYOUT_A, // Page 1 → 1 photo
-  LAYOUT_B, // Page 2 → 2 photos
-  LAYOUT_C, // Page 3 → 3 photos
-  LAYOUT_B, // Page 4 → 2 photos
-  LAYOUT_D, // Page 5 → 4 photos
-  LAYOUT_D, // Page 6 → 4 photos
-  LAYOUT_B, // Page 7 → 2 photos
-];
+  const ratio = width / height;
 
-/**
- * Build page configs with layout and photo count for a given total photo count.
- */
-export function buildPageConfigs(photoCount) {
+  if (ratio > 1.15) return "landscape";
+  if (ratio < 0.85) return "portrait";
+
+  return "square";
+}
+
+export function buildPageConfigs(photos) {
+  if (!photos.length) return [];
+
+  const portraits = [];
+  const landscapes = [];
+  const squares = [];
+
+  photos.forEach((photo) => {
+    const type = classify(photo);
+
+    if (type === "portrait") portraits.push(photo);
+    else if (type === "landscape") landscapes.push(photo);
+    else squares.push(photo);
+  });
+
   const configs = [];
-  let photoIndex = 0;
-  for (const layout of PAGE_SEQUENCE) {
-    const slots = SLOTS_PER_LAYOUT[layout];
-    const remaining = photoCount - photoIndex;
-    if (remaining <= 0) break;
-    const take = Math.min(slots, remaining);
-    configs.push({ layout, photoCount: take });
-    photoIndex += take;
+  let toggle = "portrait";
+
+  while (portraits.length >= 2 || landscapes.length >= 2) {
+    if (toggle === "portrait" && portraits.length >= 2) {
+      configs.push({
+        layout: "B",
+        photoCount: 2,
+      });
+      portraits.splice(0, 2);
+    } else if (toggle === "landscape" && landscapes.length >= 2) {
+      configs.push({
+        layout: "A",
+        photoCount: 2,
+      });
+      landscapes.splice(0, 2);
+    }
+
+    toggle = toggle === "portrait" ? "landscape" : "portrait";
   }
+
+  if (portraits.length === 1) {
+    configs.push({
+      layout: "A",
+      photoCount: 1,
+    });
+    portraits.length = 0;
+  }
+
+  if (landscapes.length === 1) {
+    configs.push({
+      layout: "A",
+      photoCount: 1,
+    });
+    landscapes.length = 0;
+  }
+
+  while (squares.length > 0) {
+    if (squares.length >= 4) {
+      configs.push({
+        layout: "D",
+        photoCount: 4,
+      });
+      squares.splice(0, 4);
+    } else if (squares.length === 3) {
+      configs.push({
+        layout: "C",
+        photoCount: 3,
+      });
+      squares.length = 0;
+    } else if (squares.length === 2) {
+      configs.push({
+        layout: "B",
+        photoCount: 2,
+      });
+      squares.length = 0;
+    } else {
+      configs.push({
+        layout: "A",
+        photoCount: 1,
+      });
+      squares.length = 0;
+    }
+  }
+
+  if (configs.length % 2 !== 0) {
+    configs.push({
+      layout: "A",
+      photoCount: 1,
+    });
+  }
+
   return configs;
 }

@@ -48,8 +48,8 @@ const AlbumViewer = ({ album, onClose }) => {
         <div className="album-viewer-container">
           <PhotoFlipBook
             photos={photos}
-            width={600}
-            height={500}
+            width={650}
+            height={600}
           />
         </div>
       </div>

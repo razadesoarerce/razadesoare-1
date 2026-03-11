@@ -4,14 +4,14 @@ import { buildPageConfigs } from "./pageTemplates";
 import {
   CoverPage,
   TitlePage,
-  FirstSpreadRightPage,
   BlankPage,
+  LayoutA,
   LAYOUT_COMPONENTS,
 } from "./AlbumPageLayouts";
 import "./PhotoFlipBook.css";
 
 const COVER_IMAGE_INDEX = 7;
-const FIRST_SPREAD_IMAGE_INDEX = 4;
+const HERO_INDEX = 0;
 
 const PhotoFlipBook = ({
   photos,
@@ -22,34 +22,25 @@ const PhotoFlipBook = ({
   const bookRef = useRef(null);
   const hasAutoFlipped = useRef(false);
 
-  const coverPhoto = photos[COVER_IMAGE_INDEX] ?? null;
-  const firstSpreadPhoto = photos[FIRST_SPREAD_IMAGE_INDEX] ?? null;
+  const heroPhoto = photos[HERO_INDEX];
+  const contentPhotos = photos.filter((_, i) => i !== HERO_INDEX);
 
-  const contentPhotos = photos.filter(
-    (_, i) => i !== COVER_IMAGE_INDEX && i !== FIRST_SPREAD_IMAGE_INDEX
-  );
-
-  const contentConfigs = buildPageConfigs(contentPhotos.length);
+  const contentConfigs = buildPageConfigs(contentPhotos);
 
   let contentIndex = 0;
-
   const contentPageData = contentConfigs.map(({ layout, photoCount }) => {
     const slice = contentPhotos.slice(contentIndex, contentIndex + photoCount);
     contentIndex += photoCount;
-
-    return {
-      layout,
-      photos: slice,
-    };
+    return { layout, photos: slice };
   });
 
   const interiorPages = [
     { type: "title" },
-    { type: "firstSpreadRight", photo: coverPhoto },
-    ...contentPageData.map(({ layout, photos }) => ({
+    { type: "hero", photo: heroPhoto },
+    ...contentPageData.map(({ layout, photos: pagePhotos }) => ({
       type: "layout",
       layout,
-      photos,
+      photos: pagePhotos,
     })),
   ];
 
@@ -96,12 +87,12 @@ const PhotoFlipBook = ({
             return <TitlePage key={i} />;
           }
 
-          if (page.type === "firstSpreadRight") {
-            return <FirstSpreadRightPage key={i} photo={page.photo} />;
-          }
-
           if (page.type === "blank") {
             return <BlankPage key={i} />;
+          }
+
+          if (page.type === "hero") {
+            return <LayoutA key={i} photos={[page.photo]} hero />;
           }
 
           const PageComponent =
