@@ -1,29 +1,51 @@
 import { useState } from "react";
 
 /**
- * Photo frame with optional orientation. Uses object-fit: cover; images do not overflow.
- * orientation: "landscape" | "portrait" | undefined (auto-detect on load)
+ * Photo frame with optional orientation. Orientation can be passed from parent or
+ * detected on image load using naturalWidth/naturalHeight (no extra HTTP requests).
+ * Optionally reports detected orientation via onOrientation(orientation).
  */
-function PhotoFrame({ photo, className = "", orientation: orientationProp }) {
-  const [detectedOrientation, setDetectedOrientation] = useState(null);
-  const orientation = orientationProp ?? detectedOrientation;
-  const orientationClass = orientation ? `frame-${orientation}` : "";
+const PhotoFrame = ({
+  photo,
+  className = "",
+  orientation: orientationProp,
+  onOrientation,
+}) => {
+  const [orientation, setOrientation] = useState(null);
+
+  function handleLoad(e) {
+    const width = e.target.naturalWidth;
+    const height = e.target.naturalHeight;
+    const ratio = width / height;
+
+    let detected;
+    if (ratio > 1.05) detected = "landscape";
+    else if (ratio < 0.95) detected = "portrait";
+    else detected = "square";
+
+    setOrientation(detected);
+
+    if (onOrientation) {
+      onOrientation(detected);
+    }
+  }
+
+  const effectiveOrientation = orientationProp ?? orientation;
 
   if (!photo) return null;
 
   return (
-    <div className={`photo-frame ${orientationClass} ${className}`.trim()}>
+    <div
+      className={`photo-frame ${effectiveOrientation || ""} ${className}`.trim()}
+    >
       <img
         src={photo.src}
         alt={photo.alt ?? ""}
-        onLoad={(e) => {
-          if (orientationProp) return;
-          const { naturalWidth: w, naturalHeight: h } = e.target;
-          setDetectedOrientation(w >= h ? "landscape" : "portrait");
-        }}
+        onLoad={handleLoad}
       />
     </div>
   );
-}
+};
 
+PhotoFrame.displayName = "PhotoFrame";
 export default PhotoFrame;

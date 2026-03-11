@@ -47,6 +47,7 @@ const AlbumViewer = ({ album, onClose }) => {
 
         <div className="album-viewer-container">
           <PhotoFlipBook
+            key={album.id}
             photos={photos}
             width={650}
             height={600}

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { buildPageConfigs } from "./pageTemplates";
 import {
@@ -21,27 +21,59 @@ const PhotoFlipBook = ({
 }) => {
   const bookRef = useRef(null);
   const hasAutoFlipped = useRef(false);
+  const [orientationMap, setOrientationMap] = useState({});
+  const frozenLayoutRef = useRef(null);
+
+  useEffect(() => {
+    setOrientationMap({});
+    frozenLayoutRef.current = null;
+  }, [photos]);
+
+  useEffect(() => {
+    setOrientationMap({});
+    frozenLayoutRef.current = null;
+  }, []);
+
+  function handleOrientation(index, orientation) {
+    setOrientationMap((prev) => ({
+      ...prev,
+      [index]: orientation,
+    }));
+  }
 
   const heroPhoto = photos[HERO_INDEX];
-  const contentPhotos = photos.filter((_, i) => i !== HERO_INDEX);
+  const contentPhotos = photos
+    .filter((_, i) => i !== HERO_INDEX)
+    .map((photo, index) => ({ ...photo, __contentIndex: index }));
 
-  const contentConfigs = buildPageConfigs(contentPhotos);
+  const orientationsComplete =
+    contentPhotos.length > 0 &&
+    Object.keys(orientationMap).length >= contentPhotos.length;
 
-  let contentIndex = 0;
-  const contentPageData = contentConfigs.map(({ layout, photoCount }) => {
-    const slice = contentPhotos.slice(contentIndex, contentIndex + photoCount);
-    contentIndex += photoCount;
-    return { layout, photos: slice };
-  });
+  const contentPageData = buildPageConfigs(contentPhotos, orientationMap);
+
+  if (orientationsComplete && !frozenLayoutRef.current) {
+    frozenLayoutRef.current = contentPageData;
+  }
+  const layoutToUse = frozenLayoutRef.current ?? contentPageData;
+
+  const onPhotoOrientation = (photo, orientation) => {
+    if (typeof photo.__contentIndex === "number") {
+      handleOrientation(photo.__contentIndex, orientation);
+    }
+  };
+
+  const layoutSignature =
+    layoutToUse.length + "-" + layoutToUse.map((p) => p.layout).join(",");
 
   const interiorPages = [
     { type: "title" },
     { type: "hero", photo: heroPhoto },
-    ...contentPageData.map(({ layout, photos: pagePhotos }) => ({
-      type: "layout",
-      layout,
-      photos: pagePhotos,
-    })),
+    ...layoutToUse.map(({ layout, photos: pagePhotos, singleOrientation }) =>
+      layout === "BLANK"
+        ? { type: "blank" }
+        : { type: "layout", layout, photos: pagePhotos, singleOrientation }
+    ),
   ];
 
   const pages = interiorPages;
@@ -65,8 +97,9 @@ const PhotoFlipBook = ({
   }, [skipCover]);
 
   return (
-    <div className="photo-flipbook-wrap">
+    <div className="photo-flipbook-wrap" style={{ position: "relative" }}>
       <HTMLFlipBook
+        key={layoutSignature}
         ref={bookRef}
         width={width}
         height={height}
@@ -98,7 +131,14 @@ const PhotoFlipBook = ({
           const PageComponent =
             LAYOUT_COMPONENTS[page.layout] ?? LAYOUT_COMPONENTS.A;
 
-          return <PageComponent key={i} photos={page.photos} />;
+          return (
+            <PageComponent
+              key={i}
+              photos={page.photos}
+              singleOrientation={page.singleOrientation}
+              onPhotoOrientation={onPhotoOrientation}
+            />
+          );
         })}
       </HTMLFlipBook>
     </div>

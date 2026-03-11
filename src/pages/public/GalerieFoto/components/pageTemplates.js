@@ -1,106 +1,137 @@
 /**
- * Orientation-based page layout generator.
- * Returns { layout, photoCount } for PhotoFlipBook to slice photos.
+ * Generator de layout album. Primește doar pozele din pool (fără hero).
+ * Sortează în portrait, landscape, pătrate. Pătratele la final.
+ * Returnează { layout, photos }[] – asignare directă, fără slicing.
  */
 
-export function classify(photo) {
-  const width = photo.width || 1;
-  const height = photo.height || 1;
-
-  const ratio = width / height;
-
-  if (ratio > 1.15) return "landscape";
-  if (ratio < 0.85) return "portrait";
-
+/**
+ * Clasifică orientarea: folosește orientationMap (de la DOM img onLoad) când există,
+ * altfel "unknown" (tratăm ca square în layout).
+ */
+export function classify(photo, index, orientationMap = {}) {
+  if (orientationMap[index]) {
+    return orientationMap[index];
+  }
   return "square";
 }
 
-export function buildPageConfigs(photos) {
+export function buildPageConfigs(photos, orientationMap = {}) {
   if (!photos.length) return [];
 
   const portraits = [];
   const landscapes = [];
   const squares = [];
 
-  photos.forEach((photo) => {
-    const type = classify(photo);
-
+  photos.forEach((photo, index) => {
+    const type = classify(photo, index, orientationMap);
     if (type === "portrait") portraits.push(photo);
     else if (type === "landscape") landscapes.push(photo);
     else squares.push(photo);
   });
 
-  const configs = [];
+  const pages = [];
   let toggle = "portrait";
 
+  // 1. Epuizare portrait și landscape: doar perechi (B/A), fără niciun square. Alternanță când ambele cozi au ≥2.
   while (portraits.length >= 2 || landscapes.length >= 2) {
+    let added = false;
     if (toggle === "portrait" && portraits.length >= 2) {
-      configs.push({
+      pages.push({
         layout: "B",
-        photoCount: 2,
+        photos: [portraits.shift(), portraits.shift()],
       });
-      portraits.splice(0, 2);
+      toggle = "landscape";
+      added = true;
     } else if (toggle === "landscape" && landscapes.length >= 2) {
-      configs.push({
+      pages.push({
         layout: "A",
-        photoCount: 2,
+        photos: [landscapes.shift(), landscapes.shift()],
       });
-      landscapes.splice(0, 2);
+      toggle = "portrait";
+      added = true;
     }
-
-    toggle = toggle === "portrait" ? "landscape" : "portrait";
+    if (!added) {
+      if (portraits.length >= 2) {
+        pages.push({
+          layout: "B",
+          photos: [portraits.shift(), portraits.shift()],
+        });
+        toggle = "landscape";
+      } else if (landscapes.length >= 2) {
+        pages.push({
+          layout: "A",
+          photos: [landscapes.shift(), landscapes.shift()],
+        });
+        toggle = "portrait";
+      } else {
+        break;
+      }
+    }
   }
 
+  // 2. Un portrait rămas: 1 portrait + 2 pătrate (vertical) dacă avem ≥2 pătrate, altfel 1 pagină A.
   if (portraits.length === 1) {
-    configs.push({
-      layout: "A",
-      photoCount: 1,
-    });
-    portraits.length = 0;
+    if (squares.length >= 2) {
+      pages.push({
+        layout: "P1",
+        photos: [portraits.shift(), squares.shift(), squares.shift()],
+      });
+    } else {
+      pages.push({
+        layout: "A",
+        photos: [portraits.shift()],
+        singleOrientation: "portrait",
+      });
+    }
   }
 
+  // 3. Un landscape rămas: 1 landscape + 2 pătrate pe orizontală (același plan), în 2 frame-uri square; dacă avem ≥2 pătrate, altfel 1 pagină A.
   if (landscapes.length === 1) {
-    configs.push({
-      layout: "A",
-      photoCount: 1,
-    });
-    landscapes.length = 0;
+    if (squares.length >= 2) {
+      pages.push({
+        layout: "L1",
+        photos: [landscapes.shift(), squares.shift(), squares.shift()],
+      });
+    } else {
+      pages.push({
+        layout: "A",
+        photos: [landscapes.shift()],
+        singleOrientation: "landscape",
+      });
+    }
   }
 
+  // 4. Toate pătratele rămase la final: 4 → o pagină cu 4 frame-uri (SQUARE_4), 3 → 3 frame-uri (SQUARE_3), 2 → SQUARE_2, 1 → SQUARE_1.
   while (squares.length > 0) {
     if (squares.length >= 4) {
-      configs.push({
-        layout: "D",
-        photoCount: 4,
+      pages.push({
+        layout: "SQUARE_4",
+        photos: [
+          squares.shift(),
+          squares.shift(),
+          squares.shift(),
+          squares.shift(),
+        ],
       });
-      squares.splice(0, 4);
     } else if (squares.length === 3) {
-      configs.push({
-        layout: "C",
-        photoCount: 3,
+      pages.push({
+        layout: "SQUARE_3",
+        photos: [squares.shift(), squares.shift(), squares.shift()],
       });
-      squares.length = 0;
     } else if (squares.length === 2) {
-      configs.push({
-        layout: "B",
-        photoCount: 2,
+      pages.push({
+        layout: "SQUARE_2",
+        photos: [squares.shift(), squares.shift()],
       });
-      squares.length = 0;
     } else {
-      configs.push({
-        layout: "A",
-        photoCount: 1,
-      });
-      squares.length = 0;
+      pages.push({ layout: "SQUARE_1", photos: [squares.shift()] });
     }
   }
 
-  if (configs.length % 2 !== 0) {
-    configs.push({
-      layout: "A",
-      photoCount: 1,
-    });
+  // Pagină goală la final dacă număr impar de pagini
+  if (pages.length % 2 !== 0) {
+    pages.push({ layout: "BLANK", photos: [] });
   }
 
-  return configs;
+  return pages;
 }

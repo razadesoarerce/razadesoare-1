@@ -38,48 +38,190 @@ export const BlankPage = forwardRef((props, ref) => (
 BlankPage.displayName = "BlankPage";
 
 /**
- * Layout A: 1 photo (full) or 2 photos stacked (landscape). Pass hero for square hero frame.
+ * Layout A: 2 landscape stacked (rame fixe landscape). Sau 1 photo (singleOrientation portrait/landscape). Sau hero pagina 2.
  */
-export const LayoutA = forwardRef(({ photos, hero }, ref) => (
-  <div ref={ref} className="album-page layout-a">
-    <div className="layout-a-inner">
-      {photos[0] && (
-        <PhotoFrame
-          photo={photos[0]}
-          className={`frame-single${hero ? " frame-hero" : ""}`}
-        />
-      )}
-      {photos[1] && <PhotoFrame photo={photos[1]} className="frame-single" />}
-    </div>
-  </div>
-));
+export const LayoutA = forwardRef(
+  ({ photos, hero, singleOrientation, onPhotoOrientation }, ref) => {
+    const firstOrientation = hero
+      ? undefined
+      : singleOrientation ?? (photos[1] ? "landscape" : undefined);
+    return (
+      <div ref={ref} className="album-page layout-a">
+        <div className="layout-a-inner">
+          {photos[0] && (
+            <PhotoFrame
+              photo={photos[0]}
+              orientation={firstOrientation}
+              className={`frame-single${hero ? " frame-hero" : ""}`}
+              onOrientation={
+                onPhotoOrientation
+                  ? (o) => onPhotoOrientation(photos[0], o)
+                  : undefined
+              }
+            />
+          )}
+          {photos[1] && (
+            <PhotoFrame
+              photo={photos[1]}
+              orientation="landscape"
+              className="frame-single"
+              onOrientation={
+                onPhotoOrientation
+                  ? (o) => onPhotoOrientation(photos[1], o)
+                  : undefined
+              }
+            />
+          )}
+        </div>
+      </div>
+    );
+  }
+);
 LayoutA.displayName = "LayoutA";
 
 /**
- * Layout B: 2 photos side by side
+ * Layout B: 2 portrait side by side (rame fixe portrait)
  */
-export const LayoutB = forwardRef(({ photos }, ref) => (
+export const LayoutB = forwardRef(({ photos, onPhotoOrientation }, ref) => (
   <div ref={ref} className="album-page layout-b">
     <div className="layout-b-inner">
-      {photos[0] && <PhotoFrame photo={photos[0]} />}
-      {photos[1] && <PhotoFrame photo={photos[1]} />}
+      {photos[0] && (
+        <PhotoFrame
+          photo={photos[0]}
+          orientation="portrait"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[0], o) : undefined
+          }
+        />
+      )}
+      {photos[1] && (
+        <PhotoFrame
+          photo={photos[1]}
+          orientation="portrait"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[1], o) : undefined
+          }
+        />
+      )}
     </div>
   </div>
 ));
 LayoutB.displayName = "LayoutB";
 
 /**
+ * Layout P1: 1 portrait + 2 pătrate pe verticală (stânga portrait, dreapta 2 pătrate stacked)
+ */
+export const LayoutP1 = forwardRef(({ photos, onPhotoOrientation }, ref) => (
+  <div ref={ref} className="album-page layout-p1">
+    <div className="layout-p1-inner">
+      {photos[0] && (
+        <PhotoFrame
+          photo={photos[0]}
+          orientation="portrait"
+          className="frame-portrait-cell"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[0], o) : undefined
+          }
+        />
+      )}
+      <div className="layout-p1-squares">
+        {photos[1] && (
+          <PhotoFrame
+            photo={photos[1]}
+            orientation="square"
+            onOrientation={
+              onPhotoOrientation ? (o) => onPhotoOrientation(photos[1], o) : undefined
+            }
+          />
+        )}
+        {photos[2] && (
+          <PhotoFrame
+            photo={photos[2]}
+            orientation="square"
+            onOrientation={
+              onPhotoOrientation ? (o) => onPhotoOrientation(photos[2], o) : undefined
+            }
+          />
+        )}
+      </div>
+    </div>
+  </div>
+));
+LayoutP1.displayName = "LayoutP1";
+
+/**
+ * Layout L1: 1 landscape + 2 pătrate pe orizontală, în același plan (un rând: landscape | square | square)
+ */
+export const LayoutL1 = forwardRef(({ photos, onPhotoOrientation }, ref) => (
+  <div ref={ref} className="album-page layout-l1">
+    <div className="layout-l1-inner">
+      {photos[0] && (
+        <PhotoFrame
+          photo={photos[0]}
+          orientation="landscape"
+          className="layout-l1-landscape"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[0], o) : undefined
+          }
+        />
+      )}
+      {photos[1] && (
+        <PhotoFrame
+          photo={photos[1]}
+          orientation="square"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[1], o) : undefined
+          }
+        />
+      )}
+      {photos[2] && (
+        <PhotoFrame
+          photo={photos[2]}
+          orientation="square"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[2], o) : undefined
+          }
+        />
+      )}
+    </div>
+  </div>
+));
+LayoutL1.displayName = "LayoutL1";
+
+/**
  * Layout C: 3 photos (2 top, 1 bottom)
  */
-export const LayoutC = forwardRef(({ photos }, ref) => (
+export const LayoutC = forwardRef(({ photos, onPhotoOrientation }, ref) => (
   <div ref={ref} className="album-page layout-c">
     <div className="layout-c-inner">
       <div className="layout-c-top">
-        {photos[0] && <PhotoFrame photo={photos[0]} />}
-        {photos[1] && <PhotoFrame photo={photos[1]} />}
+        {photos[0] && (
+          <PhotoFrame
+            photo={photos[0]}
+            onOrientation={
+              onPhotoOrientation ? (o) => onPhotoOrientation(photos[0], o) : undefined
+            }
+          />
+        )}
+        {photos[1] && (
+          <PhotoFrame
+            photo={photos[1]}
+            onOrientation={
+              onPhotoOrientation ? (o) => onPhotoOrientation(photos[1], o) : undefined
+            }
+          />
+        )}
       </div>
       <div className="layout-c-bottom">
-        {photos[2] && <PhotoFrame photo={photos[2]} className="frame-wide" />}
+        {photos[2] && (
+          <PhotoFrame
+            photo={photos[2]}
+            className="frame-wide"
+            onOrientation={
+              onPhotoOrientation ? (o) => onPhotoOrientation(photos[2], o) : undefined
+            }
+          />
+        )}
       </div>
     </div>
   </div>
@@ -89,13 +231,41 @@ LayoutC.displayName = "LayoutC";
 /**
  * Layout D: 4 photos grid (2x2)
  */
-export const LayoutD = forwardRef(({ photos }, ref) => (
+export const LayoutD = forwardRef(({ photos, onPhotoOrientation }, ref) => (
   <div ref={ref} className="album-page layout-d">
     <div className="layout-d-inner">
-      {photos[0] && <PhotoFrame photo={photos[0]} />}
-      {photos[1] && <PhotoFrame photo={photos[1]} />}
-      {photos[2] && <PhotoFrame photo={photos[2]} />}
-      {photos[3] && <PhotoFrame photo={photos[3]} />}
+      {photos[0] && (
+        <PhotoFrame
+          photo={photos[0]}
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[0], o) : undefined
+          }
+        />
+      )}
+      {photos[1] && (
+        <PhotoFrame
+          photo={photos[1]}
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[1], o) : undefined
+          }
+        />
+      )}
+      {photos[2] && (
+        <PhotoFrame
+          photo={photos[2]}
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[2], o) : undefined
+          }
+        />
+      )}
+      {photos[3] && (
+        <PhotoFrame
+          photo={photos[3]}
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[3], o) : undefined
+          }
+        />
+      )}
     </div>
   </div>
 ));
@@ -146,43 +316,123 @@ LandscapePair.displayName = "LandscapePair";
 /**
  * Square layouts: 4, 3, 2, or 1 square photos at end of album
  */
-export const Square4 = forwardRef(({ photos }, ref) => (
+export const Square4 = forwardRef(({ photos, onPhotoOrientation }, ref) => (
   <div ref={ref} className="album-page layout-square-4">
     <div className="layout-square-inner layout-square-4-inner">
-      {photos[0] && <PhotoFrame photo={photos[0]} />}
-      {photos[1] && <PhotoFrame photo={photos[1]} />}
-      {photos[2] && <PhotoFrame photo={photos[2]} />}
-      {photos[3] && <PhotoFrame photo={photos[3]} />}
+      {photos[0] && (
+        <PhotoFrame
+          photo={photos[0]}
+          orientation="square"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[0], o) : undefined
+          }
+        />
+      )}
+      {photos[1] && (
+        <PhotoFrame
+          photo={photos[1]}
+          orientation="square"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[1], o) : undefined
+          }
+        />
+      )}
+      {photos[2] && (
+        <PhotoFrame
+          photo={photos[2]}
+          orientation="square"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[2], o) : undefined
+          }
+        />
+      )}
+      {photos[3] && (
+        <PhotoFrame
+          photo={photos[3]}
+          orientation="square"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[3], o) : undefined
+          }
+        />
+      )}
     </div>
   </div>
 ));
 Square4.displayName = "Square4";
 
-export const Square3 = forwardRef(({ photos }, ref) => (
+export const Square3 = forwardRef(({ photos, onPhotoOrientation }, ref) => (
   <div ref={ref} className="album-page layout-square-3">
     <div className="layout-square-inner layout-square-3-inner">
-      {photos[0] && <PhotoFrame photo={photos[0]} />}
-      {photos[1] && <PhotoFrame photo={photos[1]} />}
-      {photos[2] && <PhotoFrame photo={photos[2]} />}
+      {photos[0] && (
+        <PhotoFrame
+          photo={photos[0]}
+          orientation="square"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[0], o) : undefined
+          }
+        />
+      )}
+      {photos[1] && (
+        <PhotoFrame
+          photo={photos[1]}
+          orientation="square"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[1], o) : undefined
+          }
+        />
+      )}
+      {photos[2] && (
+        <PhotoFrame
+          photo={photos[2]}
+          orientation="square"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[2], o) : undefined
+          }
+        />
+      )}
     </div>
   </div>
 ));
 Square3.displayName = "Square3";
 
-export const Square2 = forwardRef(({ photos }, ref) => (
+export const Square2 = forwardRef(({ photos, onPhotoOrientation }, ref) => (
   <div ref={ref} className="album-page layout-square-2">
     <div className="layout-square-inner layout-square-2-inner">
-      {photos[0] && <PhotoFrame photo={photos[0]} />}
-      {photos[1] && <PhotoFrame photo={photos[1]} />}
+      {photos[0] && (
+        <PhotoFrame
+          photo={photos[0]}
+          orientation="square"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[0], o) : undefined
+          }
+        />
+      )}
+      {photos[1] && (
+        <PhotoFrame
+          photo={photos[1]}
+          orientation="square"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[1], o) : undefined
+          }
+        />
+      )}
     </div>
   </div>
 ));
 Square2.displayName = "Square2";
 
-export const Square1 = forwardRef(({ photos }, ref) => (
+export const Square1 = forwardRef(({ photos, onPhotoOrientation }, ref) => (
   <div ref={ref} className="album-page layout-square-1">
     <div className="layout-square-inner layout-square-1-inner">
-      {photos[0] && <PhotoFrame photo={photos[0]} />}
+      {photos[0] && (
+        <PhotoFrame
+          photo={photos[0]}
+          orientation="square"
+          onOrientation={
+            onPhotoOrientation ? (o) => onPhotoOrientation(photos[0], o) : undefined
+          }
+        />
+      )}
     </div>
   </div>
 ));
@@ -202,4 +452,6 @@ export const LAYOUT_COMPONENTS = {
   B: LayoutB,
   C: LayoutC,
   D: LayoutD,
+  P1: LayoutP1,
+  L1: LayoutL1,
 };

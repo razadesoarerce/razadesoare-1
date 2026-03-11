@@ -202,6 +202,32 @@
   aspect-ratio: 3 / 4;
 }
 
+.photo-frame.frame-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* Orientation from PhotoFrame (prop or detected on load) */
+.photo-frame.landscape {
+  aspect-ratio: 16 / 10;
+}
+.photo-frame.landscape img {
+  object-fit: contain;
+}
+
+.photo-frame.portrait {
+  aspect-ratio: 3 / 4;
+}
+.photo-frame.portrait img {
+  object-fit: contain;
+}
+
+.photo-frame.square {
+  aspect-ratio: 1 / 1;
+}
+.photo-frame.square img {
+  object-fit: contain;
+}
+
 /* ─── Hero page: single image, cover ─── */
 .layout-hero-inner {
   width: 100%;
@@ -386,6 +412,60 @@
 }
 
 .layout-d-inner .photo-frame {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Layout P1: 1 portrait + 2 pătrate pe verticală (stânga portrait, dreapta 2 pătrate) */
+.layout-p1-inner {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.layout-p1-inner .frame-portrait-cell {
+  grid-row: span 2;
+  min-width: 0;
+  min-height: 0;
+}
+
+.layout-p1-squares {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.layout-p1-squares .photo-frame {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Layout L1: 1 landscape + 2 pătrate pe orizontală, același plan (un rând, 3 coloane) */
+.layout-l1-inner {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 12px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.layout-l1-inner .layout-l1-landscape {
+  min-width: 0;
+  min-height: 0;
+}
+
+.layout-l1-inner .photo-frame {
   min-width: 0;
   min-height: 0;
   overflow: hidden;
