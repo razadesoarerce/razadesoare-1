@@ -321,7 +321,14 @@
   },
   "events": {
     "navLabel": "Evenimente",
-    "sectionTitle": "Știri & Activități"
+    "sectionTitle": "Știri & Activități",
+    "stiriActivitati": "Stiri & Activitati",
+    "galerieFoto": "Galerie Foto"
+  },
+  "galerieFoto": {
+    "heroTitle": "Galerie Foto",
+    "pageTitle": "Galerie Foto",
+    "description": "Momente surprinse din activitățile și evenimentele organizate."
   },
   "home": {
     "hero": {

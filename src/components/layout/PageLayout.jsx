@@ -88,6 +88,7 @@ const PageLayout = ({ sidebarItems, heroImage, heroTitleKey }) => {
                     <li key={item.path}>
                       <NavLink
                         to={item.path}
+                        end={item.end !== false}
                         className={({ isActive }) =>
                           isActive ? "sidebar-link active" : "sidebar-link"
                         }

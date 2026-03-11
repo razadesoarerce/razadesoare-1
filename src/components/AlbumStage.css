@@ -1,0 +1,48 @@
+.album-stage {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.75);
+}
+
+.album-table {
+  width: 90vw;
+  height: 85vh;
+
+  max-width: 1400px;
+  max-height: 800px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0,0,0,0.15),
+      rgba(0,0,0,0.45)
+    );
+}
+
+.album-inner {
+  padding: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.album-scale-wrapper {
+  width: 1200px;
+  height: 600px;
+
+  transform-origin: center;
+}

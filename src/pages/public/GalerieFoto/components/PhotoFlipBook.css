@@ -1,0 +1,253 @@
+/* Wrap */
+.photo-flipbook-wrap {
+  display: block;
+}
+
+.album-book {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+.album-book::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,0.15),
+      transparent 10%,
+      transparent 90%,
+      rgba(0,0,0,0.15)
+    );
+  pointer-events: none;
+}
+
+/* ─── Page: scales with flipbook size ─── */
+.album-page {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+
+  padding: 24px; /* space between page edge and photos */
+
+  background: #f6f4ef;
+}
+
+/* Left page: shadow towards spine (right edge) */
+.stf__item:nth-child(odd) .album-page::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -1px;
+  width: 20px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.08),
+    transparent
+  );
+}
+
+/* Right page: shadow towards spine (left edge) */
+.stf__item:nth-child(even) .album-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 20px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    to left,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.08),
+    transparent
+  );
+}
+
+/* ─── Cover page (image 9) ─── */
+.album-cover-page {
+  background: #1a1a1a;
+}
+
+.album-cover-inner {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.album-cover-page .photo-frame.frame-cover {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.album-cover-page .photo-frame.frame-cover img {
+  object-fit: cover;
+}
+
+/* ─── Title page (first open left) ─── */
+.album-title-page {
+  padding: 24px;
+}
+
+.album-title-inner {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.album-title-text {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 600;
+  color: #1f2937;
+  line-height: 1.4;
+  max-width: 90%;
+}
+
+/* ─── Photo frame: scales with page, image always inside ─── */
+.photo-frame {
+  width: 100%;
+  height: 100%;
+
+  background: #ffffff;
+
+  padding: 6px; /* photo border */
+  border-radius: 4px;
+
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* Orientation only affects aspect when in flexible layout; frames stay within grid cell */
+.photo-frame.frame-landscape {
+  aspect-ratio: 16 / 10;
+}
+
+.photo-frame.frame-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+/* ─── Layout containers: consistent gap ─── */
+.layout-a-inner,
+.layout-b-inner,
+.layout-c-inner,
+.layout-d-inner {
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+
+  gap: 16px; /* space between photos */
+
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Layout B */
+.layout-b-inner {
+  grid-template-columns: 1fr 1fr;
+}
+
+.layout-b-inner .photo-frame {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Layout A */
+.layout-a .photo-frame.frame-single {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.layout-a .photo-frame.frame-single.frame-landscape {
+  aspect-ratio: 16 / 10;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Layout C */
+.layout-c-inner {
+  grid-template-rows: 1fr 1fr;
+}
+
+.layout-c-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.layout-c-top .photo-frame {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.layout-c-bottom {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.layout-c-bottom .photo-frame.frame-wide {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Layout D */
+.layout-d-inner {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.layout-d-inner .photo-frame {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}

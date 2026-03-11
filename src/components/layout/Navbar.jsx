@@ -57,7 +57,13 @@ const Navbar = () => {
             </div>
           </div>
 
-          <NavLink to="/evenimente">{t("events.navLabel")}</NavLink>
+          <div className="dropdown">
+            <span>{t("events.navLabel")}</span>
+            <div className="dropdown-menu">
+              <NavLink to="/evenimente">{t("events.stiriActivitati")}</NavLink>
+              <NavLink to="/galerie-foto">{t("events.galerieFoto")}</NavLink>
+            </div>
+          </div>
         </div>
 
         <div className="language-switch">

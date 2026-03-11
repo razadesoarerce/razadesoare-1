@@ -18,6 +18,7 @@ import Documente from "../pages/public/Information/Documente";
 import StructuraAnului from "../pages/public/Information/StructuraAnului";
 import Events from "../pages/public/Events/Events";
 import EventDetails from "../pages/public/Events/EventDetails";
+import GalerieFoto from "../pages/public/GalerieFoto/GalerieFoto";
 import NotFound from "../pages/public/NotFound";
 
 // Admin Pages
@@ -26,6 +27,12 @@ import Login from "../pages/admin/Login";
 import EventsList from "../pages/admin/events/EventsList";
 import CreateEvent from "../pages/admin/events/CreateEvent";
 import EditEvent from "../pages/admin/events/EditEvent";
+
+// Sidebar items for Evenimente section (reused on both /evenimente and /galerie-foto)
+const evenimenteSidebarItems = [
+  { path: "/evenimente", labelKey: "events.stiriActivitati", end: false },
+  { path: "/galerie-foto", labelKey: "events.galerieFoto" },
+];
 
 const router = createBrowserRouter([
   // PUBLIC ROUTES
@@ -104,14 +111,36 @@ const router = createBrowserRouter([
         ],
       },
 
-      // EVENIMENTE
+      // EVENIMENTE (same banner + section sidebar as Galerie Foto)
       {
         path: "evenimente",
-        element: <PageLayout heroImage="/images/home/hero-events.jpg" heroTitleKey="events.sectionTitle" sidebarItems={[]} />,
+        element: (
+          <PageLayout
+            heroImage="/images/home/hero-events.jpg"
+            heroTitleKey="events.sectionTitle"
+            sidebarItems={evenimenteSidebarItems}
+          />
+        ),
         handle: { breadcrumbKey: "events.sectionTitle" },
         children: [
           { index: true, element: <Events />, handle: { breadcrumbKey: "events.sectionTitle" } },
           { path: ":id", element: <EventDetails />, handle: { breadcrumbKey: "events.details" } },
+        ],
+      },
+
+      // GALERIE FOTO (same banner + section sidebar as Evenimente)
+      {
+        path: "galerie-foto",
+        element: (
+          <PageLayout
+            heroImage="/images/home/hero-events.jpg"
+            heroTitleKey="events.sectionTitle"
+            sidebarItems={evenimenteSidebarItems}
+          />
+        ),
+        handle: { breadcrumbKey: "galerieFoto.pageTitle" },
+        children: [
+          { index: true, element: <GalerieFoto />, handle: { breadcrumbKey: "galerieFoto.pageTitle" } },
         ],
       },
     ],

@@ -321,7 +321,14 @@
   },
   "events": {
     "navLabel": "Events",
-    "sectionTitle": "News & Activities"
+    "sectionTitle": "News & Activities",
+    "stiriActivitati": "News & Activities",
+    "galerieFoto": "Photo Gallery"
+  },
+  "galerieFoto": {
+    "heroTitle": "Photo Gallery",
+    "pageTitle": "Photo Gallery",
+    "description": "Moments captured from our activities and events."
   },
   "home": {
     "hero": {
