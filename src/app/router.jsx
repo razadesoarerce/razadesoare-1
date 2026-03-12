@@ -1,3 +1,8 @@
+/**
+ * App router: createBrowserRouter (browser history) for client-side routing.
+ * Works on Vercel when vercel.json rewrites send all requests to index.html.
+ * Admin: /admin/login (RedirectIfAuthenticated), /admin + /admin/dashboard (AdminAuthGuard + AdminLayout with Outlet).
+ */
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";
@@ -173,6 +178,12 @@ const router = createBrowserRouter([
       { path: "events/create", element: <CreateEvent /> },
       { path: "events/edit/:id", element: <EditEvent /> },
     ],
+  },
+
+  // Fallback: unknown routes redirect to homepage (works with Vercel SPA rewrites)
+  {
+    path: "*",
+    element: <Navigate to="/" replace />,
   },
 ]);
 
