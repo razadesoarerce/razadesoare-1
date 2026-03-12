@@ -169,7 +169,7 @@ const router = createBrowserRouter([
       </AdminAuthGuard>
     ),
     children: [
-      { index: true, element: <Navigate to="/admin/dashboard" replace /> },
+      { index: true, element: <Navigate to="dashboard" replace /> },
       { path: "dashboard", element: <Dashboard /> },
       { path: "events", element: <EventsList /> },
       { path: "events/create", element: <CreateEvent /> },
