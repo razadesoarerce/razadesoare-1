@@ -177,10 +177,10 @@ const router = createBrowserRouter([
     ],
   },
 
-  // Fallback: unknown routes redirect to homepage (required for Vercel SPA direct navigation)
+  // Fallback: unknown routes show NotFound (no redirect so SPA can load on Vercel)
   {
     path: "*",
-    element: <Navigate to="/" replace />,
+    element: <NotFound />,
   },
 ]);
 

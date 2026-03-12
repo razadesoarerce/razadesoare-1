@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ALBUM_DEMO } from "./albumData";
+import { ALBUMS } from "./albumData";
 import AlbumCard from "./components/AlbumCard";
 import AlbumViewer from "./components/AlbumViewer";
 import "./GalerieFoto.css";
@@ -17,7 +17,9 @@ const GalerieFoto = () => {
       </div>
 
       <div className="album-grid">
-        <AlbumCard album={ALBUM_DEMO} onOpen={setSelectedAlbum} />
+        {ALBUMS.map((album) => (
+          <AlbumCard key={album.id} album={album} onOpen={setSelectedAlbum} />
+        ))}
       </div>
 
       {selectedAlbum && (
