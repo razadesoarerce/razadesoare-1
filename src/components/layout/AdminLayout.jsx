@@ -16,7 +16,7 @@ const AdminLayout = () => {
         <h2 style={styles.logo}>Admin</h2>
 
         <nav style={styles.nav}>
-          <Link to="/admin" style={styles.link}>Dashboard</Link>
+          <Link to="/admin/dashboard" style={styles.link}>Dashboard</Link>
           <Link to="/admin/events" style={styles.link}>Evenimente</Link>
         </nav>
 

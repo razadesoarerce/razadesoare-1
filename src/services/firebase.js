@@ -10,13 +10,14 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCV0LR77s20XldprHJSwhItHiSQ4D4lTW8",
-  authDomain: "scoala-raza-de-soare.firebaseapp.com",
-  projectId: "scoala-raza-de-soare",
-  storageBucket: "scoala-raza-de-soare.firebasestorage.app",
-  messagingSenderId: "644677271758",
-  appId: "1:644677271758:web:6ecbd78c0596bc65b5509f"
+  apiKey: "AIzaSyAClpjoowCtrGANfG9NdIonvhNOq-4c64o",
+  authDomain: "razadesoare-edd51.firebaseapp.com",
+  projectId: "razadesoare-edd51",
+  storageBucket: "razadesoare-edd51.firebasestorage.app",
+  messagingSenderId: "283097401369",
+  appId: "1:283097401369:web:2277fdf94a872e61bf0288"
 };
+
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);

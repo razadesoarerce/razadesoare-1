@@ -1,8 +1,9 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";
 import AdminLayout from "../components/layout/AdminLayout";
-import ProtectedRoute from "../components/common/ProtectedRoute";
+import AdminAuthGuard from "../components/common/AdminAuthGuard";
+import RedirectIfAuthenticated from "../components/common/RedirectIfAuthenticated";
 
 // Public Pages
 import Home from "../pages/public/Home/Home";
@@ -146,22 +147,27 @@ const router = createBrowserRouter([
     ],
   },
 
-  // ADMIN LOGIN
+  // ADMIN LOGIN (redirect to dashboard if already authenticated)
   {
     path: "/admin/login",
-    element: <Login />,
+    element: (
+      <RedirectIfAuthenticated>
+        <Login />
+      </RedirectIfAuthenticated>
+    ),
   },
 
-  // ADMIN PROTECTED ROUTES
+  // ADMIN PROTECTED ROUTES (AdminAuthGuard redirects unauthenticated to /admin/login)
   {
     path: "/admin",
     element: (
-      <ProtectedRoute>
+      <AdminAuthGuard>
         <AdminLayout />
-      </ProtectedRoute>
+      </AdminAuthGuard>
     ),
     children: [
-      { index: true, element: <Dashboard /> },
+      { index: true, element: <Navigate to="/admin/dashboard" replace /> },
+      { path: "dashboard", element: <Dashboard /> },
 
       { path: "events", element: <EventsList /> },
       { path: "events/create", element: <CreateEvent /> },

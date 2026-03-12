@@ -1,11 +1,12 @@
 import { createContext, useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { app } from "../services/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../services/firebase";
 
 export const AuthContext = createContext();
 
-const auth = getAuth(app);
-
+/**
+ * Provides Firebase Auth state to the app. Uses the shared auth instance from firebase.js.
+ */
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
