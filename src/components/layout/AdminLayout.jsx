@@ -1,14 +1,20 @@
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Outlet, Link, useNavigate, useLocation } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../services/firebase";
 
 const AdminLayout = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/admin/login";
 
   const handleLogout = async () => {
     await signOut(auth);
     navigate("/admin/login");
   };
+
+  if (isLoginPage) {
+    return <Outlet />;
+  }
 
   return (
     <div style={styles.container}>

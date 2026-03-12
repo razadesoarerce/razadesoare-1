@@ -1,7 +1,7 @@
 /**
  * App router: createBrowserRouter (browser history) for client-side routing.
  * Works on Vercel when vercel.json rewrites send all requests to index.html.
- * Admin: /admin/login (RedirectIfAuthenticated), /admin (AdminAuthGuard + AdminLayout with Outlet), /admin/dashboard.
+ * Admin: single /admin route, AdminLayout with Outlet; login is public, dashboard/events protected by AdminAuthGuard.
  */
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "../components/layout/Layout";
@@ -152,28 +152,17 @@ const router = createBrowserRouter([
     ],
   },
 
-  // ADMIN: /admin/login (public) and /admin/* (protected). Order matters: /admin/login before /admin so it matches first.
-  {
-    path: "/admin/login",
-    element: (
-      <RedirectIfAuthenticated>
-        <Login />
-      </RedirectIfAuthenticated>
-    ),
-  },
+  // ADMIN: single /admin route with nested children; login is public, rest protected by AdminAuthGuard
   {
     path: "/admin",
-    element: (
-      <AdminAuthGuard>
-        <AdminLayout />
-      </AdminAuthGuard>
-    ),
+    element: <AdminLayout />,
     children: [
+      { path: "login", element: <RedirectIfAuthenticated><Login /></RedirectIfAuthenticated> },
       { index: true, element: <Navigate to="dashboard" replace /> },
-      { path: "dashboard", element: <Dashboard /> },
-      { path: "events", element: <EventsList /> },
-      { path: "events/create", element: <CreateEvent /> },
-      { path: "events/edit/:id", element: <EditEvent /> },
+      { path: "dashboard", element: <AdminAuthGuard><Dashboard /></AdminAuthGuard> },
+      { path: "events", element: <AdminAuthGuard><EventsList /></AdminAuthGuard> },
+      { path: "events/create", element: <AdminAuthGuard><CreateEvent /></AdminAuthGuard> },
+      { path: "events/edit/:id", element: <AdminAuthGuard><EditEvent /></AdminAuthGuard> },
     ],
   },
 
