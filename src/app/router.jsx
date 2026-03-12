@@ -1,7 +1,7 @@
 /**
  * App router: createBrowserRouter (browser history) for client-side routing.
  * Works on Vercel when vercel.json rewrites send all requests to index.html.
- * Admin: /admin/login (RedirectIfAuthenticated), /admin + /admin/dashboard (AdminAuthGuard + AdminLayout with Outlet).
+ * Admin: /admin/login (RedirectIfAuthenticated), /admin (AdminAuthGuard + AdminLayout with Outlet), /admin/dashboard.
  */
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "../components/layout/Layout";
@@ -152,7 +152,7 @@ const router = createBrowserRouter([
     ],
   },
 
-  // ADMIN LOGIN (redirect to dashboard if already authenticated)
+  // ADMIN: /admin/login (public) and /admin/* (protected). Order matters: /admin/login before /admin so it matches first.
   {
     path: "/admin/login",
     element: (
@@ -161,8 +161,6 @@ const router = createBrowserRouter([
       </RedirectIfAuthenticated>
     ),
   },
-
-  // ADMIN PROTECTED ROUTES (AdminAuthGuard redirects unauthenticated to /admin/login)
   {
     path: "/admin",
     element: (
@@ -173,14 +171,13 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to="/admin/dashboard" replace /> },
       { path: "dashboard", element: <Dashboard /> },
-
       { path: "events", element: <EventsList /> },
       { path: "events/create", element: <CreateEvent /> },
       { path: "events/edit/:id", element: <EditEvent /> },
     ],
   },
 
-  // Fallback: unknown routes redirect to homepage (works with Vercel SPA rewrites)
+  // Fallback: unknown routes redirect to homepage (required for Vercel SPA direct navigation)
   {
     path: "*",
     element: <Navigate to="/" replace />,
