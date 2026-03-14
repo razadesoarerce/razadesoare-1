@@ -1,6 +1,7 @@
-import { Outlet, Link, useNavigate, useLocation } from "react-router-dom";
+import { Outlet, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../services/firebase";
+import "../../styles/admin.css";
 
 const AdminLayout = () => {
   const navigate = useNavigate();
@@ -17,64 +18,35 @@ const AdminLayout = () => {
   }
 
   return (
-    <div style={styles.container}>
-      <aside style={styles.sidebar}>
-        <h2 style={styles.logo}>Admin</h2>
+    <div className="admin-layout">
+      <aside className="admin-sidebar">
+        <h2 className="admin-logo">Admin</h2>
 
-        <nav style={styles.nav}>
-          <Link to="/admin/dashboard" style={styles.link}>Dashboard</Link>
-          <Link to="/admin/events" style={styles.link}>Evenimente</Link>
+        <nav>
+          <NavLink to="/admin/dashboard" end className={({ isActive }) => (isActive ? "active" : "")}>
+            Dashboard
+          </NavLink>
+          <NavLink to="/admin/documents" className={({ isActive }) => (isActive ? "active" : "")}>
+            Documente
+          </NavLink>
+          <NavLink to="/admin/events" className={({ isActive }) => (isActive ? "active" : "")}>
+            Evenimente
+          </NavLink>
+          <NavLink to="/admin/gallery" className={({ isActive }) => (isActive ? "active" : "")}>
+            Galerie
+          </NavLink>
         </nav>
 
-        <button onClick={handleLogout} style={styles.logout}>
+        <button type="button" onClick={handleLogout} className="admin-logout">
           Logout
         </button>
       </aside>
 
-      <main style={styles.content}>
+      <main className="admin-content">
         <Outlet />
       </main>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    display: "flex",
-    minHeight: "100vh",
-  },
-  sidebar: {
-    width: "220px",
-    backgroundColor: "#1e3a8a",
-    color: "white",
-    padding: "20px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  },
-  logo: {
-    marginBottom: "30px",
-  },
-  nav: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "15px",
-  },
-  link: {
-    color: "white",
-    textDecoration: "none",
-  },
-  logout: {
-    padding: "10px",
-    backgroundColor: "#facc15",
-    border: "none",
-    cursor: "pointer",
-  },
-  content: {
-    flex: 1,
-    padding: "40px",
-    backgroundColor: "#f3f4f6",
-  },
 };
 
 export default AdminLayout;

@@ -1,8 +1,15 @@
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import SEO from "../../../components/common/SEO";
+import { getDocuments } from "../../../services/documentService";
 
 const Documente = () => {
   const { t } = useTranslation();
+  const [cmsDocuments, setCmsDocuments] = useState([]);
+
+  useEffect(() => {
+    getDocuments().then(setCmsDocuments).catch(() => setCmsDocuments([]));
+  }, []);
 
   return (
     <>
@@ -16,6 +23,24 @@ const Documente = () => {
         <p className="lead-paragraph">
           {t("documents.intro")}
         </p>
+
+        {cmsDocuments.length > 0 && (
+          <div className="documents-block">
+            <h3>{t("documents.downloadable", "Documente pentru descărcare")}</h3>
+            <div className="documents-list">
+              {cmsDocuments.map((doc) => (
+                <div key={doc.id} className="document-item">
+                  <div className="document-info">
+                    <h4>{doc.title}</h4>
+                  </div>
+                  <a href={doc.fileUrl} target="_blank" rel="noopener noreferrer" className="document-download">
+                    {t("documents.download")}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* DOCUMENTE INTERNE */}
         <div className="documents-block">

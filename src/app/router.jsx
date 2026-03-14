@@ -33,6 +33,9 @@ import Login from "../pages/admin/Login";
 import EventsList from "../pages/admin/events/EventsList";
 import CreateEvent from "../pages/admin/events/CreateEvent";
 import EditEvent from "../pages/admin/events/EditEvent";
+import DocumentsList from "../pages/admin/documents/DocumentsList";
+import GalleryList from "../pages/admin/gallery/GalleryList";
+import AlbumPhotos from "../pages/admin/gallery/AlbumPhotos";
 
 // Sidebar items for Evenimente section (reused on both /evenimente and /galerie-foto)
 const evenimenteSidebarItems = [
@@ -160,9 +163,12 @@ const router = createBrowserRouter([
       { path: "login", element: <RedirectIfAuthenticated><Login /></RedirectIfAuthenticated> },
       { index: true, element: <Navigate to="dashboard" replace /> },
       { path: "dashboard", element: <AdminAuthGuard><Dashboard /></AdminAuthGuard> },
+      { path: "documents", element: <AdminAuthGuard><DocumentsList /></AdminAuthGuard> },
       { path: "events", element: <AdminAuthGuard><EventsList /></AdminAuthGuard> },
       { path: "events/create", element: <AdminAuthGuard><CreateEvent /></AdminAuthGuard> },
       { path: "events/edit/:id", element: <AdminAuthGuard><EditEvent /></AdminAuthGuard> },
+      { path: "gallery", element: <AdminAuthGuard><GalleryList /></AdminAuthGuard> },
+      { path: "gallery/:albumId", element: <AdminAuthGuard><AlbumPhotos /></AdminAuthGuard> },
     ],
   },
 

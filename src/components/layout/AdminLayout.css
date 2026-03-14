@@ -1,0 +1,176 @@
+/* Admin layout container */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar - green theme aligned with main site */
+.admin-sidebar {
+  width: 220px;
+  background: #2e4f8a;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.admin-sidebar .admin-logo {
+  margin: 0 0 30px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.admin-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.admin-sidebar a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  transition: background 0.2s ease;
+}
+
+.admin-sidebar a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.admin-sidebar a.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.admin-sidebar .admin-logout {
+  padding: 10px 16px;
+  background: #7ac142;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: auto;
+  transition: background 0.2s ease;
+}
+
+.admin-sidebar .admin-logout:hover {
+  background: #66a833;
+}
+
+/* Main content area */
+.admin-content {
+  flex: 1;
+  padding: 30px;
+  background: #f5f6f8;
+}
+
+/* Page title - used in Dashboard, EventsList, etc. */
+.admin-page-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #1f2937;
+}
+
+/* Add / primary button */
+.admin-add-button {
+  background: #7ac142;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s ease;
+  font-size: 0.9375rem;
+}
+
+.admin-add-button:hover {
+  background: #66a833;
+  color: white;
+}
+
+/* Table */
+.admin-table-wrap {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.admin-table-wrap thead th {
+  text-align: left;
+  font-weight: 600;
+  padding: 12px 16px;
+  background: #f5f6f8;
+  color: #374151;
+  font-size: 0.875rem;
+}
+
+.admin-table-wrap tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.admin-table-wrap tbody tr:hover {
+  background: #f8fafc;
+}
+
+.admin-table-wrap tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Thumbnail in table */
+.admin-thumbnail img {
+  width: 60px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Action buttons */
+.admin-action-btn {
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-right: 6px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.admin-action-btn:hover {
+  opacity: 0.9;
+}
+
+.admin-edit-btn {
+  background: #7ac142;
+  color: white;
+}
+
+.admin-preview-btn {
+  background: #e5e7eb;
+  color: #333;
+}
+
+.admin-delete-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.admin-delete-btn:hover {
+  background: #dc2626;
+}

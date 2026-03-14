@@ -31,3 +31,33 @@
   color: #585c66;
   line-height: 1.8;
 }
+
+.event-article-content {
+  color: #374151;
+  line-height: 1.7;
+}
+
+.event-article-content p {
+  margin-bottom: 1em;
+}
+
+.event-article-content ul,
+.event-article-content ol {
+  margin: 1em 0;
+  padding-left: 1.5em;
+}
+
+.event-article-content a {
+  color: #7dc242;
+  text-decoration: none;
+}
+
+.event-article-content a:hover {
+  text-decoration: underline;
+}
+
+.event-article-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}

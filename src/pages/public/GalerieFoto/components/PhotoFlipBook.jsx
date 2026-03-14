@@ -1,144 +1,172 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useMemo } from "react";
 import HTMLFlipBook from "react-pageflip";
-import { buildPageConfigs } from "./pageTemplates";
+import { buildAlbumPages, LAYOUT } from "./albumLayoutGenerator";
 import {
   CoverPage,
   TitlePage,
   BlankPage,
-  LayoutA,
-  LAYOUT_COMPONENTS,
+  PortraitPage,
+  LandscapePage,
+  PanoramaLeftPage,
+  PanoramaRightPage,
 } from "./AlbumPageLayouts";
 import "./PhotoFlipBook.css";
 
-const COVER_IMAGE_INDEX = 7;
-const HERO_INDEX = 0;
+/**
+ * Normalize props to album shape: { title, message, cover, photos: [{ src, width?, height?, alt? }] }.
+ */
+function normalizeAlbum(album, photos) {
+  if (album && (album.photos || album.title != null)) {
+    const photosList = album.photos ?? [];
+    const cover = album.cover ?? photosList[0];
+    return {
+      title: album.title ?? "",
+      message: album.message ?? "",
+      cover: cover,
+      photos: photosList.map((p) =>
+        typeof p === "object" && p !== null
+          ? { src: p.src ?? p.url, width: p.width, height: p.height, alt: p.alt ?? "" }
+          : { src: p, alt: "" }
+      ),
+    };
+  }
+  if (Array.isArray(photos) && photos.length > 0) {
+    const list = photos.map((p) =>
+      typeof p === "object" && p !== null
+        ? { src: p.src ?? p.url, width: p.width, height: p.height, alt: p.alt ?? "" }
+        : { src: p, alt: "" }
+    );
+    return { title: "", message: "", cover: list[0], photos: list };
+  }
+  return { title: "", message: "", cover: null, photos: [] };
+}
 
 const PhotoFlipBook = ({
-  photos,
-  width = 1200,
-  height = 600,
+  album: albumProp,
+  photos: photosProp,
+  pageWidth: pageWidthProp,
+  pageHeight: pageHeightProp,
   skipCover = false,
+  usePortrait = false,
 }) => {
+  const pageWidth = pageWidthProp ?? 450;
+  const pageHeight = pageHeightProp ?? 600;
   const bookRef = useRef(null);
   const hasAutoFlipped = useRef(false);
-  const [orientationMap, setOrientationMap] = useState({});
-  const frozenLayoutRef = useRef(null);
+  const pagesCacheRef = useRef(null);
+  const ratioMapLoadedRef = useRef(false);
+  const [ratioMap, setRatioMap] = useState({});
+
+  const album = normalizeAlbum(albumProp, photosProp);
+  console.log("Flipbook album:", album);
+
+  const coverSrc = typeof album.cover === "object" && album.cover?.src != null ? album.cover.src : album.cover;
+  const contentPhotos = (album.photos ?? []).filter((p) => {
+    const src = typeof p === "object" ? p?.src : p;
+    return src != null && src !== coverSrc;
+  });
+  const contentPhotosKey = useMemo(
+    () => contentPhotos.map((p) => (typeof p === "object" ? p?.src : p)).filter(Boolean).join("\0"),
+    [albumProp?.id, albumProp?.photos?.length, coverSrc]
+  );
 
   useEffect(() => {
-    setOrientationMap({});
-    frozenLayoutRef.current = null;
-  }, [photos]);
+    setRatioMap({});
+    ratioMapLoadedRef.current = false;
+    pagesCacheRef.current = null;
+  }, [albumProp?.id]);
 
   useEffect(() => {
-    setOrientationMap({});
-    frozenLayoutRef.current = null;
-  }, []);
+    if (ratioMapLoadedRef.current) return;
+    if (contentPhotos.length === 0) return;
+    ratioMapLoadedRef.current = true;
+    let cancelled = false;
+    const next = {};
+    let loaded = 0;
+    const total = contentPhotos.length;
+    contentPhotos.forEach((photo, index) => {
+      const src = typeof photo === "object" ? photo?.src : photo;
+      if (!src) return;
+      const img = new Image();
+      img.onload = () => {
+        if (cancelled) return;
+        next[index] = img.naturalWidth / img.naturalHeight;
+        loaded++;
+        if (loaded === total) {
+          setRatioMap((prev) => ({ ...prev, ...next }));
+        }
+      };
+      img.onerror = () => {
+        if (cancelled) return;
+        next[index] = 1;
+        loaded++;
+        if (loaded === total) {
+          setRatioMap((prev) => ({ ...prev, ...next }));
+        }
+      };
+      img.src = src;
+    });
+    return () => { cancelled = true; };
+  }, [contentPhotosKey]);
 
-  function handleOrientation(index, orientation) {
-    setOrientationMap((prev) => ({
-      ...prev,
-      [index]: orientation,
-    }));
+  const hasRatioMap = contentPhotos.length === 0 || Object.keys(ratioMap).length >= contentPhotos.length;
+  if (!pagesCacheRef.current && hasRatioMap && album.photos.length > 0) {
+    pagesCacheRef.current = buildAlbumPages(album, ratioMap);
   }
-
-  const heroPhoto = photos[HERO_INDEX];
-  const contentPhotos = photos
-    .filter((_, i) => i !== HERO_INDEX)
-    .map((photo, index) => ({ ...photo, __contentIndex: index }));
-
-  const orientationsComplete =
-    contentPhotos.length > 0 &&
-    Object.keys(orientationMap).length >= contentPhotos.length;
-
-  const contentPageData = buildPageConfigs(contentPhotos, orientationMap);
-
-  if (orientationsComplete && !frozenLayoutRef.current) {
-    frozenLayoutRef.current = contentPageData;
-  }
-  const layoutToUse = frozenLayoutRef.current ?? contentPageData;
-
-  const onPhotoOrientation = (photo, orientation) => {
-    if (typeof photo.__contentIndex === "number") {
-      handleOrientation(photo.__contentIndex, orientation);
-    }
-  };
-
-  const layoutSignature =
-    layoutToUse.length + "-" + layoutToUse.map((p) => p.layout).join(",");
-
-  const interiorPages = [
-    { type: "title" },
-    { type: "hero", photo: heroPhoto },
-    ...layoutToUse.map(({ layout, photos: pagePhotos, singleOrientation }) =>
-      layout === "BLANK"
-        ? { type: "blank" }
-        : { type: "layout", layout, photos: pagePhotos, singleOrientation }
-    ),
-  ];
-
-  const pages = interiorPages;
-
-  while (pages.length < 2) pages.push({ type: "blank" });
-  if (pages.length % 2 !== 0) pages.push({ type: "blank" });
+  const pages = pagesCacheRef.current || [];
 
   useEffect(() => {
     if (!skipCover || hasAutoFlipped.current) return;
-
     const timer = setTimeout(() => {
       const pf = bookRef.current?.pageFlip?.();
-
       if (pf && !hasAutoFlipped.current) {
         pf.turnToNextPage();
         hasAutoFlipped.current = true;
       }
     }, 200);
-
     return () => clearTimeout(timer);
   }, [skipCover]);
 
+  const layoutSignature = pages.length + "-" + pages.map((p) => p.type).join(",");
+
   return (
-    <div className="photo-flipbook-wrap" style={{ position: "relative" }}>
+    <div className="photo-flipbook-wrap">
       <HTMLFlipBook
         key={layoutSignature}
         ref={bookRef}
-        width={width}
-        height={height}
+        width={pageWidth}
+        height={pageHeight}
+        size="fixed"
+        drawShadow={true}
+        flippingTime={600}
+        maxShadowOpacity={0.5}
         showCover={false}
         className="album-book"
-        size="fixed"
-        drawShadow
-        flippingTime={600}
-        usePortrait={false}
-        maxShadowOpacity={0.5}
+        usePortrait={usePortrait}
       >
         {pages.map((page, i) => {
-          if (page.type === "cover") {
-            return <CoverPage key={i} coverPhoto={page.coverPhoto} />;
+          if (page.type === LAYOUT.TITLE) {
+            return <TitlePage key={i} text={page.text} />;
           }
-
-          if (page.type === "title") {
-            return <TitlePage key={i} />;
+          if (page.type === LAYOUT.COVER) {
+            return <CoverPage key={i} coverPhoto={page.photo} />;
           }
-
-          if (page.type === "blank") {
+          if (page.type === LAYOUT.BLANK) {
             return <BlankPage key={i} />;
           }
-
-          if (page.type === "hero") {
-            return <LayoutA key={i} photos={[page.photo]} hero />;
+          if (page.type === LAYOUT.PORTRAIT) {
+            return <PortraitPage key={i} photos={page.photos} />;
           }
-
-          const PageComponent =
-            LAYOUT_COMPONENTS[page.layout] ?? LAYOUT_COMPONENTS.A;
-
-          return (
-            <PageComponent
-              key={i}
-              photos={page.photos}
-              singleOrientation={page.singleOrientation}
-              onPhotoOrientation={onPhotoOrientation}
-            />
-          );
+          if (page.type === LAYOUT.LANDSCAPE) {
+            return <LandscapePage key={i} photos={page.photos} />;
+          }
+          if (page.type === LAYOUT.PANORAMA_LEFT) {
+            return <PanoramaLeftPage key={i} photo={page.photo} />;
+          }
+          if (page.type === LAYOUT.PANORAMA_RIGHT) {
+            return <PanoramaRightPage key={i} photo={page.photo} />;
+          }
+          return <BlankPage key={i} />;
         })}
       </HTMLFlipBook>
     </div>

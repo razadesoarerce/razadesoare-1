@@ -1,33 +1,150 @@
-import { forwardRef } from "react";
+import { forwardRef, useState, useEffect } from "react";
 import PhotoFrame from "./PhotoFrame";
+
+function splitPanorama(src) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = src;
+
+    img.onload = () => {
+      const width = img.width;
+      const height = img.height;
+
+      const canvasLeft = document.createElement("canvas");
+      const canvasRight = document.createElement("canvas");
+
+      const half = Math.floor(width / 2);
+
+      canvasLeft.width = half;
+      canvasLeft.height = height;
+
+      canvasRight.width = half;
+      canvasRight.height = height;
+
+      const ctxLeft = canvasLeft.getContext("2d");
+      const ctxRight = canvasRight.getContext("2d");
+
+      ctxLeft.drawImage(img, 0, 0, half, height, 0, 0, half, height);
+      ctxRight.drawImage(img, half, 0, half, height, 0, 0, half, height);
+
+      resolve({
+        left: canvasLeft.toDataURL(),
+        right: canvasRight.toDataURL(),
+      });
+    };
+
+    img.onerror = () => resolve({ left: src, right: src });
+  });
+}
 
 /**
  * Cover page: displays cover image (image 9) before the album opens.
  */
 export const CoverPage = forwardRef(({ coverPhoto }, ref) => (
-  <div ref={ref} className="album-page album-cover-page">
-    <div className="album-cover-inner">
-      {coverPhoto && (
-        <div className="photo-frame frame-cover">
-          <img src={coverPhoto.src} alt={coverPhoto.alt ?? ""} />
-        </div>
-      )}
-    </div>
+  <div ref={ref} className="album-page layout-cover">
+    {coverPhoto && (
+      <div className="photo-frame">
+        <img src={coverPhoto.src} alt={coverPhoto.alt || "cover"} />
+      </div>
+    )}
   </div>
 ));
 CoverPage.displayName = "CoverPage";
 
 /**
- * Title page: left page of first spread. Centered title text.
+ * Title page: left page of first spread. Displays album message.
  */
-export const TitlePage = forwardRef((props, ref) => (
+export const TitlePage = forwardRef(({ text = "" }, ref) => (
   <div ref={ref} className="album-page album-title-page">
     <div className="album-title-inner">
-      <h2 className="album-title-text">Sarbatoarea Martisorului de 1 Martie</h2>
+      <h2 className="album-title-text">{text}</h2>
     </div>
   </div>
 ));
 TitlePage.displayName = "TitlePage";
+
+/**
+ * Portrait page: one portrait image centered, 3:4 ratio, photo frame.
+ */
+export const PortraitPage = forwardRef(({ photos }, ref) => (
+  <div ref={ref} className="album-page layout-portrait-single">
+    <div className="layout-portrait-single-inner">
+      {photos?.[0] && (
+        <div className="photo-frame">
+          <img src={photos[0].src} alt={photos[0].alt || ""} />
+        </div>
+      )}
+    </div>
+  </div>
+));
+PortraitPage.displayName = "PortraitPage";
+
+/**
+ * Landscape page: two landscape photos stacked vertically, 4:3, gap between frames.
+ */
+export const LandscapePage = forwardRef(({ photos }, ref) => (
+  <div ref={ref} className="album-page layout-landscape-stack">
+    <div className="layout-landscape-stack-inner">
+      {photos?.[0] && (
+        <div className="photo-frame">
+          <img src={photos[0].src} alt={photos[0].alt || ""} />
+        </div>
+      )}
+      {photos?.[1] && (
+        <div className="photo-frame">
+          <img src={photos[1].src} alt={photos[1].alt || ""} />
+        </div>
+      )}
+    </div>
+  </div>
+));
+LandscapePage.displayName = "LandscapePage";
+
+/**
+ * Panorama left half (spread across two pages). Displays programmatically split left half.
+ */
+export const PanoramaLeftPage = forwardRef(({ photo }, ref) => {
+  const [leftSrc, setLeftSrc] = useState(null);
+
+  useEffect(() => {
+    if (!photo?.src) return;
+    splitPanorama(photo.src).then((split) => setLeftSrc(split.left));
+  }, [photo?.src]);
+
+  return (
+    <div ref={ref} className="album-page panorama-page panorama-left">
+      {photo && leftSrc && (
+        <div className="panorama-spread">
+          <img src={leftSrc} alt={photo.alt || ""} className="panorama-image" />
+        </div>
+      )}
+    </div>
+  );
+});
+PanoramaLeftPage.displayName = "PanoramaLeftPage";
+
+/**
+ * Panorama right half (spread across two pages). Displays programmatically split right half.
+ */
+export const PanoramaRightPage = forwardRef(({ photo }, ref) => {
+  const [rightSrc, setRightSrc] = useState(null);
+
+  useEffect(() => {
+    if (!photo?.src) return;
+    splitPanorama(photo.src).then((split) => setRightSrc(split.right));
+  }, [photo?.src]);
+
+  return (
+    <div ref={ref} className="album-page panorama-page panorama-right">
+      {photo && rightSrc && (
+        <div className="panorama-spread">
+          <img src={rightSrc} alt={photo.alt || ""} className="panorama-image" />
+        </div>
+      )}
+    </div>
+  );
+});
+PanoramaRightPage.displayName = "PanoramaRightPage";
 
 /**
  * Blank page (for even page count).

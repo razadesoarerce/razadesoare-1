@@ -1,11 +1,13 @@
+import { getGalleryThumbnail } from "../../../../services/cloudinaryService";
+
 const AlbumCard = ({ album, onOpen }) => {
-  const photoCount = album.photos?.length ?? 0;
+  const photoCount = album.photos?.length || 0;
 
   return (
     <article className="album-card" onClick={() => onOpen(album)} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && onOpen(album)} aria-label={`Deschide albumul ${album.title}`}>
       <div className="album-card-cover-wrap">
         <img
-          src={album.cover}
+          src={getGalleryThumbnail(album.cover)}
           alt=""
           className="album-card-cover"
           onError={(e) => {

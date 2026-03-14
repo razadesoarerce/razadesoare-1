@@ -1,58 +1,24 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { getLatestEvents } from "../../../services/eventService";
+import { getExcerpt } from "../../../utils/excerpt";
 import "./Home.css";
+
+const formatDate = (d) => {
+  if (!d) return "";
+  const date = d instanceof Date ? d : new Date(d);
+  return date.toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric" });
+};
 
 const Home = () => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language.startsWith("en") ? "en" : "ro";
+  const [latestEvents, setLatestEvents] = useState([]);
 
-  const newsItems = [
-    {
-      id: 1,
-      title: {
-        ro: "Participare la Olimpiada Incluziunii",
-        en: "Participation in the Inclusion Olympiad"
-      },
-      date: {
-        ro: "12 Martie 2026",
-        en: "March 12, 2026"
-      },
-      excerpt: {
-        ro: "Elevii Școlii Speciale Rază de Soare au participat la un eveniment dedicat incluziunii și performanței educaționale, demonstrând implicare și progres constant.",
-        en: "Students of Rază de Soare Special School participated in an event dedicated to inclusion and educational performance, demonstrating engagement and steady progress."
-      }
-    },
-    {
-      id: 2,
-      title: {
-        ro: "Atelier Creativ de Primăvară",
-        en: "Spring Creative Workshop"
-      },
-      date: {
-        ro: "3 Martie 2026",
-        en: "March 3, 2026"
-      },
-      excerpt: {
-        ro: "Activitatea a oferit elevilor oportunitatea de a-și dezvolta abilitățile artistice și sociale într-un cadru colaborativ.",
-        en: "The activity provided students with the opportunity to develop artistic and social skills in a collaborative environment."
-      }
-    },
-    {
-      id: 3,
-      title: {
-        ro: "Parteneriat Educațional Nou",
-        en: "New Educational Partnership"
-      },
-      date: {
-        ro: "20 Februarie 2026",
-        en: "February 20, 2026"
-      },
-      excerpt: {
-        ro: "Școala noastră a încheiat un nou parteneriat menit să sprijine integrarea elevilor prin programe educaționale adaptate.",
-        en: "Our school has established a new partnership aimed at supporting student integration through adapted educational programs."
-      }
-    }
-  ];
+  useEffect(() => {
+    getLatestEvents(3).then(setLatestEvents).catch(() => setLatestEvents([]));
+  }, []);
 
   return (
     <>
@@ -124,17 +90,32 @@ const Home = () => {
             <span className="news-title-green">{t("home.news.sectionTitlePart2")}</span>
           </h2>
           <div className="news-grid">
-            {newsItems.map((item) => (
-              <article key={item.id} className="news-card">
-                <div className="news-image" aria-hidden />
-                <h3>{item.title[lang]}</h3>
-                <span className="news-date">{item.date[lang]}</span>
-                <p>{item.excerpt[lang]}</p>
-                <Link to="/evenimente" className="news-read-more">
-                  {t("home.news.readMore")}
-                </Link>
-              </article>
-            ))}
+            {latestEvents.length === 0 ? (
+              <p className="news-empty">{t("home.news.empty", "Nu există știri recente.")}</p>
+            ) : (
+              latestEvents.map((event) => {
+                const coverUrl = event.coverImageUrl || event.coverImage || event.imageUrl;
+                return (
+                  <article key={event.id} className="news-card">
+                    <div className="news-image" aria-hidden>
+                      {coverUrl ? (
+                        <img
+                          src={coverUrl}
+                          alt={event.title}
+                          className="event-card-image"
+                        />
+                      ) : null}
+                    </div>
+                    <h3>{event.title}</h3>
+                    <span className="news-date">{formatDate(event.createdAt)}</span>
+                    <p>{getExcerpt(event.content, 120)}</p>
+                    <Link to={`/evenimente/${event.id}`} className="news-read-more">
+                      {t("home.news.readMore", "Citeste mai mult")}
+                    </Link>
+                  </article>
+                );
+              })
+            )}
           </div>
         </div>
       </section>

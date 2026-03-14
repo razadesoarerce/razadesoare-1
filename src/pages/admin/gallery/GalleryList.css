@@ -1,0 +1,16 @@
+.admin-gallery-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
+}
+
+.admin-album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.admin-album-form {
+  position: sticky;
+  top: 24px;
+}

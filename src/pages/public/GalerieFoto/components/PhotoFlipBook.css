@@ -1,6 +1,16 @@
-/* Wrap */
 .photo-flipbook-wrap {
-  display: block;
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  filter: drop-shadow(0px 18px 30px rgba(0,0,0,0.25));
 }
 
 .album-book {
@@ -21,26 +31,42 @@
     );
 }
 
-/* ─── Page: scales with flipbook size ─── */
+/* ─── Page: 50% of flipbook width, 3:4 content area, padding ─── */
 .album-page {
   position: relative;
-
   width: 100%;
   height: 100%;
-
   box-sizing: border-box;
-
   display: flex;
-  align-items: stretch;
-  justify-content: stretch;
-
-  padding: 24px;
-
-  background: #f6f4ef;
-
+  align-items: center;
+  justify-content: center;
+  padding: 5%;
+  background: #ebe8e1;
   box-shadow:
     inset -12px 0 18px rgba(0,0,0,0.06),
     inset 12px 0 18px rgba(0,0,0,0.06);
+}
+
+.album-page img {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Rounded inner page edges toward spine; sharp outer edges */
+.stf__item--left .album-page {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  box-shadow: inset -8px 0 12px rgba(0,0,0,0.05);
+}
+
+.stf__item--right .album-page {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: inset 8px 0 12px rgba(0,0,0,0.05);
 }
 
 /* Left pages: paper highlight on outer edge */
@@ -111,12 +137,8 @@
   );
 }
 
-/* ─── Cover page (image 9) ─── */
-.album-cover-page {
-  background: #1a1a1a;
-}
-
-.album-cover-inner {
+/* ─── Cover page (same style as other photos: white frame, no black background) ─── */
+.layout-cover {
   width: 100%;
   height: 100%;
   min-width: 0;
@@ -125,20 +147,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.album-cover-page .photo-frame.frame-cover {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  padding: 0;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.album-cover-page .photo-frame.frame-cover img {
-  object-fit: cover;
 }
 
 /* ─── Title page (first open left) ─── */
@@ -167,30 +175,35 @@
   max-width: 90%;
 }
 
-/* ─── Photo frame: scales with page, image always inside ─── */
+/* ─── Photo frame: one uniform style for all images (portrait, landscape, panorama, cover) ─── */
 .photo-frame {
+  background: #ffffff;
+
+  padding: 8px;
+
+  border-radius: 6px;
+
+  box-shadow:
+    0 2px 10px rgba(0,0,0,0.15),
+    0 12px 28px rgba(0,0,0,0.12);
+
   width: 100%;
   height: 100%;
 
-  background: #ffffff;
-
-  padding: 6px; /* photo border */
-  border-radius: 4px;
-
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  box-sizing: border-box;
 
   display: flex;
   align-items: center;
   justify-content: center;
-
-  overflow: hidden;
 }
 
 .photo-frame img {
   width: 100%;
   height: 100%;
 
-  object-fit: contain;
+  object-fit: cover;
+
+  display: block;
 }
 
 /* Orientation only affects aspect when in flexible layout; frames stay within grid cell */
@@ -210,22 +223,13 @@
 .photo-frame.landscape {
   aspect-ratio: 16 / 10;
 }
-.photo-frame.landscape img {
-  object-fit: contain;
-}
 
 .photo-frame.portrait {
   aspect-ratio: 3 / 4;
 }
-.photo-frame.portrait img {
-  object-fit: contain;
-}
 
 .photo-frame.square {
   aspect-ratio: 1 / 1;
-}
-.photo-frame.square img {
-  object-fit: contain;
 }
 
 /* ─── Hero page: single image, cover ─── */
@@ -251,13 +255,6 @@
   overflow: hidden;
 }
 
-.photo-frame.frame-hero img {
-  object-fit: cover;
-  object-position: center;
-  width: 100%;
-  height: 100%;
-}
-
 /* ─── Portrait / landscape pair: vertical stack ─── */
 .layout-portrait-pair .layout-pair-inner,
 .layout-landscape-pair .layout-pair-inner {
@@ -277,11 +274,6 @@
   min-width: 0;
 }
 
-/* Portrait and landscape pair frames: contain (no crop) */
-.layout-portrait-pair .photo-frame img,
-.layout-landscape-pair .photo-frame img {
-  object-fit: contain;
-}
 
 /* ─── Square layouts (end of album) ─── */
 .layout-square-inner {
@@ -321,10 +313,6 @@
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-}
-
-.layout-square-inner .photo-frame img {
-  object-fit: contain;
 }
 
 /* ─── Layout containers: consistent gap ─── */
@@ -479,3 +467,78 @@
   min-height: 0;
   overflow: hidden;
 }
+
+/* ─── New photobook layouts ─── */
+
+/* Portrait single: one portrait centered, 3:4 ratio */
+.layout-portrait-single-inner {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout-portrait-single .photo-frame {
+  aspect-ratio: 3 / 4;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Landscape stack: two landscape stacked, 4:3, gap between frames */
+.layout-landscape-stack-inner {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+.layout-landscape-stack .photo-frame {
+  flex: 1;
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+}
+
+/* Panorama: single frame across spread; hide normal page background */
+.panorama-page {
+  padding: 4%;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+.panorama-left,
+.panorama-right {
+  overflow: hidden;
+}
+
+.panorama-spread {
+  position: relative;
+
+  width: 100%;
+  height: 92%;
+
+  background: white;
+  padding: 8px;
+
+  border-radius: 6px;
+
+  box-shadow:
+    0 2px 10px rgba(0,0,0,0.15),
+    0 12px 28px rgba(0,0,0,0.12);
+
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.panorama-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
