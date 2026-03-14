@@ -23,6 +23,19 @@
   margin-left: auto;
 }
 
+.topheader-facebook {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  font-size: 18px;
+  color: #1877F2;
+  transition: opacity 0.2s ease;
+}
+
+.topheader-facebook:hover {
+  opacity: 0.75;
+}
+
 @media (max-width: 768px) {
   .topbar-secondary {
     display: none;

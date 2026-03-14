@@ -1,3 +1,4 @@
+import { FaFacebookF } from "react-icons/fa";
 import "./topbar.css";
 
 const TopBar = () => {
@@ -8,11 +9,20 @@ const TopBar = () => {
           <span>📞 0257 214 805</span>
           <span> | </span>
           <span>✉ razadesoarerce@yahoo.com</span>
-        </div>
-
-        <div className="topbar-right topbar-secondary">
           <span> | </span>
           <span>📍 Arad, Strada Diogene nr 12</span>
+        </div>
+
+        <div className="topbar-right">
+          <a
+            href="https://www.facebook.com/scoala.razadesoare"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="topheader-facebook"
+            aria-label="Facebook"
+          >
+            <FaFacebookF />
+          </a>
         </div>
       </div>
     </div>
