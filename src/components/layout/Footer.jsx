@@ -60,8 +60,8 @@ const Footer = () => {
         <div className="footer-column">
           <h4>Contact</h4>
           <p>{t("footer.address")}: Arad, Str Diogene nr 12</p>
-          <p>{t("footer.email")}: contact@razadesoare.ro</p>
-          <p>{t("footer.phone")}: 0257 257 257</p>
+          <p>{t("footer.email")}: razadesoarerce@yahoo.com</p>
+          <p>{t("footer.phone")}: 0257 214 805</p>
         </div>
       </div>
 

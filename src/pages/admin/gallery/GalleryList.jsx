@@ -220,7 +220,7 @@ const GalleryList = () => {
         }
       }
       const res = await uploadGalleryImage(file);
-      const newCover = { url: res.secure_url, public_id: res.public_id ?? null };
+      const newCover = { url: res.secure_url, public_id: res.public_id ?? null, bytes: res.bytes ?? null };
       await updateAlbumCoverCard(editingAlbumId, newCover);
       await load();
     } catch (err) {
@@ -252,7 +252,7 @@ const GalleryList = () => {
         }
       }
       const res = await uploadGalleryImage(file);
-      const newCover = { url: res.secure_url, public_id: res.public_id ?? null };
+      const newCover = { url: res.secure_url, public_id: res.public_id ?? null, bytes: res.bytes ?? null };
       await updateAlbumFrontCover(editingAlbumId, newCover);
       await load();
     } catch (err) {
@@ -280,7 +280,7 @@ const GalleryList = () => {
       for (const file of files) {
         const res = await uploadGalleryImage(file, report);
         if (res?.secure_url) {
-          uploaded.push({ url: res.secure_url, public_id: res.public_id ?? null });
+          uploaded.push({ url: res.secure_url, public_id: res.public_id ?? null, bytes: res.bytes ?? null });
         }
       }
       const newPhotos = [...editingPhotos, ...uploaded];
@@ -338,16 +338,16 @@ const GalleryList = () => {
       };
 
       const coverCardRes = await uploadGalleryImage(coverCardFile, report);
-      const coverCard = { url: coverCardRes.secure_url, public_id: coverCardRes.public_id ?? null };
+      const coverCard = { url: coverCardRes.secure_url, public_id: coverCardRes.public_id ?? null, bytes: coverCardRes.bytes ?? null };
 
       const frontCoverRes = await uploadGalleryImage(frontCoverFile, report);
-      const frontCover = { url: frontCoverRes.secure_url, public_id: frontCoverRes.public_id ?? null };
+      const frontCover = { url: frontCoverRes.secure_url, public_id: frontCoverRes.public_id ?? null, bytes: frontCoverRes.bytes ?? null };
 
       const photos = [];
       for (const file of photoFiles || []) {
         const res = await uploadGalleryImage(file, report);
         if (res.secure_url) {
-          photos.push({ url: res.secure_url, public_id: res.public_id ?? null });
+          photos.push({ url: res.secure_url, public_id: res.public_id ?? null, bytes: res.bytes ?? null });
         }
       }
 

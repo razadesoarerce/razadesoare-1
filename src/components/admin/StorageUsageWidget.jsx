@@ -14,6 +14,7 @@ function bytesToMB(bytes) {
 const StorageUsageWidget = () => {
   const [imagesMB, setImagesMB] = useState(null);
   const [documentsMB, setDocumentsMB] = useState(null);
+  const [galleryImagesMB, setGalleryImagesMB] = useState(null);
   const [totalBytes, setTotalBytes] = useState(null);
   const [percentageUsed, setPercentageUsed] = useState(null);
   const [error, setError] = useState(null);
@@ -22,12 +23,13 @@ const StorageUsageWidget = () => {
   const fetchUsage = useCallback(async () => {
     setError(null);
     try {
-      const { imagesSizeBytes, documentsSizeBytes } = await getStorageUsage();
-      const total = imagesSizeBytes + documentsSizeBytes;
+      const { imagesSizeBytes, documentsSizeBytes, galleryImagesSizeBytes } = await getStorageUsage();
+      const total = imagesSizeBytes + documentsSizeBytes + (galleryImagesSizeBytes ?? 0);
       const pct = (total / FREE_STORAGE_LIMIT_BYTES) * 100;
 
       setImagesMB(bytesToMB(imagesSizeBytes));
       setDocumentsMB(bytesToMB(documentsSizeBytes));
+      setGalleryImagesMB(bytesToMB(galleryImagesSizeBytes ?? 0));
       setTotalBytes(total);
       setPercentageUsed(pct);
     } catch (err) {
@@ -35,6 +37,7 @@ const StorageUsageWidget = () => {
       setError("Storage usage unavailable.");
       setImagesMB(null);
       setDocumentsMB(null);
+      setGalleryImagesMB(null);
       setTotalBytes(null);
       setPercentageUsed(null);
     } finally {
@@ -76,8 +79,12 @@ const StorageUsageWidget = () => {
       <h3 style={styles.title}>Storage Usage</h3>
 
       <p style={styles.row}>
-        <span style={styles.label}>Images:</span>{" "}
+        <span style={styles.label}>Event images:</span>{" "}
         <span>{imagesMB != null ? `${imagesMB.toFixed(1)} MB` : "—"}</span>
+      </p>
+      <p style={styles.row}>
+        <span style={styles.label}>Gallery images:</span>{" "}
+        <span>{galleryImagesMB != null ? `${galleryImagesMB.toFixed(1)} MB` : "—"}</span>
       </p>
       <p style={styles.row}>
         <span style={styles.label}>Documents:</span>{" "}
