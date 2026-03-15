@@ -87,20 +87,19 @@
   transition: opacity 0.5s ease;
 }
 
-/* Content wrapper – bottom-left, above border/overlay */
+/* Content wrapper – full inset, no flex; reserved zones for title and hover content */
 .feature-content {
   position: absolute;
-  bottom: 40px;
-  left: 40px;
-  right: 40px;
+  inset: 0;
   z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  padding: clamp(16px, 3vw, 40px);
 }
 
 .feature-content h2 {
-  margin: 0 0 10px 0;
+  position: absolute;
+  left: clamp(16px, 3vw, 40px);
+  bottom: clamp(80px, 8vw, 110px);
+  margin: 0;
   font-size: clamp(1.3rem, 2vw, 1.6rem);
   line-height: 1.25;
   color: #fff;
@@ -114,9 +113,24 @@
 
 .feature-content p,
 .feature-content .read-more {
+  position: absolute;
+  left: clamp(16px, 3vw, 40px);
+  right: clamp(16px, 3vw, 40px);
   opacity: 0;
   transform: translateY(10px);
   transition: all 0.3s ease;
+}
+
+.feature-content p {
+  bottom: clamp(36px, 4vw, 56px);
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #ffffff;
+}
+
+.feature-content .read-more {
+  bottom: clamp(12px, 2vw, 24px);
 }
 
 .feature-card:hover .feature-content p,
@@ -125,13 +139,39 @@
   transform: translateY(0);
 }
 
-.feature-content p {
-  margin: 0;
-  min-height: 3em;
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  color: #ffffff;
+/* Responsive: stable aspect ratio and font scaling only (desktop ≥1200px unchanged) */
+@media (max-width: 1199px) {
+  .feature-card {
+    aspect-ratio: 4 / 3;
+  }
+
+  .feature-content h2 {
+    font-size: clamp(18px, 2.2vw, 32px);
+  }
+
+  .feature-content p {
+    font-size: clamp(13px, 1.2vw, 16px);
+    line-height: 1.4;
+    word-break: break-word;
+    max-width: 80%;
+  }
 }
+
+@media (max-width: 768px) {
+  .feature-card {
+    aspect-ratio: 3 / 2;
+  }
+
+  .feature-content h2 {
+    font-size: 18px;
+  }
+
+  .feature-content p {
+    font-size: 13px;
+  }
+}
+
+/* Banner image already fills via .feature-card__image (background-size: cover; background-position: center) */
 
 .read-more {
   display: inline-block;
