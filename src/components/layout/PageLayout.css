@@ -50,6 +50,27 @@
   gap: 60px;
 }
 
+@media (max-width: 992px) {
+  .page-content-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-body {
+    padding: 40px 0;
+  }
+
+  .page-hero-title-wrapper {
+    padding: 20px;
+  }
+
+  .page-hero-image {
+    min-height: 320px;
+  }
+}
+
 .page-sidebar {
   border-right: 1px solid #e5e7eb;
   padding-right: 30px;
@@ -503,6 +524,16 @@
 @media (max-width: 768px) {
   .calendar-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-body {
+    padding: 30px 0;
+  }
+
+  .page-hero-title-wrapper {
+    padding: 16px;
   }
 }
 

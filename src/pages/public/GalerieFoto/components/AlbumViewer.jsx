@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import PhotoFlipBook from "./PhotoFlipBook";
+import MobileAlbumViewer from "./MobileAlbumViewer";
 import "./AlbumViewer.css";
 
 const useMobile = () => {
@@ -107,13 +108,17 @@ const AlbumViewer = ({ album, onClose }) => {
         </header>
 
         <div className="album-viewer-container" ref={containerRef}>
-          <PhotoFlipBook
-            key={album.id}
-            album={albumData}
-            pageWidth={flipSize.pageWidth}
-            pageHeight={flipSize.pageHeight}
-            usePortrait={isMobile}
-          />
+          {isMobile ? (
+            <MobileAlbumViewer photos={albumData.photos} onClose={onClose} />
+          ) : (
+            <PhotoFlipBook
+              key={album.id}
+              album={albumData}
+              pageWidth={flipSize.pageWidth}
+              pageHeight={flipSize.pageHeight}
+              usePortrait={isMobile}
+            />
+          )}
         </div>
       </div>
     </div>
