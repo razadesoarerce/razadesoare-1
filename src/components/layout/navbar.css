@@ -20,6 +20,11 @@
   color: #585c66; /* exact ca nav links */
 }
 
+.site-logo {
+  height: 60px;
+  width: auto;
+}
+
 .burger-button {
   display: none;
 }

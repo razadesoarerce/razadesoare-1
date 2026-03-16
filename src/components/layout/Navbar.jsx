@@ -11,7 +11,7 @@ const Navbar = () => {
     <nav className={`navbar ${mobileMenuOpen ? "mobile-menu-open" : ""}`} aria-label={t("nav.ariaLabel")}>
       <div className="navbar-container container">
         <Link to="/" className="logo" onClick={() => setMobileMenuOpen(false)}>
-          {t("nav.schoolName")}
+          <img src="/logo_raza_de_soare.png" alt="Raza de Soare" className="site-logo" />
         </Link>
 
         <button
