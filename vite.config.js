@@ -1,10 +1,13 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { copyFileSync } from 'fs'
+import fs from 'fs'
 import { resolve } from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    outDir: 'dist',
+  },
   optimizeDeps: {
     exclude: ['react-quill'],
   },
@@ -14,8 +17,14 @@ export default defineConfig({
     {
       name: 'copy-404',
       closeBundle() {
-        const outDir = resolve(__dirname, 'dist')
-        copyFileSync(resolve(outDir, 'index.html'), resolve(outDir, '404.html'))
+        const src = resolve(__dirname, 'dist', 'index.html')
+        const dest = resolve(__dirname, 'dist', '404.html')
+        if (fs.existsSync(src)) {
+          fs.copyFileSync(src, dest)
+          console.log('404.html generated')
+        } else {
+          console.warn('index.html not found, skipping 404 copy')
+        }
       },
     },
   ],
