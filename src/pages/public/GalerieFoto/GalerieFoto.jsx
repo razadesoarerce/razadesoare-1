@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useTranslation } from "react-i18next";
+import { MobileAlbumContext } from "../../../context/MobileAlbumContext";
 import { getAlbums, getAlbum } from "../../../services/albumService";
 import { getFlipbookImage, getPhotoUrl } from "../../../services/cloudinaryService";
 import AlbumCard from "./components/AlbumCard";
@@ -8,6 +9,7 @@ import "./GalerieFoto.css";
 
 const GalerieFoto = () => {
   const { t } = useTranslation();
+  const { setIsAlbumOpen } = useContext(MobileAlbumContext) ?? {};
   const [selectedAlbum, setSelectedAlbum] = useState(null);
   const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,10 +24,14 @@ const GalerieFoto = () => {
   const handleOpenAlbum = async (album) => {
     if (getPhotoUrl(album.frontCover) && Array.isArray(album.photos)) {
       setSelectedAlbum(buildAlbumForViewer(album));
+      setIsAlbumOpen?.(true);
       return;
     }
     const full = await getAlbum(album.id).catch(() => null);
-    if (full) setSelectedAlbum(buildAlbumForViewer(full));
+    if (full) {
+      setSelectedAlbum(buildAlbumForViewer(full));
+      setIsAlbumOpen?.(true);
+    }
   };
 
   function buildAlbumForViewer(a) {
@@ -70,7 +76,10 @@ const GalerieFoto = () => {
       {selectedAlbum && (
         <AlbumViewer
           album={selectedAlbum}
-          onClose={() => setSelectedAlbum(null)}
+          onClose={() => {
+            setSelectedAlbum(null);
+            setIsAlbumOpen?.(false);
+          }}
         />
       )}
     </section>

@@ -36,6 +36,7 @@ import EditEvent from "../pages/admin/events/EditEvent";
 import DocumentsList from "../pages/admin/documents/DocumentsList";
 import GalleryList from "../pages/admin/gallery/GalleryList";
 import AlbumPhotos from "../pages/admin/gallery/AlbumPhotos";
+import TeamAdmin from "../pages/admin/team/TeamAdmin";
 
 // Sidebar items for Evenimente section (reused on both /evenimente and /galerie-foto)
 const evenimenteSidebarItems = [
@@ -169,6 +170,7 @@ const router = createBrowserRouter([
       { path: "events/edit/:id", element: <AdminAuthGuard><EditEvent /></AdminAuthGuard> },
       { path: "gallery", element: <AdminAuthGuard><GalleryList /></AdminAuthGuard> },
       { path: "gallery/:albumId", element: <AdminAuthGuard><AlbumPhotos /></AdminAuthGuard> },
+      { path: "team", element: <AdminAuthGuard><TeamAdmin /></AdminAuthGuard> },
     ],
   },
 

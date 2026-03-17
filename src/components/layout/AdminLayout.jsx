@@ -42,6 +42,9 @@ const AdminLayout = () => {
           <NavLink to="/admin/gallery" className={({ isActive }) => (isActive ? "active" : "")}>
             Galerie
           </NavLink>
+          <NavLink to="/admin/team" className={({ isActive }) => (isActive ? "active" : "")}>
+            Gestionare Echipă
+          </NavLink>
         </nav>
 
         <button type="button" onClick={handleLogout} className="admin-logout">

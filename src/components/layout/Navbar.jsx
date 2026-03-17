@@ -1,10 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { MobileAlbumContext } from "../../context/MobileAlbumContext";
 import "./navbar.css";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isAlbumOpen } = useContext(MobileAlbumContext) ?? {};
+  const isStickyActive = !menuOpen && !isAlbumOpen;
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const touchStartX = useRef(null);
@@ -25,7 +28,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar ${menuOpen ? "mobile-menu-open" : ""}`} aria-label={t("nav.ariaLabel")}>
+    <nav className={`navbar ${menuOpen ? "mobile-menu-open" : ""} ${isStickyActive ? "navbar--sticky" : ""}`} aria-label={t("nav.ariaLabel")}>
       <div
         className={`mobile-overlay ${menuOpen ? "open" : ""}`}
         onClick={() => setMenuOpen(false)}
