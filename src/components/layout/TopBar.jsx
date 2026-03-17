@@ -6,11 +6,11 @@ const TopBar = () => {
     <div className="topbar">
       <div className="topbar-container container">
         <div className="topbar-left">
-          <span>📞 0257 214 805</span>
+          <span className="topbar-item">📞 0257 214 805</span>
           <span> | </span>
-          <span>✉ razadesoarerce@yahoo.com</span>
+          <span className="topbar-item">✉ razadesoarerce@yahoo.com</span>
           <span> | </span>
-          <span>📍 Arad, Strada Diogene nr 12</span>
+          <span className="topbar-item topbar-address">📍 Arad, Strada Diogene nr 12</span>
         </div>
 
         <div className="topbar-right">
