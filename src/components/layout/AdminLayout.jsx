@@ -2,6 +2,7 @@ import { Outlet, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../services/firebase";
 import ScrollToTop from "../utils/ScrollToTop";
+import BackToTop from "../ui/BackToTop";
 import "../../styles/admin.css";
 
 const AdminLayout = () => {
@@ -55,6 +56,7 @@ const AdminLayout = () => {
       <main className="admin-content">
         <Outlet />
       </main>
+      <BackToTop />
     </div>
   );
 };

@@ -4,41 +4,195 @@
   margin: 0 auto;
 }
 
-.event-item {
-  margin-bottom: 60px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #e5e7eb;
+/* Event list cards */
+.event-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 12px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
 }
 
-.event-item h2 a {
-  color: #7dc242;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
+.event-card:hover {
+  transform: translateY(-4px);
 }
 
-.event-item h2 a:hover {
-  opacity: 0.8;
+.event-card-image-wrapper {
+  height: 220px;
+  overflow: hidden;
 }
 
-.event-date {
+.event-card-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-card-content {
+  padding: 20px 22px;
+}
+
+.event-card h2 {
+  font-size: 22px;
+  color: #4caf50;
+  margin-bottom: 6px;
+}
+
+.event-card .event-date {
+  font-size: 13px;
+  color: #888;
   display: block;
-  font-size: 0.85rem;
-  color: #6b7280;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-.event-item p {
+.event-card p {
   color: #585c66;
-  line-height: 1.8;
+  line-height: 1.6;
+  margin-bottom: 14px;
 }
 
+.event-button {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #7ac142;
+  color: white;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.event-button:hover {
+  background: #66a833;
+}
+
+/* Event detail page – hero */
+.event-hero {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+}
+
+.event-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Event detail page – article container */
+.event-article {
+  max-width: 760px;
+  margin: 80px auto 80px auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 20px 50px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index: 2;
+}
+
+.event-hero + .event-article {
+  margin-top: -60px;
+}
+
+.event-article h1 {
+  font-size: clamp(28px, 3vw, 36px);
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.event-article .event-date {
+  display: block;
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.event-share {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.event-share span {
+  font-size: 14px;
+  color: #888;
+}
+
+.share-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  text-decoration: none;
+  color: white;
+}
+
+.share-btn.fb {
+  background: #1877f2;
+}
+
+.share-btn.wa {
+  background: #25d366;
+}
+
+.share-btn:hover {
+  opacity: 0.9;
+}
+
+.event-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #444;
+}
+
+.event-content p {
+  margin-bottom: 18px;
+}
+
+/* Lead paragraph (first paragraph in article body) */
+.event-article-content p:first-of-type {
+  font-size: 18px;
+  line-height: 1.9;
+  font-weight: 500;
+  color: #333;
+}
+
+.event-article-content p:first-of-type::first-letter {
+  float: left;
+  font-size: 48px;
+  line-height: 1;
+  font-weight: bold;
+  margin-right: 8px;
+  color: #7ac142;
+}
+
+.event-back {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #7ac142;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.event-back:hover {
+  text-decoration: underline;
+}
+
+/* Event detail page – article body (rich HTML) */
 .event-article-content {
-  color: #374151;
-  line-height: 1.7;
+  color: inherit;
+  line-height: inherit;
 }
 
 .event-article-content p {
-  margin-bottom: 1em;
+  margin-bottom: 18px;
 }
 
 .event-article-content ul,
@@ -60,4 +214,29 @@
   max-width: 100%;
   height: auto;
   border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .event-article {
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 40px;
+    padding: 20px;
+  }
+
+  .event-hero + .event-article {
+    margin-top: -40px;
+  }
+
+  .event-hero {
+    height: 220px;
+  }
+
+  .event-article-content p:first-of-type {
+    font-size: 16px;
+  }
+
+  .event-article-content p:first-of-type::first-letter {
+    font-size: 36px;
+  }
 }

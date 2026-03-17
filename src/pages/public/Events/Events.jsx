@@ -28,16 +28,27 @@ const Events = () => {
       {events.length === 0 ? (
         <p>Nu există evenimente.</p>
       ) : (
-        events.map((event) => (
-          <article key={event.id} className="event-item">
-            <h2>
-              <Link to={`/evenimente/${event.id}`}>{event.title}</Link>
-            </h2>
-            <span className="event-date">{formatDate(event.createdAt)}</span>
-            <p className="event-excerpt">{getExcerpt(event.content, 120)}</p>
-            <Link to={`/evenimente/${event.id}`}>Citește mai mult</Link>
-          </article>
-        ))
+        events.map((event) => {
+          const excerpt = getExcerpt(event.content, 120);
+          const coverUrl = event.coverImageUrl || event.coverImage || event.imageUrl;
+          return (
+            <div key={event.id} className="event-card">
+              {coverUrl && (
+                <div className="event-card-image-wrapper">
+                  <img src={coverUrl} alt={event.title} />
+                </div>
+              )}
+              <div className="event-card-content">
+                <h2>{event.title}</h2>
+                <span className="event-date">{formatDate(event.createdAt)}</span>
+                <p>{excerpt}</p>
+                <Link to={`/evenimente/${event.id}`} className="event-button">
+                  Citește mai mult
+                </Link>
+              </div>
+            </div>
+          );
+        })
       )}
     </section>
   );

@@ -89,3 +89,10 @@
     padding-left: 24px;
     padding-right: 24px;
   }
+
+  /* Mobile: reserve space under fixed navbar (public layout only) */
+  @media (max-width: 768px) {
+    .layout-content {
+      padding-top: 70px;
+    }
+  }

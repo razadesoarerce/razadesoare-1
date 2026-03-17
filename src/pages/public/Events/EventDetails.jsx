@@ -1,6 +1,7 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getEventById } from "../../../services/eventService";
+import { BreadcrumbContext } from "../../../context/BreadcrumbContext";
 
 const formatDate = (d) => {
   if (!d) return "";
@@ -44,6 +45,7 @@ function stripCoverImageFromContent(html, coverUrls) {
 
 const EventDetails = () => {
   const { id } = useParams();
+  const { setBreadcrumbLabelOverride } = useContext(BreadcrumbContext);
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -53,6 +55,13 @@ const EventDetails = () => {
       .then(setEvent)
       .finally(() => setLoading(false));
   }, [id]);
+
+  useEffect(() => {
+    if (event?.title) {
+      setBreadcrumbLabelOverride(event.title);
+      return () => setBreadcrumbLabelOverride(null);
+    }
+  }, [event?.title, setBreadcrumbLabelOverride]);
 
   const contentWithoutCover = useMemo(() => {
     if (!event?.content) return "";
@@ -64,22 +73,49 @@ const EventDetails = () => {
     return stripCoverImageFromContent(event.content, coverUrls);
   }, [event?.content, event?.coverImageUrl, event?.coverImage, event?.imageUrl]);
 
+  const coverUrl = event?.coverImageUrl || event?.coverImage || event?.imageUrl;
+
   if (loading) return <div style={{ padding: "40px" }}><p>Se încarcă…</p></div>;
   if (!event) return <div style={{ padding: "40px" }}><p>Eveniment negăsit.</p><Link to="/evenimente">Înapoi la evenimente</Link></div>;
 
   return (
-    <div style={{ padding: "40px", maxWidth: "720px", margin: "0 auto" }}>
-      <Link to="/evenimente" style={{ display: "inline-block", marginBottom: "16px" }}>← Înapoi la evenimente</Link>
-      <h1 style={{ marginBottom: "8px" }}>{event.title}</h1>
-      <p className="event-date" style={{ color: "#6b7280", fontSize: "0.95em", marginBottom: 0 }}>
-        {formatDate(event.createdAt)}
-      </p>
-      <div
-        className="event-article-content"
-        style={{ marginTop: "24px" }}
-        dangerouslySetInnerHTML={{ __html: contentWithoutCover }}
-      />
-    </div>
+    <>
+      {coverUrl && (
+        <div className="event-hero">
+          <img src={coverUrl} alt={event.title} />
+        </div>
+      )}
+      <div className="event-article">
+        <Link to="/evenimente" className="event-back">← Înapoi la evenimente</Link>
+        <h1>{event.title}</h1>
+        <span className="event-date">{formatDate(event.createdAt)}</span>
+        <div className="event-share">
+          <span>Distribuie:</span>
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="share-btn fb"
+          >
+            Facebook
+          </a>
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(window.location.href)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="share-btn wa"
+          >
+            WhatsApp
+          </a>
+        </div>
+        <div className="event-content">
+          <div
+            className="event-article-content"
+            dangerouslySetInnerHTML={{ __html: contentWithoutCover }}
+          />
+        </div>
+      </div>
+    </>
   );
 };
 

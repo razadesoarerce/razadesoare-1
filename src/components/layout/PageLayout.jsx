@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import { Outlet, Link, NavLink, useMatches } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import { BreadcrumbContext } from "../../context/BreadcrumbContext";
 import "./PageLayout.css";
 
 const HomeIcon = () => (
@@ -25,6 +27,12 @@ const HomeIcon = () => (
 const PageLayout = ({ sidebarItems, heroImage, heroTitleKey }) => {
   const matches = useMatches();
   const { t } = useTranslation();
+  const [breadcrumbLabelOverride, setBreadcrumbLabelOverride] = useState(null);
+
+  useEffect(() => {
+    setBreadcrumbLabelOverride(null);
+  }, [matches]);
+
   const breadcrumbItems = matches
     .filter((match) => match.handle?.breadcrumbKey)
     .map((match) => ({
@@ -33,6 +41,7 @@ const PageLayout = ({ sidebarItems, heroImage, heroTitleKey }) => {
     }));
 
   return (
+    <BreadcrumbContext.Provider value={{ breadcrumbLabelOverride, setBreadcrumbLabelOverride }}>
     <>
       <section className="page-hero">
         <div
@@ -67,16 +76,20 @@ const PageLayout = ({ sidebarItems, heroImage, heroTitleKey }) => {
           <Link to="/">
             <HomeIcon /> Home
           </Link>
-          {breadcrumbItems.map((item, index) => (
-            <span key={item.path}>
-              {" | "}
-              {index === breadcrumbItems.length - 1 ? (
-                <span className="active">{item.label}</span>
-              ) : (
-                <Link to={item.path}>{item.label}</Link>
-              )}
-            </span>
-          ))}
+          {breadcrumbItems.map((item, index) => {
+            const isLast = index === breadcrumbItems.length - 1;
+            const label = isLast && breadcrumbLabelOverride ? breadcrumbLabelOverride : item.label;
+            return (
+              <span key={item.path}>
+                {" / "}
+                {isLast ? (
+                  <span className="active">{label}</span>
+                ) : (
+                  <Link to={item.path}>{label}</Link>
+                )}
+              </span>
+            );
+          })}
         </div>
 
         {sidebarItems && sidebarItems.length > 0 && (
@@ -112,6 +125,7 @@ const PageLayout = ({ sidebarItems, heroImage, heroTitleKey }) => {
         )}
       </section>
     </>
+    </BreadcrumbContext.Provider>
   );
 };
 

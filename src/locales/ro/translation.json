@@ -323,7 +323,8 @@
     "navLabel": "Evenimente",
     "sectionTitle": "Știri & Activități",
     "stiriActivitati": "Stiri & Activitati",
-    "galerieFoto": "Galerie Foto"
+    "galerieFoto": "Galerie Foto",
+    "details": "Detalii eveniment"
   },
   "galerieFoto": {
     "heroTitle": "Galerie Foto",
