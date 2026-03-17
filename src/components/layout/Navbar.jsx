@@ -27,47 +27,47 @@ const Navbar = () => {
         </button>
 
         <div className="nav-links" role="navigation">
-          <NavLink to="/">{t("nav.home")}</NavLink>
+          <NavLink to="/" onClick={() => setMobileMenuOpen(false)}>{t("nav.home")}</NavLink>
 
           <div className="dropdown">
             <span>{t("nav.about")}</span>
             <div className="dropdown-menu">
-              <NavLink to="/despre/istoric">{t("about.history.label")}</NavLink>
-              <NavLink to="/despre/misiune-viziune">{t("about.missionVision")}</NavLink>
-              <NavLink to="/despre/echipa">{t("about.team")}</NavLink>
+              <NavLink to="/despre/istoric" onClick={() => setMobileMenuOpen(false)}>{t("about.history.label")}</NavLink>
+              <NavLink to="/despre/misiune-viziune" onClick={() => setMobileMenuOpen(false)}>{t("about.missionVision")}</NavLink>
+              <NavLink to="/despre/echipa" onClick={() => setMobileMenuOpen(false)}>{t("about.team")}</NavLink>
             </div>
           </div>
 
           <div className="dropdown">
             <span>{t("nav.education")}</span>
             <div className="dropdown-menu">
-              <NavLink to="/educatie/curriculum-adaptat">{t("education.curriculum")}</NavLink>
-              <NavLink to="/educatie/consiliere">{t("education.counseling")}</NavLink>
-              <NavLink to="/educatie/logopedie">{t("education.logopedie")}</NavLink>
-              <NavLink to="/educatie/kinetoterapie">{t("education.kinetoterapie")}</NavLink>
+              <NavLink to="/educatie/curriculum-adaptat" onClick={() => setMobileMenuOpen(false)}>{t("education.curriculum")}</NavLink>
+              <NavLink to="/educatie/consiliere" onClick={() => setMobileMenuOpen(false)}>{t("education.counseling")}</NavLink>
+              <NavLink to="/educatie/logopedie" onClick={() => setMobileMenuOpen(false)}>{t("education.logopedie")}</NavLink>
+              <NavLink to="/educatie/kinetoterapie" onClick={() => setMobileMenuOpen(false)}>{t("education.kinetoterapie")}</NavLink>
             </div>
           </div>
 
           <div className="dropdown">
             <span>{t("nav.information")}</span>
             <div className="dropdown-menu">
-              <NavLink to="/informatii/admitere">{t("info.admission.title")}</NavLink>
-              <NavLink to="/informatii/documente">{t("info.documents")}</NavLink>
-              <NavLink to="/informatii/structura-anului-scolar">{t("info.structure")}</NavLink>
+              <NavLink to="/informatii/admitere" onClick={() => setMobileMenuOpen(false)}>{t("info.admission.title")}</NavLink>
+              <NavLink to="/informatii/documente" onClick={() => setMobileMenuOpen(false)}>{t("info.documents")}</NavLink>
+              <NavLink to="/informatii/structura-anului-scolar" onClick={() => setMobileMenuOpen(false)}>{t("info.structure")}</NavLink>
             </div>
           </div>
 
           <div className="dropdown">
             <span>{t("events.navLabel")}</span>
             <div className="dropdown-menu">
-              <NavLink to="/evenimente">{t("events.stiriActivitati")}</NavLink>
-              <NavLink to="/galerie-foto">{t("events.galerieFoto")}</NavLink>
+              <NavLink to="/evenimente" onClick={() => setMobileMenuOpen(false)}>{t("events.stiriActivitati")}</NavLink>
+              <NavLink to="/galerie-foto" onClick={() => setMobileMenuOpen(false)}>{t("events.galerieFoto")}</NavLink>
             </div>
           </div>
         </div>
 
         <div className="language-switch">
-          <div className="language-slider">
+          <div className="language-slider lang-desktop">
             <button
               type="button"
               className={i18n.language === "ro" ? "active" : ""}
@@ -82,6 +82,13 @@ const Navbar = () => {
             >
               EN
             </button>
+          </div>
+          <div className="navbar-lang lang-mobile">
+            {i18n.language === "ro" ? (
+              <button type="button" onClick={() => i18n.changeLanguage("en")}>EN</button>
+            ) : (
+              <button type="button" onClick={() => i18n.changeLanguage("ro")}>RO</button>
+            )}
           </div>
         </div>
       </div>
