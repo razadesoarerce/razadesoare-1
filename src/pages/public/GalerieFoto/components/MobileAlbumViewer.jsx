@@ -46,12 +46,28 @@ const MobileAlbumViewer = ({ photos, onClose }) => {
 
   if (list.length === 0) return null;
 
+  const progress = list.length > 0 ? (activeIndex + 1) / list.length : 0;
+
   return (
     <div
       className="mobile-album-viewer"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
+      <div className="mobile-progress">
+        <div
+          className="mobile-progress-bar"
+          style={{ width: `${progress * 100}%` }}
+        />
+      </div>
+      <button
+        type="button"
+        className="mobile-close"
+        onClick={onClose}
+        aria-label="Close"
+      >
+        ✕
+      </button>
       <Swiper
         modules={[Zoom]}
         zoom={true}

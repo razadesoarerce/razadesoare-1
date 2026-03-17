@@ -1,6 +1,7 @@
 import { Outlet, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../services/firebase";
+import ScrollToTop from "../utils/ScrollToTop";
 import "../../styles/admin.css";
 
 const AdminLayout = () => {
@@ -14,11 +15,17 @@ const AdminLayout = () => {
   };
 
   if (isLoginPage) {
-    return <Outlet />;
+    return (
+      <>
+        <ScrollToTop />
+        <Outlet />
+      </>
+    );
   }
 
   return (
     <div className="admin-layout">
+      <ScrollToTop />
       <aside className="admin-sidebar">
         <h2 className="admin-logo">Admin</h2>
 

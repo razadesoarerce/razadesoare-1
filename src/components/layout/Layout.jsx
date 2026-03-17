@@ -4,12 +4,14 @@ import Footer from "./Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import TopBar from "./TopBar";
+import ScrollToTop from "../utils/ScrollToTop";
 
 const Layout = () => {
   const location = useLocation();
 
   return (
     <>
+      <ScrollToTop />
       <header className="site-header">
         <TopBar />
         <Navbar />

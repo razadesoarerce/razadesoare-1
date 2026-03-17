@@ -85,6 +85,13 @@ const AlbumViewer = ({ album, onClose }) => {
     ),
   };
 
+  if (isMobile) {
+    return createPortal(
+      <MobileAlbumViewer photos={albumData.photos} onClose={onClose} />,
+      document.body
+    );
+  }
+
   const content = (
     <div
       className="album-viewer-backdrop"
@@ -108,17 +115,13 @@ const AlbumViewer = ({ album, onClose }) => {
         </header>
 
         <div className="album-viewer-container" ref={containerRef}>
-          {isMobile ? (
-            <MobileAlbumViewer photos={albumData.photos} onClose={onClose} />
-          ) : (
-            <PhotoFlipBook
-              key={album.id}
-              album={albumData}
-              pageWidth={flipSize.pageWidth}
-              pageHeight={flipSize.pageHeight}
-              usePortrait={isMobile}
-            />
-          )}
+          <PhotoFlipBook
+            key={album.id}
+            album={albumData}
+            pageWidth={flipSize.pageWidth}
+            pageHeight={flipSize.pageHeight}
+            usePortrait={false}
+          />
         </div>
       </div>
     </div>
