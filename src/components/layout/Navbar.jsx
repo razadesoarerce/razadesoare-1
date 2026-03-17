@@ -66,8 +66,13 @@ const Navbar = () => {
           </div>
         </div>
 
+<<<<<<< HEAD
         <div className="language-switch navbar-lang">
           <div className="language-slider language-slider-desktop">
+=======
+        <div className="language-switch">
+          <div className="language-slider lang-desktop">
+>>>>>>> 670dfef30c2bc170f2aeb7574bcff02f8ad00777
             <button
               type="button"
               className={i18n.language === "ro" ? "active" : ""}
@@ -83,7 +88,11 @@ const Navbar = () => {
               EN
             </button>
           </div>
+<<<<<<< HEAD
           <div className="language-slider language-slider-mobile">
+=======
+          <div className="navbar-lang lang-mobile">
+>>>>>>> 670dfef30c2bc170f2aeb7574bcff02f8ad00777
             {i18n.language === "ro" ? (
               <button type="button" onClick={() => i18n.changeLanguage("en")}>EN</button>
             ) : (

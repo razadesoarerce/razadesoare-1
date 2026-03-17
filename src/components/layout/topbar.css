@@ -47,8 +47,20 @@
     gap: 6px;
     padding: 8px 10px;
     text-align: center;
+<<<<<<< HEAD
     justify-content: center;
     flex-wrap: wrap;
+=======
+>>>>>>> 670dfef30c2bc170f2aeb7574bcff02f8ad00777
+  }
+
+  .topbar-item {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+
+  .topbar-item span {
+    display: inline-block;
   }
 
   .topbar-left,
@@ -68,6 +80,7 @@
   .topbar {
     font-size: 0.75rem;
   }
+<<<<<<< HEAD
 
   .topbar-item {
     font-size: 12px;
@@ -77,6 +90,8 @@
   .topbar-item span {
     display: inline-block;
   }
+=======
+>>>>>>> 670dfef30c2bc170f2aeb7574bcff02f8ad00777
 }
 
 @media (max-width: 480px) {

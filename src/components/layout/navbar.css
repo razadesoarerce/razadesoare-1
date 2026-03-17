@@ -119,6 +119,10 @@
   gap: 6px;
 }
 
+.lang-mobile {
+  display: none;
+}
+
 .language-slider {
   position: relative;
   display: flex;
@@ -167,6 +171,17 @@
 }
 
 @media (max-width: 768px) {
+<<<<<<< HEAD
+=======
+  .lang-desktop {
+    display: none;
+  }
+
+  .lang-mobile {
+    display: block;
+  }
+
+>>>>>>> 670dfef30c2bc170f2aeb7574bcff02f8ad00777
   .navbar-container {
     display: flex;
     align-items: center;
@@ -193,6 +208,15 @@
     width: 20px;
     height: 2px;
     background: #585c66;
+  }
+
+  .navbar-lang button {
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 13px;
+    font-weight: 500;
   }
 
   .nav-links {
