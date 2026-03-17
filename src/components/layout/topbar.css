@@ -37,6 +37,10 @@
 }
 
 @media (max-width: 768px) {
+  .topbar {
+    display: none;
+  }
+
   .topbar-secondary {
     display: none;
   }
