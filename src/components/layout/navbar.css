@@ -171,17 +171,6 @@
 }
 
 @media (max-width: 768px) {
-<<<<<<< HEAD
-=======
-  .lang-desktop {
-    display: none;
-  }
-
-  .lang-mobile {
-    display: block;
-  }
-
->>>>>>> 670dfef30c2bc170f2aeb7574bcff02f8ad00777
   .navbar-container {
     display: flex;
     align-items: center;
