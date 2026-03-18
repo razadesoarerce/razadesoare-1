@@ -158,16 +158,27 @@ export function getPhotoPublicId(item) {
 
 /**
  * Call server API to delete an image from Cloudinary by public_id.
+ * @returns {{ cloudinaryDeleted: boolean, serverConfigMissing?: boolean }}
  */
 export async function deleteCloudinaryImage(publicId) {
-  if (!publicId) return;
+  if (!publicId) return { cloudinaryDeleted: false };
   const res = await fetch("/api/cloudinary/delete", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ public_id: publicId }),
   });
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(err || "Delete failed");
+  const text = await res.text();
+  let json = null;
+  try {
+    json = JSON.parse(text);
+  } catch {
+    /* plain text error */
   }
+  if (!res.ok) {
+    if (json?.error === "Server Cloudinary config missing") {
+      return { cloudinaryDeleted: false, serverConfigMissing: true };
+    }
+    throw new Error(json?.error || text || "Delete failed");
+  }
+  return { cloudinaryDeleted: true };
 }

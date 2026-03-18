@@ -182,9 +182,11 @@ const GalleryList = () => {
     if (!confirmed || !editingAlbumId) return;
     setDeletingPhoto(true);
     try {
+      let serverConfigMissing = false;
       const publicId = getPhotoPublicId(photo);
       if (publicId) {
-        await deleteCloudinaryImage(publicId);
+        const del = await deleteCloudinaryImage(publicId);
+        if (del.serverConfigMissing) serverConfigMissing = true;
       }
       const newPhotos = editingPhotos.filter(
         (p) => getPhotoUrl(p) !== getPhotoUrl(photo) || getPhotoPublicId(p) !== getPhotoPublicId(photo)
@@ -192,6 +194,11 @@ const GalleryList = () => {
       setEditingPhotos(newPhotos);
       await updateAlbumPhotoOrder(editingAlbumId, newPhotos);
       await load();
+      if (serverConfigMissing) {
+        alert(
+          "Fotografia a fost eliminată din album. Fișierul poate rămâne în Cloudinary până configurezi pe Vercel: CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET (vezi .env.example)."
+        );
+      }
     } catch (err) {
       console.error(err);
       alert("Eroare la ștergere: " + (err.message || "încercare eșuată."));
