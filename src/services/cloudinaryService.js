@@ -170,27 +170,20 @@ export function getPhotoPublicId(item) {
  * @returns {{ cloudinaryDeleted: boolean, serverConfigMissing?: boolean }}
  */
 export async function deleteCloudinaryImage(publicId) {
-  try {
-    if (!publicId) return { cloudinaryDeleted: false };
+  if (!publicId) return;
 
-    const res = await fetch("/api/cloudinary/delete", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ public_id: publicId }),
-    });
+  const res = await fetch("/api/cloudinary/delete", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ public_id: publicId }),
+  });
 
-    const data = await res.json().catch(() => null);
-
-    if (!res.ok) {
-      console.error("Cloudinary delete failed:", data);
-      return { cloudinaryDeleted: false };
-    }
-    
-    return { cloudinaryDeleted: true };
-  } catch (err) {
-    console.error("Delete error:", err);
-    return { cloudinaryDeleted: false };
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(text || "Delete failed");
   }
+
+  return true;
 }

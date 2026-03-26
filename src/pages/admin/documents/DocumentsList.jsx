@@ -237,9 +237,11 @@ const DocumentsList = () => {
                 <td>
                   <a
                     href={getDocumentDownloadUrl(d)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="admin-button-secondary"
                   >
-                    Descarcă
+                    Deschide
                   </a>
                   <button type="button" onClick={() => handleEdit(d)} className="admin-action-btn admin-edit-btn">
                     Edit

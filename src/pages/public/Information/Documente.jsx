@@ -46,9 +46,11 @@ const Documente = () => {
                   </div>
                   <a
                     href={getDocumentDownloadUrl(doc)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="document-download"
                   >
-                    {t("documents.download")}
+                    Deschide document
                   </a>
                 </div>
               ))
@@ -72,9 +74,11 @@ const Documente = () => {
                   </div>
                   <a
                     href={getDocumentDownloadUrl(doc)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="document-download"
                   >
-                    {t("documents.download")}
+                    Deschide document
                   </a>
                 </div>
               ))

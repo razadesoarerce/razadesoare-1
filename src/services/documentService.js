@@ -25,14 +25,7 @@ const sanitizeFilename = (name) => {
 };
 
 export const getDocumentDownloadUrl = (document) => {
-  const url = document?.url || document?.fileUrl;
-  if (!url) return "";
-
-  const filename = encodeURIComponent(
-    document.originalName || document.title || "document"
-  );
-
-  return `/api/download-document?url=${encodeURIComponent(url)}&filename=${filename}`;
+  return document?.url || document?.fileUrl || "";
 };
 
 /** Upload file to Cloudinary (documents folder) and save metadata to Firestore. */
