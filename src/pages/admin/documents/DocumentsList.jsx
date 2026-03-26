@@ -4,6 +4,7 @@ import {
   getDocuments,
   deleteDocument,
   getDocumentDownloadUrl,
+  updateDocumentMeta,
 } from "../../../services/documentService";
 import { validateDocumentFile } from "../../../services/cloudinaryService";
 
@@ -16,7 +17,10 @@ const formatDate = (d) => {
 const DocumentsList = () => {
   const [documents, setDocuments] = useState([]);
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("internal");
   const [file, setFile] = useState(null);
+  const [editingId, setEditingId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(null);
@@ -54,22 +58,35 @@ const DocumentsList = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!file) return;
-    const validation = validateDocumentFile(file);
-    if (!validation.ok) {
-      setErrorMessage(validation.error);
-      return;
-    }
     setUploading(true);
     setErrorMessage(null);
     setSuccessMessage(null);
-    setUploadProgress(0);
     try {
-      await uploadDocument(file, title || file.name, (pct) => setUploadProgress(pct));
+      if (editingId) {
+        await updateDocumentMeta(editingId, { title, description, category });
+        setSuccessMessage("Document actualizat cu succes.");
+      } else {
+        if (!file) {
+          setErrorMessage("Selectează un fișier.");
+          setUploading(false);
+          return;
+        }
+        const validation = validateDocumentFile(file);
+        if (!validation.ok) {
+          setErrorMessage(validation.error);
+          setUploading(false);
+          return;
+        }
+        setUploadProgress(0);
+        await uploadDocument(file, title || file.name, description, category, (pct) => setUploadProgress(pct));
+        setSuccessMessage("Document încărcat cu succes.");
+      }
       setTitle("");
+      setDescription("");
+      setCategory("internal");
       setFile(null);
+      setEditingId(null);
       e.target.reset();
-      setSuccessMessage("Document încărcat cu succes.");
       await load();
     } catch (err) {
       console.error(err);
@@ -80,16 +97,35 @@ const DocumentsList = () => {
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (d) => {
     const confirmed = window.confirm("Esti sigur ca vrei sa stergi acest element?");
     if (!confirmed) return;
     try {
-      await deleteDocument(id);
+      console.log("Deleting:", d);
+      await deleteDocument(d);
       await load();
     } catch (err) {
       console.error(err);
       alert("Eroare la ștergere.");
     }
+  };
+
+  const handleEdit = (docItem) => {
+    setEditingId(docItem.id);
+    setTitle(docItem.title || "");
+    setDescription(docItem.description || "");
+    setCategory(docItem.category || "internal");
+    setFile(null);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingId(null);
+    setTitle("");
+    setDescription("");
+    setCategory("internal");
+    setFile(null);
+    setErrorMessage(null);
+    setSuccessMessage(null);
   };
 
   const toggleSort = () => {
@@ -114,7 +150,9 @@ const DocumentsList = () => {
       )}
 
       <div className="admin-card" style={{ marginBottom: "24px", maxWidth: "400px" }}>
-        <h3 style={{ marginTop: 0, marginBottom: "12px" }}>Încarcă document</h3>
+        <h3 style={{ marginTop: 0, marginBottom: "12px" }}>
+          {editingId ? "Editează document" : "Încarcă document"}
+        </h3>
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
           <input
             type="text"
@@ -122,10 +160,21 @@ const DocumentsList = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <option value="internal">Documente interne</option>
+            <option value="official">Documente oficiale</option>
+          </select>
+          <textarea
+            placeholder="Descriere document"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows={3}
+            style={{ resize: "vertical", padding: "10px 12px", border: "1px solid #e5e7eb", borderRadius: "6px" }}
+          />
           <input
             type="file"
             accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            required
+            required={!editingId}
             onChange={(e) => { setFile(e.target.files?.[0] || null); setErrorMessage(null); }}
           />
           <p style={{ fontSize: "0.9em", color: "#666", margin: 0 }}>PDF, DOC sau DOCX, max 5 MB.</p>
@@ -139,8 +188,13 @@ const DocumentsList = () => {
             </div>
           )}
           <button type="submit" disabled={uploading} className="admin-button">
-            {uploading ? "Se încarcă…" : "Încarcă document"}
+            {uploading ? "Se încarcă…" : editingId ? "Salvează modificările" : "Încarcă document"}
           </button>
+          {editingId && (
+            <button type="button" className="admin-button-secondary" onClick={handleCancelEdit}>
+              Anulează editarea
+            </button>
+          )}
         </form>
       </div>
 
@@ -165,25 +219,32 @@ const DocumentsList = () => {
               <th data-sort onClick={toggleSort} style={{ cursor: "pointer" }}>
                 Data {sortDirection === "desc" ? "↓" : "↑"}
               </th>
+              <th>Categorie</th>
               <th>Acțiuni</th>
             </tr>
           </thead>
           <tbody>
             {filteredAndSorted.map((d) => (
               <tr key={d.id}>
-                <td>{d.title}</td>
+                <td>
+                  <div style={{ fontWeight: 600 }}>{d.title}</div>
+                  {d.description ? (
+                    <div style={{ color: "#6b7280", fontSize: "0.9rem" }}>{d.description}</div>
+                  ) : null}
+                </td>
                 <td>{formatDate(d.createdAt)}</td>
+                <td>{d.category === "official" ? "Documente oficiale" : "Documente interne"}</td>
                 <td>
                   <a
                     href={getDocumentDownloadUrl(d)}
-                    download={d.originalName || d.title || "document"}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="admin-button-secondary"
                   >
                     Descarcă
                   </a>
-                  <button type="button" onClick={() => handleDelete(d.id)} className="admin-button-danger">
+                  <button type="button" onClick={() => handleEdit(d)} className="admin-action-btn admin-edit-btn">
+                    Edit
+                  </button>
+                  <button type="button" onClick={() => handleDelete(d)} className="admin-button-danger">
                     Șterge
                   </button>
                 </td>

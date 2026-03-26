@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import SEO from "../../../components/common/SEO";
-import { getDocuments, getDocumentDownloadUrl } from "../../../services/documentService";
+import {
+  getDocuments,
+  getDocumentDownloadUrl,
+} from "../../../services/documentService";
 
 const Documente = () => {
   const { t } = useTranslation();
@@ -10,6 +13,9 @@ const Documente = () => {
   useEffect(() => {
     getDocuments().then(setCmsDocuments).catch(() => setCmsDocuments([]));
   }, []);
+
+  const internalDocs = cmsDocuments.filter((d) => d.category === "internal");
+  const officialDocs = cmsDocuments.filter((d) => d.category === "official");
 
   return (
     <>
@@ -24,76 +30,29 @@ const Documente = () => {
           {t("documents.intro")}
         </p>
 
-        {cmsDocuments.length > 0 && (
-          <div className="documents-block">
-            <h3>{t("documents.downloadable", "Documente pentru descărcare")}</h3>
-            <div className="documents-list">
-              {cmsDocuments.map((doc) => (
-                <div key={doc.id} className="document-item">
-                  <div className="document-info">
-                    <h4>{doc.title}</h4>
-                  </div>
-                  <a
-                    href={getDocumentDownloadUrl(doc)}
-                    download={doc.originalName || doc.title || "document"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="document-download"
-                  >
-                    {t("documents.download")}
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* DOCUMENTE INTERNE */}
         <div className="documents-block">
           <h3>{t("documents.internal.title")}</h3>
 
           <div className="documents-list">
-
-            <div className="document-item">
-              <div className="document-info">
-                <h4>{t("documents.internal.enrollmentForm.title")}</h4>
-                <p>{t("documents.internal.enrollmentForm.desc")}</p>
-              </div>
-              <a href="#" className="document-download">
-                {t("documents.download")}
-              </a>
-            </div>
-
-            <div className="document-item">
-              <div className="document-info">
-                <h4>{t("documents.internal.rules.title")}</h4>
-                <p>{t("documents.internal.rules.desc")}</p>
-              </div>
-              <a href="#" className="document-download">
-                {t("documents.download")}
-              </a>
-            </div>
-
-            <div className="document-item">
-              <div className="document-info">
-                <h4>{t("documents.internal.contract.title")}</h4>
-                <p>{t("documents.internal.contract.desc")}</p>
-              </div>
-              <a href="#" className="document-download">
-                {t("documents.download")}
-              </a>
-            </div>
-
-            <div className="document-item">
-              <div className="document-info">
-                <h4>{t("documents.internal.gdpr.title")}</h4>
-                <p>{t("documents.internal.gdpr.desc")}</p>
-              </div>
-              <a href="#" className="document-download">
-                {t("documents.download")}
-              </a>
-            </div>
-
+            {internalDocs.length === 0 ? (
+              <p>{t("documents.empty", "Nu există documente în această categorie.")}</p>
+            ) : (
+              internalDocs.map((doc) => (
+                <div key={doc.id} className="document-item">
+                  <div className="document-info">
+                    <h4>{doc.title}</h4>
+                    {doc.description && <p>{doc.description}</p>}
+                  </div>
+                  <a
+                    href={getDocumentDownloadUrl(doc)}
+                    className="document-download"
+                  >
+                    {t("documents.download")}
+                  </a>
+                </div>
+              ))
+            )}
           </div>
         </div>
 
@@ -102,57 +61,24 @@ const Documente = () => {
           <h3>{t("documents.official.title")}</h3>
 
           <div className="documents-list">
-
-            <div className="document-item">
-              <div className="document-info">
-                <h4>{t("documents.official.form230.title")}</h4>
-                <p>{t("documents.official.form230.desc")}</p>
-              </div>
-              <a href="#" className="document-download">
-                {t("documents.download")}
-              </a>
-            </div>
-
-            <div className="document-item">
-              <div className="document-info">
-                <h4>{t("documents.official.disability.title")}</h4>
-                <p>{t("documents.official.disability.desc")}</p>
-              </div>
-              <a href="#" className="document-download">
-                {t("documents.download")}
-              </a>
-            </div>
-
-            <div className="document-item">
-              <div className="document-info">
-                <h4>{t("documents.official.orientation.title")}</h4>
-                <p>{t("documents.official.orientation.desc")}</p>
-              </div>
-              <a href="#" className="document-download">
-                {t("documents.download")}
-              </a>
-            </div>
-
-            <div className="document-item">
-              <div className="document-info">
-                <h4>{t("documents.official.npi.title")}</h4>
-                <p>{t("documents.official.npi.desc")}</p>
-              </div>
-              <a href="#" className="document-download">
-                {t("documents.download")}
-              </a>
-            </div>
-
-            <div className="document-item">
-              <div className="document-info">
-                <h4>{t("documents.official.social.title")}</h4>
-                <p>{t("documents.official.social.desc")}</p>
-              </div>
-              <a href="#" className="document-download">
-                {t("documents.download")}
-              </a>
-            </div>
-
+            {officialDocs.length === 0 ? (
+              <p>{t("documents.empty", "Nu există documente în această categorie.")}</p>
+            ) : (
+              officialDocs.map((doc) => (
+                <div key={doc.id} className="document-item">
+                  <div className="document-info">
+                    <h4>{doc.title}</h4>
+                    {doc.description && <p>{doc.description}</p>}
+                  </div>
+                  <a
+                    href={getDocumentDownloadUrl(doc)}
+                    className="document-download"
+                  >
+                    {t("documents.download")}
+                  </a>
+                </div>
+              ))
+            )}
           </div>
         </div>
 

@@ -3,12 +3,14 @@ import {
   addDoc,
   getDocs,
   deleteDoc,
+  updateDoc,
   doc,
   query,
   orderBy,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import { uploadDocument as uploadToCloudinary } from "./cloudinaryService";
+import { deleteCloudinaryImage } from "./cloudinaryService";
 
 const COLLECTION = "documents";
 
@@ -23,58 +25,39 @@ const sanitizeFilename = (name) => {
 };
 
 export const getDocumentDownloadUrl = (document) => {
-  const fileUrl = document?.url || document?.fileUrl || "";
-  if (!fileUrl || typeof fileUrl !== "string") return "";
-  const originalName = sanitizeFilename(
-    document?.originalName || document?.title || "document"
+  const url = document?.url || document?.fileUrl;
+  if (!url) return "";
+
+  const filename = encodeURIComponent(
+    document.originalName || document.title || "document"
   );
-  const filename = encodeURIComponent(originalName);
-  let url = fileUrl;
-  // Future-safe: only normalize resource type when needed.
-  if (!url.includes("/raw/upload/")) {
-    url = url.replace("/image/upload/", "/raw/upload/");
-    url = url.replace("/auto/upload/", "/raw/upload/");
-  }
-  // Inject attachment transformation once.
-  if (!url.includes("/upload/fl_attachment:")) {
-    url = url.replace("/upload/", `/upload/fl_attachment:${filename}/`);
-  }
-  return url;
+
+  return `/api/download-document?url=${encodeURIComponent(url)}&filename=${filename}`;
 };
 
 /** Upload file to Cloudinary (documents folder) and save metadata to Firestore. */
-export const uploadDocument = async (file, title, onProgress) => {
+export const uploadDocument = async (file, title, description, category, onProgress) => {
   const result = await uploadToCloudinary(file, onProgress);
-  const fileUrl = result.secure_url;
-  const url = result.secure_url;
-  const publicId = result.public_id || null;
-  const resourceType = "raw";
-  const fileType = file.type || result.format || "";
-  const fileSizeBytes = typeof result.bytes === "number" ? result.bytes : 0;
-  const originalName = sanitizeFilename(file.name || title || "document");
+  const originalName = sanitizeFilename(file.name || "document");
   const docRef = await addDoc(collection(db, COLLECTION), {
     title: title || file.name || "Document",
-    url,
-    fileUrl,
-    publicId,
-    resourceType,
+    description: description || "",
+    category: category || "internal",
+    url: result.secure_url,
+    fileUrl: result.secure_url,
+    publicId: result.public_id || null,
     originalName,
-    fileType,
-    fileSizeBytes,
     createdAt: new Date(),
   });
-  return {
-    id: docRef.id,
-    title: title || file.name,
-    url,
-    fileUrl,
-    publicId,
-    resourceType,
-    originalName,
-    fileType,
-    fileSizeBytes,
-    createdAt: new Date(),
-  };
+  return { id: docRef.id };
+};
+
+export const updateDocumentMeta = async (id, data) => {
+  await updateDoc(doc(db, COLLECTION, id), {
+    title: data.title || "Document",
+    description: data.description || "",
+    category: data.category || "internal",
+  });
 };
 
 export const getDocuments = async () => {
@@ -86,10 +69,20 @@ export const getDocuments = async () => {
   return snapshot.docs.map((d) => ({
     id: d.id,
     ...d.data(),
+    description: d.data().description || "",
+    category: d.data().category || "internal",
     createdAt: d.data().createdAt?.toDate?.()?.toISOString?.() ?? d.data().createdAt,
   }));
 };
 
-export const deleteDocument = async (id) => {
-  await deleteDoc(doc(db, COLLECTION, id));
+export const deleteDocument = async (docItem) => {
+  try {
+    if (docItem?.publicId) {
+      await deleteCloudinaryImage(docItem.publicId);
+    }
+    await deleteDoc(doc(db, COLLECTION, docItem.id));
+  } catch (err) {
+    console.error("Delete failed:", err);
+    throw err;
+  }
 };

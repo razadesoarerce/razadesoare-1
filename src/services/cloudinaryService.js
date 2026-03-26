@@ -113,6 +113,7 @@ export async function uploadDocument(file, onProgress) {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+  formData.append("resource_type", "raw");
   formData.append("folder", "documents");
 
   const response = await axios.post(getUploadUrl("raw"), formData, {
@@ -169,24 +170,27 @@ export function getPhotoPublicId(item) {
  * @returns {{ cloudinaryDeleted: boolean, serverConfigMissing?: boolean }}
  */
 export async function deleteCloudinaryImage(publicId) {
-  if (!publicId) return { cloudinaryDeleted: false };
-  const res = await fetch("/api/cloudinary/delete", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ public_id: publicId }),
-  });
-  const text = await res.text();
-  let json = null;
   try {
-    json = JSON.parse(text);
-  } catch {
-    /* plain text error */
-  }
-  if (!res.ok) {
-    if (json?.error === "Server Cloudinary config missing") {
-      return { cloudinaryDeleted: false, serverConfigMissing: true };
+    if (!publicId) return { cloudinaryDeleted: false };
+
+    const res = await fetch("/api/cloudinary/delete", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ public_id: publicId }),
+    });
+
+    const data = await res.json().catch(() => null);
+
+    if (!res.ok) {
+      console.error("Cloudinary delete failed:", data);
+      return { cloudinaryDeleted: false };
     }
-    throw new Error(json?.error || text || "Delete failed");
+    
+    return { cloudinaryDeleted: true };
+  } catch (err) {
+    console.error("Delete error:", err);
+    return { cloudinaryDeleted: false };
   }
-  return { cloudinaryDeleted: true };
 }
