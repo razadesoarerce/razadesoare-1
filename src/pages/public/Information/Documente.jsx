@@ -46,11 +46,12 @@ const Documente = () => {
                   </div>
                   <a
                     href={getDocumentDownloadUrl(doc)}
+                    download={doc.originalName || doc.title || "document"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="document-download"
                   >
-                    Deschide document
+                    Download
                   </a>
                 </div>
               ))
@@ -74,11 +75,12 @@ const Documente = () => {
                   </div>
                   <a
                     href={getDocumentDownloadUrl(doc)}
+                    download={doc.originalName || doc.title || "document"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="document-download"
                   >
-                    Deschide document
+                    Download
                   </a>
                 </div>
               ))
