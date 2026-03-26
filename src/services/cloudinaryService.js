@@ -9,6 +9,14 @@ const DOC_TYPES = ["application/pdf", "application/msword", "application/vnd.ope
 const DOC_EXT = ["pdf", "doc", "docx"];
 const DOC_MAX_BYTES = 5 * 1024 * 1024; // 5MB
 
+function getUploadUrl(resourceType = "auto") {
+  // Backward compatible with existing config that may point to /auto/upload.
+  if (typeof CLOUDINARY_UPLOAD_URL === "string" && CLOUDINARY_UPLOAD_URL.includes("/upload")) {
+    return CLOUDINARY_UPLOAD_URL.replace(/\/(auto|image|raw)\/upload$/, `/${resourceType}/upload`);
+  }
+  return CLOUDINARY_UPLOAD_URL;
+}
+
 function getExtension(name) {
   const match = (name || "").match(/\.([a-zA-Z0-9]+)$/);
   return match ? match[1].toLowerCase() : "";
@@ -39,7 +47,7 @@ export function validateDocumentFile(file) {
 }
 
 /**
- * Upload image to Cloudinary (folder: events_images).
+ * Upload image to Cloudinary (resource_type: image, folder: events).
  * Returns { secure_url, public_id, bytes, format }.
  * onProgress(0-100) optional.
  */
@@ -50,9 +58,9 @@ export async function uploadImage(file, onProgress) {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-  formData.append("folder", "events_images");
+  formData.append("folder", "events");
 
-  const response = await axios.post(CLOUDINARY_UPLOAD_URL, formData, {
+  const response = await axios.post(getUploadUrl("image"), formData, {
     onUploadProgress: (progressEvent) => {
       if (onProgress && progressEvent.total) {
         const percent = Math.round(
@@ -67,7 +75,7 @@ export async function uploadImage(file, onProgress) {
 }
 
 /**
- * Upload gallery/album image to Cloudinary (folder: gallery_images).
+ * Upload gallery/album image to Cloudinary (resource_type: image, folder: gallery).
  * Returns { secure_url, public_id, ... }. Use result.secure_url for storage.
  */
 export async function uploadGalleryImage(file, onProgress) {
@@ -77,9 +85,9 @@ export async function uploadGalleryImage(file, onProgress) {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-  formData.append("folder", "gallery_images");
+  formData.append("folder", "gallery");
 
-  const response = await axios.post(CLOUDINARY_UPLOAD_URL, formData, {
+  const response = await axios.post(getUploadUrl("image"), formData, {
     onUploadProgress: (progressEvent) => {
       if (onProgress && progressEvent.total) {
         const percent = Math.round(
@@ -94,7 +102,7 @@ export async function uploadGalleryImage(file, onProgress) {
 }
 
 /**
- * Upload document to Cloudinary (folder: documents).
+ * Upload document to Cloudinary (resource_type: raw, folder: documents).
  * Returns { secure_url, public_id, bytes, format }.
  * onProgress(0-100) optional.
  */
@@ -107,7 +115,7 @@ export async function uploadDocument(file, onProgress) {
   formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
   formData.append("folder", "documents");
 
-  const response = await axios.post(CLOUDINARY_UPLOAD_URL, formData, {
+  const response = await axios.post(getUploadUrl("raw"), formData, {
     onUploadProgress: (progressEvent) => {
       if (onProgress && progressEvent.total) {
         const percent = Math.round(
