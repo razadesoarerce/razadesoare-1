@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import SEO from "../../../components/common/SEO";
-import { getDocuments } from "../../../services/documentService";
+import { getDocuments, getDocumentDownloadUrl } from "../../../services/documentService";
 
 const Documente = () => {
   const { t } = useTranslation();
@@ -33,7 +33,13 @@ const Documente = () => {
                   <div className="document-info">
                     <h4>{doc.title}</h4>
                   </div>
-                  <a href={doc.fileUrl} target="_blank" rel="noopener noreferrer" className="document-download">
+                  <a
+                    href={getDocumentDownloadUrl(doc)}
+                    download={doc.originalName || doc.title || "document"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="document-download"
+                  >
                     {t("documents.download")}
                   </a>
                 </div>

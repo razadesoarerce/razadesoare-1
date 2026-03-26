@@ -1,5 +1,10 @@
 import { useEffect, useState, useMemo } from "react";
-import { uploadDocument, getDocuments, deleteDocument } from "../../../services/documentService";
+import {
+  uploadDocument,
+  getDocuments,
+  deleteDocument,
+  getDocumentDownloadUrl,
+} from "../../../services/documentService";
 import { validateDocumentFile } from "../../../services/cloudinaryService";
 
 const formatDate = (d) => {
@@ -169,7 +174,15 @@ const DocumentsList = () => {
                 <td>{d.title}</td>
                 <td>{formatDate(d.createdAt)}</td>
                 <td>
-                  <a href={d.fileUrl} target="_blank" rel="noopener noreferrer" className="admin-button-secondary">Descarcă</a>
+                  <a
+                    href={getDocumentDownloadUrl(d)}
+                    download={d.originalName || d.title || "document"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="admin-button-secondary"
+                  >
+                    Descarcă
+                  </a>
                   <button type="button" onClick={() => handleDelete(d.id)} className="admin-button-danger">
                     Șterge
                   </button>
