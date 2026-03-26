@@ -47,8 +47,6 @@ const Documente = () => {
                   <a
                     href={getDocumentDownloadUrl(doc)}
                     download={doc.originalName || doc.title || "document"}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="document-download"
                   >
                     Download
@@ -76,8 +74,6 @@ const Documente = () => {
                   <a
                     href={getDocumentDownloadUrl(doc)}
                     download={doc.originalName || doc.title || "document"}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="document-download"
                   >
                     Download

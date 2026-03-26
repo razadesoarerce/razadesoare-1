@@ -238,8 +238,6 @@ const DocumentsList = () => {
                   <a
                     href={getDocumentDownloadUrl(d)}
                     download={d.originalName || d.title || "document"}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="admin-button-secondary"
                   >
                     Download
