@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./HomePreview.css";
 
 const NAV_ITEMS = [
@@ -121,8 +121,6 @@ const SunRays = ({ className = "" }) => (
 );
 
 const HomePreview = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   useEffect(() => {
     const id = "home-preview-fonts";
     if (document.getElementById(id)) return undefined;
@@ -134,13 +132,6 @@ const HomePreview = () => {
     document.head.appendChild(link);
     return undefined;
   }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
 
   return (
     <div className="hp">
@@ -158,22 +149,7 @@ const HomePreview = () => {
             </span>
           </div>
 
-          <button
-            type="button"
-            className={`hp-burger ${menuOpen ? "is-open" : ""}`}
-            aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-
-          <nav
-            className={`hp-nav ${menuOpen ? "is-open" : ""}`}
-            aria-label="Navigare mockup"
-          >
+          <nav className="hp-nav" aria-label="Navigare mockup">
             {NAV_ITEMS.map((item, index) => (
               <button
                 key={item}
@@ -193,15 +169,6 @@ const HomePreview = () => {
           </button>
         </div>
       </header>
-
-      {menuOpen ? (
-        <button
-          type="button"
-          className="hp-overlay"
-          aria-label="Închide meniul"
-          onClick={() => setMenuOpen(false)}
-        />
-      ) : null}
 
       <main>
         <section className="hp-hero" aria-labelledby="hp-hero-title">
