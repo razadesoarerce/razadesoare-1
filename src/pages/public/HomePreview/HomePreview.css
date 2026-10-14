@@ -585,16 +585,28 @@
 }
 
 /* Life / gallery */
-.hp-life__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.85rem;
+.hp-life__carousel {
+  width: 100%;
+  overflow: hidden;
 }
 
-.hp-life__grid--compare {
-  grid-template-columns: 1fr 1fr;
-  align-items: start;
-  gap: 1rem;
+.hp-life-swiper {
+  padding-bottom: 1.75rem;
+}
+
+.hp-life-swiper .swiper-slide {
+  height: auto;
+  display: flex;
+}
+
+.hp-life-swiper .swiper-pagination-bullet {
+  background: var(--hp-blue);
+  opacity: 0.25;
+}
+
+.hp-life-swiper .swiper-pagination-bullet-active {
+  background: var(--hp-yellow);
+  opacity: 1;
 }
 
 .hp-life__item {
@@ -604,6 +616,7 @@
   aspect-ratio: 4 / 3;
   position: relative;
   background: #f3f5f8;
+  width: 100%;
 }
 
 /* Native frames so you can compare crop vs source ratio */
@@ -694,14 +707,6 @@
     font-size: 0.82rem;
   }
 
-  .hp-life__grid:not(.hp-life__grid--compare) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .hp-life__grid--compare {
-    max-width: 40rem;
-    margin-inline: auto;
-  }
 }
 
 /* Desktop — 4 cards in a row like the mockup image */
@@ -802,14 +807,8 @@
     padding-bottom: 3.5rem;
   }
 
-  .hp-life__grid:not(.hp-life__grid--compare) {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-  }
-
-  .hp-life__grid--compare {
-    max-width: 44rem;
-    gap: 1.25rem;
+  .hp-life-swiper {
+    padding-bottom: 2rem;
   }
 
   .hp-section {

@@ -296,18 +296,26 @@ const HomePreview = () => {
           <p className="hp-section__lead">
             Momente din activitățile și evenimentele noastre.
           </p>
-          <div className="hp-life__grid hp-life__grid--compare">
-            {GALLERY.map((item) => (
-              <figure
-                key={item.src}
-                className={`hp-life__item hp-life__item--${item.frame}`}
-              >
-                <img src={item.src} alt={item.alt} loading="lazy" />
-                <figcaption className="hp-life__caption">
-                  {item.frame === "square" ? "Pătrat 1000×1000" : "Portrait 819×1024"}
-                </figcaption>
-              </figure>
-            ))}
+          <div className="hp-life__carousel">
+            <Swiper
+              modules={[Pagination]}
+              slidesPerView={2}
+              spaceBetween={12}
+              pagination={{ clickable: true }}
+              grabCursor
+              className="hp-life-swiper"
+            >
+              {GALLERY.map((item) => (
+                <SwiperSlide key={item.src}>
+                  <figure className={`hp-life__item hp-life__item--${item.frame}`}>
+                    <img src={item.src} alt={item.alt} loading="lazy" />
+                    <figcaption className="hp-life__caption">
+                      {item.frame === "square" ? "Pătrat 1000×1000" : "Portrait 819×1024"}
+                    </figcaption>
+                  </figure>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
           <div className="hp-life__cta">
             <button type="button" className="hp-btn hp-btn--primary">
