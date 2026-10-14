@@ -1,4 +1,8 @@
 import { useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 import "./HomePreview.css";
 
 const NAV_ITEMS = [
@@ -142,13 +146,6 @@ const HomePreview = () => {
 
       <header className="hp-header">
         <div className="hp-header__inner">
-          <div className="hp-logo" aria-hidden>
-            <span className="hp-logo__sun" />
-            <span className="hp-logo__text">
-              Raza de <em>Soare</em>
-            </span>
-          </div>
-
           <nav className="hp-nav" aria-label="Navigare mockup">
             {NAV_ITEMS.map((item, index) => (
               <button
@@ -229,19 +226,30 @@ const HomePreview = () => {
             Activități și experiențe care sprijină dezvoltarea armonioasă a
             copiilor.
           </p>
-          <div className="hp-offer__grid">
-            {OFFER_CARDS.map((card) => (
-              <article key={card.title} className={`hp-offer-card hp-offer-card--${card.tone}`}>
-                <div className="hp-offer-card__icon">
-                  <Icon name={card.icon} />
-                </div>
-                <h3>{card.title}</h3>
-                <p>{card.text}</p>
-                <button type="button" className="hp-offer-card__go" aria-label={`${card.title} (mock)`}>
-                  →
-                </button>
-              </article>
-            ))}
+          <div className="hp-offer__carousel">
+            <Swiper
+              modules={[Pagination]}
+              slidesPerView={2}
+              spaceBetween={12}
+              pagination={{ clickable: true }}
+              grabCursor
+              className="hp-offer-swiper"
+            >
+              {OFFER_CARDS.map((card) => (
+                <SwiperSlide key={card.title}>
+                  <article className={`hp-offer-card hp-offer-card--${card.tone}`}>
+                    <div className="hp-offer-card__icon">
+                      <Icon name={card.icon} />
+                    </div>
+                    <h3>{card.title}</h3>
+                    <p>{card.text}</p>
+                    <button type="button" className="hp-offer-card__go" aria-label={`${card.title} (mock)`}>
+                      →
+                    </button>
+                  </article>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </section>
 

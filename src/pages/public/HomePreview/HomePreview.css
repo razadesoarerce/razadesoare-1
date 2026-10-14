@@ -79,75 +79,9 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.35rem;
   min-height: 3.25rem;
-}
-
-.hp-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  flex-shrink: 0;
-}
-
-.hp-logo__sun {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #ffe9a0, var(--hp-yellow) 55%, #f0a820);
-  box-shadow: 0 0 0 3px rgba(245, 197, 66, 0.25);
-  position: relative;
-  flex-shrink: 0;
-}
-
-.hp-logo__sun::after {
-  content: "";
-  position: absolute;
-  inset: -5px;
-  border-radius: 50%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0 12deg,
-    rgba(245, 197, 66, 0.7) 12deg 18deg,
-    transparent 18deg 42deg,
-    rgba(245, 197, 66, 0.7) 42deg 48deg,
-    transparent 48deg 72deg,
-    rgba(245, 197, 66, 0.7) 72deg 78deg,
-    transparent 78deg 102deg,
-    rgba(245, 197, 66, 0.7) 102deg 108deg,
-    transparent 108deg 132deg,
-    rgba(245, 197, 66, 0.7) 132deg 138deg,
-    transparent 138deg 162deg,
-    rgba(245, 197, 66, 0.7) 162deg 168deg,
-    transparent 168deg 192deg,
-    rgba(245, 197, 66, 0.7) 192deg 198deg,
-    transparent 198deg 222deg,
-    rgba(245, 197, 66, 0.7) 222deg 228deg,
-    transparent 228deg 252deg,
-    rgba(245, 197, 66, 0.7) 252deg 258deg,
-    transparent 258deg 282deg,
-    rgba(245, 197, 66, 0.7) 282deg 288deg,
-    transparent 288deg 312deg,
-    rgba(245, 197, 66, 0.7) 312deg 318deg,
-    transparent 318deg 342deg,
-    rgba(245, 197, 66, 0.7) 342deg 348deg,
-    transparent 348deg 360deg
-  );
-  z-index: -1;
-}
-
-.hp-logo__text {
-  font-family: var(--hp-display);
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--hp-blue);
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-}
-
-.hp-logo__text em {
-  font-style: normal;
-  color: #e8a820;
 }
 
 .hp-search {
@@ -158,7 +92,6 @@
   place-items: center;
   border-radius: 999px;
   flex-shrink: 0;
-  margin-left: 0.15rem;
 }
 
 .hp-search svg {
@@ -166,14 +99,14 @@
   height: 1.1rem;
 }
 
-/* Always horizontal menu (like mockup image) — scroll if needed on narrow screens */
+/* Full horizontal menu — no logo in bar */
 .hp-nav {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   flex: 1;
-  gap: 0.1rem;
+  gap: 0.15rem;
   min-width: 0;
   overflow-x: auto;
   scrollbar-width: none;
@@ -186,10 +119,10 @@
 
 .hp-nav__item {
   flex-shrink: 0;
-  padding: 0.35rem 0.45rem;
+  padding: 0.4rem 0.55rem;
   color: var(--hp-blue);
   font-weight: 700;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   white-space: nowrap;
   border-radius: 0;
   background: transparent;
@@ -452,16 +385,33 @@
   flex-shrink: 0;
 }
 
-/* Offer — compact, sits under hero in first viewport; 2 cols phone, 4 desktop */
+/* Offer carousel — 2 cards visible, swipe for the rest */
 .hp-offer {
   padding-top: 1.1rem;
   padding-bottom: 1.5rem;
 }
 
-.hp-offer__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.65rem;
+.hp-offer__carousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.hp-offer-swiper {
+  padding-bottom: 1.75rem;
+}
+
+.hp-offer-swiper .swiper-slide {
+  height: auto;
+}
+
+.hp-offer-swiper .swiper-pagination-bullet {
+  background: var(--hp-blue);
+  opacity: 0.25;
+}
+
+.hp-offer-swiper .swiper-pagination-bullet-active {
+  background: var(--hp-yellow);
+  opacity: 1;
 }
 
 .hp-offer-card {
@@ -471,8 +421,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100%;
+  height: 100%;
+  min-height: 11.5rem;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
 }
 
 .hp-offer-card:hover {
@@ -676,12 +628,8 @@
 /* Tablet+ */
 @media (min-width: 640px) {
   .hp-nav__item {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.6rem;
-  }
-
-  .hp-logo__text {
-    font-size: 1.05rem;
+    font-size: 0.92rem;
+    padding: 0.45rem 0.7rem;
   }
 
   .hp-header__inner {
@@ -698,13 +646,9 @@
     font-size: 0.88rem;
   }
 
-  .hp-offer__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.85rem;
-  }
-
   .hp-offer-card {
     padding: 1.1rem 0.9rem 1rem;
+    min-height: 13rem;
   }
 
   .hp-offer-card__icon {
@@ -732,22 +676,13 @@
   }
 
   .hp-nav__item {
-    padding: 0.45rem 0.75rem;
-    font-size: 0.95rem;
+    padding: 0.5rem 0.85rem;
+    font-size: 1rem;
   }
 
   .hp-header__inner {
     min-height: 4.25rem;
     width: min(1120px, calc(100% - 2rem));
-  }
-
-  .hp-logo__text {
-    font-size: 1.15rem;
-  }
-
-  .hp-logo__sun {
-    width: 2.15rem;
-    height: 2.15rem;
   }
 
   .hp-search {
@@ -794,14 +729,14 @@
     margin-bottom: 1.35rem;
   }
 
-  .hp-offer__grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.1rem;
+  .hp-offer-swiper {
+    padding-bottom: 2rem;
   }
 
   .hp-offer-card {
     border-radius: var(--hp-radius);
     padding: 1.35rem 1.1rem 1.15rem;
+    min-height: 14.5rem;
   }
 
   .hp-offer-card__icon {
