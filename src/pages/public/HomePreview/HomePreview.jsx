@@ -1,0 +1,353 @@
+import { useEffect, useState } from "react";
+import "./HomePreview.css";
+
+const NAV_ITEMS = [
+  "Acasă",
+  "Despre noi",
+  "Activități",
+  "Echipa",
+  "Noutăți",
+  "Contact",
+];
+
+const OFFER_CARDS = [
+  {
+    title: "Educație",
+    text: "Programe adaptate care sprijină învățarea fiecărui copil.",
+    tone: "pink",
+    icon: "book",
+  },
+  {
+    title: "Activități",
+    text: "Experiențe creative și jocuri care dezvoltă abilități practice.",
+    tone: "blue",
+    icon: "palette",
+  },
+  {
+    title: "Comunitate",
+    text: "Un mediu cald, în care familiile și echipa colaborează.",
+    tone: "yellow",
+    icon: "people",
+  },
+  {
+    title: "Dezvoltare",
+    text: "Sprijin pentru creșterea emoțională, socială și cognitivă.",
+    tone: "green",
+    icon: "sprout",
+  },
+];
+
+const GALLERY = [
+  {
+    src: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=800&q=80",
+    alt: "Copii desenând la masă",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=80",
+    alt: "Joc în aer liber cu parașuta",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=800&q=80",
+    alt: "Activitate de grădinărit",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1567057419565-72fcd42ad8e6?auto=format&fit=crop&w=800&q=80",
+    alt: "Joacă cu cuburi de lemn",
+  },
+];
+
+const Icon = ({ name }) => {
+  if (name === "book") {
+    return (
+      <svg viewBox="0 0 48 48" aria-hidden>
+        <path
+          fill="currentColor"
+          d="M10 8h16a6 6 0 0 1 6 6v24a4 4 0 0 0-4-4H10V8zm28 0H26a6 6 0 0 0-6 6v24a4 4 0 0 1 4-4h14V8z"
+          opacity="0.9"
+        />
+      </svg>
+    );
+  }
+  if (name === "palette") {
+    return (
+      <svg viewBox="0 0 48 48" aria-hidden>
+        <path
+          fill="currentColor"
+          d="M24 6c-9.9 0-18 7.4-18 16.5C6 33 14.1 42 24 42c2.2 0 4-1.8 4-4 0-1.1-.4-2-1.2-2.7-.7-.7-1.1-1.6-1.1-2.6 0-2.1 1.7-3.7 3.8-3.7H32c7.2 0 13-5.4 13-12C45 12.2 35.5 6 24 6z"
+        />
+        <circle cx="16" cy="18" r="2.5" fill="#fff" />
+        <circle cx="24" cy="14" r="2.5" fill="#fff" />
+        <circle cx="32" cy="18" r="2.5" fill="#fff" />
+      </svg>
+    );
+  }
+  if (name === "people") {
+    return (
+      <svg viewBox="0 0 48 48" aria-hidden>
+        <circle cx="16" cy="16" r="5" fill="currentColor" />
+        <circle cx="32" cy="16" r="5" fill="currentColor" />
+        <circle cx="24" cy="14" r="5.5" fill="currentColor" />
+        <path
+          fill="currentColor"
+          d="M8 36c0-4.4 3.6-8 8-8h0c1.7 0 3.3.5 4.6 1.5A9.9 9.9 0 0 0 24 28c1.7 0 3.3.4 4.7 1.2A8 8 0 0 1 32 28h0c4.4 0 8 3.6 8 8v2H8v-2z"
+        />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 48 48" aria-hidden>
+      <path
+        fill="currentColor"
+        d="M24 42c-1.5-7-8-11-8-18 0-4.4 3.6-8 8-8s8 3.6 8 8c0 7-6.5 11-8 18z"
+      />
+      <path
+        fill="currentColor"
+        d="M22 10c0-3 2-6 2-6s2 3 2 6-2 4-2 4-2-1-2-4zm-8 6c-2.5-2-4-5-4-5s4.2.8 6.5 2.8S20 18 20 18s-3.5.1-6-2zm16 0c-2.5 2.1-6 2-6 2s1.2-2.2 3.5-4.2S36 11 36 11s-1.5 3-4 5z"
+      />
+    </svg>
+  );
+};
+
+const SunRays = ({ className = "" }) => (
+  <svg className={className} viewBox="0 0 64 24" aria-hidden>
+    <path
+      d="M4 18 Q8 4 12 18 M16 18 Q20 2 24 18 M28 18 Q32 6 36 18 M40 18 Q44 2 48 18 M52 18 Q56 6 60 18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const HomePreview = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const id = "home-preview-fonts";
+    if (document.getElementById(id)) return undefined;
+    const link = document.createElement("link");
+    link.id = id;
+    link.rel = "stylesheet";
+    link.href =
+      "https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap";
+    document.head.appendChild(link);
+    return undefined;
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  return (
+    <div className="hp">
+      <div className="hp-banner" role="status">
+        Mockup design — nu afectează site-ul live. Deschide{" "}
+        <code>/</code> pentru versiunea actuală.
+      </div>
+
+      <header className="hp-header">
+        <div className="hp-header__inner">
+          <div className="hp-logo" aria-hidden>
+            <span className="hp-logo__sun" />
+            <span className="hp-logo__text">
+              Raza de <em>Soare</em>
+            </span>
+          </div>
+
+          <button
+            type="button"
+            className={`hp-burger ${menuOpen ? "is-open" : ""}`}
+            aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
+          <nav
+            className={`hp-nav ${menuOpen ? "is-open" : ""}`}
+            aria-label="Navigare mockup"
+          >
+            {NAV_ITEMS.map((item, index) => (
+              <button
+                key={item}
+                type="button"
+                className={`hp-nav__item ${index === 0 ? "is-active" : ""}`}
+              >
+                {item}
+              </button>
+            ))}
+          </nav>
+
+          <button type="button" className="hp-search" aria-label="Căutare (mock)">
+            <svg viewBox="0 0 24 24" aria-hidden>
+              <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
+              <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      {menuOpen ? (
+        <button
+          type="button"
+          className="hp-overlay"
+          aria-label="Închide meniul"
+          onClick={() => setMenuOpen(false)}
+        />
+      ) : null}
+
+      <main>
+        <section className="hp-hero" aria-labelledby="hp-hero-title">
+          <div
+            className="hp-hero__bg"
+            style={{
+              backgroundImage:
+                "url(https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=1600&q=80)",
+            }}
+          />
+          <div className="hp-hero__shade" />
+          <div className="hp-hero__doodles" aria-hidden>
+            <svg className="hp-doodle hp-doodle--heart" viewBox="0 0 24 24">
+              <path
+                fill="#fff"
+                d="M12 21s-7.2-4.5-9.4-8.2C.8 9.6 2.1 6.5 5 6.2c1.8-.2 3.4.8 4 2.3.6-1.5 2.2-2.5 4-2.3 2.9.3 4.2 3.4 2.4 6.6C19.2 16.5 12 21 12 21z"
+              />
+            </svg>
+            <span className="hp-doodle hp-doodle--rays" />
+            <svg className="hp-doodle hp-doodle--heart hp-doodle--sm" viewBox="0 0 24 24">
+              <path
+                fill="#fff"
+                d="M12 21s-7.2-4.5-9.4-8.2C.8 9.6 2.1 6.5 5 6.2c1.8-.2 3.4.8 4 2.3.6-1.5 2.2-2.5 4-2.3 2.9.3 4.2 3.4 2.4 6.6C19.2 16.5 12 21 12 21z"
+              />
+            </svg>
+          </div>
+          <div className="hp-hero__content">
+            <span className="hp-hero__sun" aria-hidden />
+            <h1 id="hp-hero-title">Raza de Soare</h1>
+            <p>
+              Un loc în care copiii cresc, învață și descoperă lumea în jurul
+              lor, cu încredere și bucurie.
+            </p>
+            <div className="hp-hero__actions">
+              <button type="button" className="hp-btn hp-btn--primary">
+                Descoperă Raza de Soare <span aria-hidden>→</span>
+              </button>
+              <button type="button" className="hp-btn hp-btn--ghost">
+                Contactează-ne <span aria-hidden>→</span>
+              </button>
+            </div>
+          </div>
+          <svg className="hp-hero__wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden>
+            <path
+              d="M0,64 C240,120 480,0 720,40 C960,80 1200,120 1440,48 L1440,120 L0,120 Z"
+              fill="#ffffff"
+            />
+          </svg>
+        </section>
+
+        <section className="hp-section hp-offer" aria-labelledby="hp-offer-title">
+          <div className="hp-section__head">
+            <SunRays className="hp-rays" />
+            <h2 id="hp-offer-title">Ce oferim</h2>
+            <SunRays className="hp-rays" />
+          </div>
+          <p className="hp-section__lead">
+            Activități și experiențe care sprijină dezvoltarea armonioasă a
+            copiilor.
+          </p>
+          <div className="hp-offer__grid">
+            {OFFER_CARDS.map((card) => (
+              <article key={card.title} className={`hp-offer-card hp-offer-card--${card.tone}`}>
+                <div className="hp-offer-card__icon">
+                  <Icon name={card.icon} />
+                </div>
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+                <button type="button" className="hp-offer-card__go" aria-label={`${card.title} (mock)`}>
+                  →
+                </button>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="hp-section hp-about" aria-labelledby="hp-about-title">
+          <div className="hp-about__text">
+            <span className="hp-eyebrow">Despre noi</span>
+            <h2 id="hp-about-title">Cine suntem</h2>
+            <p>
+              Suntem o comunitate dedicată copiilor, unde educația specială,
+              grija și bucuria se întâlnesc în fiecare zi. Credem în potențialul
+              fiecărui copil și construim împreună un drum plin de soare.
+            </p>
+            <button type="button" className="hp-btn hp-btn--primary">
+              Află mai multe <span aria-hidden>→</span>
+            </button>
+            <div className="hp-about__hearts" aria-hidden>
+              <svg viewBox="0 0 24 24">
+                <path
+                  fill="#ef6b8a"
+                  d="M12 21s-7.2-4.5-9.4-8.2C.8 9.6 2.1 6.5 5 6.2c1.8-.2 3.4.8 4 2.3.6-1.5 2.2-2.5 4-2.3 2.9.3 4.2 3.4 2.4 6.6C19.2 16.5 12 21 12 21z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  fill="#ef6b8a"
+                  d="M12 21s-7.2-4.5-9.4-8.2C.8 9.6 2.1 6.5 5 6.2c1.8-.2 3.4.8 4 2.3.6-1.5 2.2-2.5 4-2.3 2.9.3 4.2 3.4 2.4 6.6C19.2 16.5 12 21 12 21z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  fill="#ef6b8a"
+                  d="M12 21s-7.2-4.5-9.4-8.2C.8 9.6 2.1 6.5 5 6.2c1.8-.2 3.4.8 4 2.3.6-1.5 2.2-2.5 4-2.3 2.9.3 4.2 3.4 2.4 6.6C19.2 16.5 12 21 12 21z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div className="hp-about__media">
+            <img
+              src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1000&q=80"
+              alt="Clădire — placeholder mockup"
+            />
+          </div>
+        </section>
+
+        <section className="hp-section hp-life" aria-labelledby="hp-life-title">
+          <div className="hp-section__head">
+            <SunRays className="hp-rays" />
+            <h2 id="hp-life-title">Viața la Raza de Soare</h2>
+            <SunRays className="hp-rays" />
+          </div>
+          <p className="hp-section__lead">
+            Momente din activitățile și evenimentele noastre.
+          </p>
+          <div className="hp-life__grid">
+            {GALLERY.map((item) => (
+              <figure key={item.src} className="hp-life__item">
+                <img src={item.src} alt={item.alt} loading="lazy" />
+              </figure>
+            ))}
+          </div>
+          <div className="hp-life__cta">
+            <button type="button" className="hp-btn hp-btn--primary">
+              Vezi galeria foto <span aria-hidden>→</span>
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <footer className="hp-footer">
+        <p>Raza de Soare — preview design (fără legături reale)</p>
+      </footer>
+    </div>
+  );
+};
+
+export default HomePreview;

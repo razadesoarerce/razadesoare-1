@@ -25,6 +25,7 @@ import StructuraAnului from "../pages/public/Information/StructuraAnului";
 import Events from "../pages/public/Events/Events";
 import EventDetails from "../pages/public/Events/EventDetails";
 import GalerieFoto from "../pages/public/GalerieFoto/GalerieFoto";
+import HomePreview from "../pages/public/HomePreview/HomePreview";
 import NotFound from "../pages/public/NotFound";
 
 // Admin Pages
@@ -45,6 +46,12 @@ const evenimenteSidebarItems = [
 ];
 
 const router = createBrowserRouter([
+  // Isolated design mockup — no Layout / TopBar / Navbar / Footer
+  {
+    path: "/preview",
+    element: <HomePreview />,
+  },
+
   // PUBLIC ROUTES
   {
     path: "/",
