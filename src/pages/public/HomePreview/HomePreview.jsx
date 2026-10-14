@@ -44,13 +44,27 @@ const OFFER_CARDS = [
 const GALLERY = [
   {
     src: "/images/preview/life-landscape.jpg",
-    alt: "Versiune portrait/landscape — test încadrare",
+    alt: "Versiune portrait — test încadrare",
     frame: "portrait",
+    label: "Portrait 819×1024",
   },
   {
     src: "/images/preview/life-square.jpg",
     alt: "Versiune pătrată — test încadrare",
     frame: "square",
+    label: "Pătrat 1000×1000",
+  },
+  {
+    src: "/images/preview/life-landscape.jpg",
+    alt: "Versiune portrait — duplicat pentru swipe",
+    frame: "portrait",
+    label: "Portrait 819×1024",
+  },
+  {
+    src: "/images/preview/life-square.jpg",
+    alt: "Versiune pătrată — duplicat pentru swipe",
+    frame: "square",
+    label: "Pătrat 1000×1000",
   },
 ];
 
@@ -305,13 +319,11 @@ const HomePreview = () => {
               grabCursor
               className="hp-life-swiper"
             >
-              {GALLERY.map((item) => (
-                <SwiperSlide key={item.src}>
+              {GALLERY.map((item, index) => (
+                <SwiperSlide key={`${item.frame}-${index}`}>
                   <figure className={`hp-life__item hp-life__item--${item.frame}`}>
                     <img src={item.src} alt={item.alt} loading="lazy" />
-                    <figcaption className="hp-life__caption">
-                      {item.frame === "square" ? "Pătrat 1000×1000" : "Portrait 819×1024"}
-                    </figcaption>
+                    <figcaption className="hp-life__caption">{item.label}</figcaption>
                   </figure>
                 </SwiperSlide>
               ))}

@@ -597,6 +597,8 @@
 .hp-life-swiper .swiper-slide {
   height: auto;
   display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 
 .hp-life-swiper .swiper-pagination-bullet {
@@ -613,13 +615,14 @@
   margin: 0;
   border-radius: 1.15rem;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
   position: relative;
   background: #f3f5f8;
   width: 100%;
+  flex: 0 0 auto;
+  align-self: flex-start;
 }
 
-/* Native frames so you can compare crop vs source ratio */
+/* Keep distinct frames: portrait vs square (do not stretch to match sibling) */
 .hp-life__item--portrait {
   aspect-ratio: 4 / 5;
 }
@@ -634,6 +637,7 @@
   object-fit: cover;
   object-position: center top;
   transition: transform 0.45s ease;
+  display: block;
 }
 
 .hp-life__item:hover img {
