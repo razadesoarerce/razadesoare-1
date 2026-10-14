@@ -43,20 +43,14 @@ const OFFER_CARDS = [
 
 const GALLERY = [
   {
-    src: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=800&q=80",
-    alt: "Copii desenând la masă",
+    src: "/images/preview/life-landscape.jpg",
+    alt: "Versiune portrait/landscape — test încadrare",
+    frame: "portrait",
   },
   {
-    src: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=80",
-    alt: "Joc în aer liber cu parașuta",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=800&q=80",
-    alt: "Activitate de grădinărit",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1567057419565-72fcd42ad8e6?auto=format&fit=crop&w=800&q=80",
-    alt: "Joacă cu cuburi de lemn",
+    src: "/images/preview/life-square.jpg",
+    alt: "Versiune pătrată — test încadrare",
+    frame: "square",
   },
 ];
 
@@ -172,8 +166,7 @@ const HomePreview = () => {
           <div
             className="hp-hero__bg"
             style={{
-              backgroundImage:
-                "url(https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=1600&q=80)",
+              backgroundImage: "url(/images/preview/hero-main.jpg)",
             }}
           />
           <div className="hp-hero__shade" />
@@ -303,10 +296,16 @@ const HomePreview = () => {
           <p className="hp-section__lead">
             Momente din activitățile și evenimentele noastre.
           </p>
-          <div className="hp-life__grid">
+          <div className="hp-life__grid hp-life__grid--compare">
             {GALLERY.map((item) => (
-              <figure key={item.src} className="hp-life__item">
+              <figure
+                key={item.src}
+                className={`hp-life__item hp-life__item--${item.frame}`}
+              >
                 <img src={item.src} alt={item.alt} loading="lazy" />
+                <figcaption className="hp-life__caption">
+                  {item.frame === "square" ? "Pătrat 1000×1000" : "Portrait 819×1024"}
+                </figcaption>
               </figure>
             ))}
           </div>

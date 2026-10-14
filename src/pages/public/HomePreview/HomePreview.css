@@ -190,7 +190,7 @@
 
 .hp-hero__bg {
   background-size: cover;
-  background-position: center 30%;
+  background-position: center 55%;
   transform: scale(1.02);
   animation: hp-kenburns 18s ease-in-out infinite alternate;
 }
@@ -591,22 +591,52 @@
   gap: 0.85rem;
 }
 
+.hp-life__grid--compare {
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 1rem;
+}
+
 .hp-life__item {
   margin: 0;
   border-radius: 1.15rem;
   overflow: hidden;
   aspect-ratio: 4 / 3;
+  position: relative;
+  background: #f3f5f8;
+}
+
+/* Native frames so you can compare crop vs source ratio */
+.hp-life__item--portrait {
+  aspect-ratio: 4 / 5;
+}
+
+.hp-life__item--square {
+  aspect-ratio: 1 / 1;
 }
 
 .hp-life__item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   transition: transform 0.45s ease;
 }
 
 .hp-life__item:hover img {
   transform: scale(1.05);
+}
+
+.hp-life__caption {
+  position: absolute;
+  left: 0.5rem;
+  bottom: 0.5rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(18, 54, 106, 0.75);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 
 .hp-life__cta {
@@ -664,8 +694,13 @@
     font-size: 0.82rem;
   }
 
-  .hp-life__grid {
+  .hp-life__grid:not(.hp-life__grid--compare) {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hp-life__grid--compare {
+    max-width: 40rem;
+    margin-inline: auto;
   }
 }
 
@@ -767,9 +802,14 @@
     padding-bottom: 3.5rem;
   }
 
-  .hp-life__grid {
+  .hp-life__grid:not(.hp-life__grid--compare) {
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
+  }
+
+  .hp-life__grid--compare {
+    max-width: 44rem;
+    gap: 1.25rem;
   }
 
   .hp-section {
