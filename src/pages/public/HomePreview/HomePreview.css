@@ -273,6 +273,7 @@
   align-items: center;
   color: var(--hp-white);
   isolation: isolate;
+  overflow: hidden;
 }
 
 .hp-hero__bg,
@@ -289,11 +290,15 @@
   animation: hp-kenburns 18s ease-in-out infinite alternate;
 }
 
+/* Light readability wash only — not a heavy “template” overlay */
 .hp-hero__shade {
   z-index: -1;
-  background:
-    linear-gradient(180deg, rgba(10, 30, 60, 0.25) 0%, rgba(10, 30, 60, 0.55) 55%, rgba(10, 30, 60, 0.72) 100%),
-    linear-gradient(90deg, rgba(10, 30, 60, 0.55) 0%, rgba(10, 30, 60, 0.15) 70%);
+  background: linear-gradient(
+    180deg,
+    rgba(10, 30, 60, 0.12) 0%,
+    rgba(10, 30, 60, 0.22) 45%,
+    rgba(10, 30, 60, 0.38) 100%
+  );
 }
 
 @keyframes hp-kenburns {
@@ -367,13 +372,14 @@
 
 .hp-hero__wave {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  width: 100%;
-  height: clamp(28px, 5vw, 52px);
+  left: -1px;
+  right: -1px;
+  bottom: -2px;
+  width: calc(100% + 2px);
+  height: clamp(48px, 9vw, 88px);
   display: block;
   z-index: 2;
+  pointer-events: none;
 }
 
 .hp-hero__doodles {

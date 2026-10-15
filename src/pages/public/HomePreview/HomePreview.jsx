@@ -367,9 +367,15 @@ const HomePreview = () => {
               </button>
             </div>
           </div>
-          <svg className="hp-hero__wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden>
+          <svg
+            className="hp-hero__wave"
+            viewBox="0 0 1440 120"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            {/* Smooth continuous wave flush to bottom — no photo strip under the curve */}
             <path
-              d="M0,64 C240,120 480,0 720,40 C960,80 1200,120 1440,48 L1440,120 L0,120 Z"
+              d="M0,72 C180,108 360,108 540,78 C720,48 900,36 1080,58 C1260,80 1350,92 1440,78 L1440,122 L0,122 Z"
               fill="#ffffff"
             />
           </svg>
