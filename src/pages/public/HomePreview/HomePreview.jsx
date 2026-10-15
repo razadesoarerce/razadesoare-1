@@ -336,23 +336,39 @@ const HomePreview = () => {
             }}
           />
           <div className="hp-hero__shade" />
-          <div className="hp-hero__doodles" aria-hidden>
-            <svg className="hp-doodle hp-doodle--heart" viewBox="0 0 24 24">
-              <path
-                fill="#fff"
-                d="M12 21s-7.2-4.5-9.4-8.2C.8 9.6 2.1 6.5 5 6.2c1.8-.2 3.4.8 4 2.3.6-1.5 2.2-2.5 4-2.3 2.9.3 4.2 3.4 2.4 6.6C19.2 16.5 12 21 12 21z"
-              />
-            </svg>
-            <span className="hp-doodle hp-doodle--rays" />
-            <svg className="hp-doodle hp-doodle--heart hp-doodle--sm" viewBox="0 0 24 24">
-              <path
-                fill="#fff"
-                d="M12 21s-7.2-4.5-9.4-8.2C.8 9.6 2.1 6.5 5 6.2c1.8-.2 3.4.8 4 2.3.6-1.5 2.2-2.5 4-2.3 2.9.3 4.2 3.4 2.4 6.6C19.2 16.5 12 21 12 21z"
-              />
-            </svg>
-          </div>
           <div className="hp-hero__content">
-            <span className="hp-hero__sun" aria-hidden />
+            <span className="hp-hero__sun" aria-hidden>
+              <svg className="hp-hero__sun-svg" viewBox="0 0 64 64">
+                <g className="hp-hero__sun-rays">
+                  {Array.from({ length: 12 }, (_, i) => {
+                    const long = i % 2 === 0;
+                    return (
+                      <line
+                        key={i}
+                        x1="32"
+                        y1={long ? 2 : 6}
+                        x2="32"
+                        y2={long ? 12 : 12}
+                        transform={`rotate(${i * 30} 32 32)`}
+                      />
+                    );
+                  })}
+                </g>
+                <g className="hp-hero__sun-core">
+                  <circle cx="32" cy="32" r="11" />
+                  {Array.from({ length: 10 }, (_, i) => (
+                    <circle
+                      key={i}
+                      className="hp-hero__sun-bump"
+                      cx="32"
+                      cy="20.4"
+                      r="1.75"
+                      transform={`rotate(${i * 36} 32 32)`}
+                    />
+                  ))}
+                </g>
+              </svg>
+            </span>
             <h1 id="hp-hero-title">Raza de Soare</h1>
             <p>
               Un loc în care copiii cresc, învață și descoperă lumea în jurul

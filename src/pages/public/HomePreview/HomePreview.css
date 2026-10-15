@@ -320,13 +320,43 @@
 
 .hp-hero__sun {
   display: block;
-  width: 2rem;
-  height: 2rem;
-  margin-bottom: 0.4rem;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fff4c2, var(--hp-yellow) 60%, #f09a18);
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.18);
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 0.45rem;
   animation: hp-pulse 3.5s ease-in-out infinite;
+}
+
+.hp-hero__sun-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+/* Wavy disc rotates so the scalloped edge makes the spin visible */
+.hp-hero__sun-core {
+  fill: #f5c542;
+  filter: drop-shadow(0 0 6px rgba(255, 210, 74, 0.65));
+  transform-box: view-box;
+  transform-origin: 32px 32px;
+  animation: hp-spin 14s linear infinite;
+}
+
+.hp-hero__sun-bump {
+  fill: #f5c542;
+}
+
+/* Rays stay fixed in place and only pulse */
+.hp-hero__sun-rays {
+  transform-box: view-box;
+  transform-origin: 32px 32px;
+  animation: hp-ray-pulse 3.5s ease-in-out infinite;
+}
+
+.hp-hero__sun-rays line {
+  stroke: #ffe08a;
+  stroke-width: 2.5;
+  stroke-linecap: round;
 }
 
 @keyframes hp-pulse {
@@ -335,7 +365,25 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.06);
+    transform: scale(1.08);
+  }
+}
+
+@keyframes hp-ray-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes hp-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -380,69 +428,6 @@
   display: block;
   z-index: 2;
   pointer-events: none;
-}
-
-.hp-hero__doodles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hp-doodle {
-  position: absolute;
-  opacity: 0.85;
-}
-
-.hp-doodle--heart {
-  width: 1.15rem;
-  height: 1.15rem;
-  top: 28%;
-  right: 14%;
-  transform: rotate(-18deg);
-  animation: hp-float 5s ease-in-out infinite;
-}
-
-.hp-doodle--sm {
-  width: 0.8rem;
-  height: 0.8rem;
-  top: 62%;
-  right: 28%;
-  animation-delay: 1.2s;
-}
-
-.hp-doodle--rays {
-  width: 3rem;
-  height: 3rem;
-  top: 18%;
-  left: 58%;
-  border-radius: 50%;
-  box-shadow:
-    0 -14px 0 -11px #fff,
-    10px -10px 0 -11px #fff,
-    14px 0 0 -11px #fff,
-    10px 10px 0 -11px #fff,
-    0 14px 0 -11px #fff,
-    -10px 10px 0 -11px #fff,
-    -14px 0 0 -11px #fff,
-    -10px -10px 0 -11px #fff;
-  animation: hp-spin 14s linear infinite;
-}
-
-@keyframes hp-float {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-18deg);
-  }
-  50% {
-    transform: translateY(-8px) rotate(-8deg);
-  }
-}
-
-@keyframes hp-spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 /* Sections shared */
@@ -981,8 +966,8 @@
   }
 
   .hp-hero__sun {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3.25rem;
+    height: 3.25rem;
   }
 
   .hp-hero h1 {
@@ -1070,8 +1055,8 @@
 @media (prefers-reduced-motion: reduce) {
   .hp-hero__bg,
   .hp-hero__sun,
-  .hp-doodle--heart,
-  .hp-doodle--rays,
+  .hp-hero__sun-core,
+  .hp-hero__sun-rays,
   .hp-offer-card,
   .hp-life__item img,
   .hp-btn {
