@@ -47,23 +47,6 @@
   display: block;
 }
 
-/* Preview notice */
-.hp-banner {
-  background: #fff3c4;
-  color: #6a5200;
-  text-align: center;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  padding: 0.55rem 1rem;
-}
-
-.hp-banner code {
-  font-size: 0.85em;
-  background: rgba(0, 0, 0, 0.06);
-  padding: 0.1rem 0.35rem;
-  border-radius: 0.35rem;
-}
-
 /* Floating 2x2 dock — bottom right, ~60% of original size */
 .hp-dock {
   position: fixed;
@@ -979,10 +962,6 @@
 
 /* Desktop — 4 cards in a row like the mockup image */
 @media (min-width: 900px) {
-  .hp-banner {
-    font-size: 0.8125rem;
-  }
-
   .hp-hero {
     height: 40vh;
     max-height: 28rem;

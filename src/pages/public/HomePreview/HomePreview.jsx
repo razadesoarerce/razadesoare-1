@@ -241,11 +241,6 @@ const HomePreview = () => {
     <div
       className={`hp ${expandedOffer ? "hp--offer-open" : ""} ${menuOpen ? "hp--menu-open" : ""}`}
     >
-      <div className="hp-banner" role="status">
-        Mockup design — nu afectează site-ul live. Deschide{" "}
-        <code>/</code> pentru versiunea actuală.
-      </div>
-
       <div className="hp-dock" aria-label="Controale rapide">
         <button type="button" className="hp-dock__btn" aria-label="Căutare (mock)">
           <svg viewBox="0 0 24 24" aria-hidden>
