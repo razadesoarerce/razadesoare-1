@@ -16,36 +16,45 @@ const NAV_ITEMS = [
 
 const OFFER_CARDS = [
   {
+    title: "Misiune și Viziune",
+    text: "Direcția noastră: sprijin, respect și potențial pentru fiecare copil.",
+    detail:
+      "Misiunea Școlii Raza de Soare este să ofere un mediu educațional sigur, cald și adaptat, în care fiecare copil cu cerințe educaționale speciale să se simtă acceptat și încurajat. Viziunea noastră este o comunitate în care diferențele sunt respectate, progresul este celebrat pas cu pas, iar familiile găsesc parteneri de încredere pe drumul dezvoltării copilului.",
+    tone: "pink",
+    icon: "people",
+  },
+  {
     title: "Educație",
     text: "Programe adaptate care sprijină învățarea fiecărui copil.",
     detail:
       "La Raza de Soare, educația înseamnă mai mult decât lecții: fiecare copil are un parcurs personalizat, construit împreună cu familia și specialiștii. Lucrăm cu curriculum adaptat, metode interactive și obiective mici, clare, care cresc încrederea. Evaluăm progresul cu blândețe, celebrăm reușitele și ajustăm ritmul astfel încât învățarea să rămână sigură, motivațională și potrivită nevoilor fiecărui elev.",
-    tone: "pink",
+    tone: "blue",
     icon: "book",
+    imageIcon: "/images/preview/icon-educatie.jpg",
+  },
+  {
+    title: "Dezvoltare",
+    text: "Fiecare pas înainte contează.",
+    headline: "Dezvoltare – Fiecare pas înainte contează",
+    detailParagraphs: [
+      "Fiecare copil are propriul ritm de învățare și dezvoltare. La Școala Raza de Soare, ne dorim ca fiecare copil cu cerințe educaționale speciale (CES) să primească sprijinul și încurajarea de care are nevoie pentru a-și dezvolta abilitățile și a deveni, pas cu pas, mai independent.",
+      "Pentru unii copii, progresul înseamnă să învețe să citească, să scrie sau să recunoască literele și cifrele. Pentru alții, poate însemna să țină corect un creion, să folosească tacâmurile, să se îmbrace singuri, să comunice mai ușor sau să își exprime nevoile.",
+      "Punem un accent deosebit pe dezvoltarea autonomiei personale și a abilităților de viață independentă. Îi sprijinim pe copii să înțeleagă și să respecte o rutină zilnică, să recunoască situațiile periculoase, să relaționeze cu cei din jur și să deprindă lucruri practice care îi pot ajuta în viața de zi cu zi.",
+      "Știm că dezvoltarea copiilor cu cerințe educaționale speciale necesită răbdare, exercițiu și multă încurajare. De aceea, adaptăm activitățile de învățare la nevoile și posibilitățile fiecărui copil, fără grabă și fără comparații.",
+      "Pentru noi, fiecare reușită contează. O literă învățată, un cuvânt rostit, un obiect folosit corect sau o activitate realizată pentru prima dată fără ajutor reprezintă pași importanți spre mai multă încredere și independență.",
+    ],
+    tone: "green",
+    icon: "sprout",
+    imageIcon: "/images/preview/icon-dezvoltare.jpg",
   },
   {
     title: "Activități",
     text: "Experiențe creative și jocuri care dezvoltă abilități practice.",
     detail:
       "Atelierele noastre îmbină joaca cu învățarea: artă, muzică, mișcare, grădinărit și activități senzoriale. Copiii exersează colaborarea, autonomia și comunicarea într-un cadru plin de culoare. Organizăm și momente tematice pe parcursul anului — de la sărbători la ieșiri în natură — ca fiecare zi să aducă curiozitate, bucurie și abilități pe care le pot folosi acasă și la școală.",
-    tone: "blue",
-    icon: "palette",
-  },
-  {
-    title: "Comunitate",
-    text: "Un mediu cald, în care familiile și echipa colaborează.",
-    detail:
-      "Credem că dezvoltarea unui copil crește atunci când școala și familia vorbesc aceeași limbă. Părinții sunt parteneri activi: întâlniri periodice, recomandări practice și un dialog deschis cu echipa. Construim un spațiu în care fiecare familie se simte ascultată, iar copiii văd în jurul lor adulți care colaborează cu respect, empatie și optimism.",
     tone: "yellow",
-    icon: "people",
-  },
-  {
-    title: "Dezvoltare",
-    text: "Sprijin pentru creșterea emoțională, socială și cognitivă.",
-    detail:
-      "Dezvoltarea armonioasă acoperă emoțiile, relațiile și abilitățile de învățare. Oferim sprijin prin consiliere, logopedie, kinetoterapie și intervenții adaptate, în funcție de nevoile copilului. Urmărim independența pas cu pas: de la rutine zilnice și comunicare, până la încrederea de a încerca lucruri noi. Scopul nostru este ca fiecare copil să se simtă capabil, în siguranță și mândru de progresul lui.",
-    tone: "green",
-    icon: "sprout",
+    icon: "palette",
+    imageIcon: "/images/preview/icon-activitati.jpg",
   },
 ];
 
@@ -309,7 +318,11 @@ const HomePreview = () => {
                     aria-controls="hp-offer-expanded"
                   >
                     <span className="hp-offer-card__icon" aria-hidden>
-                      <Icon name={card.icon} />
+                      {card.imageIcon ? (
+                        <img src={card.imageIcon} alt="" />
+                      ) : (
+                        <Icon name={card.icon} />
+                      )}
                     </span>
                     <span className="hp-offer-card__title">{card.title}</span>
                     <span className="hp-offer-card__text">{card.text}</span>
@@ -344,11 +357,29 @@ const HomePreview = () => {
                 <div className="hp-offer-expand__handle" aria-hidden />
                 <p className="hp-offer-expand__hint">Glisează în orice direcție pentru a închide</p>
                 <div className="hp-offer-expand__icon" aria-hidden>
-                  <Icon name={expandedOffer.icon} />
+                  {expandedOffer.imageIcon ? (
+                    <img src={expandedOffer.imageIcon} alt="" />
+                  ) : (
+                    <Icon name={expandedOffer.icon} />
+                  )}
                 </div>
-                <h3 id="hp-offer-expand-title">{expandedOffer.title}</h3>
-                <p className="hp-offer-expand__lead">{expandedOffer.text}</p>
-                <p className="hp-offer-expand__detail">{expandedOffer.detail}</p>
+                <h3 id="hp-offer-expand-title">
+                  {expandedOffer.headline || expandedOffer.title}
+                </h3>
+                {!expandedOffer.detailParagraphs ? (
+                  <p className="hp-offer-expand__lead">{expandedOffer.text}</p>
+                ) : null}
+                {expandedOffer.detailParagraphs ? (
+                  <div className="hp-offer-expand__body">
+                    {expandedOffer.detailParagraphs.map((paragraph) => (
+                      <p key={paragraph.slice(0, 48)} className="hp-offer-expand__detail">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="hp-offer-expand__detail">{expandedOffer.detail}</p>
+                )}
                 <button
                   type="button"
                   className="hp-btn hp-btn--primary hp-offer-expand__close"
