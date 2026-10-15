@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { FaFacebookF } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -149,11 +151,15 @@ const SunRays = ({ className = "" }) => (
   </svg>
 );
 
-const SWIPE_CLOSE_PX = 48;
+const SWIPE_CLOSE_PX = 56;
 
 const HomePreview = () => {
+  const { i18n } = useTranslation();
   const [expandedOffer, setExpandedOffer] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const swipeStart = useRef(null);
+  const menuSwipeStart = useRef(null);
+  const activeLang = i18n.language?.startsWith("en") ? "EN" : "RO";
 
   useEffect(() => {
     const id = "home-preview-fonts";
@@ -168,10 +174,12 @@ const HomePreview = () => {
   }, []);
 
   useEffect(() => {
-    if (!expandedOffer) return undefined;
+    if (!expandedOffer && !menuOpen) return undefined;
 
     const onKeyDown = (event) => {
-      if (event.key === "Escape") setExpandedOffer(null);
+      if (event.key !== "Escape") return;
+      if (expandedOffer) setExpandedOffer(null);
+      else if (menuOpen) setMenuOpen(false);
     };
 
     document.body.style.overflow = "hidden";
@@ -180,9 +188,14 @@ const HomePreview = () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [expandedOffer]);
+  }, [expandedOffer, menuOpen]);
 
   const closeExpanded = () => setExpandedOffer(null);
+  const closeMenu = () => setMenuOpen(false);
+
+  const toggleLanguage = () => {
+    i18n.changeLanguage(activeLang === "RO" ? "en" : "ro");
+  };
 
   const onExpandTouchStart = (event) => {
     const touch = event.touches[0];
@@ -198,40 +211,117 @@ const HomePreview = () => {
     if (!touch) return;
     const dx = touch.clientX - start.x;
     const dy = touch.clientY - start.y;
-    if (Math.abs(dx) >= SWIPE_CLOSE_PX || Math.abs(dy) >= SWIPE_CLOSE_PX) {
+    // Close only on clear horizontal swipe — vertical scroll must keep working
+    if (Math.abs(dx) >= SWIPE_CLOSE_PX && Math.abs(dx) > Math.abs(dy) * 1.25) {
       closeExpanded();
     }
   };
 
+  const onMenuTouchStart = (event) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    menuSwipeStart.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const onMenuTouchEnd = (event) => {
+    const start = menuSwipeStart.current;
+    menuSwipeStart.current = null;
+    if (!start) return;
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    // Swipe right closes the right-side drawer
+    if (dx >= SWIPE_CLOSE_PX && Math.abs(dx) > Math.abs(dy) * 1.1) {
+      closeMenu();
+    }
+  };
+
   return (
-    <div className={`hp ${expandedOffer ? "hp--offer-open" : ""}`}>
+    <div
+      className={`hp ${expandedOffer ? "hp--offer-open" : ""} ${menuOpen ? "hp--menu-open" : ""}`}
+    >
       <div className="hp-banner" role="status">
         Mockup design — nu afectează site-ul live. Deschide{" "}
         <code>/</code> pentru versiunea actuală.
       </div>
 
-      <header className="hp-header">
-        <div className="hp-header__inner">
-          <nav className="hp-nav" aria-label="Navigare mockup">
-            {NAV_ITEMS.map((item, index) => (
-              <button
-                key={item}
-                type="button"
-                className={`hp-nav__item ${index === 0 ? "is-active" : ""}`}
-              >
-                {item}
-              </button>
-            ))}
-          </nav>
+      <div className="hp-dock" aria-label="Controale rapide">
+        <button type="button" className="hp-dock__btn" aria-label="Căutare (mock)">
+          <svg viewBox="0 0 24 24" aria-hidden>
+            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
+            <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          className="hp-dock__btn hp-dock__lang"
+          onClick={toggleLanguage}
+          aria-label={`Limba activă ${activeLang}. Apasă pentru a schimba.`}
+        >
+          {activeLang}
+        </button>
+        <a
+          className="hp-dock__btn hp-dock__facebook"
+          href="https://www.facebook.com/scoala.razadesoare"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <FaFacebookF aria-hidden />
+        </a>
+        <button
+          type="button"
+          className={`hp-dock__btn hp-dock__menu ${menuOpen ? "is-open" : ""}`}
+          aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
+          aria-expanded={menuOpen}
+          aria-controls="hp-drawer"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </div>
 
-          <button type="button" className="hp-search" aria-label="Căutare (mock)">
-            <svg viewBox="0 0 24 24" aria-hidden>
-              <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
-              <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-          </button>
+      {menuOpen ? (
+        <div className="hp-drawer-root">
+          <button
+            type="button"
+            className="hp-drawer__backdrop"
+            aria-label="Închide meniul"
+            onClick={closeMenu}
+          />
+          <aside
+            id="hp-drawer"
+            className="hp-drawer"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Meniu"
+            onTouchStart={onMenuTouchStart}
+            onTouchEnd={onMenuTouchEnd}
+          >
+            <div className="hp-drawer__head">
+              <p className="hp-drawer__hint">Swipe dreapta sau tap în afară pentru a închide</p>
+              <button type="button" className="hp-drawer__close" onClick={closeMenu} aria-label="Închide">
+                ×
+              </button>
+            </div>
+            <nav className="hp-drawer__nav" aria-label="Navigare mockup">
+              {NAV_ITEMS.map((item, index) => (
+                <button
+                  key={item}
+                  type="button"
+                  className={`hp-drawer__link ${index === 0 ? "is-active" : ""}`}
+                  onClick={closeMenu}
+                >
+                  {item}
+                </button>
+              ))}
+            </nav>
+          </aside>
         </div>
-      </header>
+      ) : null}
 
       <main>
         <section className="hp-hero" aria-labelledby="hp-hero-title">
@@ -355,7 +445,9 @@ const HomePreview = () => {
                 className={`hp-offer-expand__panel hp-offer-expand__panel--${expandedOffer.tone}`}
               >
                 <div className="hp-offer-expand__handle" aria-hidden />
-                <p className="hp-offer-expand__hint">Glisează în orice direcție pentru a închide</p>
+                <p className="hp-offer-expand__hint">
+                  Derulează pentru a citi · swipe stânga/dreapta sau tap în afară pentru a închide
+                </p>
                 <div className="hp-offer-expand__icon" aria-hidden>
                   {expandedOffer.imageIcon ? (
                     <img src={expandedOffer.imageIcon} alt="" />
