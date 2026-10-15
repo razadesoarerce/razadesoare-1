@@ -64,16 +64,16 @@
   border-radius: 0.35rem;
 }
 
-/* Floating 2x2 dock — top right, no panel background */
+/* Floating 2x2 dock — top right, white icons, compact */
 .hp-dock {
   position: fixed;
-  top: max(0.75rem, env(safe-area-inset-top));
-  right: max(0.75rem, env(safe-area-inset-right));
+  top: max(0.55rem, env(safe-area-inset-top));
+  right: max(0.55rem, env(safe-area-inset-right));
   z-index: 60;
   display: grid;
-  grid-template-columns: repeat(2, 2.75rem);
-  grid-template-rows: repeat(2, 2.75rem);
-  gap: 0.35rem;
+  grid-template-columns: repeat(2, 2.15rem);
+  grid-template-rows: repeat(2, 2.15rem);
+  gap: 0.12rem;
   padding: 0;
   background: transparent;
   border: 0;
@@ -86,46 +86,48 @@
   place-items: center;
   width: 100%;
   height: 100%;
-  border-radius: 0.85rem;
-  color: var(--hp-blue);
+  border-radius: 0.55rem;
+  color: #fff;
   background: transparent;
-  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease, filter 0.2s ease;
+  transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.85)) drop-shadow(0 1px 6px rgba(18, 54, 106, 0.25));
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
 }
 
 .hp-dock__btn:hover,
 .hp-dock__btn:focus-visible {
   background: transparent;
   transform: translateY(-1px);
-  color: var(--hp-blue-deep);
+  color: #fff;
+  opacity: 0.9;
 }
 
 .hp-dock__btn svg {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.05rem;
+  height: 1.05rem;
 }
 
 .hp-dock__lang {
   font-family: var(--hp-display);
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   letter-spacing: 0.02em;
 }
 
 .hp-dock__facebook {
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .hp-dock__menu {
-  gap: 4px;
+  gap: 3px;
   place-content: center;
 }
 
 .hp-dock__menu span {
   display: block;
-  width: 1.15rem;
+  width: 1.05rem;
   height: 2px;
   border-radius: 2px;
   background: currentColor;
@@ -133,7 +135,7 @@
 }
 
 .hp-dock__menu.is-open span:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
+  transform: translateY(5px) rotate(45deg);
 }
 
 .hp-dock__menu.is-open span:nth-child(2) {
@@ -141,7 +143,7 @@
 }
 
 .hp-dock__menu.is-open span:nth-child(3) {
-  transform: translateY(-6px) rotate(-45deg);
+  transform: translateY(-5px) rotate(-45deg);
 }
 
 /* Right drawer menu */
@@ -941,10 +943,11 @@
 /* Tablet+ */
 @media (min-width: 640px) {
   .hp-dock {
-    grid-template-columns: repeat(2, 3.1rem);
-    grid-template-rows: repeat(2, 3.1rem);
-    top: 1.1rem;
-    right: 1.1rem;
+    grid-template-columns: repeat(2, 2.35rem);
+    grid-template-rows: repeat(2, 2.35rem);
+    gap: 0.15rem;
+    top: 0.85rem;
+    right: 0.85rem;
   }
 
   .hp-hero {
