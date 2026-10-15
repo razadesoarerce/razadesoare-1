@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -18,24 +18,32 @@ const OFFER_CARDS = [
   {
     title: "Educație",
     text: "Programe adaptate care sprijină învățarea fiecărui copil.",
+    detail:
+      "La Raza de Soare, educația înseamnă mai mult decât lecții: fiecare copil are un parcurs personalizat, construit împreună cu familia și specialiștii. Lucrăm cu curriculum adaptat, metode interactive și obiective mici, clare, care cresc încrederea. Evaluăm progresul cu blândețe, celebrăm reușitele și ajustăm ritmul astfel încât învățarea să rămână sigură, motivațională și potrivită nevoilor fiecărui elev.",
     tone: "pink",
     icon: "book",
   },
   {
     title: "Activități",
     text: "Experiențe creative și jocuri care dezvoltă abilități practice.",
+    detail:
+      "Atelierele noastre îmbină joaca cu învățarea: artă, muzică, mișcare, grădinărit și activități senzoriale. Copiii exersează colaborarea, autonomia și comunicarea într-un cadru plin de culoare. Organizăm și momente tematice pe parcursul anului — de la sărbători la ieșiri în natură — ca fiecare zi să aducă curiozitate, bucurie și abilități pe care le pot folosi acasă și la școală.",
     tone: "blue",
     icon: "palette",
   },
   {
     title: "Comunitate",
     text: "Un mediu cald, în care familiile și echipa colaborează.",
+    detail:
+      "Credem că dezvoltarea unui copil crește atunci când școala și familia vorbesc aceeași limbă. Părinții sunt parteneri activi: întâlniri periodice, recomandări practice și un dialog deschis cu echipa. Construim un spațiu în care fiecare familie se simte ascultată, iar copiii văd în jurul lor adulți care colaborează cu respect, empatie și optimism.",
     tone: "yellow",
     icon: "people",
   },
   {
     title: "Dezvoltare",
     text: "Sprijin pentru creșterea emoțională, socială și cognitivă.",
+    detail:
+      "Dezvoltarea armonioasă acoperă emoțiile, relațiile și abilitățile de învățare. Oferim sprijin prin consiliere, logopedie, kinetoterapie și intervenții adaptate, în funcție de nevoile copilului. Urmărim independența pas cu pas: de la rutine zilnice și comunicare, până la încrederea de a încerca lucruri noi. Scopul nostru este ca fiecare copil să se simtă capabil, în siguranță și mândru de progresul lui.",
     tone: "green",
     icon: "sprout",
   },
@@ -132,7 +140,12 @@ const SunRays = ({ className = "" }) => (
   </svg>
 );
 
+const SWIPE_CLOSE_PX = 48;
+
 const HomePreview = () => {
+  const [expandedOffer, setExpandedOffer] = useState(null);
+  const swipeStart = useRef(null);
+
   useEffect(() => {
     const id = "home-preview-fonts";
     if (document.getElementById(id)) return undefined;
@@ -145,8 +158,44 @@ const HomePreview = () => {
     return undefined;
   }, []);
 
+  useEffect(() => {
+    if (!expandedOffer) return undefined;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setExpandedOffer(null);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [expandedOffer]);
+
+  const closeExpanded = () => setExpandedOffer(null);
+
+  const onExpandTouchStart = (event) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    swipeStart.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const onExpandTouchEnd = (event) => {
+    const start = swipeStart.current;
+    swipeStart.current = null;
+    if (!start) return;
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (Math.abs(dx) >= SWIPE_CLOSE_PX || Math.abs(dy) >= SWIPE_CLOSE_PX) {
+      closeExpanded();
+    }
+  };
+
   return (
-    <div className="hp">
+    <div className={`hp ${expandedOffer ? "hp--offer-open" : ""}`}>
       <div className="hp-banner" role="status">
         Mockup design — nu afectează site-ul live. Deschide{" "}
         <code>/</code> pentru versiunea actuală.
@@ -241,23 +290,75 @@ const HomePreview = () => {
               pagination={{ clickable: true }}
               grabCursor
               className="hp-offer-swiper"
+              onTouchStart={() => {
+                if (expandedOffer) closeExpanded();
+              }}
+              onSlideChange={() => {
+                if (expandedOffer) closeExpanded();
+              }}
             >
               {OFFER_CARDS.map((card) => (
                 <SwiperSlide key={card.title}>
-                  <article className={`hp-offer-card hp-offer-card--${card.tone}`}>
-                    <div className="hp-offer-card__icon">
+                  <button
+                    type="button"
+                    className={`hp-offer-card hp-offer-card--${card.tone} ${
+                      expandedOffer?.title === card.title ? "is-active" : ""
+                    }`}
+                    onClick={() => setExpandedOffer(card)}
+                    aria-expanded={expandedOffer?.title === card.title}
+                    aria-controls="hp-offer-expanded"
+                  >
+                    <span className="hp-offer-card__icon" aria-hidden>
                       <Icon name={card.icon} />
-                    </div>
-                    <h3>{card.title}</h3>
-                    <p>{card.text}</p>
-                    <button type="button" className="hp-offer-card__go" aria-label={`${card.title} (mock)`}>
+                    </span>
+                    <span className="hp-offer-card__title">{card.title}</span>
+                    <span className="hp-offer-card__text">{card.text}</span>
+                    <span className="hp-offer-card__go" aria-hidden>
                       →
-                    </button>
-                  </article>
+                    </span>
+                  </button>
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
+
+          {expandedOffer ? (
+            <div
+              className="hp-offer-expand"
+              id="hp-offer-expanded"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="hp-offer-expand-title"
+              onTouchStart={onExpandTouchStart}
+              onTouchEnd={onExpandTouchEnd}
+            >
+              <button
+                type="button"
+                className="hp-offer-expand__backdrop"
+                aria-label="Închide"
+                onClick={closeExpanded}
+              />
+              <article
+                className={`hp-offer-expand__panel hp-offer-expand__panel--${expandedOffer.tone}`}
+              >
+                <div className="hp-offer-expand__handle" aria-hidden />
+                <p className="hp-offer-expand__hint">Glisează în orice direcție pentru a închide</p>
+                <div className="hp-offer-expand__icon" aria-hidden>
+                  <Icon name={expandedOffer.icon} />
+                </div>
+                <h3 id="hp-offer-expand-title">{expandedOffer.title}</h3>
+                <p className="hp-offer-expand__lead">{expandedOffer.text}</p>
+                <p className="hp-offer-expand__detail">{expandedOffer.detail}</p>
+                <button
+                  type="button"
+                  className="hp-btn hp-btn--primary hp-offer-expand__close"
+                  onClick={closeExpanded}
+                >
+                  Închide
+                </button>
+              </article>
+            </div>
+          ) : null}
         </section>
 
         <section className="hp-section hp-about" aria-labelledby="hp-about-title">

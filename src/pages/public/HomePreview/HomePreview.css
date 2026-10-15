@@ -421,13 +421,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   height: 100%;
   min-height: 11.5rem;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.hp-offer-card:hover {
+.hp-offer-card:hover,
+.hp-offer-card.is-active {
   transform: translateY(-4px);
   box-shadow: 0 14px 30px rgba(26, 74, 141, 0.1);
 }
@@ -463,14 +466,15 @@
   height: 100%;
 }
 
-.hp-offer-card h3 {
+.hp-offer-card__title {
   margin: 0 0 0.25rem;
   font-family: var(--hp-display);
   font-size: 0.95rem;
+  font-weight: 700;
   color: var(--hp-blue);
 }
 
-.hp-offer-card p {
+.hp-offer-card__text {
   margin: 0 0 0.55rem;
   color: var(--hp-muted);
   font-size: 0.72rem;
@@ -493,6 +497,7 @@
   display: grid;
   place-items: center;
   transition: transform 0.2s ease;
+  pointer-events: none;
 }
 
 .hp-offer-card--pink .hp-offer-card__go {
@@ -511,8 +516,138 @@
   background: var(--hp-mint-deep);
 }
 
-.hp-offer-card__go:hover {
+.hp-offer-card:hover .hp-offer-card__go {
   transform: scale(1.08);
+}
+
+/* Expanded offer card */
+.hp-offer-expand {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  touch-action: none;
+}
+
+.hp-offer-expand__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 54, 106, 0.45);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  animation: hp-fade-in 0.25s ease;
+}
+
+.hp-offer-expand__panel {
+  position: relative;
+  z-index: 1;
+  width: min(34rem, 100%);
+  max-height: min(78vh, 40rem);
+  overflow: auto;
+  border-radius: 1.5rem 1.5rem 1.25rem 1.25rem;
+  padding: 0.85rem 1.25rem 1.35rem;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(18, 54, 106, 0.28);
+  animation: hp-offer-rise 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  overscroll-behavior: contain;
+  touch-action: none;
+}
+
+.hp-offer-expand__panel--pink {
+  background: #fff5f9;
+  color: var(--hp-pink-deep);
+}
+
+.hp-offer-expand__panel--blue {
+  background: #f3f9fd;
+  color: var(--hp-sky-deep);
+}
+
+.hp-offer-expand__panel--yellow {
+  background: #fff9e8;
+  color: #d4a017;
+}
+
+.hp-offer-expand__panel--green {
+  background: #f3fbf2;
+  color: var(--hp-mint-deep);
+}
+
+.hp-offer-expand__handle {
+  width: 2.75rem;
+  height: 0.3rem;
+  border-radius: 999px;
+  background: rgba(26, 74, 141, 0.2);
+  margin: 0.15rem auto 0.65rem;
+}
+
+.hp-offer-expand__hint {
+  margin: 0 0 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--hp-muted);
+}
+
+.hp-offer-expand__icon {
+  width: 3.25rem;
+  height: 3.25rem;
+  margin: 0 auto 0.65rem;
+}
+
+.hp-offer-expand__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.hp-offer-expand__panel h3 {
+  margin: 0 0 0.45rem;
+  font-family: var(--hp-display);
+  font-size: clamp(1.45rem, 4vw, 1.85rem);
+  color: var(--hp-blue);
+}
+
+.hp-offer-expand__lead {
+  margin: 0 0 0.85rem;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--hp-blue-deep);
+}
+
+.hp-offer-expand__detail {
+  margin: 0 0 1.25rem;
+  color: var(--hp-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  font-weight: 600;
+  text-align: left;
+}
+
+.hp-offer-expand__close {
+  width: 100%;
+}
+
+@keyframes hp-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hp-offer-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* About */
@@ -703,11 +838,11 @@
     height: 2.75rem;
   }
 
-  .hp-offer-card h3 {
+  .hp-offer-card__title {
     font-size: 1.15rem;
   }
 
-  .hp-offer-card p {
+  .hp-offer-card__text {
     font-size: 0.82rem;
   }
 
@@ -789,14 +924,24 @@
     margin-bottom: 0.7rem;
   }
 
-  .hp-offer-card h3 {
+  .hp-offer-card__title {
     font-size: 1.3rem;
   }
 
-  .hp-offer-card p {
+  .hp-offer-card__text {
     font-size: 0.9rem;
     -webkit-line-clamp: 4;
     margin-bottom: 0.9rem;
+  }
+
+  .hp-offer-expand {
+    align-items: center;
+    padding: 1.5rem;
+  }
+
+  .hp-offer-expand__panel {
+    border-radius: 1.5rem;
+    padding: 1.25rem 1.5rem 1.5rem;
   }
 
   .hp-offer-card__go {
