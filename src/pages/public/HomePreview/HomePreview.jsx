@@ -359,7 +359,7 @@ const HomePreview = () => {
               lor, cu încredere și bucurie.
             </p>
             <div className="hp-hero__actions">
-              <button type="button" className="hp-btn hp-btn--primary">
+              <button type="button" className="hp-btn hp-btn--ghost">
                 Descoperă Raza de Soare <span aria-hidden>→</span>
               </button>
               <button type="button" className="hp-btn hp-btn--ghost">
