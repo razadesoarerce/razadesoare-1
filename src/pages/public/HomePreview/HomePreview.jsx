@@ -175,9 +175,9 @@ const HomePreview = () => {
     const link = document.createElement("link");
     link.id = id;
     link.rel = "stylesheet";
-    // css (v1) + subset loads Romanian diacritics in every weight (ă â î ș ț)
+    // Nunito + latin-ext: Romanian diacritics (ă â î ș ț) stay correct in bold titles/body
     link.href =
-      "https://fonts.googleapis.com/css?family=Fredoka:500,600,700|Nunito:400,600,700,800&subset=latin,latin-ext&display=swap";
+      "https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&subset=latin,latin-ext&display=swap";
     document.head.appendChild(link);
     return undefined;
   }, []);
