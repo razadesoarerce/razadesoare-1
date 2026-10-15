@@ -16,8 +16,8 @@
   --hp-muted: #5b6775;
   --hp-white: #ffffff;
   --hp-radius: 1.5rem;
-  --hp-font: "Nunito", system-ui, sans-serif;
-  --hp-display: "Fredoka", "Nunito", system-ui, sans-serif;
+  --hp-font: "Nunito", "Segoe UI", system-ui, sans-serif;
+  --hp-display: "Fredoka", "Nunito", "Segoe UI", system-ui, sans-serif;
 
   min-height: 100vh;
   background: var(--hp-white);
@@ -26,6 +26,8 @@
   font-size: 1rem;
   line-height: 1.6;
   overflow-x: hidden;
+  /* Keep diacritics in the same face/weight instead of mixed fallbacks */
+  font-synthesis: weight;
 }
 
 .hp *,

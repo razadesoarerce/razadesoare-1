@@ -164,11 +164,20 @@ const HomePreview = () => {
   useEffect(() => {
     const id = "home-preview-fonts";
     if (document.getElementById(id)) return undefined;
+
+    // latin-ext is required for Romanian diacritics (ă â î ș ț) in all weights
+    const preconnect = document.createElement("link");
+    preconnect.rel = "preconnect";
+    preconnect.href = "https://fonts.gstatic.com";
+    preconnect.crossOrigin = "anonymous";
+    document.head.appendChild(preconnect);
+
     const link = document.createElement("link");
     link.id = id;
     link.rel = "stylesheet";
+    // css (v1) + subset loads Romanian diacritics in every weight (ă â î ș ț)
     link.href =
-      "https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap";
+      "https://fonts.googleapis.com/css?family=Fredoka:500,600,700|Nunito:400,600,700,800&subset=latin,latin-ext&display=swap";
     document.head.appendChild(link);
     return undefined;
   }, []);
