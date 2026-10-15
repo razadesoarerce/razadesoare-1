@@ -64,22 +64,21 @@
   border-radius: 0.35rem;
 }
 
-/* Floating 2x2 dock — bottom right */
+/* Floating 2x2 dock — top right, no panel background */
 .hp-dock {
   position: fixed;
-  right: max(0.85rem, env(safe-area-inset-right));
-  bottom: max(0.85rem, env(safe-area-inset-bottom));
+  top: max(0.75rem, env(safe-area-inset-top));
+  right: max(0.75rem, env(safe-area-inset-right));
   z-index: 60;
   display: grid;
-  grid-template-columns: repeat(2, 2.85rem);
-  grid-template-rows: repeat(2, 2.85rem);
-  gap: 0.4rem;
-  padding: 0.45rem;
-  border-radius: 1.15rem;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 14px 36px rgba(18, 54, 106, 0.2);
-  border: 1px solid rgba(26, 74, 141, 0.1);
-  backdrop-filter: blur(10px);
+  grid-template-columns: repeat(2, 2.75rem);
+  grid-template-rows: repeat(2, 2.75rem);
+  gap: 0.35rem;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .hp-dock__btn {
@@ -89,16 +88,18 @@
   height: 100%;
   border-radius: 0.85rem;
   color: var(--hp-blue);
-  background: rgba(26, 74, 141, 0.06);
-  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  background: transparent;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease, filter 0.2s ease;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.85)) drop-shadow(0 1px 6px rgba(18, 54, 106, 0.25));
 }
 
 .hp-dock__btn:hover,
 .hp-dock__btn:focus-visible {
-  background: rgba(245, 197, 66, 0.28);
+  background: transparent;
   transform: translateY(-1px);
+  color: var(--hp-blue-deep);
 }
 
 .hp-dock__btn svg {
@@ -942,8 +943,8 @@
   .hp-dock {
     grid-template-columns: repeat(2, 3.1rem);
     grid-template-rows: repeat(2, 3.1rem);
-    right: 1.25rem;
-    bottom: 1.25rem;
+    top: 1.1rem;
+    right: 1.1rem;
   }
 
   .hp-hero {
