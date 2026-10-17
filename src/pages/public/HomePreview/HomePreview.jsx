@@ -146,6 +146,30 @@ const GALLERY = [
     frame: "portrait",
     label: "Descoperire",
   },
+  {
+    src: "/images/preview/life-carusel-4.jpg",
+    alt: "Joc de societate — concentrare și interacțiune",
+    frame: "portrait",
+    label: "Joc împreună",
+  },
+  {
+    src: "/images/preview/life-carusel-5.jpg",
+    alt: "Activitate de toamnă ghidată la masă",
+    frame: "portrait",
+    label: "Îndrumare",
+  },
+  {
+    src: "/images/preview/life-carusel-6.jpg",
+    alt: "Exerciții pe fișe de lucru",
+    frame: "portrait",
+    label: "Exerciții",
+  },
+  {
+    src: "/images/preview/life-carusel-7.jpg",
+    alt: "Activitate de grup în clasă",
+    frame: "portrait",
+    label: "În echipă",
+  },
 ];
 
 const Icon = ({ name }) => {
