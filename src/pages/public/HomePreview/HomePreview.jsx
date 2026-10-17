@@ -78,8 +78,6 @@ const OFFER_CARDS = [
       "Prin activitatea noastră, ne propunem să contribuim la formarea unor tineri cât mai autonomi, capabili să comunice, să participe la viața comunității și să își dezvolte abilitățile necesare unei vieți cât mai independente.",
     ],
     tone: "pink",
-    edge: "soft",
-    edgeLabel: "1 · Soft shadow",
     icon: "people",
     imageIcon: "/images/preview/icon-misiune.png",
   },
@@ -94,8 +92,6 @@ const OFFER_CARDS = [
       "Pentru unii elevi, progresul înseamnă să învețe să citească, să scrie sau să socotească. Pentru alții, poate însemna să recunoască o literă, să comunice mai ușor sau să dobândească deprinderi esențiale pentru viața de zi cu zi. Respectăm potențialul fiecăruia și prețuim fiecare reușită, pentru că știm că în spatele fiecărui progres se află muncă, perseverență și multă încredere.",
     ],
     tone: "blue",
-    edge: "hairline",
-    edgeLabel: "2 · Hairline + shadow",
     icon: "book",
     imageIcon: "/images/preview/icon-educatie.png",
   },
@@ -111,8 +107,6 @@ const OFFER_CARDS = [
       "Pentru noi, fiecare reușită contează. O literă învățată, un cuvânt rostit, un obiect folosit corect sau o activitate realizată pentru prima dată fără ajutor reprezintă pași importanți spre mai multă încredere și independență.",
     ],
     tone: "green",
-    edge: "glass",
-    edgeLabel: "3 · Glass highlight",
     icon: "sprout",
     imageIcon: "/images/preview/icon-dezvoltare.png",
   },
@@ -128,8 +122,6 @@ const OFFER_CARDS = [
       "Pentru că uneori, în spatele unui gest simplu, se află multă muncă, răbdare și curaj. Iar fiecare pas înainte merită sărbătorit.",
     ],
     tone: "yellow",
-    edge: "tint",
-    edgeLabel: "4 · Tinted shadow",
     icon: "palette",
     imageIcon: "/images/preview/icon-activitati.png",
   },
@@ -683,16 +675,13 @@ const HomePreview = () => {
                 <SwiperSlide key={card.title}>
                   <button
                     type="button"
-                    className={`hp-offer-card hp-offer-card--${card.tone} hp-offer-card--edge-${card.edge} ${
+                    className={`hp-offer-card hp-offer-card--${card.tone} ${
                       expandedOffer?.title === card.title ? "is-active" : ""
                     }`}
                     onClick={() => setExpandedOffer(card)}
                     aria-expanded={expandedOffer?.title === card.title}
                     aria-controls="hp-offer-expanded"
                   >
-                    <span className="hp-offer-card__edge-tag" aria-hidden>
-                      {card.edgeLabel}
-                    </span>
                     <span className="hp-offer-card__icon" aria-hidden>
                       {card.imageIcon ? (
                         <img src={card.imageIcon} alt="" />

@@ -627,7 +627,6 @@
 }
 
 .hp-offer-card {
-  position: relative;
   border-radius: 1.1rem;
   padding: 0.85rem 0.65rem 0.75rem;
   text-align: center;
@@ -637,8 +636,8 @@
   width: 100%;
   height: 100%;
   min-height: 11.5rem;
-  border: 1px solid transparent;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 6px 18px rgba(26, 74, 141, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -646,23 +645,7 @@
 .hp-offer-card:hover,
 .hp-offer-card.is-active {
   transform: translateY(-4px);
-}
-
-.hp-offer-card__edge-tag {
-  position: absolute;
-  top: 0.4rem;
-  left: 0.45rem;
-  z-index: 1;
-  padding: 0.12rem 0.4rem;
-  border-radius: 999px;
-  background: rgba(18, 54, 106, 0.72);
-  color: #fff;
-  font-size: 0.52rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  line-height: 1.2;
-  pointer-events: none;
-  white-space: nowrap;
+  box-shadow: 0 14px 30px rgba(26, 74, 141, 0.12);
 }
 
 .hp-offer-card--pink {
@@ -683,81 +666,6 @@
 .hp-offer-card--green {
   background: #e7f6e5;
   color: var(--hp-mint-deep);
-}
-
-/* Edge A/B test — one style per card; pick a winner later */
-.hp-offer-card--edge-soft {
-  box-shadow: 0 6px 18px rgba(26, 74, 141, 0.08);
-}
-
-.hp-offer-card--edge-soft:hover,
-.hp-offer-card--edge-soft.is-active {
-  box-shadow: 0 14px 30px rgba(26, 74, 141, 0.12);
-}
-
-.hp-offer-card--edge-hairline {
-  border-color: rgba(26, 74, 141, 0.1);
-  box-shadow: 0 4px 14px rgba(26, 74, 141, 0.06);
-}
-
-.hp-offer-card--edge-hairline:hover,
-.hp-offer-card--edge-hairline.is-active {
-  border-color: rgba(26, 74, 141, 0.16);
-  box-shadow: 0 12px 26px rgba(26, 74, 141, 0.1);
-}
-
-.hp-offer-card--edge-glass {
-  box-shadow:
-    0 4px 16px rgba(18, 40, 70, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.72);
-}
-
-.hp-offer-card--edge-glass:hover,
-.hp-offer-card--edge-glass.is-active {
-  box-shadow:
-    0 12px 26px rgba(18, 40, 70, 0.09),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
-}
-
-.hp-offer-card--edge-tint.hp-offer-card--pink {
-  box-shadow: 0 8px 20px rgba(232, 122, 163, 0.22);
-}
-
-.hp-offer-card--edge-tint.hp-offer-card--blue {
-  box-shadow: 0 8px 20px rgba(91, 164, 214, 0.24);
-}
-
-.hp-offer-card--edge-tint.hp-offer-card--green {
-  box-shadow: 0 8px 20px rgba(108, 184, 107, 0.22);
-}
-
-.hp-offer-card--edge-tint.hp-offer-card--yellow {
-  box-shadow: 0 8px 20px rgba(212, 160, 23, 0.22);
-}
-
-.hp-offer-card--edge-tint:hover,
-.hp-offer-card--edge-tint.is-active {
-  box-shadow: 0 14px 28px rgba(26, 74, 141, 0.12);
-}
-
-.hp-offer-card--edge-tint.hp-offer-card--pink:hover,
-.hp-offer-card--edge-tint.hp-offer-card--pink.is-active {
-  box-shadow: 0 14px 28px rgba(232, 122, 163, 0.3);
-}
-
-.hp-offer-card--edge-tint.hp-offer-card--blue:hover,
-.hp-offer-card--edge-tint.hp-offer-card--blue.is-active {
-  box-shadow: 0 14px 28px rgba(91, 164, 214, 0.32);
-}
-
-.hp-offer-card--edge-tint.hp-offer-card--green:hover,
-.hp-offer-card--edge-tint.hp-offer-card--green.is-active {
-  box-shadow: 0 14px 28px rgba(108, 184, 107, 0.3);
-}
-
-.hp-offer-card--edge-tint.hp-offer-card--yellow:hover,
-.hp-offer-card--edge-tint.hp-offer-card--yellow.is-active {
-  box-shadow: 0 14px 28px rgba(212, 160, 23, 0.3);
 }
 
 .hp-offer-card__icon {
