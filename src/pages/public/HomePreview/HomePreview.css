@@ -403,14 +403,14 @@
   gap: 0.28rem;
   padding: 0.45rem 0.55rem 0.5rem;
   border-radius: 0.85rem;
-  /* 30% less opacity than previous 0.40 → 0.28 */
-  background: rgba(255, 255, 255, 0.28);
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  /* Light frost — mostly transparent so photo reads through */
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.38);
   box-shadow:
-    0 6px 20px rgba(18, 40, 70, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(10px) saturate(1.12);
-  -webkit-backdrop-filter: blur(10px) saturate(1.12);
+    0 4px 16px rgba(18, 40, 70, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(6px) saturate(1.05);
+  -webkit-backdrop-filter: blur(6px) saturate(1.05);
   color: var(--hp-blue-deep);
   box-sizing: border-box;
   overflow: hidden;
