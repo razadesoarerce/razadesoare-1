@@ -130,27 +130,33 @@ const OFFER_CARDS = [
 const GALLERY = [
   {
     src: "/images/preview/life-landscape.jpg",
-    alt: "Versiune portrait — test încadrare",
+    alt: "Activitate în aer liber la Raza de Soare",
     frame: "portrait",
-    label: "Portrait 819×1024",
+    label: "În natură",
   },
   {
     src: "/images/preview/life-square.jpg",
-    alt: "Versiune pătrată — test încadrare",
+    alt: "Moment din viața școlii",
     frame: "square",
-    label: "Pătrat 1000×1000",
+    label: "Împreună",
   },
   {
-    src: "/images/preview/life-landscape.jpg",
-    alt: "Versiune portrait — duplicat pentru swipe",
+    src: "/images/preview/life-carusel-1.jpg",
+    alt: "Pictură cu pensula — activitate creativă ghidată",
     frame: "portrait",
-    label: "Portrait 819×1024",
+    label: "Creativitate",
   },
   {
-    src: "/images/preview/life-square.jpg",
-    alt: "Versiune pătrată — duplicat pentru swipe",
-    frame: "square",
-    label: "Pătrat 1000×1000",
+    src: "/images/preview/life-carusel-2.jpg",
+    alt: "Joc educativ la masă cu jucării senzoriale",
+    frame: "portrait",
+    label: "Joacă și învățare",
+  },
+  {
+    src: "/images/preview/life-carusel-3.jpg",
+    alt: "Activitate cu carte senzorială și jocuri de masă",
+    frame: "portrait",
+    label: "Descoperire",
   },
 ];
 
