@@ -182,7 +182,7 @@ const SunRays = ({ className = "" }) => (
 );
 
 const SWIPE_CLOSE_PX = 56;
-const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v4";
+const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v5";
 const DOCK_DRAG_THRESHOLD = 6;
 const DOCK_MARGIN = 12;
 
@@ -581,42 +581,9 @@ const HomePreview = () => {
             }}
           />
           <div className="hp-hero__shade" />
+          <div className="hp-dock-anchor" ref={dockHomeRef} aria-hidden />
           <div className="hp-hero__content">
-            <div className="hp-hero__title-row">
-              <span className="hp-hero__sun" aria-hidden>
-                <svg className="hp-hero__sun-svg" viewBox="0 0 64 64">
-                  <g className="hp-hero__sun-rays">
-                    {Array.from({ length: 12 }, (_, i) => {
-                      const long = i % 2 === 0;
-                      return (
-                        <line
-                          key={i}
-                          x1="32"
-                          y1={long ? 2 : 6}
-                          x2="32"
-                          y2={long ? 12 : 12}
-                          transform={`rotate(${i * 30} 32 32)`}
-                        />
-                      );
-                    })}
-                  </g>
-                  <g className="hp-hero__sun-core">
-                    <circle cx="32" cy="32" r="11" />
-                    {Array.from({ length: 10 }, (_, i) => (
-                      <circle
-                        key={i}
-                        className="hp-hero__sun-bump"
-                        cx="32"
-                        cy="20.4"
-                        r="1.75"
-                        transform={`rotate(${i * 36} 32 32)`}
-                      />
-                    ))}
-                  </g>
-                </svg>
-              </span>
-              <h1 id="hp-hero-title">Raza de Soare</h1>
-            </div>
+            <h1 id="hp-hero-title">Raza de Soare</h1>
             <div className="hp-hero__actions">
               <div className="hp-hero__cta-stack">
                 <button type="button" className="hp-btn hp-btn--ghost hp-btn--hero-cta">
@@ -626,7 +593,6 @@ const HomePreview = () => {
                   Contactează-ne <span aria-hidden>→</span>
                 </button>
               </div>
-              <div className="hp-dock-anchor" ref={dockHomeRef} aria-hidden />
             </div>
           </div>
           <svg
