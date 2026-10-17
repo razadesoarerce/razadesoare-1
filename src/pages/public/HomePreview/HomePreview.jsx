@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaFacebookF } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,6 +7,45 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./HomePreview.css";
+
+/** Compact brand mark used in the frosted hero card (matches design mockup). */
+const HeroCardLogo = () => (
+  <div className="hp-hero-card__brand">
+    <svg className="hp-hero-card__mark" viewBox="0 0 72 72" aria-hidden>
+      <circle cx="36" cy="36" r="18" fill="#f5c542" />
+      {Array.from({ length: 12 }, (_, i) => (
+        <line
+          key={i}
+          x1="36"
+          y1="8"
+          x2="36"
+          y2="14"
+          stroke="#f5c542"
+          strokeWidth="3"
+          strokeLinecap="round"
+          transform={`rotate(${i * 30} 36 36)`}
+        />
+      ))}
+      {/* Three kids holding hands — blue / yellow / pink */}
+      <g fill="none" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <g stroke="#3b6fb6">
+          <circle cx="24" cy="32" r="3.2" fill="#3b6fb6" stroke="none" />
+          <path d="M24 36.2v8.5M20.2 40.5l3.8 2.2 3.8-2.2M21.5 48.5l2.5-3.5 2.5 3.5" />
+        </g>
+        <g stroke="#e6b422">
+          <circle cx="36" cy="30.5" r="3.2" fill="#e6b422" stroke="none" />
+          <path d="M36 34.7v9M31.8 39l4.2 2.4 4.2-2.4M33.2 48l2.8-4 2.8 4" />
+        </g>
+        <g stroke="#e87aa3">
+          <circle cx="48" cy="32" r="3.2" fill="#e87aa3" stroke="none" />
+          <path d="M48 36.2v8.5M44.2 40.5l3.8 2.2 3.8-2.2M45.5 48.5l2.5-3.5 2.5 3.5" />
+        </g>
+        <path d="M27.5 41.5h4.2M39.8 41.2h4.2" stroke="#1a4a8d" strokeWidth="1.8" />
+      </g>
+    </svg>
+    <span className="hp-hero-card__brand-name">Raza de Soare</span>
+  </div>
+);
 
 const NAV_ITEMS = [
   "Acasă",
@@ -583,17 +623,23 @@ const HomePreview = () => {
           <div className="hp-hero__shade" />
           <div className="hp-dock-anchor" ref={dockHomeRef} aria-hidden />
           <div className="hp-hero__content">
-            <h1 id="hp-hero-title">Raza de Soare</h1>
-            <div className="hp-hero__actions">
-              <div className="hp-hero__cta-stack">
-                <button type="button" className="hp-btn hp-btn--ghost hp-btn--hero-cta">
+            <article className="hp-hero-card">
+              <HeroCardLogo />
+              <h1 id="hp-hero-title">Raza de Soare</h1>
+              <div className="hp-hero-card__actions">
+                <Link to="/despre/misiune-viziune" className="hp-btn hp-btn--card-primary">
                   Descoperă Raza de Soare <span aria-hidden>→</span>
-                </button>
-                <button type="button" className="hp-btn hp-btn--ghost hp-btn--hero-cta">
+                </Link>
+                <a
+                  href="https://www.facebook.com/scoala.razadesoare"
+                  className="hp-btn hp-btn--card-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Contactează-ne <span aria-hidden>→</span>
-                </button>
+                </a>
               </div>
-            </div>
+            </article>
           </div>
           <svg
             className="hp-hero__wave"
