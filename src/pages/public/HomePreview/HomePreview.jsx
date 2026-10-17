@@ -823,8 +823,8 @@ const HomePreview = () => {
           </div>
           <div className="hp-about__media">
             <img
-              src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1000&q=80"
-              alt="Clădire — placeholder mockup"
+              src="/images/preview/about-noi.jpg"
+              alt="Copii și cadre didactice în curtea Școlii Raza de Soare"
             />
           </div>
         </section>
