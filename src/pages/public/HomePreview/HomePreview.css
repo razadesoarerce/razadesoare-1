@@ -419,8 +419,10 @@
 .hp-hero-card__brand {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  align-self: center;
   gap: 0.05rem;
+  text-align: center;
 }
 
 .hp-hero-card__mark {
@@ -428,6 +430,7 @@
   width: 1.55rem;
   height: 1.55rem;
   overflow: visible;
+  margin: 0 auto;
 }
 
 .hp-hero-card__brand-name {
@@ -437,6 +440,7 @@
   line-height: 1.15;
   color: var(--hp-blue);
   letter-spacing: -0.01em;
+  text-align: center;
 }
 
 .hp-hero-card h1 {
@@ -456,7 +460,7 @@
 .hp-hero-card__actions {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   gap: 0.22rem;
   width: 100%;
   margin-top: 0.1rem;
@@ -464,10 +468,12 @@
 
 .hp-btn.hp-btn--card-primary,
 .hp-btn.hp-btn--card-ghost {
-  width: 100%;
+  width: auto;
+  max-width: 92%;
+  align-self: center;
   justify-content: center;
-  padding: 0.28rem 0.4rem;
-  font-size: 0.52rem;
+  padding: 0.22rem 0.55rem;
+  font-size: 0.48rem;
   font-weight: 800;
   line-height: 1.15;
   text-decoration: none;
@@ -1057,8 +1063,8 @@
 
   .hp-btn.hp-btn--card-primary,
   .hp-btn.hp-btn--card-ghost {
-    font-size: 0.68rem;
-    padding: 0.42rem 0.65rem;
+    font-size: 0.62rem;
+    padding: 0.34rem 0.7rem;
   }
 
   .hp-btn {
@@ -1119,8 +1125,8 @@
 
   .hp-btn.hp-btn--card-primary,
   .hp-btn.hp-btn--card-ghost {
-    font-size: 0.74rem;
-    padding: 0.5rem 0.75rem;
+    font-size: 0.68rem;
+    padding: 0.4rem 0.8rem;
   }
 
   .hp-btn {
