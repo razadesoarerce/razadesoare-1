@@ -400,7 +400,7 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
-  gap: 0.28rem;
+  gap: 0.12rem;
   padding: 0.45rem 0.55rem 0.5rem;
   border-radius: 0.85rem;
   /* Light frost — mostly transparent so photo reads through */
@@ -416,31 +416,73 @@
   overflow: hidden;
 }
 
-.hp-hero-card__brand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-self: center;
-  gap: 0.05rem;
-  text-align: center;
-}
-
-.hp-hero-card__mark {
+.hp-hero-card__sun {
   display: block;
-  width: 1.55rem;
-  height: 1.55rem;
-  overflow: visible;
-  margin: 0 auto;
+  width: 1.7rem;
+  height: 1.7rem;
+  flex-shrink: 0;
+  align-self: center;
+  margin: 0;
+  animation: hp-card-sun-pulse 3.5s ease-in-out infinite;
 }
 
-.hp-hero-card__brand-name {
-  font-family: var(--hp-display);
-  font-weight: 700;
-  font-size: 0.48rem;
-  line-height: 1.15;
-  color: var(--hp-blue);
-  letter-spacing: -0.01em;
-  text-align: center;
+.hp-hero-card__sun-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+.hp-hero-card__sun-core {
+  fill: #f5c542;
+  filter: drop-shadow(0 0 4px rgba(255, 210, 74, 0.55));
+  transform-box: view-box;
+  transform-origin: 32px 32px;
+  animation: hp-card-sun-spin 14s linear infinite;
+}
+
+.hp-hero-card__sun-bump {
+  fill: #f5c542;
+}
+
+.hp-hero-card__sun-rays {
+  transform-box: view-box;
+  transform-origin: 32px 32px;
+  animation: hp-card-sun-rays 3.5s ease-in-out infinite;
+}
+
+.hp-hero-card__sun-rays line {
+  stroke: #ffe08a;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+@keyframes hp-card-sun-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes hp-card-sun-rays {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes hp-card-sun-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .hp-hero-card h1 {
@@ -449,7 +491,7 @@
   font-size: clamp(0.95rem, 4.1vw, 1.2rem);
   line-height: 1.05;
   letter-spacing: -0.03em;
-  margin: 0;
+  margin: -0.05rem 0 0;
   color: var(--hp-blue-deep);
   text-shadow: none;
   text-align: center;
@@ -460,17 +502,17 @@
 .hp-hero-card__actions {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.22rem;
   width: 100%;
-  margin-top: 0.1rem;
+  margin-top: 0.35rem;
 }
 
 .hp-btn.hp-btn--card-primary,
 .hp-btn.hp-btn--card-ghost {
   width: auto;
   max-width: 92%;
-  align-self: center;
+  align-self: flex-start;
   justify-content: center;
   padding: 0.22rem 0.55rem;
   font-size: 0.48rem;
@@ -1044,17 +1086,13 @@
   .hp-hero-card {
     width: min(38%, 14rem);
     padding: 0.7rem 0.8rem 0.75rem;
-    gap: 0.4rem;
+    gap: 0.18rem;
     border-radius: 1.15rem;
   }
 
-  .hp-hero-card__mark {
+  .hp-hero-card__sun {
     width: 2.15rem;
     height: 2.15rem;
-  }
-
-  .hp-hero-card__brand-name {
-    font-size: 0.58rem;
   }
 
   .hp-hero-card h1 {
@@ -1106,17 +1144,13 @@
   .hp-hero-card {
     width: min(34%, 16.5rem);
     padding: 0.85rem 0.95rem 0.9rem;
-    gap: 0.5rem;
+    gap: 0.2rem;
     border-radius: 1.35rem;
   }
 
-  .hp-hero-card__mark {
+  .hp-hero-card__sun {
     width: 2.5rem;
     height: 2.5rem;
-  }
-
-  .hp-hero-card__brand-name {
-    font-size: 0.65rem;
   }
 
   .hp-hero-card h1 {
@@ -1203,6 +1237,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hp-hero__bg,
+  .hp-hero-card__sun,
+  .hp-hero-card__sun-core,
+  .hp-hero-card__sun-rays,
   .hp-offer-card,
   .hp-life__item img,
   .hp-btn {

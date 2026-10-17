@@ -8,43 +8,40 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./HomePreview.css";
 
-/** Compact brand mark used in the frosted hero card (matches design mockup). */
-const HeroCardLogo = () => (
-  <div className="hp-hero-card__brand">
-    <svg className="hp-hero-card__mark" viewBox="0 0 72 72" aria-hidden>
-      <circle cx="36" cy="36" r="18" fill="#f5c542" />
-      {Array.from({ length: 12 }, (_, i) => (
-        <line
-          key={i}
-          x1="36"
-          y1="8"
-          x2="36"
-          y2="14"
-          stroke="#f5c542"
-          strokeWidth="3"
-          strokeLinecap="round"
-          transform={`rotate(${i * 30} 36 36)`}
-        />
-      ))}
-      {/* Three kids holding hands — blue / yellow / pink */}
-      <g fill="none" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-        <g stroke="#3b6fb6">
-          <circle cx="24" cy="32" r="3.2" fill="#3b6fb6" stroke="none" />
-          <path d="M24 36.2v8.5M20.2 40.5l3.8 2.2 3.8-2.2M21.5 48.5l2.5-3.5 2.5 3.5" />
-        </g>
-        <g stroke="#e6b422">
-          <circle cx="36" cy="30.5" r="3.2" fill="#e6b422" stroke="none" />
-          <path d="M36 34.7v9M31.8 39l4.2 2.4 4.2-2.4M33.2 48l2.8-4 2.8 4" />
-        </g>
-        <g stroke="#e87aa3">
-          <circle cx="48" cy="32" r="3.2" fill="#e87aa3" stroke="none" />
-          <path d="M48 36.2v8.5M44.2 40.5l3.8 2.2 3.8-2.2M45.5 48.5l2.5-3.5 2.5 3.5" />
-        </g>
-        <path d="M27.5 41.5h4.2M39.8 41.2h4.2" stroke="#1a4a8d" strokeWidth="1.8" />
+/** Pulsing sun mark — same animated sun used previously in the hero. */
+const HeroCardSun = () => (
+  <span className="hp-hero-card__sun" aria-hidden>
+    <svg className="hp-hero-card__sun-svg" viewBox="0 0 64 64">
+      <g className="hp-hero-card__sun-rays">
+        {Array.from({ length: 12 }, (_, i) => {
+          const long = i % 2 === 0;
+          return (
+            <line
+              key={i}
+              x1="32"
+              y1={long ? 2 : 6}
+              x2="32"
+              y2={long ? 12 : 12}
+              transform={`rotate(${i * 30} 32 32)`}
+            />
+          );
+        })}
+      </g>
+      <g className="hp-hero-card__sun-core">
+        <circle cx="32" cy="32" r="11" />
+        {Array.from({ length: 10 }, (_, i) => (
+          <circle
+            key={i}
+            className="hp-hero-card__sun-bump"
+            cx="32"
+            cy="20.4"
+            r="1.75"
+            transform={`rotate(${i * 36} 32 32)`}
+          />
+        ))}
       </g>
     </svg>
-    <span className="hp-hero-card__brand-name">Raza de Soare</span>
-  </div>
+  </span>
 );
 
 const NAV_ITEMS = [
@@ -624,7 +621,7 @@ const HomePreview = () => {
           <div className="hp-dock-anchor" ref={dockHomeRef} aria-hidden />
           <div className="hp-hero__content">
             <article className="hp-hero-card">
-              <HeroCardLogo />
+              <HeroCardSun />
               <h1 id="hp-hero-title">Raza de Soare</h1>
               <div className="hp-hero-card__actions">
                 <Link to="/despre/misiune-viziune" className="hp-btn hp-btn--card-primary">
