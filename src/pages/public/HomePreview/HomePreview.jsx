@@ -237,7 +237,7 @@ const SunRays = ({ className = "" }) => (
 );
 
 const SWIPE_CLOSE_PX = 56;
-const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v6";
+const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v7";
 const DOCK_DRAG_THRESHOLD = 6;
 const DOCK_MARGIN = 12;
 
@@ -249,6 +249,15 @@ const clampDockPos = (left, top, width = 80, height = 80) => {
     top: Math.min(Math.max(DOCK_MARGIN, top), maxTop),
   };
 };
+
+/** Default: floating bottom-right of the phone viewport (fixed while scrolling). */
+const getDockViewportHome = (width = 80, height = 80) =>
+  clampDockPos(
+    window.innerWidth - width - DOCK_MARGIN,
+    window.innerHeight - height - DOCK_MARGIN,
+    width,
+    height
+  );
 
 /** Center of dock vs Hero bounds — flips contrast when dock leaves the photo. */
 const isDockOutsideHeroRect = (heroEl, left, top, width, height) => {
@@ -270,7 +279,6 @@ const HomePreview = () => {
   const swipeStart = useRef(null);
   const menuSwipeStart = useRef(null);
   const dockRef = useRef(null);
-  const dockHomeRef = useRef(null);
   const heroRef = useRef(null);
   const dockDragRef = useRef(null);
   const dockJustDraggedRef = useRef(false);
@@ -347,34 +355,19 @@ const HomePreview = () => {
 
   useLayoutEffect(() => {
     const syncHome = () => {
-      const home = dockHomeRef.current;
       const dock = dockRef.current;
-      if (!home) return;
-      const rect = home.getBoundingClientRect();
-      const next = clampDockPos(
-        rect.left,
-        rect.top,
-        dock?.offsetWidth ?? home.offsetWidth,
-        dock?.offsetHeight ?? home.offsetHeight
-      );
+      const w = dock?.offsetWidth ?? 80;
+      const h = dock?.offsetHeight ?? 80;
+      const next = getDockViewportHome(w, h);
       setDockHomePos(next);
       if (!dockPos) {
-        syncDockOutsideHero(
-          next.left,
-          next.top,
-          dock?.offsetWidth ?? home.offsetWidth,
-          dock?.offsetHeight ?? home.offsetHeight
-        );
+        syncDockOutsideHero(next.left, next.top, w, h);
       }
     };
 
     syncHome();
     window.addEventListener("resize", syncHome);
-    window.addEventListener("scroll", syncHome, true);
-    return () => {
-      window.removeEventListener("resize", syncHome);
-      window.removeEventListener("scroll", syncHome, true);
-    };
+    return () => window.removeEventListener("resize", syncHome);
   }, [dockPos]);
 
   useLayoutEffect(() => {
@@ -636,7 +629,6 @@ const HomePreview = () => {
             }}
           />
           <div className="hp-hero__shade" />
-          <div className="hp-dock-anchor" ref={dockHomeRef} aria-hidden />
           <div className="hp-hero__content">
             <article className="hp-hero-card">
               <HeroCardSun />

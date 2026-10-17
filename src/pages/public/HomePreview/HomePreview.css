@@ -381,19 +381,6 @@
   box-sizing: border-box;
 }
 
-.hp-dock-anchor {
-  position: absolute;
-  right: max(0.45rem, env(safe-area-inset-right));
-  /* Sit above the hero wave */
-  bottom: max(2.1rem, calc(env(safe-area-inset-bottom) + 1.6rem));
-  top: auto;
-  z-index: 3;
-  width: var(--hp-dock-size);
-  height: var(--hp-dock-size);
-  flex-shrink: 0;
-  pointer-events: none;
-}
-
 /* Frosted glass — ~40% width, inset from left (not flush to edge) */
 .hp-hero-card {
   width: min(42%, 10.75rem);
@@ -1071,11 +1058,6 @@
     --hp-dock-cell: 1.78rem;
     --hp-dock-gap: 0.25rem;
     --hp-dock-pad: 0.28rem;
-  }
-
-  .hp-dock-anchor {
-    right: max(0.75rem, env(safe-area-inset-right));
-    bottom: max(2.6rem, calc(env(safe-area-inset-bottom) + 2rem));
   }
 
   .hp-hero {
