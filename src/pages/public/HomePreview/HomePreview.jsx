@@ -55,7 +55,7 @@ const OFFER_CARDS = [
     ],
     tone: "blue",
     icon: "book",
-    imageIcon: "/images/preview/icon-educatie.jpg",
+    imageIcon: "/images/preview/icon-educatie.png",
   },
   {
     title: "Dezvoltare",
@@ -85,7 +85,7 @@ const OFFER_CARDS = [
     ],
     tone: "yellow",
     icon: "palette",
-    imageIcon: "/images/preview/icon-activitati.jpg",
+    imageIcon: "/images/preview/icon-activitati.png",
   },
 ];
 
