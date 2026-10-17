@@ -129,18 +129,6 @@ const OFFER_CARDS = [
 
 const GALLERY = [
   {
-    src: "/images/preview/life-landscape.jpg",
-    alt: "Activitate în aer liber la Raza de Soare",
-    frame: "portrait",
-    label: "În natură",
-  },
-  {
-    src: "/images/preview/life-square.jpg",
-    alt: "Moment din viața școlii",
-    frame: "square",
-    label: "Împreună",
-  },
-  {
     src: "/images/preview/life-carusel-1.jpg",
     alt: "Pictură cu pensula — activitate creativă ghidată",
     frame: "portrait",
