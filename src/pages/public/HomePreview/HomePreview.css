@@ -53,8 +53,8 @@
 /* Floating 2x2 dock — bottom right, ~60% of original size */
 .hp-dock {
   position: fixed;
-  right: max(0.75rem, env(safe-area-inset-right));
-  bottom: max(0.75rem, env(safe-area-inset-bottom));
+  top: max(0.75rem, env(safe-area-inset-top));
+  left: max(0.75rem, env(safe-area-inset-left));
   z-index: 60;
   display: grid;
   grid-template-columns: repeat(2, 2.05rem);
@@ -290,15 +290,22 @@
   animation: hp-kenburns 18s ease-in-out infinite alternate;
 }
 
-/* Light readability wash only — not a heavy “template” overlay */
+/* Soft wash — a bit stronger on the right where the text sits */
 .hp-hero__shade {
   z-index: -1;
-  background: linear-gradient(
-    180deg,
-    rgba(10, 30, 60, 0.12) 0%,
-    rgba(10, 30, 60, 0.22) 45%,
-    rgba(10, 30, 60, 0.38) 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 30, 60, 0.12) 0%,
+      rgba(10, 30, 60, 0.22) 45%,
+      rgba(10, 30, 60, 0.38) 100%
+    ),
+    linear-gradient(
+      270deg,
+      rgba(10, 30, 60, 0.42) 0%,
+      rgba(10, 30, 60, 0.12) 45%,
+      transparent 70%
+    );
 }
 
 @keyframes hp-kenburns {
@@ -316,6 +323,10 @@
   padding: 1.25rem 0 2rem;
   position: relative;
   z-index: 1;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .hp-hero__sun {
@@ -323,6 +334,7 @@
   width: 2.75rem;
   height: 2.75rem;
   margin-bottom: 0.45rem;
+  margin-left: auto;
   animation: hp-pulse 3.5s ease-in-out infinite;
 }
 
@@ -400,6 +412,7 @@
 .hp-hero p {
   max-width: 32rem;
   margin: 0 0 0.75rem;
+  margin-left: auto;
   font-size: clamp(0.8rem, 2vw, 0.95rem);
   font-weight: 600;
   line-height: 1.4;
@@ -415,6 +428,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: 0.5rem;
 }
 
@@ -938,8 +952,8 @@
   .hp-dock {
     grid-template-columns: repeat(2, 2.22rem);
     grid-template-rows: repeat(2, 2.22rem);
-    right: 1.1rem;
-    bottom: 1.1rem;
+    top: 1.1rem;
+    left: 1.1rem;
   }
 
   .hp-hero {
