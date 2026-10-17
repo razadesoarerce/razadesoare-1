@@ -182,13 +182,30 @@ const SunRays = ({ className = "" }) => (
 );
 
 const SWIPE_CLOSE_PX = 56;
+const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v2";
+const DOCK_DRAG_THRESHOLD = 6;
+const DOCK_MARGIN = 12;
+
+const clampDockPos = (left, top, width = 80, height = 80) => {
+  const maxLeft = Math.max(DOCK_MARGIN, window.innerWidth - width - DOCK_MARGIN);
+  const maxTop = Math.max(DOCK_MARGIN, window.innerHeight - height - DOCK_MARGIN);
+  return {
+    left: Math.min(Math.max(DOCK_MARGIN, left), maxLeft),
+    top: Math.min(Math.max(DOCK_MARGIN, top), maxTop),
+  };
+};
 
 const HomePreview = () => {
   const { i18n } = useTranslation();
   const [expandedOffer, setExpandedOffer] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dockPos, setDockPos] = useState(null);
+  const [dockDragging, setDockDragging] = useState(false);
   const swipeStart = useRef(null);
   const menuSwipeStart = useRef(null);
+  const dockRef = useRef(null);
+  const dockDragRef = useRef(null);
+  const dockJustDraggedRef = useRef(false);
   const activeLang = i18n.language?.startsWith("en") ? "EN" : "RO";
 
   useEffect(() => {
@@ -229,8 +246,113 @@ const HomePreview = () => {
     };
   }, [expandedOffer, menuOpen]);
 
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(DOCK_STORAGE_KEY);
+      if (!raw) return undefined;
+      const parsed = JSON.parse(raw);
+      if (typeof parsed?.left !== "number" || typeof parsed?.top !== "number") {
+        return undefined;
+      }
+      const el = dockRef.current;
+      const next = clampDockPos(
+        parsed.left,
+        parsed.top,
+        el?.offsetWidth,
+        el?.offsetHeight
+      );
+      setDockPos(next);
+    } catch {
+      // ignore invalid storage
+    }
+    return undefined;
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      setDockPos((pos) => {
+        if (!pos) return null;
+        const el = dockRef.current;
+        return clampDockPos(pos.left, pos.top, el?.offsetWidth, el?.offsetHeight);
+      });
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   const closeExpanded = () => setExpandedOffer(null);
   const closeMenu = () => setMenuOpen(false);
+
+  const suppressDockClickIfDragged = (event) => {
+    if (!dockJustDraggedRef.current) return;
+    event.preventDefault();
+    event.stopPropagation();
+    dockJustDraggedRef.current = false;
+  };
+
+  const onDockPointerDown = (event) => {
+    if (event.button !== undefined && event.button !== 0) return;
+    const el = dockRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    dockDragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      origLeft: rect.left,
+      origTop: rect.top,
+      dragging: false,
+    };
+    el.setPointerCapture?.(event.pointerId);
+  };
+
+  const onDockPointerMove = (event) => {
+    const state = dockDragRef.current;
+    if (!state || state.pointerId !== event.pointerId) return;
+    const dx = event.clientX - state.startX;
+    const dy = event.clientY - state.startY;
+    if (!state.dragging && Math.hypot(dx, dy) < DOCK_DRAG_THRESHOLD) return;
+
+    if (!state.dragging) {
+      state.dragging = true;
+      setDockDragging(true);
+    }
+
+    const el = dockRef.current;
+    const next = clampDockPos(
+      state.origLeft + dx,
+      state.origTop + dy,
+      el?.offsetWidth,
+      el?.offsetHeight
+    );
+    setDockPos(next);
+  };
+
+  const onDockPointerUp = (event) => {
+    const state = dockDragRef.current;
+    if (!state || state.pointerId !== event.pointerId) return;
+
+    if (state.dragging) {
+      const el = dockRef.current;
+      const rect = el?.getBoundingClientRect();
+      const next = clampDockPos(
+        rect?.left ?? state.origLeft,
+        rect?.top ?? state.origTop,
+        el?.offsetWidth,
+        el?.offsetHeight
+      );
+      setDockPos(next);
+      try {
+        localStorage.setItem(DOCK_STORAGE_KEY, JSON.stringify(next));
+      } catch {
+        // ignore quota / private mode
+      }
+      dockJustDraggedRef.current = true;
+    }
+
+    dockDragRef.current = null;
+    setDockDragging(false);
+  };
 
   const toggleLanguage = () => {
     i18n.changeLanguage(activeLang === "RO" ? "en" : "ro");
@@ -280,7 +402,17 @@ const HomePreview = () => {
     <div
       className={`hp ${expandedOffer ? "hp--offer-open" : ""} ${menuOpen ? "hp--menu-open" : ""}`}
     >
-      <div className="hp-dock" aria-label="Controale rapide">
+      <div
+        ref={dockRef}
+        className={`hp-dock ${dockPos ? "is-custom-pos" : ""} ${dockDragging ? "is-dragging" : ""}`}
+        style={dockPos ? { left: dockPos.left, top: dockPos.top } : undefined}
+        aria-label="Controale rapide — poți muta dock-ul"
+        onPointerDown={onDockPointerDown}
+        onPointerMove={onDockPointerMove}
+        onPointerUp={onDockPointerUp}
+        onPointerCancel={onDockPointerUp}
+        onClickCapture={suppressDockClickIfDragged}
+      >
         <button type="button" className="hp-dock__btn" aria-label="Căutare (mock)">
           <svg viewBox="0 0 24 24" aria-hidden>
             <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
