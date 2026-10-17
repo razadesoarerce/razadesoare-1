@@ -384,7 +384,8 @@
 .hp-dock-anchor {
   position: absolute;
   right: max(0.45rem, env(safe-area-inset-right));
-  bottom: max(0.85rem, env(safe-area-inset-bottom));
+  /* Sit above the hero wave */
+  bottom: max(2.1rem, calc(env(safe-area-inset-bottom) + 1.6rem));
   top: auto;
   z-index: 3;
   width: var(--hp-dock-size);
@@ -1074,7 +1075,7 @@
 
   .hp-dock-anchor {
     right: max(0.75rem, env(safe-area-inset-right));
-    bottom: max(1.1rem, env(safe-area-inset-bottom));
+    bottom: max(2.6rem, calc(env(safe-area-inset-bottom) + 2rem));
   }
 
   .hp-hero {
