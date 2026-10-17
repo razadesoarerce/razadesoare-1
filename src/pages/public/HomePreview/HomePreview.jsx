@@ -70,7 +70,7 @@ const OFFER_CARDS = [
     ],
     tone: "green",
     icon: "sprout",
-    imageIcon: "/images/preview/icon-dezvoltare.jpg",
+    imageIcon: "/images/preview/icon-dezvoltare.png",
   },
   {
     title: "Activități",
