@@ -923,33 +923,6 @@
   max-width: 34rem;
 }
 
-.hp-about__hearts {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin-top: 1.25rem;
-}
-
-.hp-about__hearts svg {
-  width: 1rem;
-  height: 1rem;
-  transform: rotate(-12deg);
-}
-
-.hp-about__hearts svg:nth-child(2) {
-  width: 0.8rem;
-  height: 0.8rem;
-  transform: rotate(8deg);
-  opacity: 0.8;
-}
-
-.hp-about__hearts svg:nth-child(3) {
-  width: 0.65rem;
-  height: 0.65rem;
-  transform: rotate(-4deg);
-  opacity: 0.65;
-}
-
 .hp-about__media {
   border-radius: calc(var(--hp-radius) + 0.35rem);
   overflow: hidden;

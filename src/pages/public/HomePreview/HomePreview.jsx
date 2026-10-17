@@ -792,26 +792,6 @@ const HomePreview = () => {
             <button type="button" className="hp-btn hp-btn--primary">
               Află mai multe <span aria-hidden>→</span>
             </button>
-            <div className="hp-about__hearts" aria-hidden>
-              <svg viewBox="0 0 24 24">
-                <path
-                  fill="#ef6b8a"
-                  d="M12 21s-7.2-4.5-9.4-8.2C.8 9.6 2.1 6.5 5 6.2c1.8-.2 3.4.8 4 2.3.6-1.5 2.2-2.5 4-2.3 2.9.3 4.2 3.4 2.4 6.6C19.2 16.5 12 21 12 21z"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <path
-                  fill="#ef6b8a"
-                  d="M12 21s-7.2-4.5-9.4-8.2C.8 9.6 2.1 6.5 5 6.2c1.8-.2 3.4.8 4 2.3.6-1.5 2.2-2.5 4-2.3 2.9.3 4.2 3.4 2.4 6.6C19.2 16.5 12 21 12 21z"
-                />
-              </svg>
-              <svg viewBox="0 0 24 24">
-                <path
-                  fill="#ef6b8a"
-                  d="M12 21s-7.2-4.5-9.4-8.2C.8 9.6 2.1 6.5 5 6.2c1.8-.2 3.4.8 4 2.3.6-1.5 2.2-2.5 4-2.3 2.9.3 4.2 3.4 2.4 6.6C19.2 16.5 12 21 12 21z"
-                />
-              </svg>
-            </div>
           </div>
           <div className="hp-about__media">
             <img
