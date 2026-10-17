@@ -19,17 +19,40 @@ const NAV_ITEMS = [
 const OFFER_CARDS = [
   {
     title: "Misiune și Viziune",
-    text: "Direcția noastră: sprijin, respect și potențial pentru fiecare copil.",
-    detail:
-      "Misiunea Școlii Raza de Soare este să ofere un mediu educațional sigur, cald și adaptat, în care fiecare copil cu cerințe educaționale speciale să se simtă acceptat și încurajat. Viziunea noastră este o comunitate în care diferențele sunt respectate, progresul este celebrat pas cu pas, iar familiile găsesc parteneri de încredere pe drumul dezvoltării copilului.",
+    text: "Un mediu sigur, adaptat, în care fiecare copil contează.",
+    headline: "Misiune & Viziune",
+    detailParagraphs: [
+      "Școala Specială „Rază de Soare” își asumă misiunea de a oferi fiecărui copil cu cerințe educaționale speciale un mediu sigur, stabil și adaptat nevoilor sale individuale, în care dezvoltarea personală, autonomia și comunicarea să fie priorități fundamentale.",
+      "Activitatea noastră se adresează copiilor și tinerilor cu dizabilități intelectuale de grad mediu, sever și profund, care au nevoie de intervenții educaționale structurate, susținere constantă și un cadru în care progresul este măsurat prin pași reali în direcția independenței și a integrării sociale.",
+    ],
+    detailList: [
+      "dezvoltarea abilităților de viață practică și autonomie personală;",
+      "stimularea comunicării funcționale și a exprimării emoționale;",
+      "formarea competențelor sociale necesare integrării în comunitate;",
+      "susținerea familiilor prin parteneriat educațional și sprijin constant.",
+    ],
+    detailParagraphsAfter: [
+      "Clasele restrânse, formate din 6–8 elevi și coordonate de doi profesori, permit o abordare personalizată și o intervenție adaptată fiecărui copil. Accentul este pus pe progres individual, ritm propriu și valorizarea fiecărei reușite.",
+      "În centrul demersului nostru educațional stă respectul pentru demnitatea fiecărei persoane și convingerea că fiecare copil are dreptul la șanse reale de dezvoltare.",
+      "Viziunea Școlii Speciale „Rază de Soare” este aceea a unei comunități educaționale în care diferența nu reprezintă o limită, ci un punct de plecare pentru sprijin, înțelegere și creștere.",
+      "Ne dorim o societate în care copiii și tinerii cu dizabilități intelectuale să fie priviți prin prisma potențialului lor, nu a limitărilor. O societate în care incluziunea înseamnă participare reală, iar integrarea în comunitate este susținută prin educație adaptată și intervenții responsabile.",
+      "În cadrul fundației RCE „Speranța Copiilor”, școala noastră promovează valori precum respectul pentru viață și demnitatea umană, responsabilitatea față de aproapele, compasiunea și sprijinul reciproc.",
+      "Credem că adevărata educație nu înseamnă uniformizare, ci însoțire atentă și susținere continuă. Fiecare copil este o persoană unică, iar procesul educațional trebuie să răspundă acestei unicități.",
+      "Prin activitatea noastră, ne propunem să contribuim la formarea unor tineri cât mai autonomi, capabili să comunice, să participe la viața comunității și să își dezvolte abilitățile necesare unei vieți cât mai independente.",
+    ],
     tone: "pink",
     icon: "people",
   },
   {
     title: "Educație",
-    text: "Programe adaptate care sprijină învățarea fiecărui copil.",
-    detail:
-      "La Raza de Soare, educația înseamnă mai mult decât lecții: fiecare copil are un parcurs personalizat, construit împreună cu familia și specialiștii. Lucrăm cu curriculum adaptat, metode interactive și obiective mici, clare, care cresc încrederea. Evaluăm progresul cu blândețe, celebrăm reușitele și ajustăm ritmul astfel încât învățarea să rămână sigură, motivațională și potrivită nevoilor fiecărui elev.",
+    text: "Fiecare copil învață în felul său.",
+    headline: "Educație – Fiecare copil învață în felul său",
+    detailParagraphs: [
+      "La Școala Specială „Rază de Soare”, educația este o responsabilitate pe care o tratăm cu seriozitate, profesionalism și grijă față de fiecare copil. Credem că fiecare elev merită acces la o educație de calitate, adaptată nevoilor și posibilităților sale.",
+      "Procesul educațional se desfășoară cu respectarea programelor școlare, a metodologiilor și a normelor specifice învățământului special. Disciplinele și activitățile de învățare sunt adaptate vârstei, nivelului de dezvoltare și cerințelor educaționale speciale ale fiecărui elev.",
+      "Cu sprijinul unui personal calificat și dedicat, urmărim obiective educaționale clare, folosind metode de predare adaptate, răbdare și atenție individualizată. Fiecare copil este încurajat să învețe, să își dezvolte abilitățile și să progreseze în propriul ritm.",
+      "Pentru unii elevi, progresul înseamnă să învețe să citească, să scrie sau să socotească. Pentru alții, poate însemna să recunoască o literă, să comunice mai ușor sau să dobândească deprinderi esențiale pentru viața de zi cu zi. Respectăm potențialul fiecăruia și prețuim fiecare reușită, pentru că știm că în spatele fiecărui progres se află muncă, perseverență și multă încredere.",
+    ],
     tone: "blue",
     icon: "book",
     imageIcon: "/images/preview/icon-educatie.jpg",
@@ -39,7 +62,7 @@ const OFFER_CARDS = [
     text: "Fiecare pas înainte contează.",
     headline: "Dezvoltare – Fiecare pas înainte contează",
     detailParagraphs: [
-      "Fiecare copil are propriul ritm de învățare și dezvoltare. La Școala Raza de Soare, ne dorim ca fiecare copil cu cerințe educaționale speciale (CES) să primească sprijinul și încurajarea de care are nevoie pentru a-și dezvolta abilitățile și a deveni, pas cu pas, mai independent.",
+      "Fiecare copil are propriul ritm de învățare și dezvoltare. La Școala Specială „Rază de Soare”, ne dorim ca fiecare copil cu cerințe educaționale speciale (CES) să primească sprijinul și încurajarea de care are nevoie pentru a-și dezvolta abilitățile și a deveni, pas cu pas, mai independent.",
       "Pentru unii copii, progresul înseamnă să învețe să citească, să scrie sau să recunoască literele și cifrele. Pentru alții, poate însemna să țină corect un creion, să folosească tacâmurile, să se îmbrace singuri, să comunice mai ușor sau să își exprime nevoile.",
       "Punem un accent deosebit pe dezvoltarea autonomiei personale și a abilităților de viață independentă. Îi sprijinim pe copii să înțeleagă și să respecte o rutină zilnică, să recunoască situațiile periculoase, să relaționeze cu cei din jur și să deprindă lucruri practice care îi pot ajuta în viața de zi cu zi.",
       "Știm că dezvoltarea copiilor cu cerințe educaționale speciale necesită răbdare, exercițiu și multă încurajare. De aceea, adaptăm activitățile de învățare la nevoile și posibilitățile fiecărui copil, fără grabă și fără comparații.",
@@ -51,9 +74,15 @@ const OFFER_CARDS = [
   },
   {
     title: "Activități",
-    text: "Experiențe creative și jocuri care dezvoltă abilități practice.",
-    detail:
-      "Atelierele noastre îmbină joaca cu învățarea: artă, muzică, mișcare, grădinărit și activități senzoriale. Copiii exersează colaborarea, autonomia și comunicarea într-un cadru plin de culoare. Organizăm și momente tematice pe parcursul anului — de la sărbători la ieșiri în natură — ca fiecare zi să aducă curiozitate, bucurie și abilități pe care le pot folosi acasă și la școală.",
+    text: "Fiecare experiență contează.",
+    headline: "Activități – Fiecare experiență contează",
+    detailParagraphs: [
+      "La Școala Specială „Rază de Soare”, credem că fiecare copil merită bucuria de a descoperi, de a încerca și de a reuși, în propriul ritm.",
+      "Prin desen, pictură, muzică, ateliere creative și activități practice, copiii își dezvoltă îndemânarea, răbdarea și încrederea în propriile puteri.",
+      "Ieșirile în natură, jocurile, activitățile extracurriculare le oferă ocazia să descopere lumea, să comunice, să lege prietenii și să se bucure de momente frumoase împreună.",
+      "Pentru unii copii, să țină corect o pensulă, să termine un desen sau să cânte alături de colegi poate părea un lucru mic. Pentru noi, însă, fiecare dintre aceste reușite înseamnă enorm.",
+      "Pentru că uneori, în spatele unui gest simplu, se află multă muncă, răbdare și curaj. Iar fiecare pas înainte merită sărbătorit.",
+    ],
     tone: "yellow",
     icon: "palette",
     imageIcon: "/images/preview/icon-activitati.jpg",
@@ -484,20 +513,25 @@ const HomePreview = () => {
                 <h3 id="hp-offer-expand-title">
                   {expandedOffer.headline || expandedOffer.title}
                 </h3>
-                {!expandedOffer.detailParagraphs ? (
-                  <p className="hp-offer-expand__lead">{expandedOffer.text}</p>
-                ) : null}
-                {expandedOffer.detailParagraphs ? (
-                  <div className="hp-offer-expand__body">
-                    {expandedOffer.detailParagraphs.map((paragraph) => (
-                      <p key={paragraph.slice(0, 48)} className="hp-offer-expand__detail">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="hp-offer-expand__detail">{expandedOffer.detail}</p>
-                )}
+                <div className="hp-offer-expand__body">
+                  {(expandedOffer.detailParagraphs || []).map((paragraph) => (
+                    <p key={paragraph.slice(0, 48)} className="hp-offer-expand__detail">
+                      {paragraph}
+                    </p>
+                  ))}
+                  {expandedOffer.detailList?.length ? (
+                    <ul className="hp-offer-expand__list">
+                      {expandedOffer.detailList.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {(expandedOffer.detailParagraphsAfter || []).map((paragraph) => (
+                    <p key={paragraph.slice(0, 48)} className="hp-offer-expand__detail">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
                 <button
                   type="button"
                   className="hp-btn hp-btn--primary hp-offer-expand__close"
