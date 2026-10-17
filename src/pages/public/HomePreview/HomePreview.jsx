@@ -237,7 +237,7 @@ const SunRays = ({ className = "" }) => (
 );
 
 const SWIPE_CLOSE_PX = 56;
-const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v5";
+const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v6";
 const DOCK_DRAG_THRESHOLD = 6;
 const DOCK_MARGIN = 12;
 

@@ -383,8 +383,9 @@
 
 .hp-dock-anchor {
   position: absolute;
-  top: max(0.45rem, env(safe-area-inset-top));
   right: max(0.45rem, env(safe-area-inset-right));
+  bottom: max(0.85rem, env(safe-area-inset-bottom));
+  top: auto;
   z-index: 3;
   width: var(--hp-dock-size);
   height: var(--hp-dock-size);
@@ -1072,8 +1073,8 @@
   }
 
   .hp-dock-anchor {
-    top: max(0.75rem, env(safe-area-inset-top));
     right: max(0.75rem, env(safe-area-inset-right));
+    bottom: max(1.1rem, env(safe-area-inset-bottom));
   }
 
   .hp-hero {
