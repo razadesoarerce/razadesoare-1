@@ -42,6 +42,7 @@ const OFFER_CARDS = [
     ],
     tone: "pink",
     icon: "people",
+    imageIcon: "/images/preview/icon-misiune.png",
   },
   {
     title: "Educație",
