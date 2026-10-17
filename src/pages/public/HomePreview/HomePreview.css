@@ -368,6 +368,7 @@
   width: min(1120px, calc(100% - 1rem));
   margin: 0 auto;
   padding: 0.45rem 0 1.55rem;
+  padding-left: clamp(0.85rem, 4.5vw, 1.75rem);
   position: relative;
   z-index: 1;
   display: flex;
@@ -391,22 +392,23 @@
   pointer-events: none;
 }
 
-/* Frosted glass — ~40% width, floating margins like mockup */
+/* Frosted glass — ~40% width, inset from left (not flush to edge) */
 .hp-hero-card {
   width: min(42%, 10.75rem);
   max-height: calc(100% - 0.35rem);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: center;
   gap: 0.28rem;
   padding: 0.45rem 0.55rem 0.5rem;
   border-radius: 0.85rem;
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  /* 30% less opacity than previous 0.40 → 0.28 */
+  background: rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   box-shadow:
-    0 6px 20px rgba(18, 40, 70, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    0 6px 20px rgba(18, 40, 70, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
   backdrop-filter: blur(10px) saturate(1.12);
   -webkit-backdrop-filter: blur(10px) saturate(1.12);
   color: var(--hp-blue-deep);
@@ -440,14 +442,15 @@
 .hp-hero-card h1 {
   font-family: var(--hp-display);
   font-weight: 800;
-  font-size: clamp(0.82rem, 3.6vw, 1.05rem);
+  font-size: clamp(0.95rem, 4.1vw, 1.2rem);
   line-height: 1.05;
   letter-spacing: -0.03em;
   margin: 0;
   color: var(--hp-blue-deep);
   text-shadow: none;
-  text-align: left;
+  text-align: center;
   padding: 0;
+  width: 100%;
 }
 
 .hp-hero-card__actions {
@@ -1029,6 +1032,7 @@
 
   .hp-hero__content {
     padding: 0.65rem 0 1.85rem;
+    padding-left: clamp(1.25rem, 5vw, 2.25rem);
   }
 
   .hp-hero-card {
@@ -1048,7 +1052,7 @@
   }
 
   .hp-hero-card h1 {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
   }
 
   .hp-btn.hp-btn--card-primary,
@@ -1090,6 +1094,7 @@
 
   .hp-hero__content {
     padding: 0.85rem 0 2.1rem;
+    padding-left: clamp(1.5rem, 4vw, 2.75rem);
   }
 
   .hp-hero-card {
@@ -1109,7 +1114,7 @@
   }
 
   .hp-hero-card h1 {
-    font-size: 1.45rem;
+    font-size: 1.65rem;
   }
 
   .hp-btn.hp-btn--card-primary,
