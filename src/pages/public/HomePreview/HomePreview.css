@@ -52,35 +52,62 @@
 
 /* Floating 2x2 dock — bottom right, ~60% of original size */
 .hp-dock {
+  --hp-dock-cell: 1.64rem;
+  --hp-dock-gap: 0.23rem;
+  --hp-dock-pad: 0.26rem;
+  --hp-dock-border: 1.5px;
+  --hp-dock-size: calc(
+    (2 * var(--hp-dock-cell)) + var(--hp-dock-gap) + (2 * var(--hp-dock-pad)) +
+      (2 * var(--hp-dock-border))
+  );
+  --hp-dock-fg: #fff;
+  --hp-dock-border-color: rgba(255, 255, 255, 0.92);
+  --hp-dock-hover-bg: rgba(255, 255, 255, 0.12);
+
   position: fixed;
-  top: max(0.75rem, env(safe-area-inset-top));
-  left: max(0.75rem, env(safe-area-inset-left));
-  right: auto;
-  bottom: auto;
   z-index: 60;
   display: grid;
-  grid-template-columns: repeat(2, 1.64rem);
-  grid-template-rows: repeat(2, 1.64rem);
-  gap: 0.23rem;
-  padding: 0.26rem;
+  grid-template-columns: repeat(2, var(--hp-dock-cell));
+  grid-template-rows: repeat(2, var(--hp-dock-cell));
+  gap: var(--hp-dock-gap);
+  padding: var(--hp-dock-pad);
+  width: var(--hp-dock-size);
+  height: var(--hp-dock-size);
+  box-sizing: border-box;
   border-radius: 0.67rem;
   background: transparent;
   box-shadow: none;
-  border: 1.5px solid rgba(255, 255, 255, 0.92);
+  border: var(--hp-dock-border) solid var(--hp-dock-border-color);
+  color: var(--hp-dock-fg);
   backdrop-filter: none;
   touch-action: none;
   cursor: grab;
   user-select: none;
-}
-
-.hp-dock.is-custom-pos {
-  right: auto;
-  bottom: auto;
+  transition: border-color 0.15s ease, color 0.15s ease;
 }
 
 .hp-dock.is-dragging {
   cursor: grabbing;
-  border-color: #fff;
+  border-color: var(--hp-dock-fg);
+  transition: none;
+}
+
+/* Over light page content — navy for contrast once dock leaves Hero photo */
+.hp-dock.is-outside-hero {
+  --hp-dock-fg: var(--hp-blue);
+  --hp-dock-border-color: var(--hp-blue);
+  --hp-dock-hover-bg: rgba(26, 74, 141, 0.1);
+}
+
+.hp-dock.is-outside-hero.is-dragging {
+  --hp-dock-fg: var(--hp-blue-deep);
+  --hp-dock-border-color: var(--hp-blue-deep);
+}
+
+.hp-dock-anchor {
+  width: var(--hp-dock-size, 3.9rem);
+  height: var(--hp-dock-size, 3.9rem);
+  flex-shrink: 0;
 }
 
 .hp-dock__btn {
@@ -89,7 +116,7 @@
   width: 100%;
   height: 100%;
   border-radius: 0.48rem;
-  color: #fff;
+  color: inherit;
   background: transparent;
   transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
   text-decoration: none;
@@ -98,11 +125,16 @@
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
 }
 
+.hp-dock.is-outside-hero .hp-dock__btn {
+  text-shadow: none;
+  filter: none;
+}
+
 .hp-dock__btn:hover,
 .hp-dock__btn:focus-visible {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--hp-dock-hover-bg);
   transform: translateY(-1px);
-  color: #fff;
+  color: inherit;
 }
 
 .hp-dock__btn svg {
@@ -328,21 +360,40 @@
 }
 
 .hp-hero__content {
+  --hp-dock-cell: 1.64rem;
+  --hp-dock-gap: 0.23rem;
+  --hp-dock-pad: 0.26rem;
+  --hp-dock-border: 1.5px;
+  --hp-dock-size: calc(
+    (2 * var(--hp-dock-cell)) + var(--hp-dock-gap) + (2 * var(--hp-dock-pad)) +
+      (2 * var(--hp-dock-border))
+  );
+
   width: min(1120px, calc(100% - 1.5rem));
   margin: 0 auto;
   padding: 1.25rem 0 2rem;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: inherit;
+  box-sizing: border-box;
+}
+
+.hp-hero__title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
 }
 
 .hp-hero__sun {
-  position: absolute;
-  top: 1rem;
-  right: 0;
   display: block;
   width: 2.75rem;
   height: 2.75rem;
   margin: 0;
+  flex-shrink: 0;
   animation: hp-pulse 3.5s ease-in-out infinite;
 }
 
@@ -413,29 +464,41 @@
   font-size: clamp(1.65rem, 5.5vw, 2.75rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
-  margin: 0 0 0.4rem;
+  margin: 0;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
-}
-
-.hp-hero p {
-  max-width: 32rem;
-  margin: 0 0 0.75rem;
-  font-size: clamp(0.8rem, 2vw, 0.95rem);
-  font-weight: 600;
-  line-height: 1.4;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 .hp-hero__actions {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.hp-hero__cta-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.28rem;
+  height: var(--hp-dock-size);
+  min-width: 0;
+  flex: 0 1 auto;
+}
+
+.hp-btn.hp-btn--hero-cta {
+  flex: 1 1 0;
+  align-self: flex-start;
+  width: max-content;
+  max-width: 100%;
+  min-height: 0;
+  padding: 0 0.9rem;
+  font-size: 0.72rem;
+  line-height: 1.1;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .hp-hero__wave {
@@ -955,11 +1018,11 @@
 
 /* Tablet+ */
 @media (min-width: 640px) {
-  .hp-dock {
-    grid-template-columns: repeat(2, 1.78rem);
-    grid-template-rows: repeat(2, 1.78rem);
-    top: 1.1rem;
-    left: 1.1rem;
+  .hp-dock,
+  .hp-hero__content {
+    --hp-dock-cell: 1.78rem;
+    --hp-dock-gap: 0.25rem;
+    --hp-dock-pad: 0.28rem;
   }
 
   .hp-hero {
@@ -1006,17 +1069,15 @@
   .hp-hero__sun {
     width: 3.25rem;
     height: 3.25rem;
-    top: 1.5rem;
+  }
+
+  .hp-btn.hp-btn--hero-cta {
+    font-size: 0.8rem;
+    padding: 0 1.05rem;
   }
 
   .hp-hero h1 {
     font-size: clamp(2.2rem, 3.5vw, 3rem);
-  }
-
-  .hp-hero p {
-    font-size: 1rem;
-    -webkit-line-clamp: 3;
-    margin-bottom: 1rem;
   }
 
   .hp-btn {

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaFacebookF } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -182,7 +182,7 @@ const SunRays = ({ className = "" }) => (
 );
 
 const SWIPE_CLOSE_PX = 56;
-const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v2";
+const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v4";
 const DOCK_DRAG_THRESHOLD = 6;
 const DOCK_MARGIN = 12;
 
@@ -195,18 +195,40 @@ const clampDockPos = (left, top, width = 80, height = 80) => {
   };
 };
 
+/** Center of dock vs Hero bounds — flips contrast when dock leaves the photo. */
+const isDockOutsideHeroRect = (heroEl, left, top, width, height) => {
+  if (!heroEl || left == null || top == null) return false;
+  const hero = heroEl.getBoundingClientRect();
+  const cx = left + width / 2;
+  const cy = top + height / 2;
+  return cx < hero.left || cx > hero.right || cy < hero.top || cy > hero.bottom;
+};
+
 const HomePreview = () => {
   const { i18n } = useTranslation();
   const [expandedOffer, setExpandedOffer] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dockPos, setDockPos] = useState(null);
+  const [dockHomePos, setDockHomePos] = useState(null);
   const [dockDragging, setDockDragging] = useState(false);
+  const [dockOutsideHero, setDockOutsideHero] = useState(false);
   const swipeStart = useRef(null);
   const menuSwipeStart = useRef(null);
   const dockRef = useRef(null);
+  const dockHomeRef = useRef(null);
+  const heroRef = useRef(null);
   const dockDragRef = useRef(null);
   const dockJustDraggedRef = useRef(false);
   const activeLang = i18n.language?.startsWith("en") ? "EN" : "RO";
+  const dockScreenPos = dockPos ?? dockHomePos;
+
+  const syncDockOutsideHero = (left, top, width, height) => {
+    const dock = dockRef.current;
+    const w = width ?? dock?.offsetWidth ?? 80;
+    const h = height ?? dock?.offsetHeight ?? 80;
+    const next = isDockOutsideHeroRect(heroRef.current, left, top, w, h);
+    setDockOutsideHero((prev) => (prev === next ? prev : next));
+  };
 
   useEffect(() => {
     const id = "home-preview-fonts";
@@ -268,6 +290,60 @@ const HomePreview = () => {
     return undefined;
   }, []);
 
+  useLayoutEffect(() => {
+    const syncHome = () => {
+      const home = dockHomeRef.current;
+      const dock = dockRef.current;
+      if (!home) return;
+      const rect = home.getBoundingClientRect();
+      const next = clampDockPos(
+        rect.left,
+        rect.top,
+        dock?.offsetWidth ?? home.offsetWidth,
+        dock?.offsetHeight ?? home.offsetHeight
+      );
+      setDockHomePos(next);
+      if (!dockPos) {
+        syncDockOutsideHero(
+          next.left,
+          next.top,
+          dock?.offsetWidth ?? home.offsetWidth,
+          dock?.offsetHeight ?? home.offsetHeight
+        );
+      }
+    };
+
+    syncHome();
+    window.addEventListener("resize", syncHome);
+    window.addEventListener("scroll", syncHome, true);
+    return () => {
+      window.removeEventListener("resize", syncHome);
+      window.removeEventListener("scroll", syncHome, true);
+    };
+  }, [dockPos]);
+
+  useLayoutEffect(() => {
+    if (!dockScreenPos) return undefined;
+
+    const syncOutside = () => {
+      const dock = dockRef.current;
+      syncDockOutsideHero(
+        dockScreenPos.left,
+        dockScreenPos.top,
+        dock?.offsetWidth,
+        dock?.offsetHeight
+      );
+    };
+
+    syncOutside();
+    window.addEventListener("resize", syncOutside);
+    window.addEventListener("scroll", syncOutside, true);
+    return () => {
+      window.removeEventListener("resize", syncOutside);
+      window.removeEventListener("scroll", syncOutside, true);
+    };
+  }, [dockScreenPos]);
+
   useEffect(() => {
     const onResize = () => {
       setDockPos((pos) => {
@@ -326,6 +402,8 @@ const HomePreview = () => {
       el?.offsetHeight
     );
     setDockPos(next);
+    // Live contrast flip while dragging across the Hero edge
+    syncDockOutsideHero(next.left, next.top, el?.offsetWidth, el?.offsetHeight);
   };
 
   const onDockPointerUp = (event) => {
@@ -342,6 +420,7 @@ const HomePreview = () => {
         el?.offsetHeight
       );
       setDockPos(next);
+      syncDockOutsideHero(next.left, next.top, el?.offsetWidth, el?.offsetHeight);
       try {
         localStorage.setItem(DOCK_STORAGE_KEY, JSON.stringify(next));
       } catch {
@@ -404,8 +483,12 @@ const HomePreview = () => {
     >
       <div
         ref={dockRef}
-        className={`hp-dock ${dockPos ? "is-custom-pos" : ""} ${dockDragging ? "is-dragging" : ""}`}
-        style={dockPos ? { left: dockPos.left, top: dockPos.top } : undefined}
+        className={`hp-dock ${dockPos ? "is-custom-pos" : "is-home-pos"} ${dockDragging ? "is-dragging" : ""} ${dockOutsideHero ? "is-outside-hero" : ""}`}
+        style={
+          dockScreenPos
+            ? { left: dockScreenPos.left, top: dockScreenPos.top }
+            : { visibility: "hidden" }
+        }
         aria-label="Controale rapide — poți muta dock-ul"
         onPointerDown={onDockPointerDown}
         onPointerMove={onDockPointerMove}
@@ -490,7 +573,7 @@ const HomePreview = () => {
       ) : null}
 
       <main>
-        <section className="hp-hero" aria-labelledby="hp-hero-title">
+        <section ref={heroRef} className="hp-hero" aria-labelledby="hp-hero-title">
           <div
             className="hp-hero__bg"
             style={{
@@ -499,50 +582,51 @@ const HomePreview = () => {
           />
           <div className="hp-hero__shade" />
           <div className="hp-hero__content">
-            <span className="hp-hero__sun" aria-hidden>
-              <svg className="hp-hero__sun-svg" viewBox="0 0 64 64">
-                <g className="hp-hero__sun-rays">
-                  {Array.from({ length: 12 }, (_, i) => {
-                    const long = i % 2 === 0;
-                    return (
-                      <line
+            <div className="hp-hero__title-row">
+              <span className="hp-hero__sun" aria-hidden>
+                <svg className="hp-hero__sun-svg" viewBox="0 0 64 64">
+                  <g className="hp-hero__sun-rays">
+                    {Array.from({ length: 12 }, (_, i) => {
+                      const long = i % 2 === 0;
+                      return (
+                        <line
+                          key={i}
+                          x1="32"
+                          y1={long ? 2 : 6}
+                          x2="32"
+                          y2={long ? 12 : 12}
+                          transform={`rotate(${i * 30} 32 32)`}
+                        />
+                      );
+                    })}
+                  </g>
+                  <g className="hp-hero__sun-core">
+                    <circle cx="32" cy="32" r="11" />
+                    {Array.from({ length: 10 }, (_, i) => (
+                      <circle
                         key={i}
-                        x1="32"
-                        y1={long ? 2 : 6}
-                        x2="32"
-                        y2={long ? 12 : 12}
-                        transform={`rotate(${i * 30} 32 32)`}
+                        className="hp-hero__sun-bump"
+                        cx="32"
+                        cy="20.4"
+                        r="1.75"
+                        transform={`rotate(${i * 36} 32 32)`}
                       />
-                    );
-                  })}
-                </g>
-                <g className="hp-hero__sun-core">
-                  <circle cx="32" cy="32" r="11" />
-                  {Array.from({ length: 10 }, (_, i) => (
-                    <circle
-                      key={i}
-                      className="hp-hero__sun-bump"
-                      cx="32"
-                      cy="20.4"
-                      r="1.75"
-                      transform={`rotate(${i * 36} 32 32)`}
-                    />
-                  ))}
-                </g>
-              </svg>
-            </span>
-            <h1 id="hp-hero-title">Raza de Soare</h1>
-            <p>
-              Un loc în care copiii cresc, învață și descoperă lumea în jurul
-              lor, cu încredere și bucurie.
-            </p>
+                    ))}
+                  </g>
+                </svg>
+              </span>
+              <h1 id="hp-hero-title">Raza de Soare</h1>
+            </div>
             <div className="hp-hero__actions">
-              <button type="button" className="hp-btn hp-btn--ghost">
-                Descoperă Raza de Soare <span aria-hidden>→</span>
-              </button>
-              <button type="button" className="hp-btn hp-btn--ghost">
-                Contactează-ne <span aria-hidden>→</span>
-              </button>
+              <div className="hp-hero__cta-stack">
+                <button type="button" className="hp-btn hp-btn--ghost hp-btn--hero-cta">
+                  Descoperă Raza de Soare <span aria-hidden>→</span>
+                </button>
+                <button type="button" className="hp-btn hp-btn--ghost hp-btn--hero-cta">
+                  Contactează-ne <span aria-hidden>→</span>
+                </button>
+              </div>
+              <div className="hp-dock-anchor" ref={dockHomeRef} aria-hidden />
             </div>
           </div>
           <svg
