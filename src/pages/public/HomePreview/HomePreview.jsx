@@ -242,6 +242,13 @@ const DOCK_DRAG_THRESHOLD = 6;
 const DOCK_MARGIN = 12;
 /** Preview homepage — dock Home returns here from other routes. */
 const HOME_PATH = "/preview";
+const CONTACT_ADDRESS = "Arad, Strada Diogene nr 12";
+const CONTACT_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=" +
+  encodeURIComponent(CONTACT_ADDRESS);
+const CONTACT_EMAIL = "razadesoarerce@yahoo.com";
+const CONTACT_PHONE_DISPLAY = "0257 214 805";
+const CONTACT_PHONE_TEL = "tel:+40257214805";
 
 const clampDockPos = (left, top, width = 80, height = 80) => {
   const maxLeft = Math.max(DOCK_MARGIN, window.innerWidth - width - DOCK_MARGIN);
@@ -276,6 +283,7 @@ const HomePreview = () => {
   const navigate = useNavigate();
   const [expandedOffer, setExpandedOffer] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const [dockPos, setDockPos] = useState(null);
   const [dockHomePos, setDockHomePos] = useState(null);
   const [dockDragging, setDockDragging] = useState(false);
@@ -284,6 +292,7 @@ const HomePreview = () => {
   const menuSwipeStart = useRef(null);
   const dockRef = useRef(null);
   const heroRef = useRef(null);
+  const contactRef = useRef(null);
   const dockDragRef = useRef(null);
   const dockJustDraggedRef = useRef(false);
   const activeLang = i18n.language?.startsWith("en") ? "EN" : "RO";
@@ -334,6 +343,25 @@ const HomePreview = () => {
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [expandedOffer, menuOpen]);
+
+  useEffect(() => {
+    if (!contactOpen) return undefined;
+
+    const onPointerDown = (event) => {
+      if (contactRef.current?.contains(event.target)) return;
+      setContactOpen(false);
+    };
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setContactOpen(false);
+    };
+
+    document.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [contactOpen]);
 
   useEffect(() => {
     try {
@@ -491,6 +519,7 @@ const HomePreview = () => {
 
   const goHome = () => {
     setMenuOpen(false);
+    setContactOpen(false);
     setExpandedOffer(null);
     if (location.pathname === HOME_PATH) {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -541,7 +570,7 @@ const HomePreview = () => {
 
   return (
     <div
-      className={`hp ${expandedOffer ? "hp--offer-open" : ""} ${menuOpen ? "hp--menu-open" : ""}`}
+      className={`hp ${expandedOffer ? "hp--offer-open" : ""} ${menuOpen ? "hp--menu-open" : ""} ${contactOpen ? "hp--contact-open" : ""}`}
     >
       <div
         ref={dockRef}
@@ -662,14 +691,79 @@ const HomePreview = () => {
                 <Link to="/despre/misiune-viziune" className="hp-btn hp-btn--card-primary">
                   Descoperă Raza de Soare <span aria-hidden>→</span>
                 </Link>
-                <a
-                  href="https://www.facebook.com/scoala.razadesoare"
-                  className="hp-btn hp-btn--card-ghost"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <div
+                  className={`hp-contact-dd ${contactOpen ? "is-open" : ""}`}
+                  ref={contactRef}
                 >
-                  Contactează-ne <span aria-hidden>→</span>
-                </a>
+                  <button
+                    type="button"
+                    className="hp-btn hp-btn--card-ghost hp-contact-dd__trigger"
+                    aria-expanded={contactOpen}
+                    aria-controls="hp-contact-panel"
+                    onClick={() => setContactOpen((open) => !open)}
+                  >
+                    Contactează-ne{" "}
+                    <span className="hp-contact-dd__chevron" aria-hidden>
+                      ▾
+                    </span>
+                  </button>
+                  {contactOpen ? (
+                    <div
+                      id="hp-contact-panel"
+                      className="hp-contact-dd__panel"
+                      role="region"
+                      aria-label="Date de contact"
+                    >
+                      <a
+                        className="hp-contact-dd__row"
+                        href={CONTACT_MAPS_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span className="hp-contact-dd__icon" aria-hidden>
+                          <svg viewBox="0 0 24 24">
+                            <path
+                              fill="currentColor"
+                              d="M12 2c-3.9 0-7 3.1-7 7 0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"
+                            />
+                          </svg>
+                        </span>
+                        <span className="hp-contact-dd__text">
+                          <span className="hp-contact-dd__label">Adresă</span>
+                          <span className="hp-contact-dd__value">{CONTACT_ADDRESS}</span>
+                        </span>
+                      </a>
+                      <a className="hp-contact-dd__row" href={`mailto:${CONTACT_EMAIL}`}>
+                        <span className="hp-contact-dd__icon" aria-hidden>
+                          <svg viewBox="0 0 24 24">
+                            <path
+                              fill="currentColor"
+                              d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"
+                            />
+                          </svg>
+                        </span>
+                        <span className="hp-contact-dd__text">
+                          <span className="hp-contact-dd__label">Email</span>
+                          <span className="hp-contact-dd__value">{CONTACT_EMAIL}</span>
+                        </span>
+                      </a>
+                      <a className="hp-contact-dd__row" href={CONTACT_PHONE_TEL}>
+                        <span className="hp-contact-dd__icon" aria-hidden>
+                          <svg viewBox="0 0 24 24">
+                            <path
+                              fill="currentColor"
+                              d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.2 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"
+                            />
+                          </svg>
+                        </span>
+                        <span className="hp-contact-dd__text">
+                          <span className="hp-contact-dd__label">Telefon</span>
+                          <span className="hp-contact-dd__value">{CONTACT_PHONE_DISPLAY}</span>
+                        </span>
+                      </a>
+                    </div>
+                  ) : null}
+                </div>
               </div>
             </article>
           </div>
