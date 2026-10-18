@@ -580,21 +580,14 @@
   max-width: min(16rem, 85vw);
   padding: 0.35rem;
   border-radius: 0.75rem;
-  /*
-   * Same glass recipe as .hp-hero-card (border, inset, blur/saturate),
-   * with denser fill so text stays readable — cool frosted tint, not milky white.
-   */
-  background: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 0.52) 0%,
-    rgba(220, 236, 250, 0.46) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  /* Exact same frost as .hp-hero-card */
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.38);
   box-shadow:
-    0 8px 22px rgba(18, 40, 70, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(12px) saturate(1.18);
-  -webkit-backdrop-filter: blur(12px) saturate(1.18);
+    0 4px 16px rgba(18, 40, 70, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(6px) saturate(1.05);
+  -webkit-backdrop-filter: blur(6px) saturate(1.05);
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -625,7 +618,7 @@
 
 .hp-contact-dd__row:hover,
 .hp-contact-dd__row:focus-visible {
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .hp-contact-dd__icon {
@@ -655,9 +648,8 @@
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(18, 54, 106, 0.75);
+  color: rgba(18, 54, 106, 0.8);
   line-height: 1.1;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.45);
 }
 
 .hp-contact-dd__value {
@@ -665,7 +657,6 @@
   font-weight: 700;
   line-height: 1.25;
   word-break: break-word;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
 }
 
 .hp-hero__wave {
