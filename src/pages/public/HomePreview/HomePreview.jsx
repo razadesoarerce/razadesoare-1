@@ -862,8 +862,20 @@ const HomePreview = () => {
         </section>
       </main>
 
-      <footer className="hp-footer">
-        <p>Raza de Soare — preview design (fără legături reale)</p>
+      <footer className="hp-credits" aria-label="Echipa de realizare a site-ului">
+        <div className="hp-credits__inner">
+          <p className="hp-credits__brand">Școala Specială „Raza de Soare”</p>
+          <ul className="hp-credits__list">
+            <li>
+              <span className="hp-credits__role">Dezvoltare web</span>
+              <span className="hp-credits__name">Lolea Florentin Alin</span>
+            </li>
+            <li>
+              <span className="hp-credits__role">Design vizual și multimedia</span>
+              <span className="hp-credits__name">Roxin Mariana</span>
+            </li>
+          </ul>
+        </div>
       </footer>
     </div>
   );
