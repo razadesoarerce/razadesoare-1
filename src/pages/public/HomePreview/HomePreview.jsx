@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaFacebookF } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -240,6 +240,8 @@ const SWIPE_CLOSE_PX = 56;
 const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v7";
 const DOCK_DRAG_THRESHOLD = 6;
 const DOCK_MARGIN = 12;
+/** Preview homepage — dock Home returns here from other routes. */
+const HOME_PATH = "/preview";
 
 const clampDockPos = (left, top, width = 80, height = 80) => {
   const maxLeft = Math.max(DOCK_MARGIN, window.innerWidth - width - DOCK_MARGIN);
@@ -270,6 +272,8 @@ const isDockOutsideHeroRect = (heroEl, left, top, width, height) => {
 
 const HomePreview = () => {
   const { i18n } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [expandedOffer, setExpandedOffer] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dockPos, setDockPos] = useState(null);
@@ -485,6 +489,16 @@ const HomePreview = () => {
     i18n.changeLanguage(activeLang === "RO" ? "en" : "ro");
   };
 
+  const goHome = () => {
+    setMenuOpen(false);
+    setExpandedOffer(null);
+    if (location.pathname === HOME_PATH) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    navigate(HOME_PATH);
+  };
+
   const onExpandTouchStart = (event) => {
     const touch = event.touches[0];
     if (!touch) return;
@@ -544,10 +558,21 @@ const HomePreview = () => {
         onPointerCancel={onDockPointerUp}
         onClickCapture={suppressDockClickIfDragged}
       >
-        <button type="button" className="hp-dock__btn" aria-label="Căutare (mock)">
+        <button
+          type="button"
+          className="hp-dock__btn"
+          onClick={goHome}
+          aria-label="Acasă — înapoi sus sau la pagina principală"
+        >
           <svg viewBox="0 0 24 24" aria-hidden>
-            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
-            <path d="M20 20l-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            <path
+              d="M4 11.2L12 4.5l8 6.7V20a1 1 0 0 1-1 1h-5.2v-5.8H10.2V21H5a1 1 0 0 1-1-1v-8.8z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
           </svg>
         </button>
         <button
