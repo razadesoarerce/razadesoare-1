@@ -621,6 +621,7 @@ const HomePreview = () => {
               href={CONTACT_MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Deschide adresa pe Google Maps: ${CONTACT_ADDRESS}`}
             >
               <span className="hp-contact-dd__icon" aria-hidden>
                 <svg viewBox="0 0 24 24">
@@ -633,9 +634,17 @@ const HomePreview = () => {
               <span className="hp-contact-dd__text">
                 <span className="hp-contact-dd__label">Adresă</span>
                 <span className="hp-contact-dd__value">{CONTACT_ADDRESS}</span>
+                <span className="hp-contact-dd__action">Deschide pe hartă</span>
+              </span>
+              <span className="hp-contact-dd__go" aria-hidden>
+                ↗
               </span>
             </a>
-            <a className="hp-contact-dd__row" href={`mailto:${CONTACT_EMAIL}`}>
+            <a
+              className="hp-contact-dd__row"
+              href={`mailto:${CONTACT_EMAIL}`}
+              aria-label={`Trimite email la ${CONTACT_EMAIL}`}
+            >
               <span className="hp-contact-dd__icon" aria-hidden>
                 <svg viewBox="0 0 24 24">
                   <path
@@ -647,9 +656,17 @@ const HomePreview = () => {
               <span className="hp-contact-dd__text">
                 <span className="hp-contact-dd__label">Email</span>
                 <span className="hp-contact-dd__value">{CONTACT_EMAIL}</span>
+                <span className="hp-contact-dd__action">Trimite email</span>
+              </span>
+              <span className="hp-contact-dd__go" aria-hidden>
+                ↗
               </span>
             </a>
-            <a className="hp-contact-dd__row" href={CONTACT_PHONE_TEL}>
+            <a
+              className="hp-contact-dd__row"
+              href={CONTACT_PHONE_TEL}
+              aria-label={`Apelează ${CONTACT_PHONE_DISPLAY}`}
+            >
               <span className="hp-contact-dd__icon" aria-hidden>
                 <svg viewBox="0 0 24 24">
                   <path
@@ -661,6 +678,10 @@ const HomePreview = () => {
               <span className="hp-contact-dd__text">
                 <span className="hp-contact-dd__label">Telefon</span>
                 <span className="hp-contact-dd__value">{CONTACT_PHONE_DISPLAY}</span>
+                <span className="hp-contact-dd__action">Apelează</span>
+              </span>
+              <span className="hp-contact-dd__go" aria-hidden>
+                ›
               </span>
             </a>
           </div>,
