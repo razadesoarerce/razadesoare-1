@@ -577,11 +577,15 @@ const HomePreview = () => {
         </button>
         <button
           type="button"
-          className="hp-dock__btn hp-dock__lang"
-          onClick={toggleLanguage}
-          aria-label={`Limba activă ${activeLang}. Apasă pentru a schimba.`}
+          className={`hp-dock__btn hp-dock__menu ${menuOpen ? "is-open" : ""}`}
+          aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
+          aria-expanded={menuOpen}
+          aria-controls="hp-drawer"
+          onClick={() => setMenuOpen((open) => !open)}
         >
-          {activeLang}
+          <span />
+          <span />
+          <span />
         </button>
         <a
           className="hp-dock__btn hp-dock__facebook"
@@ -594,15 +598,11 @@ const HomePreview = () => {
         </a>
         <button
           type="button"
-          className={`hp-dock__btn hp-dock__menu ${menuOpen ? "is-open" : ""}`}
-          aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
-          aria-expanded={menuOpen}
-          aria-controls="hp-drawer"
-          onClick={() => setMenuOpen((open) => !open)}
+          className="hp-dock__btn hp-dock__lang"
+          onClick={toggleLanguage}
+          aria-label={`Limba activă ${activeLang}. Apasă pentru a schimba.`}
         >
-          <span />
-          <span />
-          <span />
+          {activeLang}
         </button>
       </div>
 
