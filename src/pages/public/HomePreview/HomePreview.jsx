@@ -1028,36 +1028,32 @@ const HomePreview = () => {
             <SunRays className="hp-rays" />
           </div>
           <p className="hp-section__lead">Fiecare gest contează</p>
-          <div className="hp-support__grid">
-            <article className="hp-support-card hp-support-card--tax">
-              <div className="hp-support-card__badge" aria-hidden>
+          <article className="hp-support-card">
+            <button type="button" className="hp-support-action hp-support-action--tax">
+              <span className="hp-support-action__badge" aria-hidden>
                 3,5%
-              </div>
-              <h3 className="hp-support-card__title">
-                Redirecționează din impozit
-              </h3>
-              <p className="hp-support-card__text">
-                Completează formularul și direcționează 3,5% din impozitul pe
-                venit către școala noastră — fără costuri pentru tine.
-              </p>
-              <button type="button" className="hp-btn hp-btn--primary">
-                Completează formularul <span aria-hidden>→</span>
-              </button>
-            </article>
-            <article className="hp-support-card hp-support-card--donate">
-              <div className="hp-support-card__badge" aria-hidden>
+              </span>
+              <span className="hp-support-action__copy">
+                <span className="hp-support-action__title">
+                  Redirecționează din impozit
+                </span>
+                <span className="hp-support-action__hint">
+                  Completează formularul
+                </span>
+              </span>
+            </button>
+            <button type="button" className="hp-support-action hp-support-action--donate">
+              <span className="hp-support-action__badge" aria-hidden>
                 ♥
-              </div>
-              <h3 className="hp-support-card__title">Donează</h3>
-              <p className="hp-support-card__text">
-                Susține-ne prin transfer bancar sau prin linkul de donație.
-                Fiecare contribuție face diferența.
-              </p>
-              <button type="button" className="hp-btn hp-btn--primary">
-                IBAN / Link de donație <span aria-hidden>→</span>
-              </button>
-            </article>
-          </div>
+              </span>
+              <span className="hp-support-action__copy">
+                <span className="hp-support-action__title">Donează</span>
+                <span className="hp-support-action__hint">
+                  IBAN / Link de donație
+                </span>
+              </span>
+            </button>
+          </article>
         </section>
       </main>
 

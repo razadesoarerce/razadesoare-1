@@ -1183,101 +1183,119 @@
   margin-top: 1.75rem;
 }
 
-/* Support — 3.5% redirect & donate */
+/* Support — compact single-row card */
 .hp-support {
-  padding-top: 2rem;
-  padding-bottom: 2.25rem;
+  padding-top: 1.15rem;
+  padding-bottom: 1.25rem;
 }
 
 .hp-support .hp-section__head {
   flex-wrap: wrap;
-  row-gap: 0.25rem;
+  row-gap: 0.15rem;
+  margin-bottom: 0.15rem;
 }
 
 .hp-support .hp-section__head h2 {
   flex: 1 1 min(100%, 18rem);
   max-width: 22rem;
-  font-size: clamp(1.2rem, 3.8vw, 1.85rem);
+  font-size: clamp(1.05rem, 3.4vw, 1.55rem);
 }
 
-.hp-support__grid {
-  display: grid;
-  gap: 0.85rem;
-  grid-template-columns: 1fr;
-  margin-top: 0.35rem;
+.hp-support .hp-section__lead {
+  margin-bottom: 0.65rem;
+  font-size: 0.78rem;
 }
 
 .hp-support-card {
-  border-radius: 1.15rem;
-  padding: 1.25rem 1.1rem 1.2rem;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(26, 74, 141, 0.08);
+  background: #fff;
+}
+
+.hp-support-action {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   gap: 0.45rem;
-  box-shadow: 0 8px 22px rgba(26, 74, 141, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  padding: 0.7rem 0.65rem;
+  text-align: left;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.hp-support-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 32px rgba(26, 74, 141, 0.12);
-}
-
-.hp-support-card--tax {
+.hp-support-action--tax {
   background: linear-gradient(160deg, #fff6d6 0%, #ffe9a8 100%);
 }
 
-.hp-support-card--donate {
+.hp-support-action--donate {
   background: linear-gradient(160deg, #fde8f0 0%, #f7c6d8 100%);
+  border-left: 1px solid rgba(26, 74, 141, 0.08);
 }
 
-.hp-support-card__badge {
+.hp-support-action:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.02);
+}
+
+.hp-support-action:focus-visible {
+  outline: 2px solid var(--hp-blue);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.hp-support-action__badge {
+  flex-shrink: 0;
   display: inline-grid;
   place-items: center;
-  min-width: 2.75rem;
-  height: 2.75rem;
-  padding: 0 0.45rem;
-  border-radius: 0.85rem;
+  min-width: 2.15rem;
+  height: 2.15rem;
+  padding: 0 0.3rem;
+  border-radius: 0.65rem;
   font-family: var(--hp-display);
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 0.78rem;
   letter-spacing: -0.02em;
   line-height: 1;
   color: #fff;
-  margin-bottom: 0.15rem;
 }
 
-.hp-support-card--tax .hp-support-card__badge {
+.hp-support-action--tax .hp-support-action__badge {
   background: #e6b422;
-  box-shadow: 0 6px 14px rgba(230, 180, 34, 0.35);
+  box-shadow: 0 4px 10px rgba(230, 180, 34, 0.3);
 }
 
-.hp-support-card--donate .hp-support-card__badge {
+.hp-support-action--donate .hp-support-action__badge {
   background: var(--hp-pink-deep);
-  box-shadow: 0 6px 14px rgba(232, 122, 163, 0.35);
-  font-size: 1.15rem;
+  box-shadow: 0 4px 10px rgba(232, 122, 163, 0.3);
+  font-size: 0.95rem;
 }
 
-.hp-support-card__title {
-  margin: 0;
+.hp-support-action__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  min-width: 0;
+}
+
+.hp-support-action__title {
   font-family: var(--hp-display);
-  font-size: 1.05rem;
+  font-size: 0.78rem;
   font-weight: 800;
   color: var(--hp-blue);
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
-.hp-support-card__text {
-  margin: 0 0 0.55rem;
+.hp-support-action__hint {
+  font-size: 0.65rem;
+  font-weight: 650;
   color: var(--hp-muted);
-  font-size: 0.82rem;
-  font-weight: 600;
-  line-height: 1.45;
-  flex: 1;
-}
-
-.hp-support-card .hp-btn {
-  margin-top: auto;
+  line-height: 1.25;
 }
 
 /* Site credits — compact single-line info bar */
@@ -1372,21 +1390,28 @@
     max-height: 20rem;
   }
 
-  .hp-support__grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+  .hp-support {
+    padding-top: 1.35rem;
+    padding-bottom: 1.5rem;
   }
 
-  .hp-support-card {
-    padding: 1.4rem 1.25rem 1.3rem;
+  .hp-support-action {
+    gap: 0.6rem;
+    padding: 0.85rem 1rem;
   }
 
-  .hp-support-card__title {
-    font-size: 1.15rem;
-  }
-
-  .hp-support-card__text {
+  .hp-support-action__badge {
+    min-width: 2.4rem;
+    height: 2.4rem;
     font-size: 0.88rem;
+  }
+
+  .hp-support-action__title {
+    font-size: 0.92rem;
+  }
+
+  .hp-support-action__hint {
+    font-size: 0.74rem;
   }
 
   .hp-credits {
@@ -1580,31 +1605,31 @@
   }
 
   .hp-support {
-    padding-top: 2.75rem;
-    padding-bottom: 3rem;
-  }
-
-  .hp-support__grid {
-    gap: 1.25rem;
+    padding-top: 1.6rem;
+    padding-bottom: 1.75rem;
   }
 
   .hp-support-card {
-    border-radius: var(--hp-radius);
-    padding: 1.6rem 1.4rem 1.45rem;
+    border-radius: 1.2rem;
   }
 
-  .hp-support-card__badge {
-    min-width: 3rem;
-    height: 3rem;
-    font-size: 1.05rem;
+  .hp-support-action {
+    padding: 0.95rem 1.25rem;
+    gap: 0.7rem;
   }
 
-  .hp-support-card__title {
-    font-size: 1.25rem;
-  }
-
-  .hp-support-card__text {
+  .hp-support-action__badge {
+    min-width: 2.55rem;
+    height: 2.55rem;
     font-size: 0.92rem;
+  }
+
+  .hp-support-action__title {
+    font-size: 1rem;
+  }
+
+  .hp-support-action__hint {
+    font-size: 0.8rem;
   }
 
   .hp-section {
@@ -1619,7 +1644,7 @@
   .hp-hero-card__sun-rays,
   .hp-contact-dd__panel,
   .hp-offer-card,
-  .hp-support-card,
+  .hp-support-action,
   .hp-life__item img,
   .hp-btn {
     animation: none;
