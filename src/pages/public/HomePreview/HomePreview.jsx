@@ -1018,6 +1018,47 @@ const HomePreview = () => {
             </button>
           </div>
         </section>
+
+        <section className="hp-section hp-support" aria-labelledby="hp-support-title">
+          <div className="hp-section__head">
+            <SunRays className="hp-rays" />
+            <h2 id="hp-support-title">
+              Fii o rază de speranță pentru copiii noștri
+            </h2>
+            <SunRays className="hp-rays" />
+          </div>
+          <p className="hp-section__lead">Fiecare gest contează</p>
+          <div className="hp-support__grid">
+            <article className="hp-support-card hp-support-card--tax">
+              <div className="hp-support-card__badge" aria-hidden>
+                3,5%
+              </div>
+              <h3 className="hp-support-card__title">
+                Redirecționează din impozit
+              </h3>
+              <p className="hp-support-card__text">
+                Completează formularul și direcționează 3,5% din impozitul pe
+                venit către școala noastră — fără costuri pentru tine.
+              </p>
+              <button type="button" className="hp-btn hp-btn--primary">
+                Completează formularul <span aria-hidden>→</span>
+              </button>
+            </article>
+            <article className="hp-support-card hp-support-card--donate">
+              <div className="hp-support-card__badge" aria-hidden>
+                ♥
+              </div>
+              <h3 className="hp-support-card__title">Donează</h3>
+              <p className="hp-support-card__text">
+                Susține-ne prin transfer bancar sau prin linkul de donație.
+                Fiecare contribuție face diferența.
+              </p>
+              <button type="button" className="hp-btn hp-btn--primary">
+                IBAN / Link de donație <span aria-hidden>→</span>
+              </button>
+            </article>
+          </div>
+        </section>
       </main>
 
       <footer className="hp-credits" aria-label="Echipa de realizare a site-ului">
