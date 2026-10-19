@@ -1190,14 +1190,21 @@
 }
 
 .hp-support .hp-section__head {
-  flex-wrap: wrap;
-  row-gap: 0.15rem;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.35rem;
   margin-bottom: 0.15rem;
 }
 
+.hp-support .hp-section__head .hp-rays {
+  flex: 0 0 auto;
+  width: 1.75rem;
+}
+
 .hp-support .hp-section__head h2 {
-  flex: 1 1 min(100%, 18rem);
-  max-width: 22rem;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
   font-size: clamp(1.05rem, 3.4vw, 1.55rem);
 }
 
