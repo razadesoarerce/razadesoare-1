@@ -47,11 +47,10 @@ const HeroCardSun = () => (
 
 const NAV_ITEMS = [
   "Acasă",
+  "Informații",
   "Despre noi",
-  "Activități",
-  "Echipa",
-  "Noutăți",
-  "Contact",
+  "Echipa noastră",
+  "Blog",
 ];
 
 const OFFER_CARDS = [
