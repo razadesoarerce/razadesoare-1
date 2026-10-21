@@ -1,9 +1,14 @@
+import { Fragment } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
+
+const StoryRule = () => (
+  <hr className="hp-despre-rule" aria-hidden />
+);
 
 const BANNER_SLIDES = [
   {
@@ -106,15 +111,18 @@ const DespreNoi = () => (
             </p>
           </div>
         </div>
-      </section>
 
-      <section className="hp-section hp-despre-blocks" aria-label="Istorie și misiune">
-        {STORY_BLOCKS.map((block) => (
-          <article key={block.title} className="hp-despre-block">
-            <h2>{block.title}</h2>
-            <p>{block.text}</p>
-          </article>
-        ))}
+        <div className="hp-despre-blocks" aria-label="Istorie și misiune">
+          {STORY_BLOCKS.map((block) => (
+            <Fragment key={block.title}>
+              <StoryRule />
+              <article className="hp-despre-block">
+                <h2>{block.title}</h2>
+                <p>{block.text}</p>
+              </article>
+            </Fragment>
+          ))}
+        </div>
       </section>
 
       <PreviewSupportFooter />
