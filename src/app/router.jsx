@@ -4,6 +4,7 @@
  * Admin: single /admin route, AdminLayout with Outlet; login is public, dashboard/events protected by AdminAuthGuard.
  */
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import RootLayout from "../components/layout/RootLayout";
 import Layout from "../components/layout/Layout";
 import PageLayout from "../components/layout/PageLayout";
 import AdminLayout from "../components/layout/AdminLayout";
@@ -48,6 +49,9 @@ const evenimenteSidebarItems = [
 ];
 
 const router = createBrowserRouter([
+  {
+    element: <RootLayout />,
+    children: [
   // New-site preview (parallel to old public pages — nothing removed yet)
   {
     path: "/preview",
@@ -195,6 +199,8 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <NotFound />,
+  },
+    ],
   },
 ]);
 
