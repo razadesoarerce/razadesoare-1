@@ -48,22 +48,24 @@ const DespreNoi = () => (
           modules={[Pagination]}
           slidesPerView={1}
           spaceBetween={0}
+          loop
+          speed={450}
           pagination={{ clickable: true }}
           grabCursor
           className="hp-despre-hero__swiper"
         >
           {BANNER_SLIDES.map((slide) => (
             <SwiperSlide key={slide.src}>
-              <div
-                className="hp-despre-hero__slide"
-                style={{ backgroundImage: `url(${slide.src})` }}
-                role="img"
-                aria-label={slide.alt}
+              <img
+                className="hp-despre-hero__img"
+                src={slide.src}
+                alt={slide.alt}
+                draggable={false}
               />
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="hp-hero__shade" />
+        <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
         <svg
           className="hp-hero__wave"
           viewBox="0 0 1440 120"
