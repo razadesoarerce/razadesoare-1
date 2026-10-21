@@ -1,12 +1,13 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaFacebookF } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { PREVIEW_HOME, PREVIEW_DESPRE, PREVIEW_NAV } from "./previewNav";
 import "./HomePreview.css";
 
 /** Pulsing sun mark — same animated sun used previously in the hero. */
@@ -44,14 +45,6 @@ const HeroCardSun = () => (
     </svg>
   </span>
 );
-
-const NAV_ITEMS = [
-  "Acasă",
-  "Informații",
-  "Despre noi",
-  "Echipa noastră",
-  "Blog",
-];
 
 const OFFER_CARDS = [
   {
@@ -273,8 +266,6 @@ const SWIPE_CLOSE_PX = 56;
 const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v7";
 const DOCK_DRAG_THRESHOLD = 6;
 const DOCK_MARGIN = 12;
-/** Preview homepage — dock Home returns here from other routes. */
-const HOME_PATH = "/preview";
 const CONTACT_ADDRESS = "Arad, Strada Diogene nr 12";
 const CONTACT_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=" +
@@ -586,11 +577,21 @@ const HomePreview = () => {
     setMenuOpen(false);
     setContactOpen(false);
     setExpandedOffer(null);
-    if (location.pathname === HOME_PATH) {
+    if (location.pathname === PREVIEW_HOME) {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-    navigate(HOME_PATH);
+    navigate(PREVIEW_HOME);
+  };
+
+  const onNavClick = (path) => {
+    closeMenu();
+    if (!path) return;
+    if (location.pathname === path) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    navigate(path);
   };
 
   const onExpandTouchStart = (event) => {
@@ -812,17 +813,23 @@ const HomePreview = () => {
                 ×
               </button>
             </div>
-            <nav className="hp-drawer__nav" aria-label="Navigare mockup">
-              {NAV_ITEMS.map((item, index) => (
-                <button
-                  key={item}
-                  type="button"
-                  className={`hp-drawer__link ${index === 0 ? "is-active" : ""}`}
-                  onClick={closeMenu}
-                >
-                  {item}
-                </button>
-              ))}
+            <nav className="hp-drawer__nav" aria-label="Navigare">
+              {PREVIEW_NAV.map((item) => {
+                const isActive = item.path && location.pathname === item.path;
+                const disabled = !item.path;
+                return (
+                  <button
+                    key={item.label}
+                    type="button"
+                    className={`hp-drawer__link ${isActive ? "is-active" : ""} ${disabled ? "is-disabled" : ""}`}
+                    onClick={() => onNavClick(item.path)}
+                    disabled={disabled}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {item.label}
+                  </button>
+                );
+              })}
             </nav>
           </aside>
         </div>
@@ -1005,9 +1012,9 @@ const HomePreview = () => {
                 grija și bucuria se întâlnesc în fiecare zi. Credem în potențialul
                 fiecărui copil și construim împreună un drum plin de soare.
               </p>
-              <button type="button" className="hp-btn hp-btn--primary">
+              <Link to={PREVIEW_DESPRE} className="hp-btn hp-btn--primary">
                 Află mai multe <span aria-hidden>→</span>
-              </button>
+              </Link>
             </div>
             <div className="hp-about__media">
               <img

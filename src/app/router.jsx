@@ -26,6 +26,7 @@ import Events from "../pages/public/Events/Events";
 import EventDetails from "../pages/public/Events/EventDetails";
 import GalerieFoto from "../pages/public/GalerieFoto/GalerieFoto";
 import HomePreview from "../pages/public/HomePreview/HomePreview";
+import DespreNoi from "../pages/public/HomePreview/DespreNoi";
 import NotFound from "../pages/public/NotFound";
 
 // Admin Pages
@@ -46,10 +47,14 @@ const evenimenteSidebarItems = [
 ];
 
 const router = createBrowserRouter([
-  // Isolated design mockup — no Layout / TopBar / Navbar / Footer
+  // New-site preview (parallel to old public pages — nothing removed yet)
   {
     path: "/preview",
     element: <HomePreview />,
+  },
+  {
+    path: "/preview/despre-noi",
+    element: <DespreNoi />,
   },
 
   // PUBLIC ROUTES
