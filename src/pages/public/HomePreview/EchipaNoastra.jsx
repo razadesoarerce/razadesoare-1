@@ -228,34 +228,71 @@ const EchipaNoastra = () => {
             </p>
           </div>
 
-          {STAFF_CATEGORIES.map((category) => (
-            <div key={category.id} className="hp-echipa-staff">
-              <h3 className="hp-echipa-staff__title">{category.title}</h3>
-              <Swiper
-                modules={[Pagination]}
-                slidesPerView={2}
-                spaceBetween={12}
-                pagination={{ clickable: true }}
-                grabCursor
-                breakpoints={{
-                  640: { slidesPerView: 3, spaceBetween: 14 },
-                  900: { slidesPerView: 4, spaceBetween: 16 },
-                }}
-                className="hp-echipa-staff__swiper"
-              >
-                {[0, 1, 2, 3].map((slot) => (
-                  <SwiperSlide key={`${category.id}-${slot}`}>
-                    <div className="hp-echipa-staff__card">
-                      <div className="hp-echipa-staff__photo" aria-hidden />
-                      <p className="hp-echipa-staff__placeholder">
-                        Foto în curând
-                      </p>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          ))}
+          {STAFF_CATEGORIES.map((category) => {
+            const slides =
+              category.members?.length > 0
+                ? category.members
+                : [
+                    { name: null, role: null, photo: null, placeholder: true },
+                    { name: null, role: null, photo: null, placeholder: true },
+                    { name: null, role: null, photo: null, placeholder: true },
+                    { name: null, role: null, photo: null, placeholder: true },
+                  ];
+
+            return (
+              <div key={category.id} className="hp-echipa-staff">
+                <h3 className="hp-echipa-staff__title">{category.title}</h3>
+                <Swiper
+                  modules={[Pagination]}
+                  slidesPerView={2}
+                  spaceBetween={12}
+                  pagination={{ clickable: true }}
+                  grabCursor
+                  breakpoints={{
+                    640: { slidesPerView: 3, spaceBetween: 14 },
+                    900: { slidesPerView: 4, spaceBetween: 16 },
+                  }}
+                  className="hp-echipa-staff__swiper"
+                >
+                  {slides.map((member, slot) => (
+                    <SwiperSlide
+                      key={
+                        member.photo
+                          ? member.photo
+                          : `${category.id}-ph-${slot}`
+                      }
+                    >
+                      <article className="hp-echipa-staff__card">
+                        {member.photo ? (
+                          <img
+                            className="hp-echipa-staff__photo"
+                            src={member.photo}
+                            alt={member.name}
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div
+                            className="hp-echipa-staff__photo hp-echipa-staff__photo--empty"
+                            aria-hidden
+                          />
+                        )}
+                        {member.name ? (
+                          <div className="hp-echipa-staff__caption">
+                            <p className="hp-echipa-staff__name">{member.name}</p>
+                            <p className="hp-echipa-staff__role">{member.role}</p>
+                          </div>
+                        ) : (
+                          <p className="hp-echipa-staff__placeholder">
+                            Foto în curând
+                          </p>
+                        )}
+                      </article>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+            );
+          })}
         </section>
 
         {expanded ? (

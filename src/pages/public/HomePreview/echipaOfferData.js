@@ -188,9 +188,154 @@ export const ECHIPA_OFFER_CARDS = [
 ];
 
 export const STAFF_CATEGORIES = [
-  { id: "conducere", title: "Conducere" },
-  { id: "didactice", title: "Cadre didactice" },
-  { id: "terapeuti", title: "Terapeuți" },
-  { id: "nedidactice", title: "Cadre nedidactice" },
-  { id: "auxiliar", title: "Personal auxiliar" },
+  {
+    id: "conducere",
+    title: "Conducere",
+    members: [
+      {
+        name: "Lobonț Mihaela Corina",
+        role: "Director",
+        photo: "/images/preview/echipa/conducere/lobont-mihaela-corina.jpg",
+      },
+      {
+        name: "Horgoș Zsuzsika",
+        role: "Director Adjunct",
+        photo: "/images/preview/echipa/conducere/horgos-zsuzsika.jpg",
+      },
+    ],
+  },
+  {
+    id: "didactice",
+    title: "Cadre didactice",
+    members: [
+      {
+        name: "Aslău Elena",
+        role: "Psihopedagog",
+        photo: "/images/preview/echipa/didactice/aslau-elena.jpg",
+      },
+      {
+        name: "Blaga Lavinia",
+        role: "Prof. înv. primar",
+        photo: "/images/preview/echipa/didactice/blaga-lavinia.jpg",
+      },
+      {
+        name: "Blaj Andreea-Claudia",
+        role: "Prof. înv. primar",
+        photo: "/images/preview/echipa/didactice/blaj-andreea-claudia.jpg",
+      },
+      {
+        name: "Dragomir Elena",
+        role: "Psihopedagog",
+        photo: "/images/preview/echipa/didactice/dragomir-elena.jpg",
+      },
+      {
+        name: "Drăgan Nicoleta",
+        role: "Psihopedagog",
+        photo: "/images/preview/echipa/didactice/dragan-nicoleta.jpg",
+      },
+      {
+        name: "Medrea Estera Floare",
+        role: "Psihopedagog",
+        photo: "/images/preview/echipa/didactice/medrea-estera-floare.jpg",
+      },
+      {
+        name: "Mirăuțe Andreea",
+        role: "Educatoare",
+        photo: "/images/preview/echipa/didactice/miraute-andreea.jpg",
+      },
+      {
+        name: "Puf Elisabeta",
+        role: "Psihopedagog",
+        photo: "/images/preview/echipa/didactice/puf-elisabeta.jpg",
+      },
+      {
+        name: "Roț Mădălina",
+        role: "Psihopedagog",
+        photo: "/images/preview/echipa/didactice/rot-madalina.jpg",
+      },
+      {
+        name: "Savi Oana",
+        role: "Psihopedagog",
+        photo: "/images/preview/echipa/didactice/savi-oana.jpg",
+      },
+      {
+        name: "Ștrengar Raul",
+        role: "Psihopedagog",
+        photo: "/images/preview/echipa/didactice/strengar-raul.jpg",
+      },
+      {
+        name: "Suciu Adina",
+        role: "Psihopedagog",
+        photo: "/images/preview/echipa/didactice/suciu-adina.jpg",
+      },
+      {
+        name: "Zaharia Monica-Ramona",
+        role: "Psihopedagog",
+        photo: "/images/preview/echipa/didactice/zaharia-monica-ramona.jpg",
+      },
+      {
+        name: "Zaharia Ruben Cristian",
+        role: "Psihopedagog",
+        photo: "/images/preview/echipa/didactice/zaharia-ruben-cristian.jpg",
+      },
+    ],
+  },
+  {
+    id: "terapeuti",
+    title: "Terapeuți",
+    members: [
+      {
+        name: "Chivu Rodica Alis",
+        role: "Psiholog",
+        photo: "/images/preview/echipa/terapeuti/chivu-rodica-alis.jpg",
+      },
+      {
+        name: "Cosma Ligia",
+        role: "Psiholog",
+        photo: "/images/preview/echipa/terapeuti/cosma-ligia.jpg",
+      },
+      {
+        name: "Lolea Florentin Alin",
+        role: "Logoped",
+        photo: "/images/preview/echipa/terapeuti/lolea-florentin-alin.jpg",
+      },
+    ],
+  },
+  {
+    id: "nedidactice",
+    title: "Cadre nedidactice",
+    members: [
+      {
+        name: "Bibarț Viorica",
+        role: "Bucătar",
+        photo: "/images/preview/echipa/nedidactice/bibart-viorica.jpg",
+      },
+      {
+        name: "Hencz Cristian",
+        role: "Administrator",
+        photo: "/images/preview/echipa/nedidactice/hencz-cristian.jpg",
+      },
+      {
+        name: "Tamaș Cristina",
+        role: "Îngrijitor",
+        photo: "/images/preview/echipa/nedidactice/tamas-cristina.jpg",
+      },
+    ],
+  },
+  {
+    id: "auxiliar",
+    title: "Personal auxiliar",
+    members: [
+      {
+        name: "Dagău Ovidiu Cristian",
+        role: "Secretar",
+        photo: "/images/preview/echipa/auxiliar/dagau-ovidiu-cristian.jpg",
+      },
+      {
+        name: "Gorgan Adina Bianca",
+        role: "Contabil",
+        photo: null,
+      },
+    ],
+  },
 ];

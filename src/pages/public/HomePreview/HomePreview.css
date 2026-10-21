@@ -474,6 +474,7 @@
   color: var(--hp-blue);
   margin: 0 0 0.45rem;
   line-height: 1.2;
+  text-align: center;
 }
 
 .hp-echipa-specialisti__banner p {
@@ -509,14 +510,20 @@
   overflow: hidden;
   background: #f3f5f8;
   border: 1px solid rgba(26, 74, 141, 0.1);
-  min-height: 9.5rem;
   display: flex;
   flex-direction: column;
 }
 
 .hp-echipa-staff__photo {
-  flex: 1 1 auto;
-  min-height: 7rem;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  background: #e8eef6;
+}
+
+.hp-echipa-staff__photo--empty {
   background:
     linear-gradient(145deg, rgba(26, 74, 141, 0.08), rgba(245, 197, 66, 0.12)),
     repeating-linear-gradient(
@@ -526,6 +533,29 @@
       rgba(26, 74, 141, 0.04) 8px,
       rgba(26, 74, 141, 0.04) 16px
     );
+}
+
+.hp-echipa-staff__caption {
+  padding: 0.5rem 0.55rem 0.6rem;
+  background: #fff;
+  text-align: center;
+}
+
+.hp-echipa-staff__name {
+  margin: 0;
+  font-family: var(--hp-display);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--hp-blue);
+  line-height: 1.25;
+}
+
+.hp-echipa-staff__role {
+  margin: 0.15rem 0 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #e08a2a;
+  line-height: 1.25;
 }
 
 .hp-echipa-staff__placeholder {
@@ -585,12 +615,12 @@
     padding: 1.35rem 1.4rem 1.4rem;
   }
 
-  .hp-echipa-staff__card {
-    min-height: 11rem;
+  .hp-echipa-staff__name {
+    font-size: 0.85rem;
   }
 
-  .hp-echipa-staff__photo {
-    min-height: 8.5rem;
+  .hp-echipa-staff__role {
+    font-size: 0.72rem;
   }
 }
 
