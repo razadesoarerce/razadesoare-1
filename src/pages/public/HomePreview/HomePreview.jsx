@@ -1079,9 +1079,7 @@ const HomePreview = () => {
                 3,5%
               </span>
               <span className="hp-support-btn__copy">
-                <span className="hp-support-btn__title">
-                  Redirecționează din impozit
-                </span>
+                <span className="hp-support-btn__title">Redirecționează</span>
                 <span className="hp-support-btn__hint">
                   Completează formularul
                 </span>
