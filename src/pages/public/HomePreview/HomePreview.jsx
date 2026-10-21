@@ -135,20 +135,28 @@ const SUPPORT_FORM_URL =
 const SUPPORT_CARDS = [
   {
     title: "Donează",
+    hint: "IBAN / Link de donație",
+    badge: "♥",
     text: "Susține activitatea școlii.",
-    headline: "Donează",
+    headline: "Donează: Fii parte din schimbare!",
     detailParagraphs: [
-      "Conținutul acestui card va fi adăugat în curând.",
+      "Cu ajutorul tău, putem crea mai multe oportunități de învățare și dezvoltare pentru copiii de la „Rază de Soare”. Susține activitatea școlii printr-o donație. Fiecare gest contează!",
+      "IBAN: RO07BTRLRONCRT0580138101",
+      "Important! Detalii de plată: Donație",
     ],
     tone: "pink",
     icon: "people",
   },
   {
     title: "Fii voluntar",
+    hint: "Implică-te alături de noi",
+    badge: "✦",
     text: "Implică-te alături de noi.",
-    headline: "Fii voluntar",
+    headline: "Descoperă oportunitățile de voluntariat!",
     detailParagraphs: [
-      "Conținutul acestui card va fi adăugat în curând.",
+      "Școala Specială „Rază de Soare” oferă tuturor persoanelor interesate posibilitatea de a desfășura activități de voluntariat.",
+      "Voluntariatul în cadrul școlii reprezintă o oportunitate de a acumula experiență practică, de a dobândi cunoștințe și de a înțelege mai bine particularitățile educației copiilor cu cerințe educaționale speciale.",
+      "Dacă ești interesat să desfășori activități de voluntariat în cadrul școlii noastre, ne poți contacta telefonic sau prin e-mail pentru mai multe informații.",
     ],
     tone: "green",
     icon: "people",
@@ -1067,7 +1075,17 @@ const HomePreview = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              3,5%
+              <span className="hp-support-btn__badge" aria-hidden>
+                3,5%
+              </span>
+              <span className="hp-support-btn__copy">
+                <span className="hp-support-btn__title">
+                  Redirecționează din impozit
+                </span>
+                <span className="hp-support-btn__hint">
+                  Completează formularul
+                </span>
+              </span>
             </a>
             {SUPPORT_CARDS.map((card) => (
               <button
@@ -1080,7 +1098,13 @@ const HomePreview = () => {
                 aria-expanded={expandedOffer?.title === card.title}
                 aria-controls="hp-offer-expanded"
               >
-                {card.title}
+                <span className="hp-support-btn__badge" aria-hidden>
+                  {card.badge}
+                </span>
+                <span className="hp-support-btn__copy">
+                  <span className="hp-support-btn__title">{card.title}</span>
+                  <span className="hp-support-btn__hint">{card.hint}</span>
+                </span>
               </button>
             ))}
           </div>
