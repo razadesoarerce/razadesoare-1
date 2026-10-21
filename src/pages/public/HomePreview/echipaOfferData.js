@@ -339,7 +339,7 @@ export const STAFF_CATEGORIES = [
       {
         name: "Gorgan Adina Bianca",
         role: "Contabil",
-        photo: null,
+        photo: "/images/preview/echipa/auxiliar/gorgan-adina-bianca.jpg",
       },
     ],
   },
