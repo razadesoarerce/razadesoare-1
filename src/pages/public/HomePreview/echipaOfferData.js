@@ -299,6 +299,11 @@ export const STAFF_CATEGORIES = [
         role: "Logoped",
         photo: "/images/preview/echipa/terapeuti/lolea-florentin-alin.jpg",
       },
+      {
+        name: "Macavei Patrick",
+        role: "Kinetoterapeut",
+        photo: "/images/preview/echipa/terapeuti/macavei-patrick.jpg",
+      },
     ],
   },
   {
