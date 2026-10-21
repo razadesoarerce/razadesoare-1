@@ -450,6 +450,126 @@
   margin-top: auto;
 }
 
+/* Echipa noastră — specialists banner + staff carousels */
+.hp-echipa-offer {
+  padding-bottom: 1.5rem;
+}
+
+.hp-echipa-specialisti {
+  padding-top: 0.5rem;
+  padding-bottom: 1.75rem;
+}
+
+.hp-echipa-specialisti__banner {
+  border: 2px solid var(--hp-blue);
+  border-radius: 1.1rem;
+  background: rgba(26, 74, 141, 0.06);
+  padding: 1.15rem 1.1rem 1.2rem;
+  margin-bottom: 1.75rem;
+}
+
+.hp-echipa-specialisti__banner h2 {
+  font-family: var(--hp-display);
+  font-size: clamp(1.25rem, 3.6vw, 1.75rem);
+  color: var(--hp-blue);
+  margin: 0 0 0.45rem;
+  line-height: 1.2;
+}
+
+.hp-echipa-specialisti__banner p {
+  margin: 0;
+  color: var(--hp-muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.hp-echipa-staff {
+  margin-bottom: 1.5rem;
+}
+
+.hp-echipa-staff:last-child {
+  margin-bottom: 0;
+}
+
+.hp-echipa-staff__title {
+  font-family: var(--hp-display);
+  font-size: clamp(1.05rem, 3vw, 1.3rem);
+  color: var(--hp-blue);
+  margin: 0 0 0.75rem;
+  line-height: 1.2;
+}
+
+.hp-echipa-staff__swiper {
+  padding-bottom: 1.6rem;
+}
+
+.hp-echipa-staff__card {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #f3f5f8;
+  border: 1px solid rgba(26, 74, 141, 0.1);
+  min-height: 9.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.hp-echipa-staff__photo {
+  flex: 1 1 auto;
+  min-height: 7rem;
+  background:
+    linear-gradient(145deg, rgba(26, 74, 141, 0.08), rgba(245, 197, 66, 0.12)),
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 8px,
+      rgba(26, 74, 141, 0.04) 8px,
+      rgba(26, 74, 141, 0.04) 16px
+    );
+}
+
+.hp-echipa-staff__placeholder {
+  margin: 0;
+  padding: 0.45rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--hp-muted);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.hp-echipa-expand-block {
+  margin-bottom: 0.85rem;
+}
+
+.hp-echipa-expand-block:last-child {
+  margin-bottom: 0;
+}
+
+.hp-echipa-expand-block__heading {
+  margin: 0 0 0.45rem;
+  font-family: var(--hp-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--hp-blue);
+  line-height: 1.25;
+}
+
+.hp-echipa-expand-item {
+  margin-bottom: 0.65rem;
+}
+
+.hp-echipa-expand-item:last-child {
+  margin-bottom: 0;
+}
+
+.hp-echipa-expand-item__title {
+  margin: 0 0 0.2rem;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--hp-blue-deep);
+}
+
 @media (min-width: 640px) {
   .hp-despre-intro__media {
     width: calc(50% - 0.75rem);
@@ -459,6 +579,18 @@
 
   .hp-despre-rule {
     margin: 1.35rem auto;
+  }
+
+  .hp-echipa-specialisti__banner {
+    padding: 1.35rem 1.4rem 1.4rem;
+  }
+
+  .hp-echipa-staff__card {
+    min-height: 11rem;
+  }
+
+  .hp-echipa-staff__photo {
+    min-height: 8.5rem;
   }
 }
 

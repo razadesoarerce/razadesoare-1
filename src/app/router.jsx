@@ -27,6 +27,7 @@ import EventDetails from "../pages/public/Events/EventDetails";
 import GalerieFoto from "../pages/public/GalerieFoto/GalerieFoto";
 import HomePreview from "../pages/public/HomePreview/HomePreview";
 import DespreNoi from "../pages/public/HomePreview/DespreNoi";
+import EchipaNoastra from "../pages/public/HomePreview/EchipaNoastra";
 import NotFound from "../pages/public/NotFound";
 
 // Admin Pages
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
   {
     path: "/preview/despre-noi",
     element: <DespreNoi />,
+  },
+  {
+    path: "/preview/echipa-noastra",
+    element: <EchipaNoastra />,
   },
 
   // PUBLIC ROUTES
