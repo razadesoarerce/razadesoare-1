@@ -1168,21 +1168,14 @@
   margin-top: 1.75rem;
 }
 
-/* Support — full-bleed white → credits blue fade, 3 actions on one row */
+/* Support — blue panel (title + actions), white gap before credits */
 .hp-section.hp-support {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 1.35rem 0.75rem 2.25rem;
+  width: min(1120px, calc(100% - 1.5rem));
+  margin: 0 auto 1.75rem;
+  padding: 1.25rem 0.85rem 1.15rem;
   box-sizing: border-box;
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #ffffff 28%,
-    #eef4fb 55%,
-    #b7cce4 82%,
-    var(--hp-blue) 100%
-  );
+  background: var(--hp-blue);
+  border-radius: 1.15rem;
 }
 
 .hp-support .hp-section__head {
@@ -1190,14 +1183,13 @@
   align-items: center;
   gap: 0.35rem;
   margin-bottom: 0.15rem;
-  width: min(1120px, 100%);
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
 }
 
 .hp-support .hp-section__head .hp-rays {
   flex: 0 0 auto;
   width: 1.75rem;
+  color: var(--hp-yellow);
 }
 
 .hp-support .hp-section__head h2 {
@@ -1205,14 +1197,14 @@
   min-width: 0;
   max-width: none;
   font-size: clamp(1.05rem, 3.4vw, 1.55rem);
+  color: #fff;
 }
 
 .hp-support .hp-section__lead {
-  width: min(1120px, 100%);
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
   margin-bottom: 0.85rem;
   font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .hp-support__frame {
@@ -1220,15 +1212,16 @@
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: stretch;
-  width: min(1120px, 100%);
-  margin: 0 auto;
+  width: 100%;
   gap: 0;
   border: 0;
   border-radius: 0;
   background: transparent;
 }
 
-.hp-support-btn {
+/* Beat `.hp button { border: none }` so separators show on Donate / Volunteer too */
+.hp a.hp-support-btn,
+.hp button.hp-support-btn {
   flex: 1 1 0;
   min-width: 0;
   display: flex;
@@ -1239,25 +1232,30 @@
   padding: 0.7rem 0.45rem;
   text-align: center;
   text-decoration: none;
-  color: var(--hp-blue);
+  color: #fff;
   background: transparent;
   border: 0;
-  border-right: 1.5px solid rgba(26, 74, 141, 0.45);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 0;
   transition: background 0.2s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
-.hp-support-btn:last-child {
+.hp a.hp-support-btn:last-child,
+.hp button.hp-support-btn:last-child {
   border-right: none;
 }
 
-.hp-support-btn:hover,
-.hp-support-btn:focus-visible,
-.hp-support-btn.is-active {
-  background: rgba(26, 74, 141, 0.05);
+.hp a.hp-support-btn:hover,
+.hp a.hp-support-btn:focus-visible,
+.hp button.hp-support-btn:hover,
+.hp button.hp-support-btn:focus-visible,
+.hp button.hp-support-btn.is-active {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.hp-support-btn:focus-visible {
+.hp a.hp-support-btn:focus-visible,
+.hp button.hp-support-btn:focus-visible {
   outline: 2px solid var(--hp-yellow);
   outline-offset: -2px;
   z-index: 1;
@@ -1280,18 +1278,19 @@
 
 .hp-support-btn--tax .hp-support-btn__badge {
   background: #e6b422;
-  box-shadow: 0 3px 8px rgba(230, 180, 34, 0.3);
+  box-shadow: 0 3px 8px rgba(230, 180, 34, 0.35);
+  color: #1a1a1a;
 }
 
 .hp-support-btn--pink .hp-support-btn__badge {
   background: var(--hp-pink-deep);
-  box-shadow: 0 3px 8px rgba(232, 122, 163, 0.3);
+  box-shadow: 0 3px 8px rgba(232, 122, 163, 0.35);
   font-size: 0.9rem;
 }
 
 .hp-support-btn--green .hp-support-btn__badge {
   background: var(--hp-mint-deep);
-  box-shadow: 0 3px 8px rgba(108, 184, 107, 0.3);
+  box-shadow: 0 3px 8px rgba(108, 184, 107, 0.35);
   font-size: 0.85rem;
 }
 
@@ -1308,32 +1307,32 @@
   font-family: var(--hp-display);
   font-size: clamp(0.62rem, 2.4vw, 0.78rem);
   font-weight: 800;
-  color: var(--hp-blue);
+  color: #fff;
   line-height: 1.2;
 }
 
 .hp-support-btn__hint {
   font-size: clamp(0.52rem, 2vw, 0.65rem);
   font-weight: 650;
-  color: var(--hp-muted);
+  color: rgba(255, 255, 255, 0.72);
   line-height: 1.25;
 }
 
-.hp-support-btn--tax:hover,
-.hp-support-btn--tax:focus-visible {
-  background: rgba(245, 197, 66, 0.12);
+.hp a.hp-support-btn--tax:hover,
+.hp a.hp-support-btn--tax:focus-visible {
+  background: rgba(245, 197, 66, 0.16);
 }
 
-.hp-support-btn--pink:hover,
-.hp-support-btn--pink:focus-visible,
-.hp-support-btn--pink.is-active {
-  background: rgba(232, 122, 163, 0.08);
+.hp button.hp-support-btn--pink:hover,
+.hp button.hp-support-btn--pink:focus-visible,
+.hp button.hp-support-btn--pink.is-active {
+  background: rgba(232, 122, 163, 0.18);
 }
 
-.hp-support-btn--green:hover,
-.hp-support-btn--green:focus-visible,
-.hp-support-btn--green.is-active {
-  background: rgba(108, 184, 107, 0.1);
+.hp button.hp-support-btn--green:hover,
+.hp button.hp-support-btn--green:focus-visible,
+.hp button.hp-support-btn--green.is-active {
+  background: rgba(108, 184, 107, 0.18);
 }
 
 /* Site credits — compact single-line info bar */
@@ -1429,10 +1428,12 @@
   }
 
   .hp-section.hp-support {
-    padding: 1.5rem 1.25rem 2.75rem;
+    margin-bottom: 2rem;
+    padding: 1.4rem 1.15rem 1.25rem;
   }
 
-  .hp-support-btn {
+  .hp a.hp-support-btn,
+  .hp button.hp-support-btn {
     flex-direction: row;
     justify-content: flex-start;
     text-align: left;
@@ -1651,7 +1652,8 @@
     padding-bottom: 2rem;
   }
 
-  .hp-support-btn {
+  .hp a.hp-support-btn,
+  .hp button.hp-support-btn {
     gap: 0.65rem;
     padding: 0.95rem 1.1rem;
   }
@@ -1675,7 +1677,8 @@
   }
 
   .hp-section.hp-support {
-    padding: 1.75rem 1.5rem 3.25rem;
+    margin-bottom: 2.25rem;
+    padding: 1.6rem 1.35rem 1.4rem;
   }
 }
 
