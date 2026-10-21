@@ -135,7 +135,6 @@ const SUPPORT_FORM_URL =
 const SUPPORT_CARDS = [
   {
     title: "Donează",
-    hint: "IBAN / Link de donație",
     badge: "♥",
     text: "Susține activitatea școlii.",
     headline: "Donează: Fii parte din schimbare!",
@@ -149,7 +148,6 @@ const SUPPORT_CARDS = [
   },
   {
     title: "Fii voluntar",
-    hint: "Implică-te alături de noi",
     badge: "✦",
     text: "Implică-te alături de noi.",
     headline: "Descoperă oportunitățile de voluntariat!",
@@ -1062,12 +1060,9 @@ const HomePreview = () => {
         <section className="hp-section hp-support" aria-labelledby="hp-support-title">
           <div className="hp-section__head">
             <SunRays className="hp-rays" />
-            <h2 id="hp-support-title">
-              Fii o rază de speranță pentru copiii noștri
-            </h2>
+            <h2 id="hp-support-title">Fii o rază de speranță</h2>
             <SunRays className="hp-rays" />
           </div>
-          <p className="hp-section__lead">Fiecare gest contează</p>
           <div className="hp-support__frame">
             <a
               className="hp-support-btn hp-support-btn--tax"
@@ -1078,12 +1073,7 @@ const HomePreview = () => {
               <span className="hp-support-btn__badge" aria-hidden>
                 3,5%
               </span>
-              <span className="hp-support-btn__copy">
-                <span className="hp-support-btn__title">Redirecționează</span>
-                <span className="hp-support-btn__hint">
-                  Completează formularul
-                </span>
-              </span>
+              <span className="hp-support-btn__title">Redirecționează</span>
             </a>
             {SUPPORT_CARDS.map((card) => (
               <button
@@ -1099,10 +1089,7 @@ const HomePreview = () => {
                 <span className="hp-support-btn__badge" aria-hidden>
                   {card.badge}
                 </span>
-                <span className="hp-support-btn__copy">
-                  <span className="hp-support-btn__title">{card.title}</span>
-                  <span className="hp-support-btn__hint">{card.hint}</span>
-                </span>
+                <span className="hp-support-btn__title">{card.title}</span>
               </button>
             ))}
           </div>
