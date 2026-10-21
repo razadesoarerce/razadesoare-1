@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaFacebookF } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -843,9 +843,6 @@ const HomePreview = () => {
               <HeroCardSun />
               <h1 id="hp-hero-title">Raza de Soare</h1>
               <div className="hp-hero-card__actions">
-                <Link to="/despre/misiune-viziune" className="hp-btn hp-btn--card-primary">
-                  Descoperă Raza de Soare <span aria-hidden>→</span>
-                </Link>
                 <div className={`hp-contact-dd ${contactOpen ? "is-open" : ""}`}>
                   <button
                     type="button"
