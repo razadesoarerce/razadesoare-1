@@ -128,6 +128,33 @@ const OFFER_CARDS = [
   },
 ];
 
+const SUPPORT_FORM_URL =
+  "https://formular230.ro/scoala-speciala-raza-de-soare";
+
+/** Expand panels for support CTAs — same shape/rules as OFFER_CARDS (content TBD). */
+const SUPPORT_CARDS = [
+  {
+    title: "Donează",
+    text: "Susține activitatea școlii.",
+    headline: "Donează",
+    detailParagraphs: [
+      "Conținutul acestui card va fi adăugat în curând.",
+    ],
+    tone: "pink",
+    icon: "people",
+  },
+  {
+    title: "Fii voluntar",
+    text: "Implică-te alături de noi.",
+    headline: "Fii voluntar",
+    detailParagraphs: [
+      "Conținutul acestui card va fi adăugat în curând.",
+    ],
+    tone: "green",
+    icon: "people",
+  },
+];
+
 const GALLERY = [
   {
     src: "/images/preview/life-carusel-1.jpg",
@@ -964,23 +991,28 @@ const HomePreview = () => {
         </section>
 
         <section className="hp-section hp-about" aria-labelledby="hp-about-title">
-          <div className="hp-about__text">
-            <span className="hp-eyebrow">Despre noi</span>
-            <h2 id="hp-about-title">Cine suntem</h2>
-            <p>
-              Suntem o comunitate dedicată copiilor, unde educația specială,
-              grija și bucuria se întâlnesc în fiecare zi. Credem în potențialul
-              fiecărui copil și construim împreună un drum plin de soare.
-            </p>
-            <button type="button" className="hp-btn hp-btn--primary">
-              Află mai multe <span aria-hidden>→</span>
-            </button>
+          <div className="hp-section__head">
+            <SunRays className="hp-rays" />
+            <h2 id="hp-about-title">Despre noi</h2>
+            <SunRays className="hp-rays" />
           </div>
-          <div className="hp-about__media">
-            <img
-              src="/images/preview/about-noi.jpg"
-              alt="Copii și cadre didactice în curtea Școlii Raza de Soare"
-            />
+          <div className="hp-about__body">
+            <div className="hp-about__text">
+              <p>
+                Suntem o comunitate dedicată copiilor, unde educația specială,
+                grija și bucuria se întâlnesc în fiecare zi. Credem în potențialul
+                fiecărui copil și construim împreună un drum plin de soare.
+              </p>
+              <button type="button" className="hp-btn hp-btn--primary">
+                Află mai multe <span aria-hidden>→</span>
+              </button>
+            </div>
+            <div className="hp-about__media">
+              <img
+                src="/images/preview/about-noi.jpg"
+                alt="Copii și cadre didactice în curtea Școlii Raza de Soare"
+              />
+            </div>
           </div>
         </section>
 
@@ -1028,32 +1060,30 @@ const HomePreview = () => {
             <SunRays className="hp-rays" />
           </div>
           <p className="hp-section__lead">Fiecare gest contează</p>
-          <article className="hp-support-card">
-            <button type="button" className="hp-support-action hp-support-action--tax">
-              <span className="hp-support-action__badge" aria-hidden>
-                3,5%
-              </span>
-              <span className="hp-support-action__copy">
-                <span className="hp-support-action__title">
-                  Redirecționează din impozit
-                </span>
-                <span className="hp-support-action__hint">
-                  Completează formularul
-                </span>
-              </span>
-            </button>
-            <button type="button" className="hp-support-action hp-support-action--donate">
-              <span className="hp-support-action__badge" aria-hidden>
-                ♥
-              </span>
-              <span className="hp-support-action__copy">
-                <span className="hp-support-action__title">Donează</span>
-                <span className="hp-support-action__hint">
-                  IBAN / Link de donație
-                </span>
-              </span>
-            </button>
-          </article>
+          <div className="hp-support__frame">
+            <a
+              className="hp-support-btn hp-support-btn--tax"
+              href={SUPPORT_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              3,5%
+            </a>
+            {SUPPORT_CARDS.map((card) => (
+              <button
+                key={card.title}
+                type="button"
+                className={`hp-support-btn hp-support-btn--${card.tone} ${
+                  expandedOffer?.title === card.title ? "is-active" : ""
+                }`}
+                onClick={() => setExpandedOffer(card)}
+                aria-expanded={expandedOffer?.title === card.title}
+                aria-controls="hp-offer-expanded"
+              >
+                {card.title}
+              </button>
+            ))}
+          </div>
         </section>
       </main>
 

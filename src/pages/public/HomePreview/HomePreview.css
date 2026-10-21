@@ -1063,26 +1063,11 @@
 }
 
 /* About */
-.hp-about {
+.hp-about__body {
   display: grid;
   gap: 1.75rem;
   align-items: center;
-}
-
-.hp-eyebrow {
-  display: inline-block;
-  color: #e08a2a;
-  font-weight: 800;
-  font-size: 0.9rem;
-  margin-bottom: 0.35rem;
-}
-
-.hp-about__text h2 {
-  font-family: var(--hp-display);
-  color: var(--hp-blue);
-  font-size: clamp(1.85rem, 5vw, 2.5rem);
-  margin: 0 0 0.85rem;
-  line-height: 1.15;
+  margin-top: 1rem;
 }
 
 .hp-about__text p {
@@ -1183,7 +1168,7 @@
   margin-top: 1.75rem;
 }
 
-/* Support — compact single-row card */
+/* Support — blue outline frame, 3 actions on one row */
 .hp-support {
   padding-top: 1.15rem;
   padding-bottom: 1.25rem;
@@ -1213,96 +1198,76 @@
   font-size: 0.78rem;
 }
 
-.hp-support-card {
+.hp-support__frame {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
   align-items: stretch;
   width: 100%;
-  border-radius: 1rem;
+  gap: 0;
+  border: 2px solid var(--hp-blue);
+  border-radius: 0.95rem;
+  background: transparent;
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(26, 74, 141, 0.08);
-  background: #fff;
 }
 
-.hp-support-action {
+.hp-support-btn {
   flex: 1 1 0;
   min-width: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.7rem 0.65rem;
-  text-align: left;
-  transition: background 0.2s ease, transform 0.2s ease;
+  display: grid;
+  place-items: center;
+  padding: 0.65rem 0.35rem;
+  font-family: var(--hp-display);
+  font-size: clamp(0.72rem, 2.8vw, 0.92rem);
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
+  text-decoration: none;
+  color: var(--hp-blue);
+  background: transparent;
+  border: 0;
+  border-right: 1px solid rgba(26, 74, 141, 0.22);
+  transition: background 0.2s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.hp-support-action--tax {
-  background: linear-gradient(160deg, #fff6d6 0%, #ffe9a8 100%);
+.hp-support-btn:last-child {
+  border-right: none;
 }
 
-.hp-support-action--donate {
-  background: linear-gradient(160deg, #fde8f0 0%, #f7c6d8 100%);
-  border-left: 1px solid rgba(26, 74, 141, 0.08);
+.hp-support-btn:hover,
+.hp-support-btn:focus-visible,
+.hp-support-btn.is-active {
+  background: rgba(26, 74, 141, 0.06);
+  color: var(--hp-blue-deep);
 }
 
-.hp-support-action:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.02);
-}
-
-.hp-support-action:focus-visible {
-  outline: 2px solid var(--hp-blue);
+.hp-support-btn:focus-visible {
+  outline: 2px solid var(--hp-yellow);
   outline-offset: -2px;
   z-index: 1;
 }
 
-.hp-support-action__badge {
-  flex-shrink: 0;
-  display: inline-grid;
-  place-items: center;
-  min-width: 2.15rem;
-  height: 2.15rem;
-  padding: 0 0.3rem;
-  border-radius: 0.65rem;
-  font-family: var(--hp-display);
-  font-weight: 800;
-  font-size: 0.78rem;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  color: #fff;
+.hp-support-btn--tax {
+  color: #c4920f;
 }
 
-.hp-support-action--tax .hp-support-action__badge {
-  background: #e6b422;
-  box-shadow: 0 4px 10px rgba(230, 180, 34, 0.3);
+.hp-support-btn--tax:hover,
+.hp-support-btn--tax:focus-visible {
+  background: rgba(245, 197, 66, 0.14);
+  color: #a87a0a;
 }
 
-.hp-support-action--donate .hp-support-action__badge {
-  background: var(--hp-pink-deep);
-  box-shadow: 0 4px 10px rgba(232, 122, 163, 0.3);
-  font-size: 0.95rem;
+.hp-support-btn--pink:hover,
+.hp-support-btn--pink:focus-visible,
+.hp-support-btn--pink.is-active {
+  background: rgba(232, 122, 163, 0.1);
 }
 
-.hp-support-action__copy {
-  display: flex;
-  flex-direction: column;
-  gap: 0.05rem;
-  min-width: 0;
-}
-
-.hp-support-action__title {
-  font-family: var(--hp-display);
-  font-size: 0.78rem;
-  font-weight: 800;
-  color: var(--hp-blue);
-  line-height: 1.2;
-}
-
-.hp-support-action__hint {
-  font-size: 0.65rem;
-  font-weight: 650;
-  color: var(--hp-muted);
-  line-height: 1.25;
+.hp-support-btn--green:hover,
+.hp-support-btn--green:focus-visible,
+.hp-support-btn--green.is-active {
+  background: rgba(108, 184, 107, 0.12);
 }
 
 /* Site credits — compact single-line info bar */
@@ -1402,23 +1367,13 @@
     padding-bottom: 1.5rem;
   }
 
-  .hp-support-action {
-    gap: 0.6rem;
-    padding: 0.85rem 1rem;
+  .hp-support__frame {
+    border-radius: 1.05rem;
   }
 
-  .hp-support-action__badge {
-    min-width: 2.4rem;
-    height: 2.4rem;
-    font-size: 0.88rem;
-  }
-
-  .hp-support-action__title {
-    font-size: 0.92rem;
-  }
-
-  .hp-support-action__hint {
-    font-size: 0.74rem;
+  .hp-support-btn {
+    padding: 0.8rem 0.5rem;
+    font-size: 0.95rem;
   }
 
   .hp-credits {
@@ -1601,10 +1556,13 @@
   }
 
   .hp-about {
-    grid-template-columns: 1.05fr 1fr;
-    gap: 3rem;
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
+  }
+
+  .hp-about__body {
+    grid-template-columns: 1.05fr 1fr;
+    gap: 3rem;
   }
 
   .hp-life-swiper {
@@ -1616,27 +1574,13 @@
     padding-bottom: 1.75rem;
   }
 
-  .hp-support-card {
-    border-radius: 1.2rem;
+  .hp-support__frame {
+    border-radius: 1.15rem;
   }
 
-  .hp-support-action {
-    padding: 0.95rem 1.25rem;
-    gap: 0.7rem;
-  }
-
-  .hp-support-action__badge {
-    min-width: 2.55rem;
-    height: 2.55rem;
-    font-size: 0.92rem;
-  }
-
-  .hp-support-action__title {
-    font-size: 1rem;
-  }
-
-  .hp-support-action__hint {
-    font-size: 0.8rem;
+  .hp-support-btn {
+    padding: 0.9rem 0.75rem;
+    font-size: 1.05rem;
   }
 
   .hp-section {
@@ -1651,7 +1595,7 @@
   .hp-hero-card__sun-rays,
   .hp-contact-dd__panel,
   .hp-offer-card,
-  .hp-support-action,
+  .hp-support-btn,
   .hp-life__item img,
   .hp-btn {
     animation: none;
