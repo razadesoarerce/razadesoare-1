@@ -1181,14 +1181,14 @@
 .hp-support .hp-section__head {
   flex-wrap: nowrap;
   align-items: center;
-  gap: 0.3rem;
-  margin: 0 0 0.35rem;
+  gap: 0.5rem;
+  margin: 0 0 0.45rem;
   width: 100%;
 }
 
 .hp-support .hp-section__head .hp-rays {
   flex: 0 0 auto;
-  width: 1.4rem;
+  width: 2.5rem;
   color: var(--hp-yellow);
 }
 
@@ -1196,8 +1196,11 @@
   flex: 1 1 auto;
   min-width: 0;
   max-width: none;
-  font-size: clamp(0.95rem, 3.2vw, 1.35rem);
+  font-family: var(--hp-display);
+  font-size: clamp(1.35rem, 4vw, 2.1rem);
   color: #fff;
+  line-height: 1.15;
+  text-align: center;
 }
 
 .hp-support__frame {
@@ -1218,11 +1221,11 @@
   flex: 1 1 0;
   min-width: 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
-  padding: 0.45rem 0.35rem;
+  gap: 0.3rem;
+  padding: 0.4rem 0.35rem 0.5rem;
   text-align: center;
   text-decoration: none;
   color: #fff;
@@ -1408,13 +1411,13 @@
 
   .hp-section.hp-support {
     margin-bottom: 1.75rem;
-    padding: 0.8rem 0.9rem 0.65rem;
+    padding: 0.85rem 0.9rem 0.7rem;
   }
 
   .hp a.hp-support-btn,
   .hp button.hp-support-btn {
-    gap: 0.45rem;
-    padding: 0.5rem 0.65rem;
+    gap: 0.35rem;
+    padding: 0.45rem 0.65rem 0.55rem;
   }
 
   .hp-support-btn__badge {
@@ -1622,8 +1625,8 @@
 
   .hp a.hp-support-btn,
   .hp button.hp-support-btn {
-    gap: 0.5rem;
-    padding: 0.55rem 0.85rem;
+    gap: 0.4rem;
+    padding: 0.5rem 0.85rem 0.6rem;
   }
 
   .hp-support-btn__badge {
@@ -1642,7 +1645,7 @@
 
   .hp-section.hp-support {
     margin-bottom: 2rem;
-    padding: 0.9rem 1.1rem 0.7rem;
+    padding: 1rem 1.1rem 0.75rem;
   }
 }
 
