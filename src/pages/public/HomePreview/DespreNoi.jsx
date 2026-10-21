@@ -96,7 +96,7 @@ const DespreNoi = () => (
           <div className="hp-despre-intro__media">
             <img
               src="/images/preview/despre/story-square.jpg"
-              alt="Activitate educațională la Școala Raza de Soare"
+              alt="Clădirea Școlii Speciale Raza de Soare"
             />
           </div>
           <div className="hp-despre-intro__copy">
