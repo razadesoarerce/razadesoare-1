@@ -463,7 +463,7 @@
 .hp-echipa-specialisti__banner {
   border: 2px solid var(--hp-blue);
   border-radius: 1.1rem;
-  background: rgba(26, 74, 141, 0.06);
+  background: rgba(26, 74, 141, 0.12);
   padding: 1.15rem 1.1rem 1.2rem;
   margin-bottom: 1.75rem;
 }
