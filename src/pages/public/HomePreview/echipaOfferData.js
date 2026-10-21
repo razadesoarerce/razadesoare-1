@@ -269,7 +269,7 @@ export const STAFF_CATEGORIES = [
         photo: "/images/preview/echipa/didactice/suciu-adina.jpg",
       },
       {
-        name: "Zaharia Monica-Ramona",
+        name: "Zaharia Monica Ramona",
         role: "Psihopedagog",
         photo: "/images/preview/echipa/didactice/zaharia-monica-ramona.jpg",
       },
