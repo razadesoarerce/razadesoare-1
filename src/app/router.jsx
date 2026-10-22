@@ -29,6 +29,7 @@ import GalerieFoto from "../pages/public/GalerieFoto/GalerieFoto";
 import HomePreview from "../pages/public/HomePreview/HomePreview";
 import DespreNoi from "../pages/public/HomePreview/DespreNoi";
 import EchipaNoastra from "../pages/public/HomePreview/EchipaNoastra";
+import Informatii from "../pages/public/HomePreview/Informatii";
 import NotFound from "../pages/public/NotFound";
 
 // Admin Pages
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
   {
     path: "/preview/echipa-noastra",
     element: <EchipaNoastra />,
+  },
+  {
+    path: "/preview/informatii",
+    element: <Informatii />,
   },
 
   // PUBLIC ROUTES
