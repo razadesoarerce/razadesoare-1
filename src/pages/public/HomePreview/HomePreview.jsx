@@ -1099,8 +1099,20 @@ const HomePreview = () => {
             </button>
           </div>
         </section>
+      </main>
 
-        <SectionWave />
+      <div className="hp-footer-band">
+        <svg
+          className="hp-footer-band__wave"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <path
+            d="M0,72 C180,108 360,108 540,78 C720,48 900,36 1080,58 C1260,80 1350,92 1440,78 L1440,122 L0,122 Z"
+            fill="currentColor"
+          />
+        </svg>
 
         <section className="hp-section hp-support" aria-labelledby="hp-support-title">
           <div className="hp-section__head">
@@ -1139,23 +1151,25 @@ const HomePreview = () => {
             ))}
           </div>
         </section>
-      </main>
 
-      <footer className="hp-credits" aria-label="Echipa de realizare a site-ului">
-        <div className="hp-credits__inner">
-          <p className="hp-credits__brand">Școala Specială „Raza de Soare”</p>
-          <ul className="hp-credits__list">
-            <li>
-              <span className="hp-credits__role">Dezvoltare web</span>
-              <span className="hp-credits__name">Lolea Florentin Alin</span>
-            </li>
-            <li>
-              <span className="hp-credits__role">Design vizual și multimedia</span>
-              <span className="hp-credits__name">Roxin Mariana</span>
-            </li>
-          </ul>
-        </div>
-      </footer>
+        <SectionWave />
+
+        <footer className="hp-credits" aria-label="Echipa de realizare a site-ului">
+          <div className="hp-credits__inner">
+            <p className="hp-credits__brand">Școala Specială „Raza de Soare”</p>
+            <ul className="hp-credits__list">
+              <li>
+                <span className="hp-credits__role">Dezvoltare web</span>
+                <span className="hp-credits__name">Lolea Florentin Alin</span>
+              </li>
+              <li>
+                <span className="hp-credits__role">Design vizual și multimedia</span>
+                <span className="hp-credits__name">Roxin Mariana</span>
+              </li>
+            </ul>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 };
