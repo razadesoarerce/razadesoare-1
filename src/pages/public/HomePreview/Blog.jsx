@@ -110,14 +110,15 @@ const Blog = () => {
                 <div className="hp-blog-category__carousel">
                   <Swiper
                     modules={[Pagination]}
-                    slidesPerView={1.2}
-                    spaceBetween={12}
+                    slidesPerView={2.15}
+                    spaceBetween={8}
                     pagination={{ clickable: true }}
                     grabCursor
                     watchOverflow
                     breakpoints={{
-                      640: { slidesPerView: 2.2, spaceBetween: 14 },
-                      900: { slidesPerView: 3, spaceBetween: 16 },
+                      480: { slidesPerView: 2.4, spaceBetween: 9 },
+                      640: { slidesPerView: 3, spaceBetween: 10 },
+                      900: { slidesPerView: 3.2, spaceBetween: 12 },
                     }}
                     className="hp-blog-swiper"
                   >
