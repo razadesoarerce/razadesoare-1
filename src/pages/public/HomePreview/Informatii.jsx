@@ -266,6 +266,12 @@ const Informatii = () => {
           </p>
 
           <div className="hp-informatii__intro">
+            <div className="hp-informatii__intro-media">
+              <img
+                src="/images/preview/informatii/mid.jpg"
+                alt="Copil ținut de mână de un adult, pe drumul către școală"
+              />
+            </div>
             <h2 className="hp-informatii__lead-title">
               Primii pași către o experiență educațională
             </h2>
@@ -276,13 +282,6 @@ const Informatii = () => {
               potrivit pentru el.
             </p>
           </div>
-
-          <figure className="hp-informatii__mid">
-            <img
-              src="/images/preview/informatii/mid.jpg"
-              alt="Copil ținut de mână de un adult, pe drumul către școală"
-            />
-          </figure>
 
           <div className="hp-info-cards">
             {INFO_CARDS.map((card, index) => {
