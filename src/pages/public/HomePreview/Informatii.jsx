@@ -9,7 +9,7 @@ const Informatii = () => (
         <img
           className="hp-echipa-hero__cover"
           src="/images/preview/informatii/cover.jpg"
-          alt="Completarea unui formular pe birou — admitere și informații școlare"
+          alt="Semnarea unui document pe birou, cu un elev alături — admitere și informații școlare"
         />
         <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
         <svg
