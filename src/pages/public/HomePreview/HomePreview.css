@@ -1521,7 +1521,7 @@
   align-items: center;
   justify-content: center;
   gap: 0;
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.45rem;
 }
 
 .hp-section__head h2 {
@@ -1531,40 +1531,49 @@
   margin: 0;
   text-align: center;
   line-height: 1.15;
+  /* Soft gold glow — same language as .hp-btn--primary shadow */
+  text-shadow:
+    0 2px 8px rgba(245, 197, 66, 0.35),
+    0 6px 18px rgba(245, 197, 66, 0.32),
+    0 10px 28px rgba(245, 197, 66, 0.22);
 }
 
-/* Gold underline under section titles — same shine language as waves */
-.hp-section__underline {
-  display: block;
-  width: 3.4rem;
-  height: 0.4rem;
-  margin-top: 0.45rem;
-  line-height: 0;
-}
-
-.hp-section__underline svg {
-  display: block;
-  width: 100%;
-  height: 100%;
+.hp-support .hp-section__head h2 {
+  text-shadow:
+    0 2px 10px rgba(245, 197, 66, 0.4),
+    0 6px 20px rgba(245, 197, 66, 0.28),
+    0 0 24px rgba(255, 210, 74, 0.2);
 }
 
 /* Scroll fade-in for section titles */
 .hp-reveal {
   opacity: 0;
-  transform: translateY(0.7rem);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateY(1rem);
 }
 
 .hp-reveal.is-visible {
-  opacity: 1;
-  transform: none;
+  animation: hp-title-reveal 0.7s ease forwards;
+}
+
+@keyframes hp-title-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hp-reveal {
     opacity: 1;
     transform: none;
-    transition: none;
+  }
+
+  .hp-reveal.is-visible {
+    animation: none;
   }
 }
 

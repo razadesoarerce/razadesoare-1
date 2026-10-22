@@ -289,31 +289,12 @@ const SectionWave = () => {
   );
 };
 
-/** Section title with gold underline (shiny) + scroll fade-in via .hp-reveal. */
-const SectionTitle = ({ id, children }) => {
-  const gradId = `hp-title-shine-${useId().replace(/:/g, "")}`;
-  return (
-    <div className="hp-section__head hp-reveal">
-      <h2 id={id}>{children}</h2>
-      <span className="hp-section__underline" aria-hidden>
-        <svg viewBox="0 0 120 6" preserveAspectRatio="none">
-          <defs>
-            <GoldShineGradient id={gradId} />
-          </defs>
-          <line
-            x1="4"
-            y1="3"
-            x2="116"
-            y2="3"
-            stroke={`url(#${gradId})`}
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        </svg>
-      </span>
-    </div>
-  );
-};
+/** Section title — gold soft glow (like primary CTA shadow) + scroll fade-in. */
+const SectionTitle = ({ id, children }) => (
+  <div className="hp-section__head hp-reveal">
+    <h2 id={id}>{children}</h2>
+  </div>
+);
 
 const SWIPE_CLOSE_PX = 56;
 const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v7";
@@ -407,7 +388,7 @@ const HomePreview = () => {
   }, []);
 
   useEffect(() => {
-    const nodes = document.querySelectorAll(".hp .hp-reveal");
+    const nodes = Array.from(document.querySelectorAll(".hp .hp-reveal"));
     if (!nodes.length) return undefined;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -424,11 +405,23 @@ const HomePreview = () => {
           observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.4, rootMargin: "0px 0px -6% 0px" }
+      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
     );
 
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
+    // Wait a paint so opacity:0 is committed before is-visible (otherwise no fade)
+    let cancelled = false;
+    const startId = window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        if (cancelled) return;
+        nodes.forEach((node) => observer.observe(node));
+      });
+    });
+
+    return () => {
+      cancelled = true;
+      window.cancelAnimationFrame(startId);
+      observer.disconnect();
+    };
   }, []);
 
   useEffect(() => {
