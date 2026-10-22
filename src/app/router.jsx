@@ -27,7 +27,6 @@ import Events from "../pages/public/Events/Events";
 import EventDetails from "../pages/public/Events/EventDetails";
 import GalerieFoto from "../pages/public/GalerieFoto/GalerieFoto";
 import HomePreview from "../pages/public/HomePreview/HomePreview";
-import HomePreviewAtmo from "../pages/public/HomePreview/HomePreviewAtmo";
 import DespreNoi from "../pages/public/HomePreview/DespreNoi";
 import EchipaNoastra from "../pages/public/HomePreview/EchipaNoastra";
 import Informatii from "../pages/public/HomePreview/Informatii";
@@ -59,10 +58,6 @@ const router = createBrowserRouter([
   {
     path: "/preview",
     element: <HomePreview />,
-  },
-  {
-    path: "/preview/test-atmosfera",
-    element: <HomePreviewAtmo />,
   },
   {
     path: "/preview/despre-noi",
