@@ -6,26 +6,14 @@
 
 export const BLOG_CATEGORIES = [
   {
-    id: "logopedie",
-    title: "Logopedie",
+    id: "sfaturi-parinti",
+    title: "Sfaturi pentru părinți",
     articles: [
       {
-        id: "logopedie-1",
-        title: "Cum stimulăm vorbirea la copii prin joc",
-        cover: "/images/preview/life-carusel-1.jpg",
-        coverAlt: "Activitate creativă ghidată cu un copil",
-      },
-    ],
-  },
-  {
-    id: "psihologie",
-    title: "Psihologie",
-    articles: [
-      {
-        id: "psihologie-1",
-        title: "Cum îi ajutăm pe copii să își gestioneze emoțiile",
-        cover: "/images/preview/life-carusel-2.jpg",
-        coverAlt: "Joc educativ la masă",
+        id: "sfaturi-parinti-1",
+        title: "Cum putem crea o rutină zilnică liniștitoare pentru copil",
+        cover: "/images/preview/life-carusel-4.jpg",
+        coverAlt: "Joc împreună la masă",
       },
     ],
   },
@@ -42,14 +30,38 @@ export const BLOG_CATEGORIES = [
     ],
   },
   {
-    id: "sfaturi-parinti",
-    title: "Sfaturi pentru părinți",
+    id: "psihologie",
+    title: "Psihologie",
     articles: [
       {
-        id: "sfaturi-parinti-1",
-        title: "Cum putem crea o rutină zilnică liniștitoare pentru copil",
-        cover: "/images/preview/life-carusel-4.jpg",
-        coverAlt: "Joc împreună la masă",
+        id: "psihologie-1",
+        title: "Cum îi ajutăm pe copii să își gestioneze emoțiile",
+        cover: "/images/preview/life-carusel-2.jpg",
+        coverAlt: "Joc educativ la masă",
+      },
+    ],
+  },
+  {
+    id: "logopedie",
+    title: "Logopedie",
+    articles: [
+      {
+        id: "logopedie-1",
+        title: "Cum stimulăm vorbirea la copii prin joc",
+        cover: "/images/preview/life-carusel-1.jpg",
+        coverAlt: "Activitate creativă ghidată cu un copil",
+      },
+    ],
+  },
+  {
+    id: "kinetoterapie",
+    title: "Kinetoterapie",
+    articles: [
+      {
+        id: "kinetoterapie-1",
+        title: "Exerciții simple pentru dezvoltarea motricității la copii",
+        cover: "/images/preview/life-carusel-5.jpg",
+        coverAlt: "Activitate de mișcare ghidată",
       },
     ],
   },
