@@ -339,6 +339,17 @@
   opacity: 1;
 }
 
+.hp-echipa-hero__cover {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 /* Despre noi — intro + story */
 .hp-section.hp-despre-intro {
   padding-top: 1.5rem;

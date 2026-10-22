@@ -9,21 +9,6 @@ import { ECHIPA_OFFER_CARDS, STAFF_CATEGORIES } from "./echipaOfferData";
 
 const SWIPE_CLOSE_PX = 56;
 
-const BANNER_SLIDES = [
-  {
-    src: "/images/preview/despre/banner-3.jpg",
-    alt: "Cadre didactice și elevi la activitate comună",
-  },
-  {
-    src: "/images/preview/despre/banner-1.jpg",
-    alt: "Sprijin individualizat în clasă",
-  },
-  {
-    src: "/images/preview/despre/banner-2.jpg",
-    alt: "Activitate creativă ghidată",
-  },
-];
-
 const SunRays = ({ className = "" }) => (
   <svg className={className} viewBox="0 0 64 24" aria-hidden>
     <path
@@ -132,28 +117,12 @@ const EchipaNoastra = () => {
   return (
     <PreviewShell className={expanded ? "hp--offer-open" : ""}>
       <main className="hp-page">
-        <section className="hp-hero hp-despre-hero" aria-label="Galerie Echipa">
-          <Swiper
-            modules={[Pagination]}
-            slidesPerView={1}
-            spaceBetween={0}
-            loop
-            speed={450}
-            pagination={{ clickable: true }}
-            grabCursor
-            className="hp-despre-hero__swiper"
-          >
-            {BANNER_SLIDES.map((slide) => (
-              <SwiperSlide key={slide.src}>
-                <img
-                  className="hp-despre-hero__img"
-                  src={slide.src}
-                  alt={slide.alt}
-                  draggable={false}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+        <section className="hp-hero hp-despre-hero hp-echipa-hero" aria-label="Echipa noastră">
+          <img
+            className="hp-echipa-hero__cover"
+            src="/images/preview/echipa/cover.jpg"
+            alt="Echipa Raza de Soare alături de elevi în activități de terapie și învățare"
+          />
           <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
           <svg
             className="hp-hero__wave"
