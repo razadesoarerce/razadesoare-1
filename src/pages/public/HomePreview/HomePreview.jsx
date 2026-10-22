@@ -262,6 +262,23 @@ const SunRays = ({ className = "" }) => (
   </svg>
 );
 
+/** Same curve as the hero cover wave — stroked gold divider between sections. */
+const SectionWave = () => (
+  <div className="hp-section-wave" aria-hidden>
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path
+        d="M0,72 C180,108 360,108 540,78 C720,48 900,36 1080,58 C1260,80 1350,92 1440,78"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  </div>
+);
+
 const SWIPE_CLOSE_PX = 56;
 const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v7";
 const DOCK_DRAG_THRESHOLD = 6;
@@ -999,6 +1016,8 @@ const HomePreview = () => {
           ) : null}
         </section>
 
+        <SectionWave />
+
         <section className="hp-section hp-about" aria-labelledby="hp-about-title">
           <div className="hp-section__head">
             <SunRays className="hp-rays" />
@@ -1026,6 +1045,8 @@ const HomePreview = () => {
             </div>
           </div>
         </section>
+
+        <SectionWave />
 
         <section className="hp-section hp-life" aria-labelledby="hp-life-title">
           <div className="hp-section__head">
@@ -1061,6 +1082,8 @@ const HomePreview = () => {
             </button>
           </div>
         </section>
+
+        <SectionWave />
 
         <section className="hp-section hp-support" aria-labelledby="hp-support-title">
           <div className="hp-section__head">

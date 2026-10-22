@@ -1541,6 +1541,25 @@
   font-size: 0.85rem;
 }
 
+/* Gold section divider — same path as hero cover wave */
+.hp-section-wave {
+  display: block;
+  width: 100%;
+  height: 2.35rem;
+  margin: 0.15rem 0;
+  padding: 0 0.35rem;
+  box-sizing: border-box;
+  line-height: 0;
+  color: var(--hp-yellow);
+  overflow: hidden;
+}
+
+.hp-section-wave svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .hp-rays {
   width: 2.5rem;
   height: 1rem;
