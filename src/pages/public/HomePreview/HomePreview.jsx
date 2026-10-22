@@ -262,7 +262,7 @@ const SunRays = ({ className = "" }) => (
   </svg>
 );
 
-/** Same curve as the hero cover wave — stroked gold divider between sections. */
+/** Same curve as the hero cover wave — thin gold divider with end fade. */
 const SectionWave = () => (
   <div className="hp-section-wave" aria-hidden>
     <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
@@ -270,7 +270,7 @@ const SectionWave = () => (
         d="M0,72 C180,108 360,108 540,78 C720,48 900,36 1080,58 C1260,80 1350,92 1440,78"
         fill="none"
         stroke="currentColor"
-        strokeWidth="5"
+        strokeWidth="1.75"
         strokeLinecap="round"
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"

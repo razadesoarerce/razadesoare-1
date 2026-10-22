@@ -1541,17 +1541,32 @@
   font-size: 0.85rem;
 }
 
-/* Gold section divider — same path as hero cover wave */
+/* Gold section divider — thin cover wave, fades at both ends */
 .hp-section-wave {
   display: block;
   width: 100%;
-  height: 2.35rem;
-  margin: 0.15rem 0;
-  padding: 0 0.35rem;
+  height: 2.1rem;
+  margin: 0.1rem 0;
+  padding: 0;
   box-sizing: border-box;
   line-height: 0;
   color: var(--hp-yellow);
+  opacity: 0.85;
   overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 14%,
+    #000 86%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 14%,
+    #000 86%,
+    transparent 100%
+  );
 }
 
 .hp-section-wave svg {
