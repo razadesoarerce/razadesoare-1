@@ -1855,21 +1855,16 @@
   }
 }
 
-/* About — compact photo floats left; text wraps beside it */
+/* About — equal columns: photo left, all copy right (no wrap under image) */
 .hp-about__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.95rem;
+  align-items: center;
   margin-top: 1rem;
 }
 
-.hp-about__body::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 .hp-about__media {
-  float: left;
-  width: min(40%, 9.75rem);
-  margin: 0.1rem 1rem 0.65rem 0;
   border-radius: 0.95rem;
   overflow: hidden;
   box-shadow: 0 10px 24px rgba(26, 74, 141, 0.12);
@@ -1878,17 +1873,22 @@
 
 .hp-about__media img {
   width: 100%;
-  max-width: none;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center;
   display: block;
 }
 
+.hp-about__text {
+  min-width: 0;
+}
+
 .hp-about__text p {
   color: var(--hp-muted);
   font-weight: 600;
-  margin: 0 0 1.15rem;
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
 }
 
 /* Life / gallery */
@@ -2415,9 +2415,13 @@
     padding-bottom: 3.5rem;
   }
 
-  .hp-about__media {
-    width: min(34%, 11.5rem);
-    margin-right: 1.35rem;
+  .hp-about__body {
+    gap: 1.5rem;
+  }
+
+  .hp-about__text p {
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
   .hp-life-swiper {
