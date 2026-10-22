@@ -51,6 +51,26 @@ const Blog = () => {
   return (
     <PreviewShell>
       <main className="hp-page hp-blog">
+        <section className="hp-hero hp-despre-hero hp-echipa-hero" aria-label="Blog">
+          <img
+            className="hp-echipa-hero__cover"
+            src="/images/preview/blog/cover.jpg"
+            alt="Completarea unui formular pe birou — noutăți și informații de la școală"
+          />
+          <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
+          <svg
+            className="hp-hero__wave"
+            viewBox="0 0 1440 120"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            <path
+              d="M0,72 C180,108 360,108 540,78 C720,48 900,36 1080,58 C1260,80 1350,92 1440,78 L1440,122 L0,122 Z"
+              fill="#ffffff"
+            />
+          </svg>
+        </section>
+
         <header className="hp-section hp-blog__header" aria-labelledby="hp-blog-title">
           <div className="hp-blog__title-row">
             <h1 id="hp-blog-title" className="hp-blog__title">
