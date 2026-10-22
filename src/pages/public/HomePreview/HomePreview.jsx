@@ -250,18 +250,6 @@ const Icon = ({ name }) => {
   );
 };
 
-const SunRays = ({ className = "" }) => (
-  <svg className={className} viewBox="0 0 64 24" aria-hidden>
-    <path
-      d="M4 18 Q8 4 12 18 M16 18 Q20 2 24 18 M28 18 Q32 6 36 18 M40 18 Q44 2 48 18 M52 18 Q56 6 60 18"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
 const SECTION_WAVE_PATH =
   "M0,72 C180,108 360,108 540,78 C720,48 900,36 1080,58 C1260,80 1350,92 1440,78";
 
@@ -935,9 +923,7 @@ const HomePreview = () => {
 
         <section className="hp-section hp-offer" aria-labelledby="hp-offer-title">
           <div className="hp-section__head">
-            <SunRays className="hp-rays" />
             <h2 id="hp-offer-title">Ce oferim</h2>
-            <SunRays className="hp-rays" />
           </div>
           <p className="hp-section__lead">
             Activități și experiențe care sprijină dezvoltarea armonioasă a
@@ -1055,9 +1041,7 @@ const HomePreview = () => {
 
         <section className="hp-section hp-about" aria-labelledby="hp-about-title">
           <div className="hp-section__head">
-            <SunRays className="hp-rays" />
             <h2 id="hp-about-title">Despre noi</h2>
-            <SunRays className="hp-rays" />
           </div>
           <div className="hp-about__body">
             <div className="hp-about__aside">
@@ -1085,9 +1069,7 @@ const HomePreview = () => {
 
         <section className="hp-section hp-life" aria-labelledby="hp-life-title">
           <div className="hp-section__head">
-            <SunRays className="hp-rays" />
             <h2 id="hp-life-title">Viața la Raza de Soare</h2>
-            <SunRays className="hp-rays" />
           </div>
           <p className="hp-section__lead">
             Momente din activitățile și evenimentele noastre.
@@ -1134,9 +1116,7 @@ const HomePreview = () => {
 
         <section className="hp-section hp-support" aria-labelledby="hp-support-title">
           <div className="hp-section__head">
-            <SunRays className="hp-rays" />
             <h2 id="hp-support-title">Fii o rază de speranță</h2>
-            <SunRays className="hp-rays" />
           </div>
           <div className="hp-support__frame">
             <a
