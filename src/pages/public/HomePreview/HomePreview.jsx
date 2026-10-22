@@ -262,20 +262,37 @@ const SunRays = ({ className = "" }) => (
   </svg>
 );
 
-/** Same curve as the hero cover wave — thin gold divider with end fade. */
+const SECTION_WAVE_PATH =
+  "M0,72 C180,108 360,108 540,78 C720,48 900,36 1080,58 C1260,80 1350,92 1440,78";
+
+/** Same curve as the hero cover wave — thin gold line with soft glow + sparkles. */
 const SectionWave = () => (
   <div className="hp-section-wave" aria-hidden>
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <svg className="hp-section-wave__svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
       <path
-        d="M0,72 C180,108 360,108 540,78 C720,48 900,36 1080,58 C1260,80 1350,92 1440,78"
+        className="hp-section-wave__glow"
+        d={SECTION_WAVE_PATH}
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.75"
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+      />
+      <path
+        className="hp-section-wave__line"
+        d={SECTION_WAVE_PATH}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"
       />
     </svg>
+    <span className="hp-section-wave__spark hp-section-wave__spark--a" />
+    <span className="hp-section-wave__spark hp-section-wave__spark--b" />
+    <span className="hp-section-wave__spark hp-section-wave__spark--c" />
   </div>
 );
 
