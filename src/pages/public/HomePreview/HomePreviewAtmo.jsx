@@ -251,26 +251,20 @@ const Icon = ({ name }) => {
   );
 };
 
-/** Repeated brand mark — small sun rays flanking section titles. */
-const SectionMark = ({ className = "" }) => (
-  <span className={`hp-section-mark ${className}`.trim()} aria-hidden>
-    <svg viewBox="0 0 32 32">
-      <g stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" fill="none">
-        <line x1="16" y1="3" x2="16" y2="10" />
-        <line x1="25.2" y1="6.8" x2="20.4" y2="11.6" />
-        <line x1="29" y1="16" x2="22" y2="16" />
-        <line x1="25.2" y1="25.2" x2="20.4" y2="20.4" />
-        <line x1="16" y1="29" x2="16" y2="22" />
-        <line x1="6.8" y1="25.2" x2="11.6" y2="20.4" />
-        <line x1="3" y1="16" x2="10" y2="16" />
-        <line x1="6.8" y1="6.8" x2="11.6" y2="11.6" />
-      </g>
-      <circle cx="16" cy="16" r="3.2" fill="currentColor" />
-    </svg>
-  </span>
+/** Same ray motif as the main preview home — not a separate icon set. */
+const SunRays = ({ className = "" }) => (
+  <svg className={className} viewBox="0 0 64 24" aria-hidden>
+    <path
+      d="M4 18 Q8 4 12 18 M16 18 Q20 2 24 18 M28 18 Q32 6 36 18 M40 18 Q44 2 48 18 M52 18 Q56 6 60 18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    />
+  </svg>
 );
 
-/** Soft seam between colored bands — fill matches the next section. */
+/** Soft seam between bands — fill matches the next section. */
 const BandWave = ({ fill, from }) => (
   <div
     className="hp-band-wave"
@@ -288,11 +282,17 @@ const BandWave = ({ fill, from }) => (
 
 const SectionHead = ({ id, title }) => (
   <div className="hp-section__head">
-    <SectionMark />
+    <SunRays className="hp-rays" />
     <h2 id={id}>{title}</h2>
-    <SectionMark />
+    <SunRays className="hp-rays" />
   </div>
 );
+
+/** Warm cream ↔ white only — fewer competing hues. */
+const BAND = {
+  cream: "#fff8f0",
+  white: "#ffffff",
+};
 
 const SWIPE_CLOSE_PX = 56;
 const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v7";
@@ -377,9 +377,9 @@ const HomePreviewAtmo = () => {
     const link = document.createElement("link");
     link.id = id;
     link.rel = "stylesheet";
-    // Quicksand (titles) + Nunito (body); latin-ext for Romanian diacritics
+    // Same family as main preview — hierarchy comes from scale/spacing, not a second face
     link.href =
-      "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@600;700&display=swap";
+      "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap";
     document.head.appendChild(link);
     return undefined;
   }, []);
@@ -758,7 +758,7 @@ const HomePreviewAtmo = () => {
       className={`hp hp-atmo ${expandedOffer ? "hp--offer-open" : ""} ${menuOpen ? "hp--menu-open" : ""} ${contactOpen ? "hp--contact-open" : ""}`}
     >
       <div className="hp-atmo-badge" role="note">
-        <span>Versiune test — atmosferă</span>
+        <span>Test — unde + spațiu (palette restrânsă)</span>
         <Link to={PREVIEW_HOME}>Compară cu Acasă</Link>
       </div>
       {contactPanel}
@@ -911,7 +911,7 @@ const HomePreviewAtmo = () => {
             {/* Smooth continuous wave flush to bottom — no photo strip under the curve */}
             <path
               d="M0,72 C180,108 360,108 540,78 C720,48 900,36 1080,58 C1260,80 1350,92 1440,78 L1440,122 L0,122 Z"
-              fill="#fff6e8"
+              fill={BAND.cream}
             />
           </svg>
         </section>
@@ -928,8 +928,8 @@ const HomePreviewAtmo = () => {
           <div className="hp-offer__carousel">
             <Swiper
               modules={[Pagination]}
-              slidesPerView={2}
-              spaceBetween={12}
+              slidesPerView={1.35}
+              spaceBetween={16}
               pagination={{ clickable: true }}
               grabCursor
               className="hp-offer-swiper"
@@ -1033,14 +1033,20 @@ const HomePreviewAtmo = () => {
           ) : null}
         </section>
 
-        <BandWave from="#fff6e8" fill="#eaf4fb" />
+        <BandWave from={BAND.cream} fill={BAND.white} />
 
         <section
-          className="hp-section hp-about hp-band hp-band--sky"
+          className="hp-section hp-about hp-band hp-band--white"
           aria-labelledby="hp-about-title"
         >
           <SectionHead id="hp-about-title" title="Despre noi" />
           <div className="hp-about__body">
+            <div className="hp-about__media">
+              <img
+                src="/images/preview/about-noi.jpg"
+                alt="Copii și cadre didactice în curtea Școlii Raza de Soare"
+              />
+            </div>
             <div className="hp-about__text">
               <p>
                 Suntem o comunitate dedicată copiilor, unde educația specială,
@@ -1051,19 +1057,13 @@ const HomePreviewAtmo = () => {
                 Află mai multe <span aria-hidden>→</span>
               </Link>
             </div>
-            <div className="hp-about__media">
-              <img
-                src="/images/preview/about-noi.jpg"
-                alt="Copii și cadre didactice în curtea Școlii Raza de Soare"
-              />
-            </div>
           </div>
         </section>
 
-        <BandWave from="#eaf4fb" fill="#ffffff" />
+        <BandWave from={BAND.white} fill={BAND.cream} />
 
         <section
-          className="hp-section hp-life hp-band hp-band--white"
+          className="hp-section hp-life hp-band hp-band--cream"
           aria-labelledby="hp-life-title"
         >
           <SectionHead id="hp-life-title" title="Viața la Raza de Soare" />
@@ -1073,8 +1073,8 @@ const HomePreviewAtmo = () => {
           <div className="hp-life__carousel">
             <Swiper
               modules={[Pagination]}
-              slidesPerView={2}
-              spaceBetween={12}
+              slidesPerView={1.4}
+              spaceBetween={16}
               pagination={{ clickable: true }}
               grabCursor
               className="hp-life-swiper"
@@ -1096,10 +1096,10 @@ const HomePreviewAtmo = () => {
           </div>
         </section>
 
-        <BandWave from="#ffffff" fill="#eef7ec" />
+        <BandWave from={BAND.cream} fill={BAND.white} />
 
         <section
-          className="hp-section hp-support hp-band hp-band--mint"
+          className="hp-section hp-support hp-band hp-band--white"
           aria-labelledby="hp-support-title"
         >
           <SectionHead id="hp-support-title" title="Fii o rază de speranță" />

@@ -1,16 +1,12 @@
-/* Atmosphere design test — scoped under .hp-atmo. Imports after HomePreview.css. */
+/* Atmosphere design test v2 — waves + spacing; cream/white only. Scoped under .hp-atmo. */
 
 .hp.hp-atmo {
-  --hp-band-cream: #fff6e8;
-  --hp-band-sky: #eaf4fb;
-  --hp-band-mint: #eef7ec;
-  --hp-band-blush: #fdf0f4;
-  --hp-display: "Quicksand", "Nunito", "Segoe UI", system-ui, sans-serif;
-  --hp-mark: var(--hp-yellow);
+  --hp-band-cream: #fff8f0;
+  --hp-band-white: #ffffff;
+  --hp-display: "Nunito", "Segoe UI", system-ui, sans-serif;
   background: var(--hp-band-cream);
 }
 
-/* Discrete compare cue */
 .hp-atmo-badge {
   position: sticky;
   top: 0;
@@ -35,7 +31,7 @@
   text-underline-offset: 2px;
 }
 
-/* 1) Section bands + wave seams */
+/* —— Bands + waves (two tones only) —— */
 .hp-atmo .hp-hero__wave path {
   fill: var(--hp-band-cream);
 }
@@ -49,26 +45,14 @@
   background: var(--hp-band-cream);
 }
 
-.hp-atmo .hp-band--sky {
-  background: var(--hp-band-sky);
-}
-
 .hp-atmo .hp-band--white {
-  background: var(--hp-white);
-}
-
-.hp-atmo .hp-band--mint {
-  background: var(--hp-band-mint);
-}
-
-.hp-atmo .hp-band--blush {
-  background: var(--hp-band-blush);
+  background: var(--hp-band-white);
 }
 
 .hp-atmo .hp-band-wave {
   display: block;
   width: 100%;
-  height: 2.75rem;
+  height: 3rem;
   margin: 0;
   line-height: 0;
   background: var(--hp-band-from, var(--hp-band-cream));
@@ -80,43 +64,48 @@
   height: 100%;
 }
 
-.hp-atmo .hp-section.hp-offer,
-.hp-atmo .hp-section.hp-about,
-.hp-atmo .hp-section.hp-life {
-  padding-top: 2.25rem;
-  padding-bottom: 2.5rem;
+/* —— Spatial rhythm: more air, uneven section padding —— */
+.hp-atmo .hp-section.hp-offer {
+  padding: 2.75rem 0 3.25rem;
 }
 
-/* Support sits on mint; the blue CTA strip stays as an island */
+.hp-atmo .hp-section.hp-about {
+  padding: 3rem 0 3.5rem;
+}
+
+.hp-atmo .hp-section.hp-life {
+  padding: 2.75rem 0 3rem;
+}
+
 .hp-atmo .hp-section.hp-support {
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 2.25rem 0.75rem 2.5rem;
+  padding: 2.75rem 0.85rem 3rem;
   border-radius: 0;
-  background: var(--hp-band-mint);
+  background: var(--hp-band-white);
   box-sizing: border-box;
 }
 
 .hp-atmo .hp-support .hp-section__head {
-  margin-bottom: 0.85rem;
+  margin-bottom: 1rem;
 }
 
 .hp-atmo .hp-support .hp-section__head h2 {
   color: var(--hp-blue-deep);
 }
 
-.hp-atmo .hp-support .hp-section-mark {
-  color: var(--hp-yellow-hot);
+.hp-atmo .hp-support .hp-section__head .hp-rays {
+  color: var(--hp-yellow);
 }
 
 .hp-atmo .hp-support__frame {
   width: min(1120px, 100%);
   margin: 0 auto;
-  padding: 0.55rem 0.35rem;
+  padding: 0.65rem 0.4rem;
   background: var(--hp-blue);
-  border-radius: 1.1rem;
-  box-shadow: 0 14px 36px rgba(18, 54, 106, 0.18);
+  border-radius: 1.15rem;
+  box-shadow: 0 14px 36px rgba(18, 54, 106, 0.16);
 }
 
 .hp-atmo a.hp-support-btn,
@@ -128,111 +117,183 @@
   margin-top: 0;
 }
 
-@media (min-width: 640px) {
-  .hp-atmo .hp-section.hp-support {
-    margin-bottom: 0;
-    padding: 2.75rem 1.25rem 3rem;
-  }
-
-  .hp-atmo .hp-band-wave {
-    height: 3.25rem;
-  }
-}
-
-/* 2) Stronger display typography */
+/* —— Type: keep hero card size; refine section heads via weight/tracking only —— */
 .hp-atmo .hp-hero-card h1 {
-  font-family: var(--hp-display);
-  font-weight: 700;
+  /* Match main preview scale — previous atmo blow-up looked wrong */
+  font-size: clamp(0.95rem, 4.1vw, 1.2rem);
+  font-weight: 800;
   letter-spacing: -0.03em;
-  font-size: clamp(2.15rem, 8.5vw, 3.1rem);
-  line-height: 1.05;
-  text-shadow: 0 2px 18px rgba(18, 40, 70, 0.18);
+  text-shadow: none;
 }
 
 .hp-atmo .hp-section__head {
-  gap: 0.55rem;
-  margin-bottom: 0.65rem;
+  gap: 0.65rem;
+  margin-bottom: 0.55rem;
 }
 
 .hp-atmo .hp-section__head h2 {
-  font-family: var(--hp-display);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  font-size: clamp(1.55rem, 5.2vw, 2.05rem);
-  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.4rem, 4.4vw, 1.85rem);
   color: var(--hp-blue-deep);
 }
 
+.hp-atmo .hp-section__head .hp-rays {
+  width: 2.75rem;
+  height: 1.1rem;
+  color: var(--hp-yellow);
+  opacity: 0.95;
+}
+
 .hp-atmo .hp-section__lead {
-  max-width: 28rem;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1.02rem;
+  max-width: 22rem;
+  margin: 0 auto 1.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
   line-height: 1.55;
   color: var(--hp-muted);
 }
 
-.hp-atmo .hp-about__text p {
-  font-size: 1.05rem;
-  line-height: 1.65;
+/* —— Offer: larger cards, more presence —— */
+.hp-atmo .hp-offer__carousel {
+  margin-top: 0.25rem;
 }
 
-.hp-atmo .hp-offer-card__title,
-.hp-atmo .hp-support-btn__title {
-  font-family: var(--hp-display);
-  font-weight: 700;
-  letter-spacing: -0.015em;
+.hp-atmo .hp-offer-swiper {
+  padding-bottom: 2.1rem;
 }
 
-.hp-atmo .hp-offer-expand__panel h3 {
-  font-family: var(--hp-display);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-/* 3) Repeated sun-ray mark */
-.hp-atmo .hp-section-mark {
-  flex-shrink: 0;
-  width: 1.55rem;
-  height: 1.55rem;
-  color: var(--hp-mark);
-}
-
-.hp-atmo .hp-section-mark svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.hp-atmo .hp-rays {
-  display: none;
-}
-
-/* Soft lift so bands feel less flat / UI-kit */
 .hp-atmo .hp-offer-card {
-  box-shadow: 0 10px 28px rgba(18, 54, 106, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  min-height: 11.5rem;
+  padding: 1.15rem 1rem 1.25rem;
+  box-shadow: 0 12px 32px rgba(18, 54, 106, 0.09);
+}
+
+.hp-atmo .hp-offer-card__icon {
+  width: 3.35rem;
+  height: 3.35rem;
+}
+
+.hp-atmo .hp-offer-card__title {
+  font-size: 1.05rem;
+  margin-top: 0.55rem;
+}
+
+.hp-atmo .hp-offer-card__text {
+  font-size: 0.82rem;
+  margin-top: 0.35rem;
+}
+
+/* —— About: photo first, fuller bleed, text with more margin —— */
+.hp-atmo .hp-about__body {
+  gap: 1.35rem;
+  margin-top: 1.35rem;
 }
 
 .hp-atmo .hp-about__media {
-  box-shadow: 0 18px 40px rgba(18, 54, 106, 0.12);
-  border-radius: 1.35rem;
+  margin-left: -0.15rem;
+  margin-right: -0.15rem;
+  border-radius: 1.25rem;
   overflow: hidden;
+  box-shadow: 0 16px 40px rgba(18, 54, 106, 0.12);
 }
 
 .hp-atmo .hp-about__media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
   border-radius: 0;
 }
 
+.hp-atmo .hp-about__text {
+  padding: 0 0.15rem;
+}
+
+.hp-atmo .hp-about__text p {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  margin-bottom: 1.15rem;
+}
+
+.hp-atmo .hp-about__text .hp-btn {
+  padding: 0.72rem 1.25rem;
+  font-size: 0.92rem;
+}
+
+/* —— Life: larger frames —— */
+.hp-atmo .hp-life__carousel {
+  margin-top: 0.35rem;
+}
+
+.hp-atmo .hp-life-swiper {
+  padding-bottom: 2.1rem;
+}
+
 .hp-atmo .hp-life__item {
-  box-shadow: 0 12px 28px rgba(18, 54, 106, 0.1);
+  border-radius: 1.15rem;
+  box-shadow: 0 12px 30px rgba(18, 54, 106, 0.1);
 }
 
-.hp-atmo .hp-support__frame {
-  gap: 0.75rem;
+.hp-atmo .hp-life__item img {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
 }
 
-.hp-atmo a.hp-support-btn,
-.hp-atmo button.hp-support-btn {
-  box-shadow: 0 8px 22px rgba(18, 54, 106, 0.1);
+.hp-atmo .hp-life__caption {
+  font-size: 0.78rem;
+  padding: 0.55rem 0.65rem 0.65rem;
+}
+
+.hp-atmo .hp-life__cta {
+  margin-top: 0.35rem;
+}
+
+.hp-atmo .hp-life__cta .hp-btn {
+  padding: 0.72rem 1.25rem;
+  font-size: 0.92rem;
+}
+
+@media (min-width: 640px) {
+  .hp-atmo .hp-band-wave {
+    height: 3.5rem;
+  }
+
+  .hp-atmo .hp-section.hp-offer {
+    padding: 3.5rem 0 4rem;
+  }
+
+  .hp-atmo .hp-section.hp-about {
+    padding: 3.75rem 0 4.25rem;
+  }
+
+  .hp-atmo .hp-section.hp-life {
+    padding: 3.5rem 0 3.75rem;
+  }
+
+  .hp-atmo .hp-section.hp-support {
+    margin-bottom: 0;
+    padding: 3.25rem 1.25rem 3.5rem;
+  }
+
+  .hp-atmo .hp-about__body {
+    grid-template-columns: 1.15fr 0.95fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  /* Keep photo first in DOM; on desktop place it on the right for balance */
+  .hp-atmo .hp-about__media {
+    order: 2;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .hp-atmo .hp-about__text {
+    order: 1;
+    padding: 0.5rem 0.25rem 0.5rem 0;
+  }
+
+  .hp-atmo .hp-offer-card {
+    min-height: 12.5rem;
+  }
 }
