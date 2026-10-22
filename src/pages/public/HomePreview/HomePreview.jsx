@@ -253,6 +253,18 @@ const Icon = ({ name }) => {
 const SECTION_WAVE_PATH =
   "M0,72 C180,108 360,108 540,78 C720,48 900,36 1080,58 C1260,80 1350,92 1440,78";
 
+const GoldShineGradient = ({ id }) => (
+  <linearGradient id={id} gradientUnits="userSpaceOnUse" x1="-480" y1="0" x2="480" y2="0">
+    <stop offset="0%" stopColor="#c4921a" />
+    <stop offset="42%" stopColor="#e8b93a" />
+    <stop offset="50%" stopColor="#fff6d0" />
+    <stop offset="58%" stopColor="#e8b93a" />
+    <stop offset="100%" stopColor="#c4921a" />
+    <animate attributeName="x1" values="-960;1440" dur="3.6s" repeatCount="indefinite" />
+    <animate attributeName="x2" values="0;2400" dur="3.6s" repeatCount="indefinite" />
+  </linearGradient>
+);
+
 /** Same curve as the hero cover wave — thin gold line with a traveling shine. */
 const SectionWave = () => {
   const gradId = `hp-wave-shine-${useId().replace(/:/g, "")}`;
@@ -260,32 +272,7 @@ const SectionWave = () => {
     <div className="hp-section-wave" aria-hidden>
       <svg className="hp-section-wave__svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
         <defs>
-          <linearGradient
-            id={gradId}
-            gradientUnits="userSpaceOnUse"
-            x1="-480"
-            y1="0"
-            x2="480"
-            y2="0"
-          >
-            <stop offset="0%" stopColor="#c4921a" />
-            <stop offset="42%" stopColor="#e8b93a" />
-            <stop offset="50%" stopColor="#fff6d0" />
-            <stop offset="58%" stopColor="#e8b93a" />
-            <stop offset="100%" stopColor="#c4921a" />
-            <animate
-              attributeName="x1"
-              values="-960;1440"
-              dur="3.6s"
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="x2"
-              values="0;2400"
-              dur="3.6s"
-              repeatCount="indefinite"
-            />
-          </linearGradient>
+          <GoldShineGradient id={gradId} />
         </defs>
         <path
           className="hp-section-wave__line"
@@ -298,6 +285,32 @@ const SectionWave = () => {
           vectorEffect="non-scaling-stroke"
         />
       </svg>
+    </div>
+  );
+};
+
+/** Section title with gold underline (shiny) + scroll fade-in via .hp-reveal. */
+const SectionTitle = ({ id, children }) => {
+  const gradId = `hp-title-shine-${useId().replace(/:/g, "")}`;
+  return (
+    <div className="hp-section__head hp-reveal">
+      <h2 id={id}>{children}</h2>
+      <span className="hp-section__underline" aria-hidden>
+        <svg viewBox="0 0 120 6" preserveAspectRatio="none">
+          <defs>
+            <GoldShineGradient id={gradId} />
+          </defs>
+          <line
+            x1="4"
+            y1="3"
+            x2="116"
+            y2="3"
+            stroke={`url(#${gradId})`}
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+        </svg>
+      </span>
     </div>
   );
 };
@@ -391,6 +404,31 @@ const HomePreview = () => {
       "https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&subset=latin,latin-ext&display=swap";
     document.head.appendChild(link);
     return undefined;
+  }, []);
+
+  useEffect(() => {
+    const nodes = document.querySelectorAll(".hp .hp-reveal");
+    if (!nodes.length) return undefined;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      nodes.forEach((node) => node.classList.add("is-visible"));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.4, rootMargin: "0px 0px -6% 0px" }
+    );
+
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -922,9 +960,7 @@ const HomePreview = () => {
         </section>
 
         <section className="hp-section hp-offer" aria-labelledby="hp-offer-title">
-          <div className="hp-section__head">
-            <h2 id="hp-offer-title">Ce oferim</h2>
-          </div>
+          <SectionTitle id="hp-offer-title">Ce oferim</SectionTitle>
           <p className="hp-section__lead">
             Activități și experiențe care sprijină dezvoltarea armonioasă a
             copiilor.
@@ -1040,9 +1076,7 @@ const HomePreview = () => {
         <SectionWave />
 
         <section className="hp-section hp-about" aria-labelledby="hp-about-title">
-          <div className="hp-section__head">
-            <h2 id="hp-about-title">Despre noi</h2>
-          </div>
+          <SectionTitle id="hp-about-title">Despre noi</SectionTitle>
           <div className="hp-about__body">
             <div className="hp-about__aside">
               <div className="hp-about__media">
@@ -1068,9 +1102,7 @@ const HomePreview = () => {
         <SectionWave />
 
         <section className="hp-section hp-life" aria-labelledby="hp-life-title">
-          <div className="hp-section__head">
-            <h2 id="hp-life-title">Viața la Raza de Soare</h2>
-          </div>
+          <SectionTitle id="hp-life-title">Viața la Raza de Soare</SectionTitle>
           <p className="hp-section__lead">
             Momente din activitățile și evenimentele noastre.
           </p>
@@ -1115,9 +1147,7 @@ const HomePreview = () => {
         </svg>
 
         <section className="hp-section hp-support" aria-labelledby="hp-support-title">
-          <div className="hp-section__head">
-            <h2 id="hp-support-title">Fii o rază de speranță</h2>
-          </div>
+          <SectionTitle id="hp-support-title">Fii o rază de speranță</SectionTitle>
           <div className="hp-support__frame">
             <a
               className="hp-support-btn hp-support-btn--tax"
