@@ -1006,6 +1006,12 @@ const HomePreview = () => {
             <SunRays className="hp-rays" />
           </div>
           <div className="hp-about__body">
+            <div className="hp-about__media">
+              <img
+                src="/images/preview/about-noi.jpg"
+                alt="Copii și cadre didactice în curtea Școlii Raza de Soare"
+              />
+            </div>
             <div className="hp-about__text">
               <p>
                 Suntem o comunitate dedicată copiilor, unde educația specială,
@@ -1015,12 +1021,6 @@ const HomePreview = () => {
               <Link to={PREVIEW_DESPRE} className="hp-btn hp-btn--primary">
                 Află mai multe <span aria-hidden>→</span>
               </Link>
-            </div>
-            <div className="hp-about__media">
-              <img
-                src="/images/preview/about-noi.jpg"
-                alt="Copii și cadre didactice în curtea Școlii Raza de Soare"
-              />
             </div>
           </div>
         </section>
