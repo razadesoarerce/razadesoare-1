@@ -1,6 +1,11 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
+
+const CALENDAR_SRC = "/images/preview/informatii/calendar-an-scolar-2026-2027.png";
+const CALENDAR_ALT =
+  "Calendar an școlar 2026–2027, județul Arad — module, vacanțe și prima/ultima zi de școală";
 
 const INFO_CARDS = [
   {
@@ -126,6 +131,68 @@ const DownloadPlaceholder = ({ label }) => (
   </li>
 );
 
+/** Inline preview + full-screen lightbox (pan on phone for small calendar text). */
+const ZoomableImage = ({ src, alt }) => {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  const lightbox = open
+    ? createPortal(
+        <div className="hp-info-lightbox" role="dialog" aria-modal="true" aria-label={alt}>
+          <button
+            type="button"
+            className="hp-info-lightbox__backdrop"
+            aria-label="Închide imaginea mărită"
+            onClick={() => setOpen(false)}
+          />
+          <div className="hp-info-lightbox__bar">
+            <p className="hp-info-lightbox__hint">Derulează pentru detalii · tap în afară sau × pentru a închide</p>
+            <button
+              type="button"
+              className="hp-info-lightbox__close"
+              aria-label="Închide"
+              onClick={() => setOpen(false)}
+            >
+              ×
+            </button>
+          </div>
+          <div className="hp-info-lightbox__stage">
+            <img src={src} alt={alt} />
+          </div>
+        </div>,
+        document.body
+      )
+    : null;
+
+  return (
+    <>
+      <button
+        type="button"
+        className="hp-info-zoom"
+        onClick={() => setOpen(true)}
+        aria-label={`${alt}. Apasă pentru a mări.`}
+      >
+        <img src={src} alt="" loading="lazy" />
+        <span className="hp-info-zoom__hint">Apasă pentru a mări</span>
+      </button>
+      {lightbox}
+    </>
+  );
+};
+
 const CardPanel = ({ id }) => {
   if (id === "admitere") {
     return (
@@ -219,9 +286,7 @@ const CardPanel = ({ id }) => {
         solicitări și perioade de odihnă. Calendarul este comunicat în avans
         familiilor și este aliniat cu normele Ministerului Educației.
       </p>
-      <div className="hp-info-media-ph" aria-hidden>
-        Imagine — structura anului școlar (în curând)
-      </div>
+      <ZoomableImage src={CALENDAR_SRC} alt={CALENDAR_ALT} />
     </>
   );
 };
