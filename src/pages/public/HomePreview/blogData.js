@@ -4,6 +4,16 @@
  * Cover paths are temporary placeholders until final photos are provided.
  */
 
+/** Horizontal filter chips — `categoryId: null` = show all sections. */
+export const BLOG_FILTERS = [
+  { id: "toate", label: "Toate", categoryId: null },
+  { id: "sfaturi", label: "Sfaturi", categoryId: "sfaturi-parinti" },
+  { id: "educatie", label: "Educație", categoryId: "educatie-speciala" },
+  { id: "psihologie", label: "Psihologie", categoryId: "psihologie" },
+  { id: "logopedie", label: "Logopedie", categoryId: "logopedie" },
+  { id: "kinetoterapie", label: "Kinetoterapie", categoryId: "kinetoterapie" },
+];
+
 export const BLOG_CATEGORIES = [
   {
     id: "sfaturi-parinti",

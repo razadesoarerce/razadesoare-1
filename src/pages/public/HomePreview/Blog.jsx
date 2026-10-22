@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
-import { BLOG_CATEGORIES } from "./blogData";
+import { BLOG_CATEGORIES, BLOG_FILTERS } from "./blogData";
 
 /** „Vezi toate” expands only when a category has more than this many articles. */
 const BLOG_EXPAND_AFTER = 3;
@@ -30,7 +30,14 @@ const BlogCard = ({ article }) => (
 );
 
 const Blog = () => {
+  const [activeFilter, setActiveFilter] = useState("toate");
   const [expandedIds, setExpandedIds] = useState(() => new Set());
+
+  const visibleCategories = useMemo(() => {
+    const filter = BLOG_FILTERS.find((item) => item.id === activeFilter);
+    if (!filter?.categoryId) return BLOG_CATEGORIES;
+    return BLOG_CATEGORIES.filter((category) => category.id === filter.categoryId);
+  }, [activeFilter]);
 
   const toggleExpanded = (categoryId) => {
     setExpandedIds((prev) => {
@@ -56,7 +63,25 @@ const Blog = () => {
           </p>
         </header>
 
-        {BLOG_CATEGORIES.map((category) => {
+        <div className="hp-section hp-blog-filters" role="tablist" aria-label="Filtrează după categorie">
+          {BLOG_FILTERS.map((filter) => {
+            const isActive = activeFilter === filter.id;
+            return (
+              <button
+                key={filter.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                className={`hp-blog-filters__chip ${isActive ? "is-active" : ""}`}
+                onClick={() => setActiveFilter(filter.id)}
+              >
+                {filter.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {visibleCategories.map((category) => {
           const canExpand = category.articles.length > BLOG_EXPAND_AFTER;
           const isExpanded = expandedIds.has(category.id);
           const panelId = `hp-blog-panel-${category.id}`;
