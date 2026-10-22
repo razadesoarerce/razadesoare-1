@@ -265,6 +265,18 @@ const Informatii = () => {
             Admitere, documente și detalii utile pentru părinți.
           </p>
 
+          <div className="hp-informatii__intro">
+            <h2 className="hp-informatii__lead-title">
+              Primii pași către o experiență educațională
+            </h2>
+            <p className="hp-informatii__lead-text">
+              Procesul de înscriere la Școala Specială „Rază de Soare” este
+              simplu, rapid și ușor de parcurs. Fiecare etapă este importantă
+              pentru a cunoaște nevoile copilului și pentru a pregăti un început
+              potrivit pentru el.
+            </p>
+          </div>
+
           <div className="hp-info-cards">
             {INFO_CARDS.map((card, index) => {
               const isOpen = openId === card.id;

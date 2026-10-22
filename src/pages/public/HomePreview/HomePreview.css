@@ -589,6 +589,27 @@
   padding: 1rem;
 }
 
+.hp-informatii__intro {
+  margin: 0 0 1.35rem;
+}
+
+.hp-informatii__lead-title {
+  margin: 0 0 0.55rem;
+  font-family: var(--hp-display);
+  font-size: clamp(1.15rem, 3.2vw, 1.45rem);
+  font-weight: 800;
+  color: var(--hp-blue);
+  line-height: 1.25;
+}
+
+.hp-informatii__lead-text {
+  margin: 0;
+  color: var(--hp-muted);
+  font-size: clamp(0.88rem, 2.2vw, 0.98rem);
+  font-weight: 600;
+  line-height: 1.65;
+}
+
 .hp-informatii .hp-despre-rule {
   margin: 0.95rem auto;
 }
