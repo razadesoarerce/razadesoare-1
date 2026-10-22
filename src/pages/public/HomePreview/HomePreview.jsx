@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -265,36 +265,54 @@ const SunRays = ({ className = "" }) => (
 const SECTION_WAVE_PATH =
   "M0,72 C180,108 360,108 540,78 C720,48 900,36 1080,58 C1260,80 1350,92 1440,78";
 
-/** Same curve as the hero cover wave — thin gold line with soft glow + sparkles. */
-const SectionWave = () => (
-  <div className="hp-section-wave" aria-hidden>
-    <svg className="hp-section-wave__svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
-      <path
-        className="hp-section-wave__glow"
-        d={SECTION_WAVE_PATH}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        vectorEffect="non-scaling-stroke"
-      />
-      <path
-        className="hp-section-wave__line"
-        d={SECTION_WAVE_PATH}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        vectorEffect="non-scaling-stroke"
-      />
-    </svg>
-    <span className="hp-section-wave__spark hp-section-wave__spark--a" />
-    <span className="hp-section-wave__spark hp-section-wave__spark--b" />
-    <span className="hp-section-wave__spark hp-section-wave__spark--c" />
-  </div>
-);
+/** Same curve as the hero cover wave — thin gold line with a traveling shine. */
+const SectionWave = () => {
+  const gradId = `hp-wave-shine-${useId().replace(/:/g, "")}`;
+  return (
+    <div className="hp-section-wave" aria-hidden>
+      <svg className="hp-section-wave__svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <defs>
+          <linearGradient
+            id={gradId}
+            gradientUnits="userSpaceOnUse"
+            x1="-480"
+            y1="0"
+            x2="480"
+            y2="0"
+          >
+            <stop offset="0%" stopColor="#c4921a" />
+            <stop offset="42%" stopColor="#e8b93a" />
+            <stop offset="50%" stopColor="#fff6d0" />
+            <stop offset="58%" stopColor="#e8b93a" />
+            <stop offset="100%" stopColor="#c4921a" />
+            <animate
+              attributeName="x1"
+              values="-960;1440"
+              dur="3.6s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="x2"
+              values="0;2400"
+              dur="3.6s"
+              repeatCount="indefinite"
+            />
+          </linearGradient>
+        </defs>
+        <path
+          className="hp-section-wave__line"
+          d={SECTION_WAVE_PATH}
+          fill="none"
+          stroke={`url(#${gradId})`}
+          strokeWidth="1.55"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+    </div>
+  );
+};
 
 const SWIPE_CLOSE_PX = 56;
 const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v7";
