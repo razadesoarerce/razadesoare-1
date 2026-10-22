@@ -277,6 +277,13 @@ const Informatii = () => {
             </p>
           </div>
 
+          <figure className="hp-informatii__mid">
+            <img
+              src="/images/preview/informatii/mid.jpg"
+              alt="Copil ținut de mână de un adult, pe drumul către școală"
+            />
+          </figure>
+
           <div className="hp-info-cards">
             {INFO_CARDS.map((card, index) => {
               const isOpen = openId === card.id;

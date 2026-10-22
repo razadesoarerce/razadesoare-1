@@ -591,6 +591,9 @@
 
 .hp-informatii__intro {
   margin: 0 0 1.35rem;
+  border-radius: 1.1rem;
+  background: rgba(26, 74, 141, 0.12);
+  padding: 1.15rem 1.1rem 1.2rem;
 }
 
 .hp-informatii__lead-title {
@@ -608,6 +611,28 @@
   font-size: clamp(0.88rem, 2.2vw, 0.98rem);
   font-weight: 600;
   line-height: 1.65;
+}
+
+@media (min-width: 720px) {
+  .hp-informatii__intro {
+    padding: 1.35rem 1.4rem 1.4rem;
+  }
+}
+
+.hp-informatii__mid {
+  width: 100vw;
+  max-width: 100vw;
+  margin: 1.25rem 0 1.5rem;
+  margin-left: calc(50% - 50vw);
+}
+
+.hp-informatii__mid img {
+  width: 100%;
+  max-width: none;
+  height: clamp(11rem, 42vw, 22rem);
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .hp-informatii .hp-despre-rule {

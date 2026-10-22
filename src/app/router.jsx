@@ -30,6 +30,7 @@ import HomePreview from "../pages/public/HomePreview/HomePreview";
 import DespreNoi from "../pages/public/HomePreview/DespreNoi";
 import EchipaNoastra from "../pages/public/HomePreview/EchipaNoastra";
 import Informatii from "../pages/public/HomePreview/Informatii";
+import Blog from "../pages/public/HomePreview/Blog";
 import NotFound from "../pages/public/NotFound";
 
 // Admin Pages
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
   {
     path: "/preview/informatii",
     element: <Informatii />,
+  },
+  {
+    path: "/preview/blog",
+    element: <Blog />,
   },
 
   // PUBLIC ROUTES
