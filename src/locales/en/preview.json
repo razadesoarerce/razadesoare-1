@@ -4,8 +4,7 @@
     "info": "Information",
     "about": "About us",
     "team": "Our team",
-    "blog": "Blog",
-    "test": "Font test"
+    "blog": "Blog"
   },
   "chrome": {
     "dockAria": "Quick controls — you can move the dock",

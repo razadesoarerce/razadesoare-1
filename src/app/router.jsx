@@ -61,7 +61,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/preview/test",
-    element: <HomePreview />,
+    element: <Navigate to="/preview" replace />,
   },
   {
     path: "/preview/despre-noi",

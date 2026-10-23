@@ -2938,8 +2938,8 @@
 }
 
 /*
- * Temporary /preview/test — same homepage, larger type.
- * Body/card copy ≈ current subtitle (0.85rem); titles/leads scale ~1.18×.
+ * Homepage preview typography & rhythm (promoted from font-test page).
+ * Body/card copy ≈ former subtitle size; titles/leads scale ~1.18×.
  * Section gaps match lead→carousel spacing in „Viața la Raza de Soare”.
  */
 .hp--type-test {
