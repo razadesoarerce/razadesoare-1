@@ -881,15 +881,12 @@
   margin-top: 0;
 }
 
-/* Echipa noastră — same stack-gap rhythm as preview homepage */
+/* Echipa noastră — same stack-gap rhythm as preview homepage.
+ * Must beat `.hp-section { margin: 0 auto }` (same file, later) or gaps collapse. */
 .hp-section.hp-echipa-offer,
 .hp-section.hp-echipa-specialisti {
   padding-top: 0;
   padding-bottom: 0;
-}
-
-.hp-echipa-offer,
-.hp-echipa-specialisti {
   margin-top: var(--hp-stack-gap, 1rem);
 }
 
