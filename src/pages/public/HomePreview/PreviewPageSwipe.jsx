@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { PREVIEW_NAV } from "./previewNav";
 
 const SWIPE_PX = 72;
 const SWIPE_RATIO = 1.35;
-const HINT_KEY = "hp-preview-page-swipe-hint-v2";
-const HINT_MS = 4800;
+/** sessionStorage — once per browser session (localStorage hid it forever after first visit). */
+const HINT_KEY = "hp-preview-page-swipe-hint-v3";
+const HINT_MS = 6500;
 const FADE_MS = 240;
-const MOBILE_MQ = "(max-width: 899px), (pointer: coarse)";
+const MOBILE_MQ = "(max-width: 899px)";
 
 /** Survives HomePreview ↔ PreviewShell remounts during swipe navigation. */
 let pendingPageEnter = false;
@@ -47,7 +49,7 @@ const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
 /**
  * Mobile-only horizontal swipe between preview menu pages.
- * Fade-out → navigate → fade-in; edge “page corner” hint.
+ * Fade-out → navigate → fade-in; edge “page corner” hint (portaled to body).
  */
 const PreviewPageSwipe = () => {
   const { t } = useTranslation();
@@ -94,13 +96,13 @@ const PreviewPageSwipe = () => {
       return undefined;
     }
     try {
-      if (window.localStorage.getItem(HINT_KEY) === "1") {
+      if (window.sessionStorage.getItem(HINT_KEY) === "1") {
         setHintVisible(false);
         return undefined;
       }
-      window.localStorage.setItem(HINT_KEY, "1");
+      window.sessionStorage.setItem(HINT_KEY, "1");
     } catch {
-      /* ignore storage errors */
+      /* ignore storage — still show hint */
     }
     setHintVisible(true);
     const timer = window.setTimeout(() => setHintVisible(false), HINT_MS);
@@ -113,7 +115,7 @@ const PreviewPageSwipe = () => {
     const dismissHint = () => {
       setHintVisible(false);
       try {
-        window.localStorage.setItem(HINT_KEY, "1");
+        window.sessionStorage.setItem(HINT_KEY, "1");
       } catch {
         /* ignore */
       }
@@ -197,10 +199,12 @@ const PreviewPageSwipe = () => {
     };
   }, [mobile, navIndex, navigate]);
 
-  if (!mobile || navIndex < 0 || !hintVisible) return null;
+  if (!mobile || navIndex < 0 || !hintVisible || typeof document === "undefined") {
+    return null;
+  }
 
-  return (
-    <div className="hp-page-swipe-edges" aria-hidden>
+  return createPortal(
+    <div className="hp-page-swipe-edges" role="status" aria-live="polite">
       {canPrev ? (
         <div
           className="hp-page-swipe-curl is-prev"
@@ -220,7 +224,8 @@ const PreviewPageSwipe = () => {
         </div>
       ) : null}
       <span className="hp-sr-only">{t("preview.chrome.pageSwipeHint")}</span>
-    </div>
+    </div>,
+    document.body
   );
 };
 
