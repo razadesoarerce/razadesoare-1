@@ -3012,7 +3012,17 @@
 }
 
 .hp--type-test .hp-section.hp-support {
-  margin-bottom: var(--hp-stack-gap);
+  margin-bottom: 0;
+}
+
+/* Credits — same framed chenar as Support (not full-bleed) */
+.hp--type-test .hp-credits {
+  width: min(1120px, calc(100% - 1.5rem));
+  margin: var(--hp-stack-gap) auto;
+  padding: 0.7rem 0.85rem;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  background: var(--hp-blue);
 }
 
 /* Gallery CTA — same rhythm as other section gaps */
