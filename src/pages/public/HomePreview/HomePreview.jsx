@@ -8,7 +8,7 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { PREVIEW_HOME, PREVIEW_DESPRE, PREVIEW_NAV } from "./previewNav";
-import PreviewLegalLinks from "./PreviewLegalLinks";
+import PreviewSupportFooter from "./PreviewSupportFooter";
 import "./HomePreview.css";
 
 /** Pulsing sun mark — same animated sun used previously in the hero. */
@@ -47,9 +47,6 @@ const HeroCardSun = () => (
   </span>
 );
 
-const SUPPORT_FORM_URL =
-  "https://formular230.ro/scoala-speciala-raza-de-soare";
-
 const OFFER_CARD_META = [
   {
     id: "mission",
@@ -77,11 +74,6 @@ const OFFER_CARD_META = [
     icon: "palette",
     imageIcon: "/images/preview/icon-activitati.png",
   },
-];
-
-const SUPPORT_CARD_META = [
-  { id: "donate", badge: "♥", tone: "pink", icon: "people" },
-  { id: "volunteer", badge: "✦", tone: "green", icon: "people" },
 ];
 
 const GALLERY_META = [
@@ -222,17 +214,6 @@ const HomePreview = () => {
     };
   });
 
-  const supportCards = SUPPORT_CARD_META.map((meta) => {
-    const base = `preview.home.support.${meta.id}`;
-    return {
-      ...meta,
-      title: t(`${base}.title`),
-      text: t(`${base}.text`),
-      headline: t(`${base}.headline`),
-      detailParagraphs: asStringList(t(`${base}.detailParagraphs`, { returnObjects: true })),
-    };
-  });
-
   const gallery = GALLERY_META.map((meta) => ({
     ...meta,
     alt: t(`preview.home.life.gallery.${meta.id}.alt`),
@@ -240,7 +221,7 @@ const HomePreview = () => {
   }));
 
   const expandedCard = expandedOffer
-    ? [...offerCards, ...supportCards].find((card) => card.id === expandedOffer.id)
+    ? offerCards.find((card) => card.id === expandedOffer.id)
     : null;
   const [menuOpen, setMenuOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
@@ -986,63 +967,9 @@ const HomePreview = () => {
             </button>
           </div>
         </section>
+
+        <PreviewSupportFooter />
       </main>
-
-      <section className="hp-section hp-support" aria-labelledby="hp-support-title">
-        <div className="hp-section__head">
-          <SunRays className="hp-rays" />
-          <h2 id="hp-support-title">{t("preview.home.support.title")}</h2>
-          <SunRays className="hp-rays" />
-        </div>
-        <div className="hp-support__frame">
-          <a
-            className="hp-support-btn hp-support-btn--tax"
-            href={SUPPORT_FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="hp-support-btn__badge" aria-hidden>
-              3,5%
-            </span>
-            <span className="hp-support-btn__title">{t("preview.home.support.taxTitle")}</span>
-          </a>
-          {supportCards.map((card) => (
-            <button
-              key={card.id}
-              type="button"
-              className={`hp-support-btn hp-support-btn--${card.tone} ${
-                expandedOffer?.id === card.id ? "is-active" : ""
-              }`}
-              onClick={() => setExpandedOffer(card)}
-              aria-expanded={expandedOffer?.id === card.id}
-              aria-controls="hp-offer-expanded"
-            >
-              <span className="hp-support-btn__badge" aria-hidden>
-                {card.badge}
-              </span>
-              <span className="hp-support-btn__title">{card.title}</span>
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <footer className="hp-credits" aria-label={t("preview.home.credits.aria")}>
-        <div className="hp-credits__inner">
-          <p className="hp-credits__brand">{t("preview.home.credits.brand")}</p>
-          <ul className="hp-credits__list">
-            <li>
-              <span className="hp-credits__role">{t("preview.home.credits.webDev")}</span>
-              <span className="hp-credits__name">Lolea Florentin Alin</span>
-            </li>
-            <li>
-              <span className="hp-credits__role">{t("preview.home.credits.design")}</span>
-              <span className="hp-credits__name">Roxin Mariana</span>
-            </li>
-          </ul>
-        </div>
-      </footer>
-
-      <PreviewLegalLinks />
     </div>
   );
 };

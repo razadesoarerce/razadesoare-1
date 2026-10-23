@@ -3035,9 +3035,13 @@
 
 .hp--type-test:not(.hp--preview-page) .hp-offer,
 .hp--type-test:not(.hp--preview-page) .hp-about,
-.hp--type-test:not(.hp--preview-page) .hp-life,
-.hp--type-test:not(.hp--preview-page) .hp-section.hp-support {
+.hp--type-test:not(.hp--preview-page) .hp-life {
   margin-top: var(--hp-stack-gap);
+}
+
+/* Same top air before Support as on inner pages (≈ section bottom padding) */
+.hp--type-test:not(.hp--preview-page) .hp-section.hp-support {
+  margin-top: 2.5rem;
 }
 
 .hp--type-test:not(.hp--preview-page) .hp-about__intro {
@@ -3248,6 +3252,10 @@
   .hp--type-test:not(.hp--preview-page) .hp-offer-swiper,
   .hp--type-test:not(.hp--preview-page) .hp-life-swiper {
     padding-bottom: 3rem;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-section.hp-support {
+    margin-top: 3.5rem;
   }
 }
 
