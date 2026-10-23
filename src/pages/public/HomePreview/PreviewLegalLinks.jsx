@@ -47,7 +47,6 @@ const PreviewLegalLinks = () => {
   return (
     <section className="hp-legal" aria-label={t("preview.legal.aria")}>
       <div className="hp-legal__inner">
-        <p className="hp-legal__hint">{t("preview.legal.hint")}</p>
         <ul className="hp-legal__links">
           {LEGAL_IDS.map((id) => {
             const isOpen = openId === id;
