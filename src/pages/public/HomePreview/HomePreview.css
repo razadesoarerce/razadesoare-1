@@ -2147,6 +2147,15 @@
   margin: 0 auto;
 }
 
+.hp-legal__hint {
+  margin: 0 0 0.55rem;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--hp-muted, #5a6b82);
+  line-height: 1.35;
+}
+
 .hp-legal__links {
   list-style: none;
   margin: 0;
@@ -2164,6 +2173,9 @@
   border: 0;
   padding: 0.2rem 0;
   margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
   font-family: var(--hp-display);
   font-size: 0.72rem;
   font-weight: 700;
@@ -2174,6 +2186,13 @@
   text-decoration-thickness: 1px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+}
+
+.hp-legal__chevron {
+  text-decoration: none;
+  font-size: 0.62em;
+  line-height: 1;
+  opacity: 0.75;
 }
 
 .hp-legal__link:hover,
@@ -2192,10 +2211,68 @@
   color: var(--hp-blue-deep, #0d2a54);
 }
 
+.hp-legal__link.is-open .hp-legal__chevron {
+  opacity: 1;
+  color: var(--hp-yellow-hot, #ffd24a);
+}
+
 .hp-legal__panel {
   margin-top: 0.85rem;
-  padding-top: 0.75rem;
+  padding: 0.85rem 0.75rem 0.9rem;
   border-top: 1px solid rgba(18, 54, 106, 0.1);
+  border-radius: 0.75rem;
+  background: rgba(26, 74, 141, 0.04);
+  scroll-margin-top: 1rem;
+  outline: none;
+}
+
+.hp-legal__panel.is-revealed {
+  animation: hp-legal-reveal 0.45s ease;
+}
+
+@keyframes hp-legal-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(0.55rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-legal__panel.is-revealed {
+    animation: none;
+  }
+}
+
+.hp-legal__collapse {
+  appearance: none;
+  display: flex;
+  width: fit-content;
+  margin: 0.55rem auto 0;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid rgba(18, 54, 106, 0.2);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--hp-blue);
+  font-family: var(--hp-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hp-legal__collapse:hover,
+.hp-legal__collapse:focus-visible {
+  border-color: var(--hp-blue);
+  background: rgba(26, 74, 141, 0.06);
+}
+
+.hp-legal__collapse:focus-visible {
+  outline: 2px solid var(--hp-yellow);
+  outline-offset: 2px;
 }
 
 .hp-legal__panel-title {

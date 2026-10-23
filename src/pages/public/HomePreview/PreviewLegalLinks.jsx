@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const LEGAL_IDS = ["privacy", "terms", "cookies"];
@@ -9,6 +9,7 @@ const asSections = (value) => (Array.isArray(value) ? value : []);
 const PreviewLegalLinks = () => {
   const { t } = useTranslation();
   const [openId, setOpenId] = useState(null);
+  const panelRef = useRef(null);
 
   const openItem = openId
     ? {
@@ -21,9 +22,32 @@ const PreviewLegalLinks = () => {
       }
     : null;
 
+  useEffect(() => {
+    if (!openId || !panelRef.current) return undefined;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const node = panelRef.current;
+
+    // Wait a paint so the panel is laid out before scrolling
+    const frameId = window.requestAnimationFrame(() => {
+      node.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start",
+        inline: "nearest",
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [openId]);
+
+  const onToggle = (id) => {
+    setOpenId((prev) => (prev === id ? null : id));
+  };
+
   return (
     <section className="hp-legal" aria-label={t("preview.legal.aria")}>
       <div className="hp-legal__inner">
+        <p className="hp-legal__hint">{t("preview.legal.hint")}</p>
         <ul className="hp-legal__links">
           {LEGAL_IDS.map((id) => {
             const isOpen = openId === id;
@@ -35,9 +59,12 @@ const PreviewLegalLinks = () => {
                   aria-expanded={isOpen}
                   aria-controls={`hp-legal-panel-${id}`}
                   id={`hp-legal-trigger-${id}`}
-                  onClick={() => setOpenId((prev) => (prev === id ? null : id))}
+                  onClick={() => onToggle(id)}
                 >
-                  {t(`preview.legal.${id}.title`)}
+                  <span>{t(`preview.legal.${id}.title`)}</span>
+                  <span className="hp-legal__chevron" aria-hidden>
+                    {isOpen ? "▴" : "▾"}
+                  </span>
                 </button>
               </li>
             );
@@ -46,10 +73,12 @@ const PreviewLegalLinks = () => {
 
         {openItem ? (
           <div
-            className="hp-legal__panel"
+            ref={panelRef}
+            className="hp-legal__panel is-revealed"
             id={`hp-legal-panel-${openItem.id}`}
             role="region"
             aria-labelledby={`hp-legal-trigger-${openItem.id}`}
+            tabIndex={-1}
           >
             <h3 className="hp-legal__panel-title">{openItem.title}</h3>
             {openItem.updated ? (
@@ -70,6 +99,13 @@ const PreviewLegalLinks = () => {
                 </div>
               ))}
             </div>
+            <button
+              type="button"
+              className="hp-legal__collapse"
+              onClick={() => setOpenId(null)}
+            >
+              {t("preview.legal.collapse")}
+            </button>
           </div>
         ) : null}
       </div>

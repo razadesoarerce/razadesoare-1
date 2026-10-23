@@ -153,6 +153,8 @@
   },
   "legal": {
     "aria": "Informații legale",
+    "hint": "Apasă un link pentru a citi textul mai jos pe pagină.",
+    "collapse": "Închide",
     "privacy": {
       "title": "Politica de confidențialitate",
       "updated": "Actualizată: octombrie 2026",

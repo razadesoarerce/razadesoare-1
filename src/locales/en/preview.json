@@ -153,6 +153,8 @@
   },
   "legal": {
     "aria": "Legal information",
+    "hint": "Tap a link to read the text below on this page.",
+    "collapse": "Close",
     "privacy": {
       "title": "Privacy policy",
       "updated": "Last updated: October 2026",
