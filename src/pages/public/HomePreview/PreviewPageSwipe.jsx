@@ -6,9 +6,6 @@ import { PREVIEW_NAV } from "./previewNav";
 
 const SWIPE_PX = 72;
 const SWIPE_RATIO = 1.35;
-/** sessionStorage — once per browser session (localStorage hid it forever after first visit). */
-const HINT_KEY = "hp-preview-page-swipe-hint-v3";
-const HINT_MS = 6500;
 const FADE_MS = 240;
 const MOBILE_MQ = "(max-width: 899px)";
 
@@ -28,6 +25,7 @@ const IGNORE_SELECTOR = [
   ".hp-info-zoom",
   ".hp-contact-dd",
   ".hp-blog-filters",
+  ".hp-page-swipe-edges",
   "input",
   "textarea",
   "select",
@@ -49,7 +47,7 @@ const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
 /**
  * Mobile-only horizontal swipe between preview menu pages.
- * Fade-out → navigate → fade-in; edge “page corner” hint (portaled to body).
+ * Permanent edge peeks (mid-screen, left/right) + fade page transition.
  */
 const PreviewPageSwipe = () => {
   const { t } = useTranslation();
@@ -57,7 +55,6 @@ const PreviewPageSwipe = () => {
   const navigate = useNavigate();
   const touchRef = useRef(null);
   const navigatingRef = useRef(false);
-  const [hintVisible, setHintVisible] = useState(false);
   const [mobile, setMobile] = useState(false);
 
   const navIndex = getNavIndex(location.pathname);
@@ -91,40 +88,11 @@ const PreviewPageSwipe = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    if (!mobile || navIndex < 0) {
-      setHintVisible(false);
-      return undefined;
-    }
-    try {
-      if (window.sessionStorage.getItem(HINT_KEY) === "1") {
-        setHintVisible(false);
-        return undefined;
-      }
-      window.sessionStorage.setItem(HINT_KEY, "1");
-    } catch {
-      /* ignore storage — still show hint */
-    }
-    setHintVisible(true);
-    const timer = window.setTimeout(() => setHintVisible(false), HINT_MS);
-    return () => window.clearTimeout(timer);
-  }, [mobile, navIndex]);
-
-  useEffect(() => {
     if (!mobile || navIndex < 0) return undefined;
-
-    const dismissHint = () => {
-      setHintVisible(false);
-      try {
-        window.sessionStorage.setItem(HINT_KEY, "1");
-      } catch {
-        /* ignore */
-      }
-    };
 
     const goTo = async (path) => {
       if (navigatingRef.current) return;
       navigatingRef.current = true;
-      dismissHint();
       const root = getHpRoot();
       root?.classList.remove("hp--page-enter");
       root?.classList.add("hp--page-leave");
@@ -199,19 +167,21 @@ const PreviewPageSwipe = () => {
     };
   }, [mobile, navIndex, navigate]);
 
-  if (!mobile || navIndex < 0 || !hintVisible || typeof document === "undefined") {
+  if (!mobile || navIndex < 0 || typeof document === "undefined") {
     return null;
   }
 
   return createPortal(
-    <div className="hp-page-swipe-edges" role="status" aria-live="polite">
+    <div className="hp-page-swipe-edges" aria-hidden>
       {canPrev ? (
         <div
           className="hp-page-swipe-curl is-prev"
           title={t("preview.chrome.pageSwipeHintPrev")}
         >
           <span className="hp-page-swipe-curl__sheet" />
-          <span className="hp-page-swipe-curl__fold" />
+          <span className="hp-page-swipe-curl__chev" aria-hidden>
+            ‹
+          </span>
         </div>
       ) : null}
       {canNext ? (
@@ -220,7 +190,9 @@ const PreviewPageSwipe = () => {
           title={t("preview.chrome.pageSwipeHintNext")}
         >
           <span className="hp-page-swipe-curl__sheet" />
-          <span className="hp-page-swipe-curl__fold" />
+          <span className="hp-page-swipe-curl__chev" aria-hidden>
+            ›
+          </span>
         </div>
       ) : null}
       <span className="hp-sr-only">{t("preview.chrome.pageSwipeHint")}</span>

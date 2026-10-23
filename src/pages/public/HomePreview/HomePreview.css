@@ -17,113 +17,84 @@
   }
 }
 
-/* Edge “pulled page corner” hint — portaled to body (avoids .hp overflow clip) */
+/*
+ * Permanent mobile swipe affordance — portaled to document.body.
+ * Position: vertically centered (top: 50%, translateY -50%),
+ * glued to the left and/or right screen edges.
+ *   • left edge  ‹  = previous page (hidden on Acasă)
+ *   • right edge ›  = next page (hidden on Blog)
+ */
 .hp-page-swipe-edges {
   pointer-events: none;
 }
 
 .hp-page-swipe-curl {
   position: fixed;
-  top: 40%;
+  top: 50%;
   z-index: 55;
-  width: 1.65rem;
-  height: 5.6rem;
+  width: 1.55rem;
+  height: 3.4rem;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
 }
 
 .hp-page-swipe-curl.is-prev {
   left: 0;
-  animation: hp-page-curl-breathe-prev 2.2s ease-in-out infinite;
+  animation: hp-page-curl-pulse-prev 2s ease-in-out infinite;
 }
 
 .hp-page-swipe-curl.is-next {
   right: 0;
-  animation: hp-page-curl-breathe-next 2.2s ease-in-out infinite;
+  animation: hp-page-curl-pulse-next 2s ease-in-out infinite;
 }
 
 .hp-page-swipe-curl__sheet {
   position: absolute;
-  inset: 0.4rem 0 0.4rem;
-  background: #fff;
+  inset: 0;
+  background: rgba(26, 74, 141, 0.88);
+  box-shadow: 0 4px 14px rgba(18, 40, 70, 0.28);
 }
 
 .hp-page-swipe-curl.is-prev .hp-page-swipe-curl__sheet {
-  border-radius: 0 0.55rem 0.55rem 0;
-  background: linear-gradient(
-    90deg,
-    rgba(26, 74, 141, 0.22) 0%,
-    #fff 38%,
-    #f4f7fb 100%
-  );
-  box-shadow:
-    3px 2px 14px rgba(18, 40, 70, 0.18),
-    inset -1px 0 0 rgba(26, 74, 141, 0.08);
+  border-radius: 0 0.85rem 0.85rem 0;
 }
 
 .hp-page-swipe-curl.is-next .hp-page-swipe-curl__sheet {
-  border-radius: 0.55rem 0 0 0.55rem;
-  background: linear-gradient(
-    270deg,
-    rgba(26, 74, 141, 0.22) 0%,
-    #fff 38%,
-    #f4f7fb 100%
-  );
-  box-shadow:
-    -3px 2px 14px rgba(18, 40, 70, 0.18),
-    inset 1px 0 0 rgba(26, 74, 141, 0.08);
+  border-radius: 0.85rem 0 0 0.85rem;
 }
 
-/* Dog-ear fold — page corner being tugged inward */
-.hp-page-swipe-curl__fold {
-  position: absolute;
-  top: 0.4rem;
-  width: 0.95rem;
-  height: 0.95rem;
+.hp-page-swipe-curl__chev {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-top: -0.05rem;
 }
 
-.hp-page-swipe-curl.is-next .hp-page-swipe-curl__fold {
-  right: 0;
-  background: linear-gradient(
-    -135deg,
-    #9eb0c9 0%,
-    #e8eef6 42%,
-    rgba(255, 255, 255, 0) 46%
-  );
-  box-shadow: -1px 1px 3px rgba(18, 40, 70, 0.12);
-}
-
-.hp-page-swipe-curl.is-prev .hp-page-swipe-curl__fold {
-  left: 0;
-  background: linear-gradient(
-    135deg,
-    #9eb0c9 0%,
-    #e8eef6 42%,
-    rgba(255, 255, 255, 0) 46%
-  );
-  box-shadow: 1px 1px 3px rgba(18, 40, 70, 0.12);
-}
-
-/* Peek inward onto the screen (never animate off-edge) */
-@keyframes hp-page-curl-breathe-next {
+@keyframes hp-page-curl-pulse-next {
   0%,
   100% {
-    opacity: 0.7;
-    transform: translateX(0.35rem);
+    transform: translateY(-50%) translateX(0);
+    opacity: 0.82;
   }
   50% {
+    transform: translateY(-50%) translateX(-0.28rem);
     opacity: 1;
-    transform: translateX(-0.15rem);
   }
 }
 
-@keyframes hp-page-curl-breathe-prev {
+@keyframes hp-page-curl-pulse-prev {
   0%,
   100% {
-    opacity: 0.7;
-    transform: translateX(-0.35rem);
+    transform: translateY(-50%) translateX(0);
+    opacity: 0.82;
   }
   50% {
+    transform: translateY(-50%) translateX(0.28rem);
     opacity: 1;
-    transform: translateX(0.15rem);
   }
 }
 
