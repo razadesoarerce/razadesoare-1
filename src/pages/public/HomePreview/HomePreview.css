@@ -19,7 +19,7 @@
 
 /*
  * Permanent mobile swipe affordance — portaled to document.body.
- * Position: vertically centered (top: 50%, translateY -50%),
+ * Position: just below the cover/hero (matches .hp-hero 16:9 + max-height),
  * glued to the left and/or right screen edges.
  *   • left edge  ‹  = previous page (hidden on Acasă)
  *   • right edge ›  = next page (hidden on Blog)
@@ -29,12 +29,13 @@
 }
 
 .hp-page-swipe-curl {
+  /* Hero height ≈ min(15.5rem, 100vw × 9/16), then a small gap under the wave */
+  --hp-swipe-hint-top: calc(min(15.5rem, 100vw * 9 / 16) + 0.55rem);
   position: fixed;
-  top: 50%;
+  top: var(--hp-swipe-hint-top);
   z-index: 55;
   width: 0.95rem;
   height: 2.55rem;
-  transform: translateY(-50%);
   display: grid;
   place-items: center;
 }
@@ -78,11 +79,11 @@
 @keyframes hp-page-curl-pulse-next {
   0%,
   100% {
-    transform: translateY(-50%) translateX(0);
+    transform: translateX(0);
     opacity: 0.7;
   }
   50% {
-    transform: translateY(-50%) translateX(-0.14rem);
+    transform: translateX(-0.14rem);
     opacity: 0.95;
   }
 }
@@ -90,12 +91,18 @@
 @keyframes hp-page-curl-pulse-prev {
   0%,
   100% {
-    transform: translateY(-50%) translateX(0);
+    transform: translateX(0);
     opacity: 0.7;
   }
   50% {
-    transform: translateY(-50%) translateX(0.14rem);
+    transform: translateX(0.14rem);
     opacity: 0.95;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 899px) {
+  .hp-page-swipe-curl {
+    --hp-swipe-hint-top: calc(min(20rem, 100vw * 9 / 16) + 0.55rem);
   }
 }
 
