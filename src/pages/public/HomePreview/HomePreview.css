@@ -881,9 +881,16 @@
   margin-top: 0;
 }
 
-/* Echipa noastră — specialists banner + staff carousels */
-.hp-echipa-offer {
-  padding-bottom: 1.5rem;
+/* Echipa noastră — same stack-gap rhythm as preview homepage */
+.hp-section.hp-echipa-offer,
+.hp-section.hp-echipa-specialisti {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.hp-echipa-offer,
+.hp-echipa-specialisti {
+  margin-top: var(--hp-stack-gap, 1rem);
 }
 
 /* Match preview homepage — pagination dots one row lower */
@@ -897,24 +904,19 @@
   bottom: 0.15rem;
 }
 
-.hp-echipa-specialisti {
-  padding-top: 0.5rem;
-  padding-bottom: 1.75rem;
-}
-
 .hp-echipa-specialisti__banner {
   border: 0;
   border-radius: 1.1rem;
   background: rgba(26, 74, 141, 0.12);
-  padding: 1.15rem 1.1rem 1.2rem;
-  margin-bottom: 1.75rem;
+  padding: 1rem 1rem 1.05rem;
+  margin-bottom: var(--hp-stack-gap, 1rem);
 }
 
 .hp-echipa-specialisti__banner h2 {
   font-family: var(--hp-display);
   font-size: clamp(1.25rem, 3.6vw, 1.75rem);
   color: var(--hp-blue);
-  margin: 0 0 0.45rem;
+  margin: 0 0 0.4rem;
   line-height: 1.2;
   text-align: center;
 }
@@ -928,7 +930,7 @@
 }
 
 .hp-echipa-staff {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--hp-stack-gap, 1rem);
 }
 
 .hp-echipa-staff:last-child {
@@ -939,12 +941,8 @@
   font-family: var(--hp-display);
   font-size: clamp(1.05rem, 3vw, 1.3rem);
   color: var(--hp-blue);
-  margin: 0 0 0.75rem;
+  margin: 0 0 calc(var(--hp-stack-gap, 1rem) * 0.5);
   line-height: 1.2;
-}
-
-.hp-echipa-staff__swiper {
-  padding-bottom: 2.75rem;
 }
 
 .hp-echipa-staff__card {
@@ -1054,7 +1052,7 @@
   }
 
   .hp-echipa-specialisti__banner {
-    padding: 1.35rem 1.4rem 1.4rem;
+    padding: 1.1rem 1.2rem 1.15rem;
   }
 
   .hp-echipa-staff__name {
@@ -3256,6 +3254,18 @@
 
   .hp--type-test:not(.hp--preview-page) .hp-offer-swiper,
   .hp--type-test:not(.hp--preview-page) .hp-life-swiper {
+    padding-bottom: 3rem;
+  }
+
+  /* Keep Echipa rhythm when .hp-section gains 3.5rem padding at desktop */
+  .hp--preview-page .hp-section.hp-echipa-offer,
+  .hp--preview-page .hp-section.hp-echipa-specialisti {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .hp--preview-page .hp-echipa-offer .hp-offer-swiper,
+  .hp--preview-page .hp-echipa-staff__swiper {
     padding-bottom: 3rem;
   }
 
