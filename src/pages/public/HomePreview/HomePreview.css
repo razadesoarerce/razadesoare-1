@@ -399,19 +399,19 @@
 }
 
 .hp-info-card__icon {
-  width: 2.55rem;
-  height: 2.55rem;
+  width: 2.85rem;
+  height: 2.85rem;
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  border-radius: 0.75rem;
-  background: rgba(26, 74, 141, 0.08);
-  color: var(--hp-blue);
+  background: transparent;
 }
 
-.hp-info-card__icon svg {
-  width: 1.45rem;
-  height: 1.45rem;
+.hp-info-card__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .hp-info-card__body {
@@ -826,6 +826,8 @@
   color: var(--hp-blue);
   margin: 0 0 0.5rem;
   line-height: 1.25;
+  /* Match first-line indent on body paragraphs */
+  text-indent: 1.5em;
 }
 
 .hp-despre-intro__copy p,

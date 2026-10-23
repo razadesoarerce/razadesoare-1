@@ -7,70 +7,13 @@ import PreviewSupportFooter from "./PreviewSupportFooter";
 const CALENDAR_SRC = "/images/preview/informatii/calendar-an-scolar-2026-2027.png";
 
 const INFO_CARD_META = [
-  { id: "admitere", icon: "clipboard" },
-  { id: "inscriere", icon: "pen" },
-  { id: "documente", icon: "folder" },
-  { id: "structura", icon: "calendar" },
+  { id: "admitere", icon: "/images/preview/informatii/icon-admitere.png" },
+  { id: "inscriere", icon: "/images/preview/informatii/icon-inscriere.png" },
+  { id: "documente", icon: "/images/preview/informatii/icon-documente.png" },
+  { id: "structura", icon: "/images/preview/informatii/icon-structura.png" },
 ];
 
 const asStringList = (value) => (Array.isArray(value) ? value : []);
-
-const InfoIcon = ({ name }) => {
-  if (name === "clipboard") {
-    return (
-      <svg viewBox="0 0 48 48" aria-hidden>
-        <rect x="12" y="8" width="24" height="34" rx="4" fill="none" stroke="currentColor" strokeWidth="2.5" />
-        <path
-          d="M18 8h12a3 3 0 0 1 3 3v2H15v-2a3 3 0 0 1 3-3z"
-          fill="currentColor"
-          opacity="0.9"
-        />
-        <path d="M18 22h12M18 28h12M18 34h8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-      </svg>
-    );
-  }
-  if (name === "pen") {
-    return (
-      <svg viewBox="0 0 48 48" aria-hidden>
-        <path
-          d="M30 10l8 8-18 18H12v-8L30 10z"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinejoin="round"
-        />
-        <path d="M26 14l8 8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-        <path d="M12 40h24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-      </svg>
-    );
-  }
-  if (name === "folder") {
-    return (
-      <svg viewBox="0 0 48 48" aria-hidden>
-        <path
-          d="M8 16a3 3 0 0 1 3-3h10l3 4h13a3 3 0 0 1 3 3v16a3 3 0 0 1-3 3H11a3 3 0 0 1-3-3V16z"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinejoin="round"
-        />
-        <path d="M8 22h32" fill="none" stroke="currentColor" strokeWidth="2.5" />
-      </svg>
-    );
-  }
-  return (
-    <svg viewBox="0 0 48 48" aria-hidden>
-      <rect x="10" y="12" width="28" height="28" rx="4" fill="none" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M10 20h28" fill="none" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M18 8v6M30 8v6" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-      <circle cx="18" cy="28" r="1.8" fill="currentColor" />
-      <circle cx="24" cy="28" r="1.8" fill="currentColor" />
-      <circle cx="30" cy="28" r="1.8" fill="currentColor" />
-      <circle cx="18" cy="34" r="1.8" fill="currentColor" />
-      <circle cx="24" cy="34" r="1.8" fill="currentColor" />
-    </svg>
-  );
-};
 
 const DownloadPlaceholder = ({ label, downloadLabel }) => (
   <li className="hp-info-doc">
@@ -298,7 +241,7 @@ const Informatii = () => {
                       aria-controls={panelId}
                     >
                       <span className="hp-info-card__icon" aria-hidden>
-                        <InfoIcon name={card.icon} />
+                        <img src={card.icon} alt="" loading="lazy" />
                       </span>
                       <span className="hp-info-card__body">
                         <span className="hp-info-card__title">{card.title}</span>
