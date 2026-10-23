@@ -150,6 +150,174 @@
       "design": "Design vizual și multimedia"
     }
   },
+  "legal": {
+    "aria": "Informații legale",
+    "privacy": {
+      "title": "Politica de confidențialitate",
+      "updated": "Actualizată: octombrie 2026",
+      "sections": [
+        {
+          "heading": "1. Cine suntem",
+          "paragraphs": [
+            "Operatorul acestui site este Școala Specială „Rază de Soare”, cu sediul în Arad, Strada Diogene nr. 12, e-mail: razadesoarerce@yahoo.com, telefon: 0257 214 805.",
+            "Prezenta politică explică modul în care prelucrăm datele cu caracter personal în legătură cu utilizarea site-ului, în conformitate cu Regulamentul (UE) 2016/679 (GDPR) și cu legislația română aplicabilă (inclusiv Legea nr. 190/2018)."
+          ]
+        },
+        {
+          "heading": "2. Ce date prelucrăm",
+          "paragraphs": [
+            "Pe zona publică a site-ului nu colectăm date personale prin formulare online proprii. Dacă ne contactați prin e-mail, telefon sau rețele sociale, prelucrăm datele pe care ni le transmiteți (de exemplu nume, adresă de e-mail, număr de telefon și conținutul mesajului), pentru a răspunde solicitării.",
+            "În browserul dumneavoastră pot fi stocate local preferințe tehnice (limba RO/EN și poziția meniului flotant pe site-ul preview), fără a identifica persoana.",
+            "Zona de administrare a site-ului este destinată doar personalului autorizat. Autentificarea folosește un serviciu de tip Firebase Authentication, care stochează date de sesiune necesare funcționării contului."
+          ]
+        },
+        {
+          "heading": "3. Scopuri și temeiuri legale",
+          "paragraphs": [
+            "Prelucrăm datele pentru: comunicarea cu persoanele interesate de activitatea școlii; asigurarea funcționării și securității site-ului; respectarea obligațiilor legale, atunci când există.",
+            "Temeiurile pot include: interesul legitim (funcționarea unui site informativ), executarea unor demersuri la cererea persoanei (răspuns la contact) și, după caz, obligația legală sau consimțământul, atunci când legea o cere."
+          ]
+        },
+        {
+          "heading": "4. Destinatari și servicii terțe",
+          "paragraphs": [
+            "Site-ul este găzduit pe infrastructură de tip cloud (Vercel). Pentru afișarea fonturilor pot fi folosite servicii Google Fonts. Acestea pot prelucra adresa IP și date tehnice de conexiune, conform politicilor proprii.",
+            "Linkurile către site-uri externe (de exemplu formularul de redirecționare 3,5% pe formular230.ro sau pagina Facebook a școlii) duc către operatori independenți. Nu controlăm modul în care aceștia prelucrează datele după ce părăsiți site-ul nostru.",
+            "Nu vindem date personale și nu le folosim pentru publicitate comportamentală pe acest site."
+          ]
+        },
+        {
+          "heading": "5. Durata stocării",
+          "paragraphs": [
+            "Mesajele de contact se păstrează atât cât este necesar pentru soluționarea solicitării și, ulterior, pe perioada impusă de arhivare sau de apărarea unor drepturi în justiție.",
+            "Preferințele salvate în browser rămân până le ștergeți din setările dispozitivului sau până la o actualizare a site-ului care le înlocuiește."
+          ]
+        },
+        {
+          "heading": "6. Drepturile dumneavoastră",
+          "paragraphs": [
+            "Aveți dreptul de acces, rectificare, ștergere, restricționare, opoziție și, după caz, portabilitate, precum și dreptul de a nu face obiectul unei decizii bazate exclusiv pe prelucrare automată, în condițiile GDPR.",
+            "Puteți depune o plângere la Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP).",
+            "Pentru exercitarea drepturilor, ne puteți scrie la razadesoarerce@yahoo.com sau ne puteți contacta la telefonul școlii."
+          ]
+        },
+        {
+          "heading": "7. Copii și elevi",
+          "paragraphs": [
+            "Site-ul are caracter informativ pentru părinți și publicul interesat. Nu solicităm în mod intenționat date personale de la minori prin zona publică. Imaginile și materialele publicate respectă, în măsura posibilului, cadrul legal privind dreptul la imagine și protecția elevilor."
+          ]
+        },
+        {
+          "heading": "8. Actualizări",
+          "paragraphs": [
+            "Putem actualiza această politică atunci când se schimbă modul de funcționare a site-ului sau legislația aplicabilă. Versiunea curentă este cea afișată pe această pagină."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Termeni și condiții",
+      "updated": "Actualizați: octombrie 2026",
+      "sections": [
+        {
+          "heading": "1. Acceptarea termenilor",
+          "paragraphs": [
+            "Prin accesarea și utilizarea site-ului Școlii Speciale „Rază de Soare” acceptați acești termeni. Dacă nu sunteți de acord, vă rugăm să nu utilizați site-ul."
+          ]
+        },
+        {
+          "heading": "2. Scopul site-ului",
+          "paragraphs": [
+            "Site-ul prezintă informații generale despre școală, activități, echipă, admitere și modalități de sprijin (inclusiv redirecționarea a 3,5% din impozit sau voluntariat). Conținutul are caracter informativ și nu înlocuiește comunicarea oficială directă cu instituția, acolo unde legea sau procedurile școlare o cer."
+          ]
+        },
+        {
+          "heading": "3. Proprietate intelectuală",
+          "paragraphs": [
+            "Textele, fotografiile, ilustrațiile, logo-ul și celelalte elemente de pe site aparțin școlii sau sunt folosite cu drept de utilizare. Este interzisă copierea, distribuirea sau reutilizarea comercială fără acord scris prealabil, cu excepția cazurilor permise de lege."
+          ]
+        },
+        {
+          "heading": "4. Utilizare corectă",
+          "paragraphs": [
+            "Vă angajați să nu utilizați site-ul într-un mod care afectează securitatea, disponibilitatea sau reputația școlii, inclusiv prin încercări de acces neautorizat la zona de administrare sau prin publicarea de conținut ilegal ori ofensator prin canalele de contact."
+          ]
+        },
+        {
+          "heading": "5. Linkuri externe",
+          "paragraphs": [
+            "Site-ul poate conține linkuri către resurse externe (de exemplu formular230.ro, Google Maps, Facebook). Aceste site-uri au termeni și politici proprii. Nu suntem responsabili pentru conținutul sau practicile lor."
+          ]
+        },
+        {
+          "heading": "6. Disponibilitate și exactitate",
+          "paragraphs": [
+            "Depunem eforturi rezonabile pentru a menține informațiile corecte și actualizate, însă nu garantăm absența erorilor sau funcționarea neîntreruptă a site-ului. Informațiile despre admitere, calendar sau proceduri pot fi confirmate la sediul școlii sau prin datele de contact afișate."
+          ]
+        },
+        {
+          "heading": "7. Limitarea răspunderii",
+          "paragraphs": [
+            "În măsura permisă de lege, școala nu răspunde pentru daune indirecte rezultate din utilizarea sau imposibilitatea utilizării site-ului, inclusiv din cauza întreruperilor tehnice sau a acțiunilor unor terți."
+          ]
+        },
+        {
+          "heading": "8. Legea aplicabilă",
+          "paragraphs": [
+            "Acești termeni sunt guvernați de legea română. Eventualele dispute se soluționează pe cale amiabilă sau, după caz, de instanțele competente din România.",
+            "Pentru întrebări: razadesoarerce@yahoo.com · 0257 214 805 · Arad, Strada Diogene nr. 12."
+          ]
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookies",
+      "updated": "Actualizată: octombrie 2026",
+      "sections": [
+        {
+          "heading": "1. Ce sunt cookie-urile",
+          "paragraphs": [
+            "Cookie-urile sunt fișiere de mici dimensiuni stocate de browser pe dispozitivul dumneavoastră. Tehnologii similare (de exemplu localStorage) pot salva preferințe tehnice necesare pentru funcționarea site-ului."
+          ]
+        },
+        {
+          "heading": "2. Ce folosim pe acest site",
+          "paragraphs": [
+            "În prezent, pe zona publică a site-ului nu setăm cookie-uri de analiză, publicitate sau urmărire comportamentală.",
+            "Folosim stocare locală în browser (localStorage) pentru: preferința de limbă (română / engleză) și poziția meniului flotant pe site-ul preview. Aceste date rămân pe dispozitivul dumneavoastră și nu ne sunt transmise ca profil de marketing.",
+            "Pentru autentificarea în zona de administrare (doar personal autorizat) pot fi folosite mecanisme de sesiune ale serviciului Firebase Authentication, necesare pentru securitatea contului."
+          ]
+        },
+        {
+          "heading": "3. Servicii terțe",
+          "paragraphs": [
+            "La încărcarea fonturilor (Google Fonts) browserul poate contacta servere ale Google, care pot prelucra date tehnice de conexiune conform politicii Google.",
+            "Când accesați linkuri externe (Facebook, formular230.ro, hărți Google), acele site-uri își pot seta propriile cookie-uri, în afara controlului nostru."
+          ]
+        },
+        {
+          "heading": "4. Temei și necesitate",
+          "paragraphs": [
+            "Stocările tehnice menționate mai sus sunt folosite pentru a oferi funcțiile pe care le solicitați (afișarea site-ului în limba aleasă și păstrarea preferinței de interfață). Conform legislației privind confidențialitatea în comunicații electronice, astfel de mijloace strict necesare pot fi folosite fără un banner de consimțământ separat.",
+            "Dacă în viitor vom introduce instrumente de statistică sau marketing care necesită consimțământ, vom actualiza această secțiune și vom solicita acordul dumneavoastră înainte de activare."
+          ]
+        },
+        {
+          "heading": "5. Cum puteți controla datele din browser",
+          "paragraphs": [
+            "Puteți șterge cookie-urile și datele site-ului din setările browserului (istoric / confidențialitate / datele site-urilor). După ștergere, limba și poziția meniului pot reveni la valorile implicite.",
+            "Majoritatea browserelor permit blocarea cookie-urilor terțe; acest lucru nu afectează, de regulă, conținutul principal al site-ului nostru în configurația actuală."
+          ]
+        },
+        {
+          "heading": "6. Contact",
+          "paragraphs": [
+            "Pentru întrebări despre cookie-uri și stocarea locală: razadesoarerce@yahoo.com · 0257 214 805."
+          ]
+        }
+      ]
+    }
+  },
   "info": {
     "heroAria": "Informații",
     "coverAlt": "Semnarea unui document pe birou, cu un elev alături — admitere și informații școlare",

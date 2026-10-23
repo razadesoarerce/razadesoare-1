@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SUPPORT_FORM_URL } from "./previewSupportData";
+import PreviewLegalLinks from "./PreviewLegalLinks";
 
 const SWIPE_CLOSE_PX = 56;
 
@@ -176,6 +177,8 @@ const PreviewSupportFooter = () => {
           </ul>
         </div>
       </footer>
+
+      <PreviewLegalLinks />
     </>
   );
 };

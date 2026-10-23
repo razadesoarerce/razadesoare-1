@@ -150,6 +150,174 @@
       "design": "Visual design and multimedia"
     }
   },
+  "legal": {
+    "aria": "Legal information",
+    "privacy": {
+      "title": "Privacy policy",
+      "updated": "Last updated: October 2026",
+      "sections": [
+        {
+          "heading": "1. Who we are",
+          "paragraphs": [
+            "The controller of this website is Rază de Soare Special School, based in Arad, Diogene Street no. 12, email: razadesoarerce@yahoo.com, phone: 0257 214 805.",
+            "This policy explains how we process personal data in connection with use of the site, under Regulation (EU) 2016/679 (GDPR) and applicable Romanian law (including Law no. 190/2018)."
+          ]
+        },
+        {
+          "heading": "2. What data we process",
+          "paragraphs": [
+            "On the public area of the site we do not collect personal data through our own online forms. If you contact us by email, phone or social media, we process the data you send us (for example name, email address, phone number and message content) in order to reply.",
+            "Your browser may store technical preferences locally (RO/EN language and the floating menu position on the preview site), without identifying you as a person.",
+            "The site administration area is for authorised staff only. Sign-in uses Firebase Authentication, which stores session data needed for the account to work."
+          ]
+        },
+        {
+          "heading": "3. Purposes and legal bases",
+          "paragraphs": [
+            "We process data to: communicate with people interested in the school; keep the site running and secure; and meet legal obligations where they apply.",
+            "Legal bases may include: legitimate interest (running an informational website), steps at the request of the person (replying to contact), and, where required, a legal obligation or consent."
+          ]
+        },
+        {
+          "heading": "4. Recipients and third-party services",
+          "paragraphs": [
+            "The site is hosted on cloud infrastructure (Vercel). Google Fonts may be used to display fonts. Those services may process IP address and technical connection data under their own policies.",
+            "Links to external sites (for example the 3.5% tax redirection form on formular230.ro or the school’s Facebook page) lead to independent controllers. We do not control how they process data after you leave our site.",
+            "We do not sell personal data and we do not use it for behavioural advertising on this site."
+          ]
+        },
+        {
+          "heading": "5. Retention",
+          "paragraphs": [
+            "Contact messages are kept as long as needed to handle the request and afterwards for any legally required archiving or to defend legal rights.",
+            "Preferences saved in the browser remain until you delete them in your device settings or until a site update replaces them."
+          ]
+        },
+        {
+          "heading": "6. Your rights",
+          "paragraphs": [
+            "You have the rights of access, rectification, erasure, restriction, objection and, where applicable, portability, as well as the right not to be subject to a decision based solely on automated processing, under the GDPR.",
+            "You may lodge a complaint with the Romanian National Supervisory Authority for Personal Data Processing (ANSPDCP).",
+            "To exercise your rights, email razadesoarerce@yahoo.com or contact the school by phone."
+          ]
+        },
+        {
+          "heading": "7. Children and students",
+          "paragraphs": [
+            "The site is informational for parents and the interested public. We do not intentionally request personal data from minors through the public area. Published images and materials respect, as far as possible, the legal framework on image rights and pupil protection."
+          ]
+        },
+        {
+          "heading": "8. Updates",
+          "paragraphs": [
+            "We may update this policy when how the site works or the applicable law changes. The current version is the one shown on this page."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms and conditions",
+      "updated": "Last updated: October 2026",
+      "sections": [
+        {
+          "heading": "1. Acceptance",
+          "paragraphs": [
+            "By accessing and using the Rază de Soare Special School website you accept these terms. If you do not agree, please do not use the site."
+          ]
+        },
+        {
+          "heading": "2. Purpose of the site",
+          "paragraphs": [
+            "The site provides general information about the school, activities, team, admission and ways to support us (including redirecting 3.5% of income tax or volunteering). Content is informational and does not replace official direct communication with the institution where law or school procedures require it."
+          ]
+        },
+        {
+          "heading": "3. Intellectual property",
+          "paragraphs": [
+            "Texts, photos, illustrations, the logo and other elements on the site belong to the school or are used under a right of use. Copying, distribution or commercial reuse without prior written consent is prohibited, except where the law allows."
+          ]
+        },
+        {
+          "heading": "4. Acceptable use",
+          "paragraphs": [
+            "You agree not to use the site in a way that harms the school’s security, availability or reputation, including unauthorised attempts to access the administration area or sending illegal or offensive content through contact channels."
+          ]
+        },
+        {
+          "heading": "5. External links",
+          "paragraphs": [
+            "The site may contain links to external resources (for example formular230.ro, Google Maps, Facebook). Those sites have their own terms and policies. We are not responsible for their content or practices."
+          ]
+        },
+        {
+          "heading": "6. Availability and accuracy",
+          "paragraphs": [
+            "We make reasonable efforts to keep information accurate and up to date, but we do not guarantee the absence of errors or uninterrupted operation. Admission, calendar or procedure details can be confirmed at the school or via the contact details shown."
+          ]
+        },
+        {
+          "heading": "7. Limitation of liability",
+          "paragraphs": [
+            "To the extent permitted by law, the school is not liable for indirect damages resulting from use of or inability to use the site, including technical interruptions or actions of third parties."
+          ]
+        },
+        {
+          "heading": "8. Governing law",
+          "paragraphs": [
+            "These terms are governed by Romanian law. Disputes are resolved amicably or, where needed, by the competent courts in Romania.",
+            "Questions: razadesoarerce@yahoo.com · 0257 214 805 · Arad, Diogene Street no. 12."
+          ]
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookies",
+      "updated": "Last updated: October 2026",
+      "sections": [
+        {
+          "heading": "1. What cookies are",
+          "paragraphs": [
+            "Cookies are small files stored by the browser on your device. Similar technologies (for example localStorage) may save technical preferences needed for the site to work."
+          ]
+        },
+        {
+          "heading": "2. What we use on this site",
+          "paragraphs": [
+            "At present, on the public area of the site we do not set analytics, advertising or behavioural tracking cookies.",
+            "We use local browser storage (localStorage) for: language preference (Romanian / English) and the floating menu position on the preview site. This data stays on your device and is not sent to us as a marketing profile.",
+            "For sign-in to the administration area (authorised staff only), Firebase Authentication session mechanisms may be used, as needed for account security."
+          ]
+        },
+        {
+          "heading": "3. Third-party services",
+          "paragraphs": [
+            "When loading fonts (Google Fonts), the browser may contact Google servers, which may process technical connection data under Google’s policy.",
+            "When you follow external links (Facebook, formular230.ro, Google Maps), those sites may set their own cookies, outside our control."
+          ]
+        },
+        {
+          "heading": "4. Legal basis and necessity",
+          "paragraphs": [
+            "The technical storage above is used to provide the features you request (showing the site in the chosen language and keeping the interface preference). Under ePrivacy rules, such strictly necessary means may be used without a separate consent banner.",
+            "If we later add statistics or marketing tools that require consent, we will update this section and ask for your agreement before enabling them."
+          ]
+        },
+        {
+          "heading": "5. How you can control browser data",
+          "paragraphs": [
+            "You can delete cookies and site data in your browser settings (history / privacy / site data). After deletion, language and menu position may return to defaults.",
+            "Most browsers allow blocking third-party cookies; this usually does not affect the main content of our site in the current setup."
+          ]
+        },
+        {
+          "heading": "6. Contact",
+          "paragraphs": [
+            "Questions about cookies and local storage: razadesoarerce@yahoo.com · 0257 214 805."
+          ]
+        }
+      ]
+    }
+  },
   "info": {
     "heroAria": "Information",
     "coverAlt": "Signing a document at a desk, with a student nearby — admission and school information",

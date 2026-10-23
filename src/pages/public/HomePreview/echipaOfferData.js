@@ -1,7 +1,12 @@
 /** Structural data for Echipa noastră — copy comes from i18n (`preview.team`). */
 
 export const ECHIPA_OFFER_META = [
-  { id: "pedagogie", tone: "blue", icon: "book" },
+  {
+    id: "pedagogie",
+    tone: "blue",
+    icon: "book",
+    imageIcon: "/images/preview/icon-psihopedagogie.png",
+  },
   {
     id: "consiliere",
     tone: "pink",

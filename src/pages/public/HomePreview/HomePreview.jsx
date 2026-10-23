@@ -8,6 +8,7 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { PREVIEW_HOME, PREVIEW_DESPRE, PREVIEW_NAV } from "./previewNav";
+import PreviewLegalLinks from "./PreviewLegalLinks";
 import "./HomePreview.css";
 
 /** Pulsing sun mark — same animated sun used previously in the hero. */
@@ -931,27 +932,25 @@ const HomePreview = () => {
           ) : null}
         </section>
 
-        <section className="hp-section hp-about" aria-labelledby="hp-about-title">
-          <div className="hp-section__head">
-            <SunRays className="hp-rays" />
-            <h2 id="hp-about-title">{t("preview.home.about.title")}</h2>
-            <SunRays className="hp-rays" />
-          </div>
-          <div className="hp-about__body">
-            <div className="hp-about__aside">
-              <div className="hp-about__media">
-                <img
-                  src="/images/preview/about-noi.jpg"
-                  alt={t("preview.home.about.imageAlt")}
-                />
-              </div>
-              <Link to={PREVIEW_DESPRE} className="hp-btn hp-btn--primary hp-about__cta">
-                {t("preview.home.about.cta")} <span aria-hidden>→</span>
-              </Link>
+        <section className="hp-about" aria-labelledby="hp-about-title">
+          <div className="hp-section hp-about__intro">
+            <div className="hp-section__head">
+              <SunRays className="hp-rays" />
+              <h2 id="hp-about-title">{t("preview.home.about.title")}</h2>
+              <SunRays className="hp-rays" />
             </div>
             <div className="hp-about__text">
               <p>{t("preview.home.about.text")}</p>
+              <Link to={PREVIEW_DESPRE} className="hp-btn hp-btn--primary">
+                {t("preview.home.about.cta")} <span aria-hidden>→</span>
+              </Link>
             </div>
+          </div>
+          <div className="hp-about__media">
+            <img
+              src="/images/preview/about-noi.jpg"
+              alt={t("preview.home.about.imageAlt")}
+            />
           </div>
         </section>
 
@@ -1042,6 +1041,8 @@ const HomePreview = () => {
           </ul>
         </div>
       </footer>
+
+      <PreviewLegalLinks />
     </div>
   );
 };
