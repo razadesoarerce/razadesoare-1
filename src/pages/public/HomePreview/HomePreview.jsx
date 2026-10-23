@@ -1,4 +1,4 @@
-import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -147,50 +147,16 @@ const Icon = ({ name }) => {
   );
 };
 
-const SECTION_WAVE_PATH =
-  "M0,72 C180,108 360,108 540,78 C720,48 900,36 1080,58 C1260,80 1350,92 1440,78";
-
-const GoldShineGradient = ({ id }) => (
-  <linearGradient id={id} gradientUnits="userSpaceOnUse" x1="-480" y1="0" x2="480" y2="0">
-    <stop offset="0%" stopColor="#c4921a" />
-    <stop offset="42%" stopColor="#e8b93a" />
-    <stop offset="50%" stopColor="#fff6d0" />
-    <stop offset="58%" stopColor="#e8b93a" />
-    <stop offset="100%" stopColor="#c4921a" />
-    <animate attributeName="x1" values="-960;1440" dur="3.6s" repeatCount="indefinite" />
-    <animate attributeName="x2" values="0;2400" dur="3.6s" repeatCount="indefinite" />
-  </linearGradient>
-);
-
-/** Same curve as the hero cover wave — thin gold line with a traveling shine. */
-const SectionWave = () => {
-  const gradId = `hp-wave-shine-${useId().replace(/:/g, "")}`;
-  return (
-    <div className="hp-section-wave" aria-hidden>
-      <svg className="hp-section-wave__svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
-        <defs>
-          <GoldShineGradient id={gradId} />
-        </defs>
-        <path
-          className="hp-section-wave__line"
-          d={SECTION_WAVE_PATH}
-          fill="none"
-          stroke={`url(#${gradId})`}
-          strokeWidth="1.55"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          vectorEffect="non-scaling-stroke"
-        />
-      </svg>
-    </div>
-  );
-};
-
-/** Section title — gold soft glow (like primary CTA shadow) + scroll fade-in. */
-const SectionTitle = ({ id, children }) => (
-  <div className="hp-section__head hp-reveal">
-    <h2 id={id}>{children}</h2>
-  </div>
+const SunRays = ({ className = "" }) => (
+  <svg className={className} viewBox="0 0 64 24" aria-hidden>
+    <path
+      d="M4 18 Q8 4 12 18 M16 18 Q20 2 24 18 M28 18 Q32 6 36 18 M40 18 Q44 2 48 18 M52 18 Q56 6 60 18"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    />
+  </svg>
 );
 
 const SWIPE_CLOSE_PX = 56;
@@ -320,43 +286,6 @@ const HomePreview = () => {
       "https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&subset=latin,latin-ext&display=swap";
     document.head.appendChild(link);
     return undefined;
-  }, []);
-
-  useEffect(() => {
-    const nodes = Array.from(document.querySelectorAll(".hp .hp-reveal"));
-    if (!nodes.length) return undefined;
-
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) {
-      nodes.forEach((node) => node.classList.add("is-visible"));
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
-    );
-
-    // Wait a paint so opacity:0 is committed before is-visible (otherwise no fade)
-    let cancelled = false;
-    const startId = window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        if (cancelled) return;
-        nodes.forEach((node) => observer.observe(node));
-      });
-    });
-
-    return () => {
-      cancelled = true;
-      window.cancelAnimationFrame(startId);
-      observer.disconnect();
-    };
   }, []);
 
   useEffect(() => {
@@ -888,7 +817,11 @@ const HomePreview = () => {
         </section>
 
         <section className="hp-section hp-offer" aria-labelledby="hp-offer-title">
-          <SectionTitle id="hp-offer-title">{t("preview.home.offer.title")}</SectionTitle>
+          <div className="hp-section__head">
+            <SunRays className="hp-rays" />
+            <h2 id="hp-offer-title">{t("preview.home.offer.title")}</h2>
+            <SunRays className="hp-rays" />
+          </div>
           <p className="hp-section__lead">{t("preview.home.offer.lead")}</p>
           <div className="hp-offer__carousel">
             <Swiper
@@ -998,10 +931,12 @@ const HomePreview = () => {
           ) : null}
         </section>
 
-        <SectionWave />
-
         <section className="hp-section hp-about" aria-labelledby="hp-about-title">
-          <SectionTitle id="hp-about-title">{t("preview.home.about.title")}</SectionTitle>
+          <div className="hp-section__head">
+            <SunRays className="hp-rays" />
+            <h2 id="hp-about-title">{t("preview.home.about.title")}</h2>
+            <SunRays className="hp-rays" />
+          </div>
           <div className="hp-about__body">
             <div className="hp-about__aside">
               <div className="hp-about__media">
@@ -1020,10 +955,12 @@ const HomePreview = () => {
           </div>
         </section>
 
-        <SectionWave />
-
         <section className="hp-section hp-life" aria-labelledby="hp-life-title">
-          <SectionTitle id="hp-life-title">{t("preview.home.life.title")}</SectionTitle>
+          <div className="hp-section__head">
+            <SunRays className="hp-rays" />
+            <h2 id="hp-life-title">{t("preview.home.life.title")}</h2>
+            <SunRays className="hp-rays" />
+          </div>
           <p className="hp-section__lead">{t("preview.home.life.lead")}</p>
           <div className="hp-life__carousel">
             <Swiper
@@ -1052,71 +989,59 @@ const HomePreview = () => {
         </section>
       </main>
 
-      <div className="hp-footer-band">
-        <svg
-          className="hp-footer-band__wave"
-          viewBox="0 0 1440 120"
-          preserveAspectRatio="none"
-          aria-hidden
-        >
-          <path
-            d="M0,72 C180,108 360,108 540,78 C720,48 900,36 1080,58 C1260,80 1350,92 1440,78 L1440,122 L0,122 Z"
-            fill="currentColor"
-          />
-        </svg>
-
-        <section className="hp-section hp-support" aria-labelledby="hp-support-title">
-          <SectionTitle id="hp-support-title">{t("preview.home.support.title")}</SectionTitle>
-          <div className="hp-support__frame">
-            <a
-              className="hp-support-btn hp-support-btn--tax"
-              href={SUPPORT_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+      <section className="hp-section hp-support" aria-labelledby="hp-support-title">
+        <div className="hp-section__head">
+          <SunRays className="hp-rays" />
+          <h2 id="hp-support-title">{t("preview.home.support.title")}</h2>
+          <SunRays className="hp-rays" />
+        </div>
+        <div className="hp-support__frame">
+          <a
+            className="hp-support-btn hp-support-btn--tax"
+            href={SUPPORT_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="hp-support-btn__badge" aria-hidden>
+              3,5%
+            </span>
+            <span className="hp-support-btn__title">{t("preview.home.support.taxTitle")}</span>
+          </a>
+          {supportCards.map((card) => (
+            <button
+              key={card.id}
+              type="button"
+              className={`hp-support-btn hp-support-btn--${card.tone} ${
+                expandedOffer?.id === card.id ? "is-active" : ""
+              }`}
+              onClick={() => setExpandedOffer(card)}
+              aria-expanded={expandedOffer?.id === card.id}
+              aria-controls="hp-offer-expanded"
             >
               <span className="hp-support-btn__badge" aria-hidden>
-                3,5%
+                {card.badge}
               </span>
-              <span className="hp-support-btn__title">{t("preview.home.support.taxTitle")}</span>
-            </a>
-            {supportCards.map((card) => (
-              <button
-                key={card.id}
-                type="button"
-                className={`hp-support-btn hp-support-btn--${card.tone} ${
-                  expandedOffer?.id === card.id ? "is-active" : ""
-                }`}
-                onClick={() => setExpandedOffer(card)}
-                aria-expanded={expandedOffer?.id === card.id}
-                aria-controls="hp-offer-expanded"
-              >
-                <span className="hp-support-btn__badge" aria-hidden>
-                  {card.badge}
-                </span>
-                <span className="hp-support-btn__title">{card.title}</span>
-              </button>
-            ))}
-          </div>
-        </section>
+              <span className="hp-support-btn__title">{card.title}</span>
+            </button>
+          ))}
+        </div>
+      </section>
 
-        <SectionWave />
-
-        <footer className="hp-credits" aria-label={t("preview.home.credits.aria")}>
-          <div className="hp-credits__inner">
-            <p className="hp-credits__brand">{t("preview.home.credits.brand")}</p>
-            <ul className="hp-credits__list">
-              <li>
-                <span className="hp-credits__role">{t("preview.home.credits.webDev")}</span>
-                <span className="hp-credits__name">Lolea Florentin Alin</span>
-              </li>
-              <li>
-                <span className="hp-credits__role">{t("preview.home.credits.design")}</span>
-                <span className="hp-credits__name">Roxin Mariana</span>
-              </li>
-            </ul>
-          </div>
-        </footer>
-      </div>
+      <footer className="hp-credits" aria-label={t("preview.home.credits.aria")}>
+        <div className="hp-credits__inner">
+          <p className="hp-credits__brand">{t("preview.home.credits.brand")}</p>
+          <ul className="hp-credits__list">
+            <li>
+              <span className="hp-credits__role">{t("preview.home.credits.webDev")}</span>
+              <span className="hp-credits__name">Lolea Florentin Alin</span>
+            </li>
+            <li>
+              <span className="hp-credits__role">{t("preview.home.credits.design")}</span>
+              <span className="hp-credits__name">Roxin Mariana</span>
+            </li>
+          </ul>
+        </div>
+      </footer>
     </div>
   );
 };

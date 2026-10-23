@@ -1517,11 +1517,10 @@
 
 .hp-section__head {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  margin-bottom: 0.45rem;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 .hp-section__head h2 {
@@ -1531,50 +1530,6 @@
   margin: 0;
   text-align: center;
   line-height: 1.15;
-  /* Soft gold glow — same language as .hp-btn--primary shadow */
-  text-shadow:
-    0 2px 8px rgba(245, 197, 66, 0.35),
-    0 6px 18px rgba(245, 197, 66, 0.32),
-    0 10px 28px rgba(245, 197, 66, 0.22);
-}
-
-.hp-support .hp-section__head h2 {
-  text-shadow:
-    0 2px 10px rgba(245, 197, 66, 0.4),
-    0 6px 20px rgba(245, 197, 66, 0.28),
-    0 0 24px rgba(255, 210, 74, 0.2);
-}
-
-/* Scroll fade-in for section titles */
-.hp-reveal {
-  opacity: 0;
-  transform: translateY(1rem);
-}
-
-.hp-reveal.is-visible {
-  animation: hp-title-reveal 0.7s ease forwards;
-}
-
-@keyframes hp-title-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hp-reveal {
-    opacity: 1;
-    transform: none;
-  }
-
-  .hp-reveal.is-visible {
-    animation: none;
-  }
 }
 
 .hp-section__lead {
@@ -1584,48 +1539,6 @@
   margin: 0 auto 1rem;
   font-weight: 600;
   font-size: 0.85rem;
-}
-
-/* Gold section divider — thin cover wave, end fade, traveling shine */
-.hp-section-wave {
-  display: block;
-  width: 100%;
-  height: 2.1rem;
-  margin: 0.1rem 0;
-  padding: 0;
-  box-sizing: border-box;
-  line-height: 0;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    #000 14%,
-    #000 86%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    #000 14%,
-    #000 86%,
-    transparent 100%
-  );
-}
-
-.hp-section-wave__svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.hp-section-wave__line {
-  opacity: 0.9;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hp-section-wave__svg animate {
-    display: none;
-  }
 }
 
 .hp-rays {
@@ -2070,47 +1983,34 @@
   margin-top: 1.75rem;
 }
 
-/* Footer band — support + credits share full-bleed blue, cover-shaped top wave */
-.hp-footer-band {
-  background: var(--hp-blue);
-  color: #fff;
-}
-
-.hp-footer-band__wave {
-  display: block;
-  width: 100%;
-  height: 2.75rem;
-  margin: 0;
-  line-height: 0;
-  background: var(--hp-white);
-  color: var(--hp-blue);
-}
-
-.hp-footer-band__wave path {
-  fill: currentColor;
-}
-
-.hp-footer-band .hp-section-wave {
-  margin: 0.35rem 0 0.15rem;
-}
-
-/* Support — full-bleed on blue band (no card) */
+/* Support — independent blue framed panel */
 .hp-section.hp-support {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0.85rem 0.85rem 0.75rem;
+  width: min(1120px, calc(100% - 1.5rem));
+  margin: 0 auto 1.5rem;
+  padding: 0.7rem 0.65rem 0.55rem;
   box-sizing: border-box;
-  background: transparent;
-  border-radius: 0;
+  background: var(--hp-blue);
+  border-radius: 1rem;
 }
 
 .hp-support .hp-section__head {
-  margin: 0 0 0.55rem;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.45rem;
   width: 100%;
 }
 
+.hp-support .hp-section__head .hp-rays {
+  flex: 0 0 auto;
+  width: 2.5rem;
+  color: var(--hp-yellow);
+}
+
 .hp-support .hp-section__head h2 {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
   font-family: var(--hp-display);
   font-size: clamp(1.35rem, 4vw, 2.1rem);
   color: #fff;
@@ -2232,16 +2132,12 @@
   background: rgba(108, 184, 107, 0.18);
 }
 
-/* Site credits — compact single-line info bar */
+/* Site credits — separate bar below support */
 .hp-credits {
   margin-top: 0;
-  background: transparent;
+  background: linear-gradient(180deg, var(--hp-blue) 0%, var(--hp-blue-deep) 100%);
   color: rgba(255, 255, 255, 0.92);
-  padding: 0.55rem 0.85rem calc(0.85rem + env(safe-area-inset-bottom));
-}
-
-.hp-footer-band .hp-credits {
-  background: transparent;
+  padding: 0.7rem 0.85rem calc(0.75rem + env(safe-area-inset-bottom));
 }
 
 .hp-credits__inner {
@@ -2328,13 +2224,9 @@
     max-height: 20rem;
   }
 
-  .hp-footer-band__wave {
-    height: 3.15rem;
-  }
-
   .hp-section.hp-support {
-    margin-bottom: 0;
-    padding: 1rem 1.25rem 0.85rem;
+    margin-bottom: 1.75rem;
+    padding: 0.85rem 0.9rem 0.7rem;
   }
 
   .hp a.hp-support-btn,
@@ -2576,8 +2468,8 @@
   }
 
   .hp-section.hp-support {
-    margin-bottom: 0;
-    padding: 1.15rem 1.5rem 0.95rem;
+    margin-bottom: 2rem;
+    padding: 1rem 1.1rem 0.75rem;
   }
 }
 
