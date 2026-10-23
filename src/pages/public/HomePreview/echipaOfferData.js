@@ -2,9 +2,24 @@
 
 export const ECHIPA_OFFER_META = [
   { id: "pedagogie", tone: "blue", icon: "book" },
-  { id: "consiliere", tone: "pink", icon: "people" },
-  { id: "logopedie", tone: "yellow", icon: "speech" },
-  { id: "kinetoterapie", tone: "green", icon: "motion" },
+  {
+    id: "consiliere",
+    tone: "pink",
+    icon: "people",
+    imageIcon: "/images/preview/icon-consiliere.png",
+  },
+  {
+    id: "logopedie",
+    tone: "yellow",
+    icon: "speech",
+    imageIcon: "/images/preview/icon-logopedie.png",
+  },
+  {
+    id: "kinetoterapie",
+    tone: "green",
+    icon: "motion",
+    imageIcon: "/images/preview/icon-kinetoterapie.png",
+  },
 ];
 
 export const STAFF_CATEGORIES = [

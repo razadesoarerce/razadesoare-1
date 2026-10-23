@@ -202,7 +202,11 @@ const EchipaNoastra = () => {
                     aria-controls="hp-echipa-offer-expanded"
                   >
                     <span className="hp-offer-card__icon" aria-hidden>
-                      <ServiceIcon name={card.icon} />
+                      {card.imageIcon ? (
+                        <img src={card.imageIcon} alt="" />
+                      ) : (
+                        <ServiceIcon name={card.icon} />
+                      )}
                     </span>
                     <span className="hp-offer-card__title">{card.title}</span>
                     <span className="hp-offer-card__text">{card.text}</span>
@@ -313,7 +317,11 @@ const EchipaNoastra = () => {
                 {t("preview.home.offer.expandHint")}
               </p>
               <div className="hp-offer-expand__icon" aria-hidden>
-                <ServiceIcon name={expanded.icon} />
+                {expanded.imageIcon ? (
+                  <img src={expanded.imageIcon} alt="" />
+                ) : (
+                  <ServiceIcon name={expanded.icon} />
+                )}
               </div>
               <h3 id="hp-echipa-expand-title">
                 {expanded.headline || expanded.title}
