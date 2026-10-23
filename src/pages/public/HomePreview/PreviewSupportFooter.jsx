@@ -1,7 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { SUPPORT_CARDS, SUPPORT_FORM_URL } from "./previewSupportData";
+import { useTranslation } from "react-i18next";
+import { SUPPORT_FORM_URL } from "./previewSupportData";
 
 const SWIPE_CLOSE_PX = 56;
+
+const SUPPORT_CARD_META = [
+  { id: "donate", badge: "♥", tone: "pink" },
+  { id: "volunteer", badge: "✦", tone: "green" },
+];
+
+const asStringList = (value) => (Array.isArray(value) ? value : []);
 
 const SunRays = ({ className = "" }) => (
   <svg className={className} viewBox="0 0 64 24" aria-hidden>
@@ -17,13 +25,28 @@ const SunRays = ({ className = "" }) => (
 
 /** Shared Support strip + credits bar for all preview-site pages. */
 const PreviewSupportFooter = () => {
-  const [expanded, setExpanded] = useState(null);
+  const { t } = useTranslation();
+  const [expandedId, setExpandedId] = useState(null);
   const swipeStart = useRef(null);
 
+  const supportCards = SUPPORT_CARD_META.map((meta) => {
+    const base = `preview.home.support.${meta.id}`;
+    return {
+      ...meta,
+      title: t(`${base}.title`),
+      headline: t(`${base}.headline`),
+      detailParagraphs: asStringList(t(`${base}.detailParagraphs`, { returnObjects: true })),
+    };
+  });
+
+  const expanded = expandedId
+    ? supportCards.find((card) => card.id === expandedId)
+    : null;
+
   useEffect(() => {
-    if (!expanded) return undefined;
+    if (!expandedId) return undefined;
     const onKeyDown = (event) => {
-      if (event.key === "Escape") setExpanded(null);
+      if (event.key === "Escape") setExpandedId(null);
     };
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKeyDown);
@@ -31,9 +54,9 @@ const PreviewSupportFooter = () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [expanded]);
+  }, [expandedId]);
 
-  const closeExpanded = () => setExpanded(null);
+  const closeExpanded = () => setExpandedId(null);
 
   const onExpandTouchStart = (event) => {
     const touch = event.touches[0];
@@ -59,7 +82,7 @@ const PreviewSupportFooter = () => {
       <section className="hp-section hp-support" aria-labelledby="hp-support-title">
         <div className="hp-section__head">
           <SunRays className="hp-rays" />
-          <h2 id="hp-support-title">Fii o rază de speranță</h2>
+          <h2 id="hp-support-title">{t("preview.home.support.title")}</h2>
           <SunRays className="hp-rays" />
         </div>
         <div className="hp-support__frame">
@@ -72,17 +95,17 @@ const PreviewSupportFooter = () => {
             <span className="hp-support-btn__badge" aria-hidden>
               3,5%
             </span>
-            <span className="hp-support-btn__title">Redirecționează</span>
+            <span className="hp-support-btn__title">{t("preview.home.support.taxTitle")}</span>
           </a>
-          {SUPPORT_CARDS.map((card) => (
+          {supportCards.map((card) => (
             <button
-              key={card.title}
+              key={card.id}
               type="button"
               className={`hp-support-btn hp-support-btn--${card.tone} ${
-                expanded?.title === card.title ? "is-active" : ""
+                expandedId === card.id ? "is-active" : ""
               }`}
-              onClick={() => setExpanded(card)}
-              aria-expanded={expanded?.title === card.title}
+              onClick={() => setExpandedId(card.id)}
+              aria-expanded={expandedId === card.id}
               aria-controls="hp-support-expanded"
             >
               <span className="hp-support-btn__badge" aria-hidden>
@@ -107,7 +130,7 @@ const PreviewSupportFooter = () => {
           <button
             type="button"
             className="hp-offer-expand__backdrop"
-            aria-label="Închide"
+            aria-label={t("preview.chrome.close")}
             onClick={closeExpanded}
           />
           <article
@@ -115,8 +138,7 @@ const PreviewSupportFooter = () => {
           >
             <div className="hp-offer-expand__handle" aria-hidden />
             <p className="hp-offer-expand__hint">
-              Derulează pentru a citi · swipe stânga/dreapta sau tap în afară pentru
-              a închide
+              {t("preview.home.offer.expandHint")}
             </p>
             <h3 id="hp-support-expand-title">
               {expanded.headline || expanded.title}
@@ -133,22 +155,22 @@ const PreviewSupportFooter = () => {
               className="hp-btn hp-btn--primary hp-offer-expand__close"
               onClick={closeExpanded}
             >
-              Închide
+              {t("preview.chrome.close")}
             </button>
           </article>
         </div>
       ) : null}
 
-      <footer className="hp-credits" aria-label="Echipa de realizare a site-ului">
+      <footer className="hp-credits" aria-label={t("preview.home.credits.aria")}>
         <div className="hp-credits__inner">
-          <p className="hp-credits__brand">Școala Specială „Raza de Soare”</p>
+          <p className="hp-credits__brand">{t("preview.home.credits.brand")}</p>
           <ul className="hp-credits__list">
             <li>
-              <span className="hp-credits__role">Dezvoltare web</span>
+              <span className="hp-credits__role">{t("preview.home.credits.webDev")}</span>
               <span className="hp-credits__name">Lolea Florentin Alin</span>
             </li>
             <li>
-              <span className="hp-credits__role">Design vizual și multimedia</span>
+              <span className="hp-credits__role">{t("preview.home.credits.design")}</span>
               <span className="hp-credits__name">Roxin Mariana</span>
             </li>
           </ul>

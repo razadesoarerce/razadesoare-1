@@ -1,69 +1,19 @@
 import { Fragment, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { useTranslation } from "react-i18next";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 
 const CALENDAR_SRC = "/images/preview/informatii/calendar-an-scolar-2026-2027.png";
-const CALENDAR_ALT =
-  "Calendar an școlar 2026–2027, județul Arad — module, vacanțe și prima/ultima zi de școală";
 
-const INFO_CARDS = [
-  {
-    id: "admitere",
-    title: "Admitere",
-    text: "Condițiile și pașii pentru admiterea în Școala Specială „Rază de Soare”.",
-    icon: "clipboard",
-  },
-  {
-    id: "inscriere",
-    title: "Înscriere",
-    text: "Cum se face înscrierea și ce informații sunt necesare pentru dosar.",
-    icon: "pen",
-  },
-  {
-    id: "documente",
-    title: "Documente",
-    text: "Formulare, acte și materiale utile pentru părinți și tutori.",
-    icon: "folder",
-  },
-  {
-    id: "structura",
-    title: "Structura anului școlar",
-    text: "Calendarul anului școlar, modulele de curs și perioadele de vacanță.",
-    icon: "calendar",
-  },
+const INFO_CARD_META = [
+  { id: "admitere", icon: "clipboard" },
+  { id: "inscriere", icon: "pen" },
+  { id: "documente", icon: "folder" },
+  { id: "structura", icon: "calendar" },
 ];
 
-const INSCRIERE_DOCS = [
-  "Certificatul de naștere al copilului (copie)",
-  "Documentul de identitate al părintelui / reprezentantului legal",
-  "Certificat de divorț (dacă este cazul)",
-  "Certificat medical NPI, format A5, cu diagnosticul copilului",
-  "Certificat de încadrare în grad de handicap",
-  "Certificat de orientare școlară către învățământ special",
-  "Alte documente medicale relevante pentru condiția copilului",
-];
-
-const INTERNAL_DOCS = [
-  "Regulament de Ordine Interioară",
-  "Formularul de înscriere al copilului în Școala Specială Rază de Soare",
-  "Formular 230",
-];
-
-const LEGAL_REFS = [
-  {
-    title: "Legea 448/2006",
-    text: "Legea privind protecția și promovarea drepturilor persoanelor cu handicap.",
-  },
-  {
-    title: "Legea educației 1/2011",
-    text: "Legea educației naționale – dispoziții privind educația incluzivă și specială.",
-  },
-  {
-    title: "Convenția ONU",
-    text: "Convenția ONU privind drepturile persoanelor cu dizabilități (ratificată de România).",
-  },
-];
+const asStringList = (value) => (Array.isArray(value) ? value : []);
 
 const InfoIcon = ({ name }) => {
   if (name === "clipboard") {
@@ -122,17 +72,17 @@ const InfoIcon = ({ name }) => {
   );
 };
 
-const DownloadPlaceholder = ({ label }) => (
+const DownloadPlaceholder = ({ label, downloadLabel }) => (
   <li className="hp-info-doc">
     <span className="hp-info-doc__name">{label}</span>
     <button type="button" className="hp-info-download" disabled>
-      Download
+      {downloadLabel}
     </button>
   </li>
 );
 
 /** Inline preview + full-screen lightbox (pan on phone for small calendar text). */
-const ZoomableImage = ({ src, alt }) => {
+const ZoomableImage = ({ src, alt, zoomHint, zoomAria, closeAria, lightboxHint, closeLabel }) => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -155,15 +105,15 @@ const ZoomableImage = ({ src, alt }) => {
           <button
             type="button"
             className="hp-info-lightbox__backdrop"
-            aria-label="Închide imaginea mărită"
+            aria-label={closeAria}
             onClick={() => setOpen(false)}
           />
           <div className="hp-info-lightbox__bar">
-            <p className="hp-info-lightbox__hint">Derulează pentru detalii · tap în afară sau × pentru a închide</p>
+            <p className="hp-info-lightbox__hint">{lightboxHint}</p>
             <button
               type="button"
               className="hp-info-lightbox__close"
-              aria-label="Închide"
+              aria-label={closeLabel}
               onClick={() => setOpen(false)}
             >
               ×
@@ -183,37 +133,26 @@ const ZoomableImage = ({ src, alt }) => {
         type="button"
         className="hp-info-zoom"
         onClick={() => setOpen(true)}
-        aria-label={`${alt}. Apasă pentru a mări.`}
+        aria-label={zoomAria}
       >
         <img src={src} alt="" loading="lazy" />
-        <span className="hp-info-zoom__hint">Apasă pentru a mări</span>
+        <span className="hp-info-zoom__hint">{zoomHint}</span>
       </button>
       {lightbox}
     </>
   );
 };
 
-const CardPanel = ({ id }) => {
+const CardPanel = ({ id, t }) => {
+  const base = `preview.info.cards.${id}`;
+
   if (id === "admitere") {
     return (
       <>
-        <h3 className="hp-info-panel__heading">Criterii de admitere</h3>
-        <p>
-          Școala Specială „Rază de Soare” se adresează copiilor și tinerilor
-          diagnosticați cu dizabilitate intelectuală de grad mediu, sever sau
-          profund.
-        </p>
-        <p>
-          Pentru admitere este necesară existența unui certificat de încadrare în
-          grad de handicap și a unui certificat de orientare școlară către
-          învățământ special.
-        </p>
-        <p>
-          Procesul de admitere include un interviu cu părinții sau reprezentanții
-          legali și o evaluare a copilului, în vederea stabilirii
-          compatibilității cu specificul instituției și a identificării nevoilor
-          educaționale.
-        </p>
+        <h3 className="hp-info-panel__heading">{t(`${base}.heading`)}</h3>
+        {asStringList(t(`${base}.paragraphs`, { returnObjects: true })).map((paragraph) => (
+          <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+        ))}
       </>
     );
   }
@@ -221,40 +160,35 @@ const CardPanel = ({ id }) => {
   if (id === "inscriere") {
     return (
       <>
-        <h3 className="hp-info-panel__heading">Documente necesare pentru înscriere</h3>
+        <h3 className="hp-info-panel__heading">{t(`${base}.heading`)}</h3>
         <ul className="hp-info-list">
-          {INSCRIERE_DOCS.map((item) => (
+          {asStringList(t(`${base}.docs`, { returnObjects: true })).map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
-        <p>
-          Documentele medicale suplimentare sunt importante în situații precum
-          epilepsie, alergii severe sau tratamente psihiatrice, pentru a asigura
-          siguranța și buna îngrijire a copilului în mediul școlar.
-        </p>
+        <p>{t(`${base}.note`)}</p>
       </>
     );
   }
 
   if (id === "documente") {
+    const legal = asStringList(t(`${base}.legal`, { returnObjects: true }));
     return (
       <>
-        <p>
-          Pe această pagină găsiți documentele și formularele necesare pentru
-          înscrierea la Școala Specială „Rază de Soare”, precum și referințe la
-          cadrul legal aplicabil copiilor cu dizabilități.
-        </p>
-        <h3 className="hp-info-panel__heading">
-          Documente interne – Școala Specială „Rază de Soare”
-        </h3>
+        <p>{t(`${base}.intro`)}</p>
+        <h3 className="hp-info-panel__heading">{t(`${base}.internalHeading`)}</h3>
         <ul className="hp-info-docs">
-          {INTERNAL_DOCS.map((label) => (
-            <DownloadPlaceholder key={label} label={label} />
+          {asStringList(t(`${base}.internalDocs`, { returnObjects: true })).map((label) => (
+            <DownloadPlaceholder
+              key={label}
+              label={label}
+              downloadLabel={t("preview.info.download")}
+            />
           ))}
         </ul>
-        <h3 className="hp-info-panel__heading">Drepturile copilului cu dizabilitate</h3>
+        <h3 className="hp-info-panel__heading">{t(`${base}.rightsHeading`)}</h3>
         <ul className="hp-info-legal">
-          {LEGAL_REFS.map((ref) => (
+          {legal.map((ref) => (
             <li key={ref.title}>
               <p className="hp-info-legal__title">{ref.title}</p>
               <p className="hp-info-legal__text">{ref.text}</p>
@@ -265,35 +199,37 @@ const CardPanel = ({ id }) => {
     );
   }
 
+  const calendarAlt = t("preview.info.calendarAlt");
   return (
     <>
-      <p>
-        Anul școlar la Școala Specială „Rază de Soare” este organizat pe sistem
-        modular, cu perioade de cursuri alternate cu vacanțe intermodulare.
-        Această structură permite o pauză regulată pentru elevi și cadre,
-        asigurând un ritm sustenabil de învățare și recuperare.
-      </p>
-      <h3 className="hp-info-panel__heading">Organizare modulară</h3>
-      <p>
-        Anul școlar este împărțit în cinci module de cursuri, separate între ele
-        de vacanțe intermodulare. Fiecare modul cuprinde o perioadă concentrată
-        de activitate educațională, urmată de o pauză care permite elevilor să se
-        recupereze și familiilor să se aliniereze la ritmul școlii.
-      </p>
-      <p>
-        Structura modulară este adaptată nevoilor copiilor cu cerințe
-        educaționale speciale, reducând oboseala și menținând un echilibru între
-        solicitări și perioade de odihnă. Calendarul este comunicat în avans
-        familiilor și este aliniat cu normele Ministerului Educației.
-      </p>
-      <ZoomableImage src={CALENDAR_SRC} alt={CALENDAR_ALT} />
+      <p>{t(`${base}.intro`)}</p>
+      <h3 className="hp-info-panel__heading">{t(`${base}.heading`)}</h3>
+      {asStringList(t(`${base}.paragraphs`, { returnObjects: true })).map((paragraph) => (
+        <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+      ))}
+      <ZoomableImage
+        src={CALENDAR_SRC}
+        alt={calendarAlt}
+        zoomHint={t("preview.info.zoomHint")}
+        zoomAria={t("preview.info.zoomAria", { alt: calendarAlt })}
+        closeAria={t("preview.info.lightboxCloseAria")}
+        lightboxHint={t("preview.info.lightboxHint")}
+        closeLabel={t("preview.chrome.close")}
+      />
     </>
   );
 };
 
 /** New-site Informații page — parallel to old /informatii/* routes. */
 const Informatii = () => {
+  const { t } = useTranslation();
   const [openId, setOpenId] = useState(null);
+
+  const infoCards = INFO_CARD_META.map((meta) => ({
+    ...meta,
+    title: t(`preview.info.cards.${meta.id}.title`),
+    text: t(`preview.info.cards.${meta.id}.text`),
+  }));
 
   const toggleCard = (id) => {
     setOpenId((current) => (current === id ? null : id));
@@ -302,11 +238,14 @@ const Informatii = () => {
   return (
     <PreviewShell>
       <main className="hp-page">
-        <section className="hp-hero hp-despre-hero hp-echipa-hero" aria-label="Informații">
+        <section
+          className="hp-hero hp-despre-hero hp-echipa-hero"
+          aria-label={t("preview.info.heroAria")}
+        >
           <img
             className="hp-echipa-hero__cover"
             src="/images/preview/informatii/cover.jpg"
-            alt="Semnarea unui document pe birou, cu un elev alături — admitere și informații școlare"
+            alt={t("preview.info.coverAlt")}
           />
           <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
           <svg
@@ -322,34 +261,28 @@ const Informatii = () => {
           </svg>
         </section>
 
-        <section className="hp-section hp-despre-intro hp-informatii" aria-labelledby="hp-informatii-title">
+        <section
+          className="hp-section hp-despre-intro hp-informatii"
+          aria-labelledby="hp-informatii-title"
+        >
           <h1 id="hp-informatii-title" className="hp-despre-intro__title">
-            Informații
+            {t("preview.info.title")}
           </h1>
-          <p className="hp-despre-intro__subtitle">
-            Admitere, documente și detalii utile pentru părinți.
-          </p>
+          <p className="hp-despre-intro__subtitle">{t("preview.info.subtitle")}</p>
 
           <div className="hp-informatii__intro">
             <div className="hp-informatii__intro-media">
               <img
                 src="/images/preview/informatii/mid.jpg"
-                alt="Copil ținut de mână de un adult, pe drumul către școală"
+                alt={t("preview.info.midAlt")}
               />
             </div>
-            <h2 className="hp-informatii__lead-title">
-              Primii pași către o experiență educațională
-            </h2>
-            <p className="hp-informatii__lead-text">
-              Procesul de înscriere la Școala Specială „Rază de Soare” este
-              simplu, rapid și ușor de parcurs. Fiecare etapă este importantă
-              pentru a cunoaște nevoile copilului și pentru a pregăti un început
-              potrivit pentru el.
-            </p>
+            <h2 className="hp-informatii__lead-title">{t("preview.info.leadTitle")}</h2>
+            <p className="hp-informatii__lead-text">{t("preview.info.leadText")}</p>
           </div>
 
           <div className="hp-info-cards">
-            {INFO_CARDS.map((card, index) => {
+            {infoCards.map((card, index) => {
               const isOpen = openId === card.id;
               const panelId = `hp-info-panel-${card.id}`;
 
@@ -387,7 +320,7 @@ const Informatii = () => {
 
                     <div className="hp-info-card__collapse" id={panelId}>
                       <div className="hp-info-card__panel">
-                        <CardPanel id={card.id} />
+                        <CardPanel id={card.id} t={t} />
                       </div>
                     </div>
                   </article>

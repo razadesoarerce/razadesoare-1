@@ -149,5 +149,83 @@
       "webDev": "Web development",
       "design": "Visual design and multimedia"
     }
+  },
+  "info": {
+    "heroAria": "Information",
+    "coverAlt": "Signing a document at a desk, with a student nearby — admission and school information",
+    "title": "Information",
+    "subtitle": "Admission, documents and useful details for parents.",
+    "leadTitle": "First steps toward an educational experience",
+    "leadText": "The enrollment process at Rază de Soare Special School is simple, quick and easy to follow. Each step matters so we can understand the child’s needs and prepare a suitable start for them.",
+    "midAlt": "Child holding an adult’s hand on the way to school",
+    "download": "Download",
+    "zoomHint": "Tap to enlarge",
+    "zoomAria": "{{alt}}. Tap to enlarge.",
+    "lightboxCloseAria": "Close enlarged image",
+    "lightboxHint": "Scroll for details · tap outside or × to close",
+    "calendarAlt": "School year calendar 2026–2027, Arad county — modules, holidays and first/last school day",
+    "cards": {
+      "admitere": {
+        "title": "Admission",
+        "text": "Requirements and steps for admission to Rază de Soare Special School.",
+        "heading": "Admission criteria",
+        "paragraphs": [
+          "Rază de Soare Special School serves children and young people diagnosed with moderate, severe or profound intellectual disability.",
+          "Admission requires a disability grading certificate and a school orientation certificate toward special education.",
+          "The admission process includes an interview with parents or legal guardians and an assessment of the child, to determine compatibility with the school’s profile and to identify educational needs."
+        ]
+      },
+      "inscriere": {
+        "title": "Enrollment",
+        "text": "How enrollment works and what information is needed for the file.",
+        "heading": "Documents required for enrollment",
+        "docs": [
+          "Child’s birth certificate (copy)",
+          "Parent / legal guardian identity document",
+          "Divorce certificate (if applicable)",
+          "NPI medical certificate, A5 format, with the child’s diagnosis",
+          "Disability grading certificate",
+          "School orientation certificate toward special education",
+          "Other medical documents relevant to the child’s condition"
+        ],
+        "note": "Additional medical documents are important in situations such as epilepsy, severe allergies or psychiatric treatment, to ensure the child’s safety and proper care in the school environment."
+      },
+      "documente": {
+        "title": "Documents",
+        "text": "Forms, paperwork and useful materials for parents and guardians.",
+        "intro": "On this page you will find the documents and forms needed for enrollment at Rază de Soare Special School, as well as references to the legal framework for children with disabilities.",
+        "internalHeading": "Internal documents – Rază de Soare Special School",
+        "internalDocs": [
+          "Internal Rules of Procedure",
+          "Child enrollment form for Rază de Soare Special School",
+          "Form 230"
+        ],
+        "rightsHeading": "Rights of the child with a disability",
+        "legal": [
+          {
+            "title": "Law 448/2006",
+            "text": "Law on the protection and promotion of the rights of persons with disabilities."
+          },
+          {
+            "title": "Education Law 1/2011",
+            "text": "National education law – provisions on inclusive and special education."
+          },
+          {
+            "title": "UN Convention",
+            "text": "UN Convention on the Rights of Persons with Disabilities (ratified by Romania)."
+          }
+        ]
+      },
+      "structura": {
+        "title": "School year structure",
+        "text": "School year calendar, course modules and holiday periods.",
+        "intro": "The school year at Rază de Soare Special School follows a modular system, with periods of classes alternating with inter-module holidays. This structure allows regular breaks for students and staff, supporting a sustainable pace of learning and recovery.",
+        "heading": "Modular organization",
+        "paragraphs": [
+          "The school year is divided into five course modules, separated by inter-module holidays. Each module is a focused period of educational activity, followed by a break that helps students recover and families align with the school rhythm.",
+          "The modular structure is adapted to the needs of children with special educational needs, reducing fatigue and keeping a balance between demands and rest. The calendar is shared with families in advance and aligned with Ministry of Education rules."
+        ]
+      }
+    }
   }
 }
