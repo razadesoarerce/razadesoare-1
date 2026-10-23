@@ -1,0 +1,210 @@
+{
+  "heroAria": "Our team",
+  "coverAlt": "The Raza de Soare team with students in therapy and learning activities",
+  "offerTitle": "What we offer",
+  "offerLead": "Educational and specialist services for every child.",
+  "specialistsTitle": "Our specialists",
+  "specialistsText": "A dedicated team with experience in special education, therapies and family support — united by care for every child.",
+  "photoSoon": "Photo coming soon",
+  "categories": {
+    "conducere": "Leadership",
+    "didactice": "Teaching staff",
+    "terapeuti": "Therapists",
+    "nedidactice": "Non-teaching staff",
+    "auxiliar": "Support staff"
+  },
+  "roles": {
+    "director": "Principal",
+    "deputyDirector": "Deputy Principal",
+    "psychopedagogue": "Psychopedagogue",
+    "primaryTeacher": "Primary teacher",
+    "educator": "Kindergarten teacher",
+    "psychologist": "Psychologist",
+    "speechTherapist": "Speech therapist",
+    "physiotherapist": "Physiotherapist",
+    "cook": "Cook",
+    "administrator": "Administrator",
+    "caretaker": "Caretaker",
+    "secretary": "Secretary",
+    "accountant": "Accountant"
+  },
+  "offers": {
+    "pedagogie": {
+      "title": "Pedagogy",
+      "text": "Adapted education to develop every child’s potential.",
+      "headline": "Adapted curriculum",
+      "blocks": [
+        {
+          "paragraphs": [
+            "The adapted curriculum at Rază de Soare Special School is built around each child’s real needs. Learning does not chase uniform academic performance standards, but progressive development of autonomy, communication and functional skills needed for community inclusion.",
+            "Every student has an individualized education plan, adapted to their developmental level, learning pace and cognitive and emotional profile."
+          ]
+        },
+        {
+          "heading": "Core principles",
+          "list": [
+            "Individualized educational intervention",
+            "Respect for each child’s own developmental pace",
+            "Setting functional, realistic goals",
+            "Ongoing collaboration with the family",
+            "Continuous assessment and constant adaptation"
+          ]
+        },
+        {
+          "heading": "Areas of development",
+          "items": [
+            {
+              "title": "Cognitive development",
+              "text": "Stimulating learning through activities adapted to each student’s level of understanding."
+            },
+            {
+              "title": "Communication and language",
+              "text": "Developing functional communication — verbal or alternative — based on individual needs."
+            },
+            {
+              "title": "Personal autonomy",
+              "text": "Building self-care skills and independence in daily activities."
+            },
+            {
+              "title": "Social skills",
+              "text": "Practicing social interaction, shared living rules and appropriate community behaviors."
+            },
+            {
+              "title": "Practical life skills",
+              "text": "Learning competences needed for more functional inclusion in family and social settings."
+            }
+          ]
+        },
+        {
+          "heading": "Organization and structure",
+          "paragraphs": [
+            "Classes have 6–8 students and are coordinated by two teachers, allowing personalized support and constant attention for every child.",
+            "Educational work is complemented by collaboration with specialists (counselor, speech therapist, physiotherapist), ensuring a multidisciplinary approach."
+          ]
+        },
+        {
+          "heading": "Assessment and progress",
+          "paragraphs": [
+            "Progress is assessed continuously by observing individual development and adapting educational goals.",
+            "The focus is on real progress, measured in concrete steps toward autonomy and inclusion."
+          ]
+        }
+      ]
+    },
+    "consiliere": {
+      "title": "Counseling",
+      "text": "Emotional support and guidance for every child’s balanced development.",
+      "headline": "Counseling",
+      "blocks": [
+        {
+          "paragraphs": [
+            "The counseling service at Rază de Soare Special School offers psychological support adapted to children with special educational needs. The intervention supports emotional, behavioral and social development in a safe, structured setting.",
+            "Counseling is an integral part of the school’s multidisciplinary approach, helping balance the educational process with each child’s individual needs."
+          ]
+        },
+        {
+          "heading": "Intervention goals",
+          "list": [
+            "Developing emotional self-regulation",
+            "Reducing maladaptive behaviors",
+            "Increasing adaptation to the school environment",
+            "Supporting functional communication",
+            "Helping families manage difficulties"
+          ]
+        },
+        {
+          "heading": "Ways of intervening",
+          "paragraphs": [
+            "Psychological support takes place through individual sessions, group activities and ongoing collaboration with teaching staff.",
+            "The counselor works closely with the family, offering recommendations and support so the intervention continues at home."
+          ]
+        },
+        {
+          "heading": "Role in the multidisciplinary team",
+          "paragraphs": [
+            "The counselor is part of the school’s multidisciplinary team, working with teachers, the speech therapist and the physiotherapist to ensure coherent support adapted to each child."
+          ]
+        }
+      ]
+    },
+    "logopedie": {
+      "title": "Speech therapy",
+      "text": "Specialized support for language and communication development.",
+      "headline": "Speech therapy",
+      "blocks": [
+        {
+          "paragraphs": [
+            "Speech therapy at Rază de Soare Special School serves children with moderate, severe and profound intellectual disabilities, for whom language disorders are often linked to cognitive difficulties and global development.",
+            "The intervention is not limited to correcting isolated sounds, as often happens in mainstream education. It aims to build functional communication from the basics — receptive language, following simple instructions and stimulating the intent to communicate."
+          ]
+        },
+        {
+          "heading": "Intervention context",
+          "paragraphs": [
+            "A significant share of students have language delay linked to intellectual disability, and an important part are nonverbal. In these cases, speech therapy focuses on demutization and gradually building communication skills."
+          ]
+        },
+        {
+          "heading": "Main directions of intervention",
+          "list": [
+            "Stimulating receptive language and understanding of simple commands",
+            "Developing the intent to communicate",
+            "Demutization and stimulating functional vocalizations",
+            "Practicing oro-motor coordination",
+            "Building compliance and the ability to follow instructions"
+          ]
+        },
+        {
+          "heading": "Methods used",
+          "paragraphs": [
+            "Intervention includes alternative and augmentative communication (AAC) systems, pictograms, visual support, functional gestures and other tools adapted to each child’s level.",
+            "The goal is the most functional communication possible — verbal or alternative — so the child can express needs, preferences and emotions."
+          ]
+        },
+        {
+          "heading": "The speech therapist’s role in the multidisciplinary team",
+          "paragraphs": [
+            "The speech therapist collaborates constantly with teachers, the counselor and the physiotherapist to integrate communication goals into daily learning and keep the intervention coherent."
+          ]
+        }
+      ]
+    },
+    "kinetoterapie": {
+      "title": "Physiotherapy",
+      "text": "Adapted exercises for mobility and motor skills development.",
+      "headline": "Physiotherapy",
+      "blocks": [
+        {
+          "paragraphs": [
+            "Physiotherapy at Rază de Soare Special School focuses on recovering and functionally developing motor skills of children with intellectual disabilities and associated disorders.",
+            "The intervention supports global coordination, balance and muscle tone, helping increase autonomy in daily activities."
+          ]
+        },
+        {
+          "heading": "Intervention goals",
+          "list": [
+            "Improving global motor coordination",
+            "Developing balance and postural stability",
+            "Increasing muscle tone and physical endurance",
+            "Building motor skills needed for autonomy",
+            "Preventing motor regression and related complications"
+          ]
+        },
+        {
+          "heading": "Ways of intervening",
+          "paragraphs": [
+            "Physiotherapy activities are adapted to each child’s developmental level and include structured exercises for coordination, mobility, balance and postural control.",
+            "Support may be individual or integrated into group activities, depending on goals set in the individualized education plan."
+          ]
+        },
+        {
+          "heading": "Integration into educational activity",
+          "paragraphs": [
+            "The physiotherapist works with teachers and other specialists to integrate motor goals into daily activities, helping transfer skills into real functional contexts.",
+            "Motor development is closely linked to personal autonomy, participation and the child’s inclusion in school and community life."
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
-import { ECHIPA_OFFER_CARDS, STAFF_CATEGORIES } from "./echipaOfferData";
+import { ECHIPA_OFFER_META, STAFF_CATEGORIES } from "./echipaOfferData";
 
 const SWIPE_CLOSE_PX = 56;
+
+const asBlocks = (value) => (Array.isArray(value) ? value : []);
 
 const SunRays = ({ className = "" }) => (
   <svg className={className} viewBox="0 0 64 24" aria-hidden>
@@ -77,13 +80,38 @@ const ServiceIcon = ({ name }) => {
 
 /** New-site team page — parallel to old /despre/echipa. */
 const EchipaNoastra = () => {
-  const [expanded, setExpanded] = useState(null);
+  const { t } = useTranslation();
+  const [expandedId, setExpandedId] = useState(null);
   const swipeStart = useRef(null);
 
+  const offerCards = ECHIPA_OFFER_META.map((meta) => {
+    const base = `preview.team.offers.${meta.id}`;
+    return {
+      ...meta,
+      title: t(`${base}.title`),
+      text: t(`${base}.text`),
+      headline: t(`${base}.headline`),
+      blocks: asBlocks(t(`${base}.blocks`, { returnObjects: true })),
+    };
+  });
+
+  const expanded = expandedId
+    ? offerCards.find((card) => card.id === expandedId)
+    : null;
+
+  const staffCategories = STAFF_CATEGORIES.map((category) => ({
+    ...category,
+    title: t(`preview.team.categories.${category.id}`),
+    members: category.members.map((member) => ({
+      ...member,
+      role: t(`preview.team.roles.${member.roleKey}`),
+    })),
+  }));
+
   useEffect(() => {
-    if (!expanded) return undefined;
+    if (!expandedId) return undefined;
     const onKeyDown = (event) => {
-      if (event.key === "Escape") setExpanded(null);
+      if (event.key === "Escape") setExpandedId(null);
     };
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKeyDown);
@@ -91,9 +119,9 @@ const EchipaNoastra = () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [expanded]);
+  }, [expandedId]);
 
-  const closeExpanded = () => setExpanded(null);
+  const closeExpanded = () => setExpandedId(null);
 
   const onExpandTouchStart = (event) => {
     const touch = event.touches[0];
@@ -117,11 +145,14 @@ const EchipaNoastra = () => {
   return (
     <PreviewShell className={expanded ? "hp--offer-open" : ""}>
       <main className="hp-page">
-        <section className="hp-hero hp-despre-hero hp-echipa-hero" aria-label="Echipa noastră">
+        <section
+          className="hp-hero hp-despre-hero hp-echipa-hero"
+          aria-label={t("preview.team.heroAria")}
+        >
           <img
             className="hp-echipa-hero__cover"
             src="/images/preview/echipa/cover.jpg"
-            alt="Echipa Raza de Soare alături de elevi în activități de terapie și învățare"
+            alt={t("preview.team.coverAlt")}
           />
           <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
           <svg
@@ -140,12 +171,10 @@ const EchipaNoastra = () => {
         <section className="hp-section hp-offer hp-echipa-offer" aria-labelledby="hp-echipa-offer-title">
           <div className="hp-section__head">
             <SunRays className="hp-rays" />
-            <h2 id="hp-echipa-offer-title">Ce oferim</h2>
+            <h2 id="hp-echipa-offer-title">{t("preview.team.offerTitle")}</h2>
             <SunRays className="hp-rays" />
           </div>
-          <p className="hp-section__lead">
-            Servicii educaționale și de specialitate pentru fiecare copil.
-          </p>
+          <p className="hp-section__lead">{t("preview.team.offerLead")}</p>
           <div className="hp-offer__carousel">
             <Swiper
               modules={[Pagination]}
@@ -155,21 +184,21 @@ const EchipaNoastra = () => {
               grabCursor
               className="hp-offer-swiper"
               onTouchStart={() => {
-                if (expanded) closeExpanded();
+                if (expandedId) closeExpanded();
               }}
               onSlideChange={() => {
-                if (expanded) closeExpanded();
+                if (expandedId) closeExpanded();
               }}
             >
-              {ECHIPA_OFFER_CARDS.map((card) => (
-                <SwiperSlide key={card.title}>
+              {offerCards.map((card) => (
+                <SwiperSlide key={card.id}>
                   <button
                     type="button"
                     className={`hp-offer-card hp-offer-card--${card.tone} ${
-                      expanded?.title === card.title ? "is-active" : ""
+                      expandedId === card.id ? "is-active" : ""
                     }`}
-                    onClick={() => setExpanded(card)}
-                    aria-expanded={expanded?.title === card.title}
+                    onClick={() => setExpandedId(card.id)}
+                    aria-expanded={expandedId === card.id}
                     aria-controls="hp-echipa-offer-expanded"
                   >
                     <span className="hp-offer-card__icon" aria-hidden>
@@ -189,15 +218,11 @@ const EchipaNoastra = () => {
 
         <section className="hp-section hp-echipa-specialisti" aria-labelledby="hp-specialisti-title">
           <div className="hp-echipa-specialisti__banner">
-            <h2 id="hp-specialisti-title">Specialiștii noștri</h2>
-            <p>
-              O echipă de oameni dedicați, cu experiență în educație specială,
-              terapii și sprijin pentru familii — uniți de grijă față de fiecare
-              copil.
-            </p>
+            <h2 id="hp-specialisti-title">{t("preview.team.specialistsTitle")}</h2>
+            <p>{t("preview.team.specialistsText")}</p>
           </div>
 
-          {STAFF_CATEGORIES.map((category) => {
+          {staffCategories.map((category) => {
             const slides =
               category.members?.length > 0
                 ? category.members
@@ -252,7 +277,7 @@ const EchipaNoastra = () => {
                           </div>
                         ) : (
                           <p className="hp-echipa-staff__placeholder">
-                            Foto în curând
+                            {t("preview.team.photoSoon")}
                           </p>
                         )}
                       </article>
@@ -277,7 +302,7 @@ const EchipaNoastra = () => {
             <button
               type="button"
               className="hp-offer-expand__backdrop"
-              aria-label="Închide"
+              aria-label={t("preview.chrome.close")}
               onClick={closeExpanded}
             />
             <article
@@ -285,8 +310,7 @@ const EchipaNoastra = () => {
             >
               <div className="hp-offer-expand__handle" aria-hidden />
               <p className="hp-offer-expand__hint">
-                Derulează pentru a citi · swipe stânga/dreapta sau tap în afară
-                pentru a închide
+                {t("preview.home.offer.expandHint")}
               </p>
               <div className="hp-offer-expand__icon" aria-hidden>
                 <ServiceIcon name={expanded.icon} />
@@ -296,7 +320,7 @@ const EchipaNoastra = () => {
               </h3>
               <div className="hp-offer-expand__body">
                 {(expanded.blocks || []).map((block, index) => (
-                  <div key={`${expanded.title}-block-${index}`} className="hp-echipa-expand-block">
+                  <div key={`${expanded.id}-block-${index}`} className="hp-echipa-expand-block">
                     {block.heading ? (
                       <h4 className="hp-echipa-expand-block__heading">
                         {block.heading}
@@ -331,7 +355,7 @@ const EchipaNoastra = () => {
                 className="hp-btn hp-btn--primary hp-offer-expand__close"
                 onClick={closeExpanded}
               >
-                Închide
+                {t("preview.chrome.close")}
               </button>
             </article>
           </div>

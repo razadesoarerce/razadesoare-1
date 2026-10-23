@@ -259,5 +259,52 @@
         "text": "De-a lungul timpului, misiunea noastră s-a extins dincolo de simpla predare, devenind un centru de sprijin holistic care promovează incluziunea, dezvoltarea personală și creșterea demnității fiecărui copil."
       }
     }
+  },
+  "blog": {
+    "heroAria": "Blog",
+    "coverAlt": "Completarea unui formular pe birou — noutăți și informații de la școală",
+    "title": "Blog educațional",
+    "subtitle": "Informații utile pentru părinți și copii cu CES",
+    "filtersAria": "Filtrează după categorie",
+    "seeAll": "Vezi toate",
+    "seeLess": "Vezi mai puțin",
+    "expandDisabledTitle": "Disponibil când categoria are mai mult de 3 articole",
+    "filters": {
+      "toate": "Toate",
+      "sfaturi": "Sfaturi",
+      "educatie": "Educație",
+      "psihologie": "Psihologie",
+      "logopedie": "Logopedie",
+      "kinetoterapie": "Kinetoterapie"
+    },
+    "categories": {
+      "sfaturi-parinti": "Sfaturi pentru părinți",
+      "educatie-speciala": "Educație specială",
+      "psihologie": "Psihologie",
+      "logopedie": "Logopedie",
+      "kinetoterapie": "Kinetoterapie"
+    },
+    "articles": {
+      "sfaturi-parinti-1": {
+        "title": "Cum putem crea o rutină zilnică liniștitoare pentru copil",
+        "coverAlt": "Joc împreună la masă"
+      },
+      "educatie-speciala-1": {
+        "title": "Activități pentru dezvoltarea atenției și concentrării",
+        "coverAlt": "Activitate cu carte senzorială"
+      },
+      "psihologie-1": {
+        "title": "Cum îi ajutăm pe copii să își gestioneze emoțiile",
+        "coverAlt": "Joc educativ la masă"
+      },
+      "logopedie-1": {
+        "title": "Cum stimulăm vorbirea la copii prin joc",
+        "coverAlt": "Activitate creativă ghidată cu un copil"
+      },
+      "kinetoterapie-1": {
+        "title": "Exerciții simple pentru dezvoltarea motricității la copii",
+        "coverAlt": "Activitate de mișcare ghidată"
+      }
+    }
   }
 }

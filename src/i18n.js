@@ -6,14 +6,16 @@ import translationRO from "./locales/ro/translation.json";
 import translationEN from "./locales/en/translation.json";
 import previewRO from "./locales/ro/preview.json";
 import previewEN from "./locales/en/preview.json";
+import previewTeamRO from "./locales/ro/previewTeam.json";
+import previewTeamEN from "./locales/en/previewTeam.json";
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
-      ro: { translation: { ...translationRO, preview: previewRO } },
-      en: { translation: { ...translationEN, preview: previewEN } }
+      ro: { translation: { ...translationRO, preview: { ...previewRO, team: previewTeamRO } } },
+      en: { translation: { ...translationEN, preview: { ...previewEN, team: previewTeamEN } } }
     },
     fallbackLng: "ro",
     detection: {

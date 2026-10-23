@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -30,14 +31,30 @@ const BlogCard = ({ article }) => (
 );
 
 const Blog = () => {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("toate");
   const [expandedIds, setExpandedIds] = useState(() => new Set());
 
+  const filters = BLOG_FILTERS.map((filter) => ({
+    ...filter,
+    label: t(`preview.blog.filters.${filter.id}`),
+  }));
+
+  const categories = BLOG_CATEGORIES.map((category) => ({
+    ...category,
+    title: t(`preview.blog.categories.${category.id}`),
+    articles: category.articles.map((article) => ({
+      ...article,
+      title: t(`preview.blog.articles.${article.id}.title`),
+      coverAlt: t(`preview.blog.articles.${article.id}.coverAlt`),
+    })),
+  }));
+
   const visibleCategories = useMemo(() => {
-    const filter = BLOG_FILTERS.find((item) => item.id === activeFilter);
-    if (!filter?.categoryId) return BLOG_CATEGORIES;
-    return BLOG_CATEGORIES.filter((category) => category.id === filter.categoryId);
-  }, [activeFilter]);
+    const filter = filters.find((item) => item.id === activeFilter);
+    if (!filter?.categoryId) return categories;
+    return categories.filter((category) => category.id === filter.categoryId);
+  }, [activeFilter, categories, filters]);
 
   const toggleExpanded = (categoryId) => {
     setExpandedIds((prev) => {
@@ -51,11 +68,14 @@ const Blog = () => {
   return (
     <PreviewShell>
       <main className="hp-page hp-blog">
-        <section className="hp-hero hp-despre-hero hp-echipa-hero" aria-label="Blog">
+        <section
+          className="hp-hero hp-despre-hero hp-echipa-hero"
+          aria-label={t("preview.blog.heroAria")}
+        >
           <img
             className="hp-echipa-hero__cover"
             src="/images/preview/blog/cover.jpg"
-            alt="Completarea unui formular pe birou — noutăți și informații de la școală"
+            alt={t("preview.blog.coverAlt")}
           />
           <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
           <svg
@@ -74,17 +94,19 @@ const Blog = () => {
         <header className="hp-section hp-blog__header" aria-labelledby="hp-blog-title">
           <div className="hp-blog__title-row">
             <h1 id="hp-blog-title" className="hp-blog__title">
-              Blog educațional
+              {t("preview.blog.title")}
             </h1>
             <TitleSpark />
           </div>
-          <p className="hp-blog__subtitle">
-            Informații utile pentru părinți și copii cu CES
-          </p>
+          <p className="hp-blog__subtitle">{t("preview.blog.subtitle")}</p>
         </header>
 
-        <div className="hp-section hp-blog-filters" role="tablist" aria-label="Filtrează după categorie">
-          {BLOG_FILTERS.map((filter) => {
+        <div
+          className="hp-section hp-blog-filters"
+          role="tablist"
+          aria-label={t("preview.blog.filtersAria")}
+        >
+          {filters.map((filter) => {
             const isActive = activeFilter === filter.id;
             return (
               <button
@@ -123,11 +145,7 @@ const Blog = () => {
                   aria-disabled={!canExpand}
                   aria-expanded={canExpand ? isExpanded : undefined}
                   aria-controls={canExpand ? panelId : undefined}
-                  title={
-                    canExpand
-                      ? undefined
-                      : "Disponibil când categoria are mai mult de 3 articole"
-                  }
+                  title={canExpand ? undefined : t("preview.blog.expandDisabledTitle")}
                   onClick={() => {
                     if (!canExpand) return;
                     toggleExpanded(category.id);
@@ -135,11 +153,11 @@ const Blog = () => {
                 >
                   {isExpanded ? (
                     <>
-                      Vezi mai puțin <span aria-hidden>↑</span>
+                      {t("preview.blog.seeLess")} <span aria-hidden>↑</span>
                     </>
                   ) : (
                     <>
-                      Vezi toate <span aria-hidden>→</span>
+                      {t("preview.blog.seeAll")} <span aria-hidden>→</span>
                     </>
                   )}
                 </button>

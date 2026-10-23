@@ -259,5 +259,52 @@
         "text": "Over time, our mission has grown beyond teaching alone, becoming a holistic support center that promotes inclusion, personal development and the dignity of every child."
       }
     }
+  },
+  "blog": {
+    "heroAria": "Blog",
+    "coverAlt": "Filling in a form at a desk — news and information from the school",
+    "title": "Educational blog",
+    "subtitle": "Useful information for parents and children with SEN",
+    "filtersAria": "Filter by category",
+    "seeAll": "See all",
+    "seeLess": "See less",
+    "expandDisabledTitle": "Available when the category has more than 3 articles",
+    "filters": {
+      "toate": "All",
+      "sfaturi": "Tips",
+      "educatie": "Education",
+      "psihologie": "Psychology",
+      "logopedie": "Speech therapy",
+      "kinetoterapie": "Physiotherapy"
+    },
+    "categories": {
+      "sfaturi-parinti": "Tips for parents",
+      "educatie-speciala": "Special education",
+      "psihologie": "Psychology",
+      "logopedie": "Speech therapy",
+      "kinetoterapie": "Physiotherapy"
+    },
+    "articles": {
+      "sfaturi-parinti-1": {
+        "title": "How we can create a calming daily routine for the child",
+        "coverAlt": "Playing together at the table"
+      },
+      "educatie-speciala-1": {
+        "title": "Activities for developing attention and focus",
+        "coverAlt": "Activity with a sensory book"
+      },
+      "psihologie-1": {
+        "title": "How we help children manage their emotions",
+        "coverAlt": "Educational table game"
+      },
+      "logopedie-1": {
+        "title": "How we stimulate children’s speech through play",
+        "coverAlt": "Guided creative activity with a child"
+      },
+      "kinetoterapie-1": {
+        "title": "Simple exercises for developing children’s motor skills",
+        "coverAlt": "Guided movement activity"
+      }
+    }
   }
 }
