@@ -881,20 +881,30 @@
   margin-top: 0;
 }
 
-/* Echipa noastră — same stack-gap rhythm as preview homepage.
- * Must beat `.hp-section { margin: 0 auto }` (same file, later) or gaps collapse. */
-.hp-section.hp-echipa-offer,
+/* Echipa — page title block: same cover→title spacing as Despre / Informații */
+.hp-section.hp-echipa-pagehead {
+  padding-top: 1.5rem;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Subtitle → „Ce oferim”: shared .hp-despre-intro__subtitle margin-bottom (1.35rem) */
+.hp-echipa-pagehead .hp-despre-intro__subtitle {
+  margin-bottom: 1.35rem;
+}
+
+/* Echipa sections — stack-gap between blocks; beat `.hp-section { margin: 0 auto }`. */
+.hp-section.hp-echipa-offer {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+}
+
 .hp-section.hp-echipa-specialisti {
   padding-top: 0;
   padding-bottom: 0;
   margin-top: var(--hp-stack-gap, 1rem);
-}
-
-/* Cover → „Ce oferim”: match homepage offer top air (.hp-offer padding-top).
- * Dense cover photo reads tighter than the home hero, so keep the native
- * offer padding on top of stack-gap margin (homepage zeros padding via type-test). */
-.hp-section.hp-echipa-offer {
-  padding-top: 1.1rem;
 }
 
 /* Match preview homepage — pagination dots one row lower */
@@ -3262,18 +3272,15 @@
   }
 
   /* Keep Echipa rhythm when .hp-section gains 3.5rem padding at desktop */
-  .hp--preview-page .hp-section.hp-echipa-offer,
-  .hp--preview-page .hp-section.hp-echipa-specialisti {
+  .hp--preview-page .hp-section.hp-echipa-pagehead {
+    padding-top: 1.5rem;
     padding-bottom: 0;
   }
 
+  .hp--preview-page .hp-section.hp-echipa-offer,
   .hp--preview-page .hp-section.hp-echipa-specialisti {
     padding-top: 0;
-  }
-
-  /* Same as .hp-offer desktop padding-top under the cover */
-  .hp--preview-page .hp-section.hp-echipa-offer {
-    padding-top: 1.5rem;
+    padding-bottom: 0;
   }
 
   .hp--preview-page .hp-echipa-offer .hp-offer-swiper,

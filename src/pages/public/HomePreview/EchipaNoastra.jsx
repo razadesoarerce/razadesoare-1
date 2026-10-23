@@ -168,6 +168,16 @@ const EchipaNoastra = () => {
           </svg>
         </section>
 
+        <section
+          className="hp-section hp-despre-intro hp-echipa-pagehead"
+          aria-labelledby="hp-echipa-title"
+        >
+          <h1 id="hp-echipa-title" className="hp-despre-intro__title">
+            {t("preview.team.title")}
+          </h1>
+          <p className="hp-despre-intro__subtitle">{t("preview.team.subtitle")}</p>
+        </section>
+
         <section className="hp-section hp-offer hp-echipa-offer" aria-labelledby="hp-echipa-offer-title">
           <div className="hp-section__head">
             <SunRays className="hp-rays" />
