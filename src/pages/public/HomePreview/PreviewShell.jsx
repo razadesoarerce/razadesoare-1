@@ -231,7 +231,7 @@ const PreviewShell = ({ children, className = "" }) => {
   };
 
   return (
-    <div className={`hp hp--preview-page is-outside-hero-page ${menuOpen ? "hp--menu-open" : ""} ${className}`.trim()}>
+    <div className={`hp hp--preview-page hp--type-test is-outside-hero-page ${menuOpen ? "hp--menu-open" : ""} ${className}`.trim()}>
       <div
         ref={dockRef}
         className={`hp-dock is-outside-hero ${dockPos ? "is-custom-pos" : "is-home-pos"} ${dockDragging ? "is-dragging" : ""}`}

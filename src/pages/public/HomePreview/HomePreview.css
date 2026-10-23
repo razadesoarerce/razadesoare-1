@@ -2017,14 +2017,19 @@
   color: var(--hp-yellow);
 }
 
+/* Match credits brand title (uppercase, compact) */
 .hp-support .hp-section__head h2 {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-width: 0;
-  max-width: none;
+  max-width: calc(100% - 4.6rem);
+  margin: 0;
   font-family: var(--hp-display);
-  font-size: clamp(1.35rem, 4vw, 2.1rem);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: #fff;
-  line-height: 1.15;
+  line-height: 1.2;
   text-align: center;
 }
 
@@ -2032,7 +2037,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: stretch;
+  align-items: center;
   width: 100%;
   gap: 0;
   border: 0;
@@ -2040,7 +2045,7 @@
   background: transparent;
 }
 
-/* Beat `.hp button { border: none }` so separators show on Donate / Volunteer too */
+/* Beat `.hp button { border: none }` — separators match credits (short, soft) */
 .hp a.hp-support-btn,
 .hp button.hp-support-btn {
   flex: 1 1 0;
@@ -2050,21 +2055,27 @@
   align-items: center;
   justify-content: center;
   gap: 0.3rem;
-  padding: 0.4rem 0.35rem 0.5rem;
+  padding: 0.35rem 0.55rem;
   text-align: center;
   text-decoration: none;
   color: #fff;
   background: transparent;
   border: 0;
-  border-right: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 0;
   transition: background 0.2s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
+.hp a.hp-support-btn:first-child,
+.hp button.hp-support-btn:first-child {
+  border-left: none;
+  padding-left: 0.35rem;
+}
+
 .hp a.hp-support-btn:last-child,
 .hp button.hp-support-btn:last-child {
-  border-right: none;
+  padding-right: 0.35rem;
 }
 
 .hp a.hp-support-btn:hover,
@@ -2965,7 +2976,7 @@
   font-size: clamp(1.6rem, 4.7vw, 2.48rem);
 }
 
-/* Support title — keep rays tight to the text (not stretched to panel edges) */
+/* Support title — same face/size as credits brand; rays stay tight to text */
 .hp--type-test .hp-support .hp-section__head {
   justify-content: center;
   gap: 0.3rem;
@@ -2981,7 +2992,10 @@
   flex: 0 1 auto;
   width: auto;
   max-width: calc(100% - 4.6rem);
-  font-size: clamp(1.15rem, 4.4vw, 1.85rem);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
@@ -2997,27 +3011,29 @@
   margin-bottom: var(--hp-stack-gap);
 }
 
-/* Equal vertical rhythm between homepage sections */
-.hp--type-test .hp-section,
-.hp--type-test .hp-offer {
+/*
+ * Homepage-only rhythm (Acasă has .hp--type-test without .hp--preview-page).
+ * Inner pages use .hp--preview-page + type-test for typography only.
+ */
+.hp--type-test:not(.hp--preview-page) .hp-section,
+.hp--type-test:not(.hp--preview-page) .hp-offer {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-.hp--type-test .hp-offer,
-.hp--type-test .hp-about,
-.hp--type-test .hp-life,
-.hp--type-test .hp-section.hp-support {
+.hp--type-test:not(.hp--preview-page) .hp-offer,
+.hp--type-test:not(.hp--preview-page) .hp-about,
+.hp--type-test:not(.hp--preview-page) .hp-life,
+.hp--type-test:not(.hp--preview-page) .hp-section.hp-support {
   margin-top: var(--hp-stack-gap);
 }
 
-.hp--type-test .hp-about__intro {
+.hp--type-test:not(.hp--preview-page) .hp-about__intro {
   padding-top: 0;
   padding-bottom: var(--hp-stack-gap);
 }
 
-/* About image — same side margins as carousels / .hp-section */
-.hp--type-test .hp-about__media {
+.hp--type-test:not(.hp--preview-page) .hp-about__media {
   width: min(1120px, calc(100% - 1.5rem));
   margin-left: auto;
   margin-right: auto;
@@ -3030,24 +3046,21 @@
   margin-bottom: 0;
 }
 
-/* Credits spacing follows homepage stack rhythm on /preview */
 .hp--type-test .hp-credits {
   margin: var(--hp-stack-gap) auto;
 }
 
-/* Gallery CTA — same rhythm as other section gaps */
-.hp--type-test .hp-life__cta {
+.hp--type-test:not(.hp--preview-page) .hp-life__cta {
   margin-top: var(--hp-stack-gap);
 }
 
-/* Swipe dots one row lower */
-.hp--type-test .hp-offer-swiper,
-.hp--type-test .hp-life-swiper {
+.hp--type-test:not(.hp--preview-page) .hp-offer-swiper,
+.hp--type-test:not(.hp--preview-page) .hp-life-swiper {
   padding-bottom: 2.75rem;
 }
 
-.hp--type-test .hp-offer-swiper .swiper-pagination,
-.hp--type-test .hp-life-swiper .swiper-pagination {
+.hp--type-test:not(.hp--preview-page) .hp-offer-swiper .swiper-pagination,
+.hp--type-test:not(.hp--preview-page) .hp-life-swiper .swiper-pagination {
   bottom: 0.15rem;
 }
 
@@ -3209,19 +3222,89 @@
     font-size: 1.12rem;
   }
 
-  .hp--type-test .hp-section,
-  .hp--type-test .hp-offer,
-  .hp--type-test .hp-about__intro {
+  .hp--type-test:not(.hp--preview-page) .hp-section,
+  .hp--type-test:not(.hp--preview-page) .hp-offer,
+  .hp--type-test:not(.hp--preview-page) .hp-about__intro {
     padding-top: 0;
     padding-bottom: 0;
   }
 
-  .hp--type-test .hp-about__intro {
+  .hp--type-test:not(.hp--preview-page) .hp-about__intro {
     padding-bottom: var(--hp-stack-gap);
   }
 
-  .hp--type-test .hp-offer-swiper,
-  .hp--type-test .hp-life-swiper {
+  .hp--type-test:not(.hp--preview-page) .hp-offer-swiper,
+  .hp--type-test:not(.hp--preview-page) .hp-life-swiper {
     padding-bottom: 3rem;
   }
+}
+
+/* Inner-page titles — same ~1.18× bump as homepage type scale */
+.hp--type-test .hp-despre-intro__title {
+  font-size: clamp(2.18rem, 5.9vw, 2.95rem);
+}
+
+.hp--type-test .hp-despre-intro__subtitle {
+  font-size: 1.12rem;
+}
+
+.hp--type-test .hp-despre-intro__copy h2,
+.hp--type-test .hp-despre-block h2 {
+  font-size: clamp(1.24rem, 3.5vw, 1.59rem);
+}
+
+.hp--type-test .hp-despre-intro__copy p,
+.hp--type-test .hp-despre-block p {
+  font-size: clamp(1.04rem, 2.6vw, 1.16rem);
+}
+
+.hp--type-test .hp-informatii__lead-title {
+  font-size: clamp(1.36rem, 3.8vw, 1.71rem);
+}
+
+.hp--type-test .hp-informatii__lead-text {
+  font-size: clamp(1.04rem, 2.6vw, 1.16rem);
+}
+
+.hp--type-test .hp-info-card__title {
+  font-size: clamp(1.18rem, 3.3vw, 1.36rem);
+}
+
+.hp--type-test .hp-info-card__text {
+  font-size: clamp(0.92rem, 2.4vw, 1.04rem);
+}
+
+.hp--type-test .hp-info-panel__heading {
+  font-size: clamp(1.06rem, 3vw, 1.24rem);
+}
+
+.hp--type-test .hp-info-card__panel,
+.hp--type-test .hp-info-card__panel p,
+.hp--type-test .hp-info-list,
+.hp--type-test .hp-info-legal__text {
+  font-size: 1.02rem;
+}
+
+.hp--type-test .hp-blog__title {
+  font-size: clamp(2.06rem, 6.5vw, 2.77rem);
+}
+
+.hp--type-test .hp-blog__subtitle {
+  font-size: 1.09rem;
+}
+
+.hp--type-test .hp-blog-category__title {
+  font-size: clamp(1.18rem, 3.5vw, 1.42rem);
+}
+
+.hp--type-test .hp-blog-card__title {
+  font-size: clamp(0.92rem, 2.8vw, 1.06rem);
+}
+
+.hp--type-test .hp-echipa-specialisti__banner h2 {
+  font-size: clamp(1.42rem, 4.2vw, 1.89rem);
+}
+
+.hp--type-test .hp-echipa-staff__title {
+  font-size: clamp(1.24rem, 3.5vw, 1.53rem);
 }
