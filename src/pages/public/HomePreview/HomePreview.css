@@ -3027,7 +3027,8 @@
  * Homepage-only rhythm (Acasă has .hp--type-test without .hp--preview-page).
  * Inner pages use .hp--preview-page + type-test for typography only.
  */
-.hp--type-test:not(.hp--preview-page) .hp-section,
+/* Do not zero Support padding — it needs the same airy inset as inner pages */
+.hp--type-test:not(.hp--preview-page) .hp-section:not(.hp-support),
 .hp--type-test:not(.hp--preview-page) .hp-offer {
   padding-top: 0;
   padding-bottom: 0;
@@ -3238,7 +3239,7 @@
     font-size: 1.12rem;
   }
 
-  .hp--type-test:not(.hp--preview-page) .hp-section,
+  .hp--type-test:not(.hp--preview-page) .hp-section:not(.hp-support),
   .hp--type-test:not(.hp--preview-page) .hp-offer,
   .hp--type-test:not(.hp--preview-page) .hp-about__intro {
     padding-top: 0;
