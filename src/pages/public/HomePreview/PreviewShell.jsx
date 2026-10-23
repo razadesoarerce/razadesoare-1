@@ -32,7 +32,7 @@ const getDockViewportHome = (width = 80, height = 80) =>
  * Inner pages use navy dock contrast (is-outside-hero).
  */
 const PreviewShell = ({ children, className = "" }) => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -240,7 +240,7 @@ const PreviewShell = ({ children, className = "" }) => {
             ? { left: dockScreenPos.left, top: dockScreenPos.top }
             : { visibility: "hidden" }
         }
-        aria-label="Controale rapide — poți muta dock-ul"
+        aria-label={t("preview.chrome.dockAria")}
         onPointerDown={onDockPointerDown}
         onPointerMove={onDockPointerMove}
         onPointerUp={onDockPointerUp}
@@ -251,7 +251,7 @@ const PreviewShell = ({ children, className = "" }) => {
           type="button"
           className="hp-dock__btn"
           onClick={goHome}
-          aria-label="Acasă — înapoi la pagina principală preview"
+          aria-label={t("preview.chrome.homeAria")}
         >
           <svg viewBox="0 0 24 24" aria-hidden>
             <path
@@ -267,7 +267,7 @@ const PreviewShell = ({ children, className = "" }) => {
         <button
           type="button"
           className={`hp-dock__btn hp-dock__menu ${menuOpen ? "is-open" : ""}`}
-          aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
+          aria-label={menuOpen ? t("preview.chrome.closeMenu") : t("preview.chrome.openMenu")}
           aria-expanded={menuOpen}
           aria-controls="hp-drawer"
           onClick={() => setMenuOpen((open) => !open)}
@@ -281,7 +281,7 @@ const PreviewShell = ({ children, className = "" }) => {
           href="https://www.facebook.com/scoala.razadesoare"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Facebook"
+          aria-label={t("preview.chrome.facebook")}
         >
           <FaFacebookF aria-hidden />
         </a>
@@ -289,7 +289,7 @@ const PreviewShell = ({ children, className = "" }) => {
           type="button"
           className="hp-dock__btn hp-dock__lang"
           onClick={toggleLanguage}
-          aria-label={`Limba activă ${activeLang}. Apasă pentru a schimba.`}
+          aria-label={t("preview.chrome.langAria", { lang: activeLang })}
         >
           {activeLang}
         </button>
@@ -300,7 +300,7 @@ const PreviewShell = ({ children, className = "" }) => {
           <button
             type="button"
             className="hp-drawer__backdrop"
-            aria-label="Închide meniul"
+            aria-label={t("preview.chrome.closeMenu")}
             onClick={closeMenu}
           />
           <aside
@@ -308,37 +308,37 @@ const PreviewShell = ({ children, className = "" }) => {
             className="hp-drawer"
             role="dialog"
             aria-modal="true"
-            aria-label="Meniu"
+            aria-label={t("preview.chrome.menu")}
             onTouchStart={onMenuTouchStart}
             onTouchEnd={onMenuTouchEnd}
           >
             <div className="hp-drawer__head">
               <p className="hp-drawer__hint">
-                Swipe dreapta sau tap în afară pentru a închide
+                {t("preview.chrome.menuHint")}
               </p>
               <button
                 type="button"
                 className="hp-drawer__close"
                 onClick={closeMenu}
-                aria-label="Închide"
+                aria-label={t("preview.chrome.close")}
               >
                 ×
               </button>
             </div>
-            <nav className="hp-drawer__nav" aria-label="Navigare">
+            <nav className="hp-drawer__nav" aria-label={t("preview.chrome.nav")}>
               {PREVIEW_NAV.map((item) => {
                 const isActive = item.path && location.pathname === item.path;
                 const disabled = !item.path;
                 return (
                   <button
-                    key={item.label}
+                    key={item.labelKey}
                     type="button"
                     className={`hp-drawer__link ${isActive ? "is-active" : ""} ${disabled ? "is-disabled" : ""}`}
                     onClick={() => onNavClick(item.path)}
                     disabled={disabled}
                     aria-current={isActive ? "page" : undefined}
                   >
-                    {item.label}
+                    {t(item.labelKey)}
                   </button>
                 );
               })}

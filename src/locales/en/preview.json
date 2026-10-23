@@ -1,0 +1,153 @@
+{
+  "nav": {
+    "home": "Home",
+    "info": "Information",
+    "about": "About us",
+    "team": "Our team",
+    "blog": "Blog"
+  },
+  "chrome": {
+    "dockAria": "Quick controls — you can move the dock",
+    "homeAria": "Home — back to top or main page",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "close": "Close",
+    "menu": "Menu",
+    "nav": "Navigation",
+    "menuHint": "Swipe right or tap outside to close",
+    "langAria": "Active language {{lang}}. Press to switch.",
+    "facebook": "Facebook"
+  },
+  "contact": {
+    "panelAria": "Contact details",
+    "cta": "Contact us",
+    "address": "Address",
+    "openMap": "Open on map",
+    "openMapAria": "Open address on Google Maps: {{address}}",
+    "email": "Email",
+    "sendEmail": "Send email",
+    "sendEmailAria": "Send email to {{email}}",
+    "phone": "Phone",
+    "call": "Call",
+    "callAria": "Call {{phone}}"
+  },
+  "home": {
+    "heroTitle": "Raza de Soare",
+    "offer": {
+      "title": "What we offer",
+      "lead": "Activities and experiences that support children’s well-rounded development.",
+      "expandHint": "Scroll to read · swipe left/right or tap outside to close",
+      "cards": {
+        "mission": {
+          "title": "Mission & Vision",
+          "text": "A safe, adapted environment where every child matters.",
+          "headline": "Mission & Vision",
+          "detailParagraphs": [
+            "Rază de Soare Special School is committed to offering every child with special educational needs a safe, stable environment adapted to their individual needs, where personal development, autonomy and communication are fundamental priorities.",
+            "Our work serves children and young people with moderate, severe and profound intellectual disabilities who need structured educational interventions, ongoing support and a setting where progress is measured in real steps toward independence and social inclusion."
+          ],
+          "detailList": [
+            "developing practical life skills and personal autonomy;",
+            "encouraging functional communication and emotional expression;",
+            "building social skills needed for community inclusion;",
+            "supporting families through educational partnership and constant care."
+          ],
+          "detailParagraphsAfter": [
+            "Small classes of 6–8 students, coordinated by two teachers, allow a personalized approach and support tailored to each child. The focus is on individual progress, each child’s own pace, and celebrating every achievement.",
+            "At the heart of our educational work is respect for every person’s dignity and the belief that every child deserves real opportunities to grow.",
+            "The vision of Rază de Soare Special School is an educational community where difference is not a limit, but a starting point for support, understanding and growth.",
+            "We want a society in which children and young people with intellectual disabilities are seen through the lens of their potential, not their limitations. A society where inclusion means real participation, and community integration is supported through adapted education and responsible interventions.",
+            "Within the RCE “Speranța Copiilor” foundation, our school promotes values such as respect for life and human dignity, responsibility toward others, compassion and mutual support.",
+            "We believe true education is not about making everyone the same, but about careful accompaniment and ongoing support. Every child is unique, and learning must respond to that uniqueness.",
+            "Through our work, we aim to help young people become as autonomous as possible — able to communicate, take part in community life and develop the skills needed for a more independent life."
+          ]
+        },
+        "education": {
+          "title": "Education",
+          "text": "Every child learns in their own way.",
+          "headline": "Education – Every child learns in their own way",
+          "detailParagraphs": [
+            "At Rază de Soare Special School, education is a responsibility we approach with seriousness, professionalism and care for every child. We believe every student deserves access to quality education adapted to their needs and abilities.",
+            "Learning follows the school curriculum, methodologies and standards of special education. Subjects and learning activities are adapted to each student’s age, developmental level and special educational needs.",
+            "With the support of qualified, dedicated staff, we pursue clear educational goals using adapted teaching methods, patience and individualized attention. Every child is encouraged to learn, develop skills and progress at their own pace.",
+            "For some students, progress means learning to read, write or count. For others, it may mean recognizing a letter, communicating more easily or gaining essential everyday skills. We respect each child’s potential and value every achievement, knowing that behind every step forward there is work, perseverance and trust."
+          ]
+        },
+        "development": {
+          "title": "Development",
+          "text": "Every step forward matters.",
+          "headline": "Development – Every step forward matters",
+          "detailParagraphs": [
+            "Every child has their own pace of learning and development. At Rază de Soare Special School, we want every child with special educational needs (SEN) to receive the support and encouragement they need to build skills and become, step by step, more independent.",
+            "For some children, progress means learning to read, write or recognize letters and numbers. For others, it may mean holding a pencil correctly, using cutlery, dressing themselves, communicating more easily or expressing their needs.",
+            "We place special emphasis on personal autonomy and independent living skills. We help children understand and follow a daily routine, recognize unsafe situations, relate to others and learn practical things that support everyday life.",
+            "We know that the development of children with special educational needs requires patience, practice and plenty of encouragement. That is why we adapt learning activities to each child’s needs and abilities — without rush and without comparisons.",
+            "For us, every achievement matters. A letter learned, a word spoken, an object used correctly or an activity done for the first time without help are important steps toward greater confidence and independence."
+          ]
+        },
+        "activities": {
+          "title": "Activities",
+          "text": "Every experience matters.",
+          "headline": "Activities – Every experience matters",
+          "detailParagraphs": [
+            "At Rază de Soare Special School, we believe every child deserves the joy of discovering, trying and succeeding — at their own pace.",
+            "Through drawing, painting, music, creative workshops and practical activities, children develop dexterity, patience and confidence in their own abilities.",
+            "Outdoor outings, games and extracurricular activities give them the chance to explore the world, communicate, make friends and enjoy beautiful moments together.",
+            "For some children, holding a brush correctly, finishing a drawing or singing with classmates may seem small. For us, each of these achievements means a great deal.",
+            "Because sometimes behind a simple gesture there is a lot of work, patience and courage. And every step forward deserves to be celebrated."
+          ]
+        }
+      }
+    },
+    "about": {
+      "title": "About us",
+      "text": "We are a community dedicated to children, where special education, care and joy meet every day. We believe in every child’s potential and walk together on a sunlit path.",
+      "cta": "Learn more",
+      "imageAlt": "Children and teachers in the yard of Raza de Soare School"
+    },
+    "life": {
+      "title": "Life at Raza de Soare",
+      "lead": "Moments from our activities and events.",
+      "galleryCta": "See photo gallery",
+      "gallery": {
+        "g1": { "alt": "Brush painting — guided creative activity", "label": "Creativity" },
+        "g2": { "alt": "Educational table game with sensory toys", "label": "Play and learning" },
+        "g3": { "alt": "Activity with a sensory book and board games", "label": "Discovery" },
+        "g4": { "alt": "Board game — focus and interaction", "label": "Playing together" },
+        "g5": { "alt": "Guided autumn activity at the table", "label": "Guidance" },
+        "g6": { "alt": "Worksheet exercises", "label": "Exercises" },
+        "g7": { "alt": "Group activity in the classroom", "label": "As a team" }
+      }
+    },
+    "support": {
+      "title": "Be a ray of hope",
+      "taxTitle": "Redirect",
+      "donate": {
+        "title": "Donate",
+        "text": "Support the school’s work.",
+        "headline": "Donate: Be part of the change!",
+        "detailParagraphs": [
+          "With your help, we can create more learning and development opportunities for the children at “Rază de Soare”. Support the school with a donation. Every gesture matters!",
+          "IBAN: RO07BTRLRONCRT0580138101",
+          "Important! Payment details: Donation"
+        ]
+      },
+      "volunteer": {
+        "title": "Volunteer",
+        "text": "Get involved with us.",
+        "headline": "Discover volunteering opportunities!",
+        "detailParagraphs": [
+          "Rază de Soare Special School offers anyone interested the chance to take part in volunteering activities.",
+          "Volunteering at the school is an opportunity to gain practical experience, build knowledge and better understand the specifics of educating children with special educational needs.",
+          "If you would like to volunteer at our school, you can contact us by phone or email for more information."
+        ]
+      }
+    },
+    "credits": {
+      "aria": "Website credits",
+      "brand": "Raza de Soare Special School",
+      "webDev": "Web development",
+      "design": "Visual design and multimedia"
+    }
+  }
+}

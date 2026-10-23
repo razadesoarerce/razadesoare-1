@@ -6,9 +6,9 @@ export const PREVIEW_ECHIPA = "/preview/echipa-noastra";
 export const PREVIEW_BLOG = "/preview/blog";
 
 export const PREVIEW_NAV = [
-  { label: "Acasă", path: PREVIEW_HOME },
-  { label: "Informații", path: PREVIEW_INFORMATII },
-  { label: "Despre noi", path: PREVIEW_DESPRE },
-  { label: "Echipa noastră", path: PREVIEW_ECHIPA },
-  { label: "Blog", path: PREVIEW_BLOG },
+  { labelKey: "preview.nav.home", path: PREVIEW_HOME },
+  { labelKey: "preview.nav.info", path: PREVIEW_INFORMATII },
+  { labelKey: "preview.nav.about", path: PREVIEW_DESPRE },
+  { labelKey: "preview.nav.team", path: PREVIEW_ECHIPA },
+  { labelKey: "preview.nav.blog", path: PREVIEW_BLOG },
 ];

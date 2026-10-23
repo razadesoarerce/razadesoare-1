@@ -46,157 +46,54 @@ const HeroCardSun = () => (
   </span>
 );
 
-const OFFER_CARDS = [
+const SUPPORT_FORM_URL =
+  "https://formular230.ro/scoala-speciala-raza-de-soare";
+
+const OFFER_CARD_META = [
   {
-    title: "Misiune și Viziune",
-    text: "Un mediu sigur, adaptat, în care fiecare copil contează.",
-    headline: "Misiune & Viziune",
-    detailParagraphs: [
-      "Școala Specială „Rază de Soare” își asumă misiunea de a oferi fiecărui copil cu cerințe educaționale speciale un mediu sigur, stabil și adaptat nevoilor sale individuale, în care dezvoltarea personală, autonomia și comunicarea să fie priorități fundamentale.",
-      "Activitatea noastră se adresează copiilor și tinerilor cu dizabilități intelectuale de grad mediu, sever și profund, care au nevoie de intervenții educaționale structurate, susținere constantă și un cadru în care progresul este măsurat prin pași reali în direcția independenței și a integrării sociale.",
-    ],
-    detailList: [
-      "dezvoltarea abilităților de viață practică și autonomie personală;",
-      "stimularea comunicării funcționale și a exprimării emoționale;",
-      "formarea competențelor sociale necesare integrării în comunitate;",
-      "susținerea familiilor prin parteneriat educațional și sprijin constant.",
-    ],
-    detailParagraphsAfter: [
-      "Clasele restrânse, formate din 6–8 elevi și coordonate de doi profesori, permit o abordare personalizată și o intervenție adaptată fiecărui copil. Accentul este pus pe progres individual, ritm propriu și valorizarea fiecărei reușite.",
-      "În centrul demersului nostru educațional stă respectul pentru demnitatea fiecărei persoane și convingerea că fiecare copil are dreptul la șanse reale de dezvoltare.",
-      "Viziunea Școlii Speciale „Rază de Soare” este aceea a unei comunități educaționale în care diferența nu reprezintă o limită, ci un punct de plecare pentru sprijin, înțelegere și creștere.",
-      "Ne dorim o societate în care copiii și tinerii cu dizabilități intelectuale să fie priviți prin prisma potențialului lor, nu a limitărilor. O societate în care incluziunea înseamnă participare reală, iar integrarea în comunitate este susținută prin educație adaptată și intervenții responsabile.",
-      "În cadrul fundației RCE „Speranța Copiilor”, școala noastră promovează valori precum respectul pentru viață și demnitatea umană, responsabilitatea față de aproapele, compasiunea și sprijinul reciproc.",
-      "Credem că adevărata educație nu înseamnă uniformizare, ci însoțire atentă și susținere continuă. Fiecare copil este o persoană unică, iar procesul educațional trebuie să răspundă acestei unicități.",
-      "Prin activitatea noastră, ne propunem să contribuim la formarea unor tineri cât mai autonomi, capabili să comunice, să participe la viața comunității și să își dezvolte abilitățile necesare unei vieți cât mai independente.",
-    ],
+    id: "mission",
     tone: "pink",
     icon: "people",
     imageIcon: "/images/preview/icon-misiune.png",
+    hasList: true,
+    hasAfter: true,
   },
   {
-    title: "Educație",
-    text: "Fiecare copil învață în felul său.",
-    headline: "Educație – Fiecare copil învață în felul său",
-    detailParagraphs: [
-      "La Școala Specială „Rază de Soare”, educația este o responsabilitate pe care o tratăm cu seriozitate, profesionalism și grijă față de fiecare copil. Credem că fiecare elev merită acces la o educație de calitate, adaptată nevoilor și posibilităților sale.",
-      "Procesul educațional se desfășoară cu respectarea programelor școlare, a metodologiilor și a normelor specifice învățământului special. Disciplinele și activitățile de învățare sunt adaptate vârstei, nivelului de dezvoltare și cerințelor educaționale speciale ale fiecărui elev.",
-      "Cu sprijinul unui personal calificat și dedicat, urmărim obiective educaționale clare, folosind metode de predare adaptate, răbdare și atenție individualizată. Fiecare copil este încurajat să învețe, să își dezvolte abilitățile și să progreseze în propriul ritm.",
-      "Pentru unii elevi, progresul înseamnă să învețe să citească, să scrie sau să socotească. Pentru alții, poate însemna să recunoască o literă, să comunice mai ușor sau să dobândească deprinderi esențiale pentru viața de zi cu zi. Respectăm potențialul fiecăruia și prețuim fiecare reușită, pentru că știm că în spatele fiecărui progres se află muncă, perseverență și multă încredere.",
-    ],
+    id: "education",
     tone: "blue",
     icon: "book",
     imageIcon: "/images/preview/icon-educatie.png",
   },
   {
-    title: "Dezvoltare",
-    text: "Fiecare pas înainte contează.",
-    headline: "Dezvoltare – Fiecare pas înainte contează",
-    detailParagraphs: [
-      "Fiecare copil are propriul ritm de învățare și dezvoltare. La Școala Specială „Rază de Soare”, ne dorim ca fiecare copil cu cerințe educaționale speciale (CES) să primească sprijinul și încurajarea de care are nevoie pentru a-și dezvolta abilitățile și a deveni, pas cu pas, mai independent.",
-      "Pentru unii copii, progresul înseamnă să învețe să citească, să scrie sau să recunoască literele și cifrele. Pentru alții, poate însemna să țină corect un creion, să folosească tacâmurile, să se îmbrace singuri, să comunice mai ușor sau să își exprime nevoile.",
-      "Punem un accent deosebit pe dezvoltarea autonomiei personale și a abilităților de viață independentă. Îi sprijinim pe copii să înțeleagă și să respecte o rutină zilnică, să recunoască situațiile periculoase, să relaționeze cu cei din jur și să deprindă lucruri practice care îi pot ajuta în viața de zi cu zi.",
-      "Știm că dezvoltarea copiilor cu cerințe educaționale speciale necesită răbdare, exercițiu și multă încurajare. De aceea, adaptăm activitățile de învățare la nevoile și posibilitățile fiecărui copil, fără grabă și fără comparații.",
-      "Pentru noi, fiecare reușită contează. O literă învățată, un cuvânt rostit, un obiect folosit corect sau o activitate realizată pentru prima dată fără ajutor reprezintă pași importanți spre mai multă încredere și independență.",
-    ],
+    id: "development",
     tone: "green",
     icon: "sprout",
     imageIcon: "/images/preview/icon-dezvoltare.png",
   },
   {
-    title: "Activități",
-    text: "Fiecare experiență contează.",
-    headline: "Activități – Fiecare experiență contează",
-    detailParagraphs: [
-      "La Școala Specială „Rază de Soare”, credem că fiecare copil merită bucuria de a descoperi, de a încerca și de a reuși, în propriul ritm.",
-      "Prin desen, pictură, muzică, ateliere creative și activități practice, copiii își dezvoltă îndemânarea, răbdarea și încrederea în propriile puteri.",
-      "Ieșirile în natură, jocurile, activitățile extracurriculare le oferă ocazia să descopere lumea, să comunice, să lege prietenii și să se bucure de momente frumoase împreună.",
-      "Pentru unii copii, să țină corect o pensulă, să termine un desen sau să cânte alături de colegi poate părea un lucru mic. Pentru noi, însă, fiecare dintre aceste reușite înseamnă enorm.",
-      "Pentru că uneori, în spatele unui gest simplu, se află multă muncă, răbdare și curaj. Iar fiecare pas înainte merită sărbătorit.",
-    ],
+    id: "activities",
     tone: "yellow",
     icon: "palette",
     imageIcon: "/images/preview/icon-activitati.png",
   },
 ];
 
-const SUPPORT_FORM_URL =
-  "https://formular230.ro/scoala-speciala-raza-de-soare";
-
-/** Expand panels for support CTAs — same shape/rules as OFFER_CARDS (content TBD). */
-const SUPPORT_CARDS = [
-  {
-    title: "Donează",
-    badge: "♥",
-    text: "Susține activitatea școlii.",
-    headline: "Donează: Fii parte din schimbare!",
-    detailParagraphs: [
-      "Cu ajutorul tău, putem crea mai multe oportunități de învățare și dezvoltare pentru copiii de la „Rază de Soare”. Susține activitatea școlii printr-o donație. Fiecare gest contează!",
-      "IBAN: RO07BTRLRONCRT0580138101",
-      "Important! Detalii de plată: Donație",
-    ],
-    tone: "pink",
-    icon: "people",
-  },
-  {
-    title: "Fii voluntar",
-    badge: "✦",
-    text: "Implică-te alături de noi.",
-    headline: "Descoperă oportunitățile de voluntariat!",
-    detailParagraphs: [
-      "Școala Specială „Rază de Soare” oferă tuturor persoanelor interesate posibilitatea de a desfășura activități de voluntariat.",
-      "Voluntariatul în cadrul școlii reprezintă o oportunitate de a acumula experiență practică, de a dobândi cunoștințe și de a înțelege mai bine particularitățile educației copiilor cu cerințe educaționale speciale.",
-      "Dacă ești interesat să desfășori activități de voluntariat în cadrul școlii noastre, ne poți contacta telefonic sau prin e-mail pentru mai multe informații.",
-    ],
-    tone: "green",
-    icon: "people",
-  },
+const SUPPORT_CARD_META = [
+  { id: "donate", badge: "♥", tone: "pink", icon: "people" },
+  { id: "volunteer", badge: "✦", tone: "green", icon: "people" },
 ];
 
-const GALLERY = [
-  {
-    src: "/images/preview/life-carusel-1.jpg",
-    alt: "Pictură cu pensula — activitate creativă ghidată",
-    frame: "portrait",
-    label: "Creativitate",
-  },
-  {
-    src: "/images/preview/life-carusel-2.jpg",
-    alt: "Joc educativ la masă cu jucării senzoriale",
-    frame: "portrait",
-    label: "Joacă și învățare",
-  },
-  {
-    src: "/images/preview/life-carusel-3.jpg",
-    alt: "Activitate cu carte senzorială și jocuri de masă",
-    frame: "portrait",
-    label: "Descoperire",
-  },
-  {
-    src: "/images/preview/life-carusel-4.jpg",
-    alt: "Joc de societate — concentrare și interacțiune",
-    frame: "portrait",
-    label: "Joc împreună",
-  },
-  {
-    src: "/images/preview/life-carusel-5.jpg",
-    alt: "Activitate de toamnă ghidată la masă",
-    frame: "portrait",
-    label: "Îndrumare",
-  },
-  {
-    src: "/images/preview/life-carusel-6.jpg",
-    alt: "Exerciții pe fișe de lucru",
-    frame: "portrait",
-    label: "Exerciții",
-  },
-  {
-    src: "/images/preview/life-carusel-7.jpg",
-    alt: "Activitate de grup în clasă",
-    frame: "portrait",
-    label: "În echipă",
-  },
+const GALLERY_META = [
+  { id: "g1", src: "/images/preview/life-carusel-1.jpg", frame: "portrait" },
+  { id: "g2", src: "/images/preview/life-carusel-2.jpg", frame: "portrait" },
+  { id: "g3", src: "/images/preview/life-carusel-3.jpg", frame: "portrait" },
+  { id: "g4", src: "/images/preview/life-carusel-4.jpg", frame: "portrait" },
+  { id: "g5", src: "/images/preview/life-carusel-5.jpg", frame: "portrait" },
+  { id: "g6", src: "/images/preview/life-carusel-6.jpg", frame: "portrait" },
+  { id: "g7", src: "/images/preview/life-carusel-7.jpg", frame: "portrait" },
 ];
+
+const asStringList = (value) => (Array.isArray(value) ? value : []);
 
 const Icon = ({ name }) => {
   if (name === "book") {
@@ -336,10 +233,48 @@ const isDockOutsideHeroRect = (heroEl, left, top, width, height) => {
 };
 
 const HomePreview = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const [expandedOffer, setExpandedOffer] = useState(null);
+
+  const offerCards = OFFER_CARD_META.map((meta) => {
+    const base = `preview.home.offer.cards.${meta.id}`;
+    return {
+      ...meta,
+      title: t(`${base}.title`),
+      text: t(`${base}.text`),
+      headline: t(`${base}.headline`),
+      detailParagraphs: asStringList(t(`${base}.detailParagraphs`, { returnObjects: true })),
+      detailList: meta.hasList
+        ? asStringList(t(`${base}.detailList`, { returnObjects: true }))
+        : undefined,
+      detailParagraphsAfter: meta.hasAfter
+        ? asStringList(t(`${base}.detailParagraphsAfter`, { returnObjects: true }))
+        : undefined,
+    };
+  });
+
+  const supportCards = SUPPORT_CARD_META.map((meta) => {
+    const base = `preview.home.support.${meta.id}`;
+    return {
+      ...meta,
+      title: t(`${base}.title`),
+      text: t(`${base}.text`),
+      headline: t(`${base}.headline`),
+      detailParagraphs: asStringList(t(`${base}.detailParagraphs`, { returnObjects: true })),
+    };
+  });
+
+  const gallery = GALLERY_META.map((meta) => ({
+    ...meta,
+    alt: t(`preview.home.life.gallery.${meta.id}.alt`),
+    label: t(`preview.home.life.gallery.${meta.id}.label`),
+  }));
+
+  const expandedCard = expandedOffer
+    ? [...offerCards, ...supportCards].find((card) => card.id === expandedOffer.id)
+    : null;
   const [menuOpen, setMenuOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [contactPanelPos, setContactPanelPos] = useState(null);
@@ -713,7 +648,7 @@ const HomePreview = () => {
             ref={contactPanelRef}
             className="hp-contact-dd__panel hp-glass"
             role="region"
-            aria-label="Date de contact"
+            aria-label={t("preview.contact.panelAria")}
             style={{
               top: contactPanelPos.top,
               left: contactPanelPos.left,
@@ -725,7 +660,7 @@ const HomePreview = () => {
               href={CONTACT_MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Deschide adresa pe Google Maps: ${CONTACT_ADDRESS}`}
+              aria-label={t("preview.contact.openMapAria", { address: CONTACT_ADDRESS })}
             >
               <span className="hp-contact-dd__icon" aria-hidden>
                 <svg viewBox="0 0 24 24">
@@ -736,9 +671,9 @@ const HomePreview = () => {
                 </svg>
               </span>
               <span className="hp-contact-dd__text">
-                <span className="hp-contact-dd__label">Adresă</span>
+                <span className="hp-contact-dd__label">{t("preview.contact.address")}</span>
                 <span className="hp-contact-dd__value">{CONTACT_ADDRESS}</span>
-                <span className="hp-contact-dd__action">Deschide pe hartă</span>
+                <span className="hp-contact-dd__action">{t("preview.contact.openMap")}</span>
               </span>
               <span className="hp-contact-dd__go" aria-hidden>
                 ↗
@@ -747,7 +682,7 @@ const HomePreview = () => {
             <a
               className="hp-contact-dd__row"
               href={`mailto:${CONTACT_EMAIL}`}
-              aria-label={`Trimite email la ${CONTACT_EMAIL}`}
+              aria-label={t("preview.contact.sendEmailAria", { email: CONTACT_EMAIL })}
             >
               <span className="hp-contact-dd__icon" aria-hidden>
                 <svg viewBox="0 0 24 24">
@@ -758,9 +693,9 @@ const HomePreview = () => {
                 </svg>
               </span>
               <span className="hp-contact-dd__text">
-                <span className="hp-contact-dd__label">Email</span>
+                <span className="hp-contact-dd__label">{t("preview.contact.email")}</span>
                 <span className="hp-contact-dd__value">{CONTACT_EMAIL}</span>
-                <span className="hp-contact-dd__action">Trimite email</span>
+                <span className="hp-contact-dd__action">{t("preview.contact.sendEmail")}</span>
               </span>
               <span className="hp-contact-dd__go" aria-hidden>
                 ↗
@@ -769,7 +704,7 @@ const HomePreview = () => {
             <a
               className="hp-contact-dd__row"
               href={CONTACT_PHONE_TEL}
-              aria-label={`Apelează ${CONTACT_PHONE_DISPLAY}`}
+              aria-label={t("preview.contact.callAria", { phone: CONTACT_PHONE_DISPLAY })}
             >
               <span className="hp-contact-dd__icon" aria-hidden>
                 <svg viewBox="0 0 24 24">
@@ -780,9 +715,9 @@ const HomePreview = () => {
                 </svg>
               </span>
               <span className="hp-contact-dd__text">
-                <span className="hp-contact-dd__label">Telefon</span>
+                <span className="hp-contact-dd__label">{t("preview.contact.phone")}</span>
                 <span className="hp-contact-dd__value">{CONTACT_PHONE_DISPLAY}</span>
-                <span className="hp-contact-dd__action">Apelează</span>
+                <span className="hp-contact-dd__action">{t("preview.contact.call")}</span>
               </span>
               <span className="hp-contact-dd__go" aria-hidden>
                 ›
@@ -806,7 +741,7 @@ const HomePreview = () => {
             ? { left: dockScreenPos.left, top: dockScreenPos.top }
             : { visibility: "hidden" }
         }
-        aria-label="Controale rapide — poți muta dock-ul"
+        aria-label={t("preview.chrome.dockAria")}
         onPointerDown={onDockPointerDown}
         onPointerMove={onDockPointerMove}
         onPointerUp={onDockPointerUp}
@@ -817,7 +752,7 @@ const HomePreview = () => {
           type="button"
           className="hp-dock__btn"
           onClick={goHome}
-          aria-label="Acasă — înapoi sus sau la pagina principală"
+          aria-label={t("preview.chrome.homeAria")}
         >
           <svg viewBox="0 0 24 24" aria-hidden>
             <path
@@ -833,7 +768,7 @@ const HomePreview = () => {
         <button
           type="button"
           className={`hp-dock__btn hp-dock__menu ${menuOpen ? "is-open" : ""}`}
-          aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
+          aria-label={menuOpen ? t("preview.chrome.closeMenu") : t("preview.chrome.openMenu")}
           aria-expanded={menuOpen}
           aria-controls="hp-drawer"
           onClick={() => setMenuOpen((open) => !open)}
@@ -847,7 +782,7 @@ const HomePreview = () => {
           href="https://www.facebook.com/scoala.razadesoare"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Facebook"
+          aria-label={t("preview.chrome.facebook")}
         >
           <FaFacebookF aria-hidden />
         </a>
@@ -855,7 +790,7 @@ const HomePreview = () => {
           type="button"
           className="hp-dock__btn hp-dock__lang"
           onClick={toggleLanguage}
-          aria-label={`Limba activă ${activeLang}. Apasă pentru a schimba.`}
+          aria-label={t("preview.chrome.langAria", { lang: activeLang })}
         >
           {activeLang}
         </button>
@@ -866,7 +801,7 @@ const HomePreview = () => {
           <button
             type="button"
             className="hp-drawer__backdrop"
-            aria-label="Închide meniul"
+            aria-label={t("preview.chrome.closeMenu")}
             onClick={closeMenu}
           />
           <aside
@@ -874,30 +809,30 @@ const HomePreview = () => {
             className="hp-drawer"
             role="dialog"
             aria-modal="true"
-            aria-label="Meniu"
+            aria-label={t("preview.chrome.menu")}
             onTouchStart={onMenuTouchStart}
             onTouchEnd={onMenuTouchEnd}
           >
             <div className="hp-drawer__head">
-              <p className="hp-drawer__hint">Swipe dreapta sau tap în afară pentru a închide</p>
-              <button type="button" className="hp-drawer__close" onClick={closeMenu} aria-label="Închide">
+              <p className="hp-drawer__hint">{t("preview.chrome.menuHint")}</p>
+              <button type="button" className="hp-drawer__close" onClick={closeMenu} aria-label={t("preview.chrome.close")}>
                 ×
               </button>
             </div>
-            <nav className="hp-drawer__nav" aria-label="Navigare">
+            <nav className="hp-drawer__nav" aria-label={t("preview.chrome.nav")}>
               {PREVIEW_NAV.map((item) => {
                 const isActive = item.path && location.pathname === item.path;
                 const disabled = !item.path;
                 return (
                   <button
-                    key={item.label}
+                    key={item.labelKey}
                     type="button"
                     className={`hp-drawer__link ${isActive ? "is-active" : ""} ${disabled ? "is-disabled" : ""}`}
                     onClick={() => onNavClick(item.path)}
                     disabled={disabled}
                     aria-current={isActive ? "page" : undefined}
                   >
-                    {item.label}
+                    {t(item.labelKey)}
                   </button>
                 );
               })}
@@ -918,7 +853,7 @@ const HomePreview = () => {
           <div className="hp-hero__content">
             <article className="hp-hero-card hp-glass">
               <HeroCardSun />
-              <h1 id="hp-hero-title">Raza de Soare</h1>
+              <h1 id="hp-hero-title">{t("preview.home.heroTitle")}</h1>
               <div className="hp-hero-card__actions">
                 <div className={`hp-contact-dd ${contactOpen ? "is-open" : ""}`}>
                   <button
@@ -929,7 +864,7 @@ const HomePreview = () => {
                     aria-controls="hp-contact-panel"
                     onClick={() => setContactOpen((open) => !open)}
                   >
-                    Contactează-ne{" "}
+                    {t("preview.contact.cta")}{" "}
                     <span className="hp-contact-dd__chevron" aria-hidden>
                       ▾
                     </span>
@@ -953,11 +888,8 @@ const HomePreview = () => {
         </section>
 
         <section className="hp-section hp-offer" aria-labelledby="hp-offer-title">
-          <SectionTitle id="hp-offer-title">Ce oferim</SectionTitle>
-          <p className="hp-section__lead">
-            Activități și experiențe care sprijină dezvoltarea armonioasă a
-            copiilor.
-          </p>
+          <SectionTitle id="hp-offer-title">{t("preview.home.offer.title")}</SectionTitle>
+          <p className="hp-section__lead">{t("preview.home.offer.lead")}</p>
           <div className="hp-offer__carousel">
             <Swiper
               modules={[Pagination]}
@@ -973,15 +905,15 @@ const HomePreview = () => {
                 if (expandedOffer) closeExpanded();
               }}
             >
-              {OFFER_CARDS.map((card) => (
-                <SwiperSlide key={card.title}>
+              {offerCards.map((card) => (
+                <SwiperSlide key={card.id}>
                   <button
                     type="button"
                     className={`hp-offer-card hp-offer-card--${card.tone} ${
-                      expandedOffer?.title === card.title ? "is-active" : ""
+                      expandedOffer?.id === card.id ? "is-active" : ""
                     }`}
                     onClick={() => setExpandedOffer(card)}
-                    aria-expanded={expandedOffer?.title === card.title}
+                    aria-expanded={expandedOffer?.id === card.id}
                     aria-controls="hp-offer-expanded"
                   >
                     <span className="hp-offer-card__icon" aria-hidden>
@@ -1002,7 +934,7 @@ const HomePreview = () => {
             </Swiper>
           </div>
 
-          {expandedOffer ? (
+          {expandedCard ? (
             <div
               className="hp-offer-expand"
               id="hp-offer-expanded"
@@ -1015,40 +947,40 @@ const HomePreview = () => {
               <button
                 type="button"
                 className="hp-offer-expand__backdrop"
-                aria-label="Închide"
+                aria-label={t("preview.chrome.close")}
                 onClick={closeExpanded}
               />
               <article
-                className={`hp-offer-expand__panel hp-offer-expand__panel--${expandedOffer.tone}`}
+                className={`hp-offer-expand__panel hp-offer-expand__panel--${expandedCard.tone}`}
               >
                 <div className="hp-offer-expand__handle" aria-hidden />
                 <p className="hp-offer-expand__hint">
-                  Derulează pentru a citi · swipe stânga/dreapta sau tap în afară pentru a închide
+                  {t("preview.home.offer.expandHint")}
                 </p>
                 <div className="hp-offer-expand__icon" aria-hidden>
-                  {expandedOffer.imageIcon ? (
-                    <img src={expandedOffer.imageIcon} alt="" />
+                  {expandedCard.imageIcon ? (
+                    <img src={expandedCard.imageIcon} alt="" />
                   ) : (
-                    <Icon name={expandedOffer.icon} />
+                    <Icon name={expandedCard.icon} />
                   )}
                 </div>
                 <h3 id="hp-offer-expand-title">
-                  {expandedOffer.headline || expandedOffer.title}
+                  {expandedCard.headline || expandedCard.title}
                 </h3>
                 <div className="hp-offer-expand__body">
-                  {(expandedOffer.detailParagraphs || []).map((paragraph) => (
+                  {(expandedCard.detailParagraphs || []).map((paragraph) => (
                     <p key={paragraph.slice(0, 48)} className="hp-offer-expand__detail">
                       {paragraph}
                     </p>
                   ))}
-                  {expandedOffer.detailList?.length ? (
+                  {expandedCard.detailList?.length ? (
                     <ul className="hp-offer-expand__list">
-                      {expandedOffer.detailList.map((item) => (
+                      {expandedCard.detailList.map((item) => (
                         <li key={item}>{item}</li>
                       ))}
                     </ul>
                   ) : null}
-                  {(expandedOffer.detailParagraphsAfter || []).map((paragraph) => (
+                  {(expandedCard.detailParagraphsAfter || []).map((paragraph) => (
                     <p key={paragraph.slice(0, 48)} className="hp-offer-expand__detail">
                       {paragraph}
                     </p>
@@ -1059,7 +991,7 @@ const HomePreview = () => {
                   className="hp-btn hp-btn--primary hp-offer-expand__close"
                   onClick={closeExpanded}
                 >
-                  Închide
+                  {t("preview.chrome.close")}
                 </button>
               </article>
             </div>
@@ -1069,25 +1001,21 @@ const HomePreview = () => {
         <SectionWave />
 
         <section className="hp-section hp-about" aria-labelledby="hp-about-title">
-          <SectionTitle id="hp-about-title">Despre noi</SectionTitle>
+          <SectionTitle id="hp-about-title">{t("preview.home.about.title")}</SectionTitle>
           <div className="hp-about__body">
             <div className="hp-about__aside">
               <div className="hp-about__media">
                 <img
                   src="/images/preview/about-noi.jpg"
-                  alt="Copii și cadre didactice în curtea Școlii Raza de Soare"
+                  alt={t("preview.home.about.imageAlt")}
                 />
               </div>
               <Link to={PREVIEW_DESPRE} className="hp-btn hp-btn--primary hp-about__cta">
-                Află mai multe <span aria-hidden>→</span>
+                {t("preview.home.about.cta")} <span aria-hidden>→</span>
               </Link>
             </div>
             <div className="hp-about__text">
-              <p>
-                Suntem o comunitate dedicată copiilor, unde educația specială,
-                grija și bucuria se întâlnesc în fiecare zi. Credem în potențialul
-                fiecărui copil și construim împreună un drum plin de soare.
-              </p>
+              <p>{t("preview.home.about.text")}</p>
             </div>
           </div>
         </section>
@@ -1095,10 +1023,8 @@ const HomePreview = () => {
         <SectionWave />
 
         <section className="hp-section hp-life" aria-labelledby="hp-life-title">
-          <SectionTitle id="hp-life-title">Viața la Raza de Soare</SectionTitle>
-          <p className="hp-section__lead">
-            Momente din activitățile și evenimentele noastre.
-          </p>
+          <SectionTitle id="hp-life-title">{t("preview.home.life.title")}</SectionTitle>
+          <p className="hp-section__lead">{t("preview.home.life.lead")}</p>
           <div className="hp-life__carousel">
             <Swiper
               modules={[Pagination]}
@@ -1108,8 +1034,8 @@ const HomePreview = () => {
               grabCursor
               className="hp-life-swiper"
             >
-              {GALLERY.map((item, index) => (
-                <SwiperSlide key={`${item.frame}-${index}`}>
+              {gallery.map((item) => (
+                <SwiperSlide key={item.id}>
                   <figure className={`hp-life__item hp-life__item--${item.frame}`}>
                     <img src={item.src} alt={item.alt} loading="lazy" />
                     <figcaption className="hp-life__caption">{item.label}</figcaption>
@@ -1120,7 +1046,7 @@ const HomePreview = () => {
           </div>
           <div className="hp-life__cta">
             <button type="button" className="hp-btn hp-btn--primary">
-              Vezi galeria foto <span aria-hidden>→</span>
+              {t("preview.home.life.galleryCta")} <span aria-hidden>→</span>
             </button>
           </div>
         </section>
@@ -1140,7 +1066,7 @@ const HomePreview = () => {
         </svg>
 
         <section className="hp-section hp-support" aria-labelledby="hp-support-title">
-          <SectionTitle id="hp-support-title">Fii o rază de speranță</SectionTitle>
+          <SectionTitle id="hp-support-title">{t("preview.home.support.title")}</SectionTitle>
           <div className="hp-support__frame">
             <a
               className="hp-support-btn hp-support-btn--tax"
@@ -1151,17 +1077,17 @@ const HomePreview = () => {
               <span className="hp-support-btn__badge" aria-hidden>
                 3,5%
               </span>
-              <span className="hp-support-btn__title">Redirecționează</span>
+              <span className="hp-support-btn__title">{t("preview.home.support.taxTitle")}</span>
             </a>
-            {SUPPORT_CARDS.map((card) => (
+            {supportCards.map((card) => (
               <button
-                key={card.title}
+                key={card.id}
                 type="button"
                 className={`hp-support-btn hp-support-btn--${card.tone} ${
-                  expandedOffer?.title === card.title ? "is-active" : ""
+                  expandedOffer?.id === card.id ? "is-active" : ""
                 }`}
                 onClick={() => setExpandedOffer(card)}
-                aria-expanded={expandedOffer?.title === card.title}
+                aria-expanded={expandedOffer?.id === card.id}
                 aria-controls="hp-offer-expanded"
               >
                 <span className="hp-support-btn__badge" aria-hidden>
@@ -1175,16 +1101,16 @@ const HomePreview = () => {
 
         <SectionWave />
 
-        <footer className="hp-credits" aria-label="Echipa de realizare a site-ului">
+        <footer className="hp-credits" aria-label={t("preview.home.credits.aria")}>
           <div className="hp-credits__inner">
-            <p className="hp-credits__brand">Școala Specială „Raza de Soare”</p>
+            <p className="hp-credits__brand">{t("preview.home.credits.brand")}</p>
             <ul className="hp-credits__list">
               <li>
-                <span className="hp-credits__role">Dezvoltare web</span>
+                <span className="hp-credits__role">{t("preview.home.credits.webDev")}</span>
                 <span className="hp-credits__name">Lolea Florentin Alin</span>
               </li>
               <li>
-                <span className="hp-credits__role">Design vizual și multimedia</span>
+                <span className="hp-credits__role">{t("preview.home.credits.design")}</span>
                 <span className="hp-credits__name">Roxin Mariana</span>
               </li>
             </ul>
