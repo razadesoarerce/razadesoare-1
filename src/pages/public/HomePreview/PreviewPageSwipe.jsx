@@ -5,9 +5,13 @@ import { PREVIEW_NAV } from "./previewNav";
 
 const SWIPE_PX = 72;
 const SWIPE_RATIO = 1.35;
-const HINT_KEY = "hp-preview-page-swipe-hint-v1";
-const HINT_MS = 4200;
+const HINT_KEY = "hp-preview-page-swipe-hint-v2";
+const HINT_MS = 4800;
+const FADE_MS = 240;
 const MOBILE_MQ = "(max-width: 899px), (pointer: coarse)";
+
+/** Survives HomePreview ↔ PreviewShell remounts during swipe navigation. */
+let pendingPageEnter = false;
 
 /** Zones where page-swipe must not compete with local gestures. */
 const IGNORE_SELECTOR = [
@@ -37,15 +41,20 @@ const getNavIndex = (pathname) =>
 const isMobileSwipeContext = () =>
   typeof window !== "undefined" && window.matchMedia(MOBILE_MQ).matches;
 
+const getHpRoot = () => document.querySelector(".hp");
+
+const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+
 /**
  * Mobile-only horizontal swipe between preview menu pages.
- * Ignores carousels / overlays; shows a one-shot discrete hint.
+ * Fade-out → navigate → fade-in; edge “page corner” hint.
  */
 const PreviewPageSwipe = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const touchRef = useRef(null);
+  const navigatingRef = useRef(false);
   const [hintVisible, setHintVisible] = useState(false);
   const [mobile, setMobile] = useState(false);
 
@@ -61,6 +70,24 @@ const PreviewPageSwipe = () => {
     return () => mq.removeEventListener?.("change", sync);
   }, []);
 
+  /* Fade-in only after a swipe-driven leave (not on cold load / menu clicks). */
+  useEffect(() => {
+    const root = getHpRoot();
+    if (!root) return undefined;
+    root.classList.remove("hp--page-leave");
+    navigatingRef.current = false;
+
+    if (!pendingPageEnter) return undefined;
+    pendingPageEnter = false;
+    root.classList.remove("hp--page-enter");
+    void root.offsetWidth;
+    root.classList.add("hp--page-enter");
+    const timer = window.setTimeout(() => {
+      root.classList.remove("hp--page-enter");
+    }, FADE_MS + 80);
+    return () => window.clearTimeout(timer);
+  }, [location.pathname]);
+
   useEffect(() => {
     if (!mobile || navIndex < 0) {
       setHintVisible(false);
@@ -71,7 +98,6 @@ const PreviewPageSwipe = () => {
         setHintVisible(false);
         return undefined;
       }
-      // Mark once so route changes don't re-flash the hint
       window.localStorage.setItem(HINT_KEY, "1");
     } catch {
       /* ignore storage errors */
@@ -93,9 +119,21 @@ const PreviewPageSwipe = () => {
       }
     };
 
+    const goTo = async (path) => {
+      if (navigatingRef.current) return;
+      navigatingRef.current = true;
+      dismissHint();
+      const root = getHpRoot();
+      root?.classList.remove("hp--page-enter");
+      root?.classList.add("hp--page-leave");
+      pendingPageEnter = true;
+      await wait(FADE_MS);
+      navigate(path);
+    };
+
     const onStart = (event) => {
       if (!isMobileSwipeContext()) return;
-      if (document.querySelector(OVERLAY_BLOCK)) {
+      if (navigatingRef.current || document.querySelector(OVERLAY_BLOCK)) {
         touchRef.current = null;
         return;
       }
@@ -120,7 +158,6 @@ const PreviewPageSwipe = () => {
       if (!touch) return;
       const dx = touch.clientX - start.x;
       const dy = touch.clientY - start.y;
-      // Vertical scroll wins early — abandon page swipe for this gesture
       if (Math.abs(dy) > 28 && Math.abs(dy) > Math.abs(dx) * 0.85) {
         start.ignored = true;
       }
@@ -129,7 +166,7 @@ const PreviewPageSwipe = () => {
     const onEnd = (event) => {
       const start = touchRef.current;
       touchRef.current = null;
-      if (!start || start.ignored) return;
+      if (!start || start.ignored || navigatingRef.current) return;
       if (document.querySelector(OVERLAY_BLOCK)) return;
       const touch = event.changedTouches?.[0];
       if (!touch) return;
@@ -141,13 +178,10 @@ const PreviewPageSwipe = () => {
       const index = getNavIndex(window.location.pathname);
       if (index < 0) return;
 
-      // Finger left → next page; finger right → previous
       if (dx < 0 && index < PREVIEW_NAV.length - 1) {
-        dismissHint();
-        navigate(PREVIEW_NAV[index + 1].path);
+        goTo(PREVIEW_NAV[index + 1].path);
       } else if (dx > 0 && index > 0) {
-        dismissHint();
-        navigate(PREVIEW_NAV[index - 1].path);
+        goTo(PREVIEW_NAV[index - 1].path);
       }
     };
 
@@ -165,19 +199,27 @@ const PreviewPageSwipe = () => {
 
   if (!mobile || navIndex < 0 || !hintVisible) return null;
 
-  let hintText = t("preview.chrome.pageSwipeHint");
-  if (!canPrev && canNext) hintText = t("preview.chrome.pageSwipeHintNext");
-  if (canPrev && !canNext) hintText = t("preview.chrome.pageSwipeHintPrev");
-
   return (
-    <div className="hp-page-swipe-hint" role="status" aria-live="polite">
-      <span className={`hp-page-swipe-hint__chev ${canPrev ? "" : "is-dim"}`} aria-hidden>
-        ‹
-      </span>
-      <p className="hp-page-swipe-hint__text">{hintText}</p>
-      <span className={`hp-page-swipe-hint__chev ${canNext ? "" : "is-dim"}`} aria-hidden>
-        ›
-      </span>
+    <div className="hp-page-swipe-edges" aria-hidden>
+      {canPrev ? (
+        <div
+          className="hp-page-swipe-curl is-prev"
+          title={t("preview.chrome.pageSwipeHintPrev")}
+        >
+          <span className="hp-page-swipe-curl__sheet" />
+          <span className="hp-page-swipe-curl__fold" />
+        </div>
+      ) : null}
+      {canNext ? (
+        <div
+          className="hp-page-swipe-curl is-next"
+          title={t("preview.chrome.pageSwipeHintNext")}
+        >
+          <span className="hp-page-swipe-curl__sheet" />
+          <span className="hp-page-swipe-curl__fold" />
+        </div>
+      ) : null}
+      <span className="hp-sr-only">{t("preview.chrome.pageSwipeHint")}</span>
     </div>
   );
 };

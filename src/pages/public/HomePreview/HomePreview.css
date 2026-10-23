@@ -1,59 +1,154 @@
-/* Mobile page-swipe hint — discrete, one-shot (see PreviewPageSwipe.jsx) */
-.hp-page-swipe-hint {
-  position: fixed;
-  left: 50%;
-  bottom: calc(1.15rem + env(safe-area-inset-bottom, 0px));
-  transform: translateX(-50%);
-  z-index: 40;
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  max-width: min(18.5rem, calc(100vw - 5.5rem));
-  padding: 0.45rem 0.7rem;
-  border-radius: 999px;
-  background: rgba(18, 40, 70, 0.72);
-  color: #fff;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 6px 18px rgba(18, 40, 70, 0.22);
-  pointer-events: none;
-  animation: hp-page-swipe-hint-in 0.45s ease both;
+/* Page fade on swipe navigation */
+.hp.hp--page-leave main {
+  opacity: 0;
+  transition: opacity 0.24s ease;
 }
 
-.hp-page-swipe-hint__text {
-  margin: 0;
-  font-size: 0.72rem;
-  font-weight: 700;
-  line-height: 1.25;
-  text-align: center;
-  letter-spacing: 0.01em;
+.hp.hp--page-enter main {
+  animation: hp-page-fade-in 0.3s ease both;
 }
 
-.hp-page-swipe-hint__chev {
-  flex-shrink: 0;
-  font-size: 1.05rem;
-  font-weight: 700;
-  line-height: 1;
-  opacity: 0.95;
-}
-
-.hp-page-swipe-hint__chev.is-dim {
-  opacity: 0.28;
-}
-
-@keyframes hp-page-swipe-hint-in {
+@keyframes hp-page-fade-in {
   from {
     opacity: 0;
-    transform: translateX(-50%) translateY(8px);
   }
   to {
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
   }
 }
 
+/* Edge “pulled page corner” hint — mobile one-shot */
+.hp-page-swipe-edges {
+  pointer-events: none;
+}
+
+.hp-page-swipe-curl {
+  position: fixed;
+  top: 42%;
+  z-index: 36;
+  width: 1.35rem;
+  height: 5.1rem;
+}
+
+.hp-page-swipe-curl.is-prev {
+  left: 0;
+  animation: hp-page-curl-breathe-prev 2.6s ease-in-out infinite;
+}
+
+.hp-page-swipe-curl.is-next {
+  right: 0;
+  animation: hp-page-curl-breathe-next 2.6s ease-in-out infinite;
+}
+
+.hp-page-swipe-curl__sheet {
+  position: absolute;
+  inset: 0.35rem 0 0.35rem;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(18, 40, 70, 0.12);
+}
+
+.hp-page-swipe-curl.is-prev .hp-page-swipe-curl__sheet {
+  left: 0;
+  right: auto;
+  width: 100%;
+  border-radius: 0 0.45rem 0.45rem 0;
+  background: linear-gradient(
+    90deg,
+    rgba(26, 74, 141, 0.12) 0%,
+    #fff 42%,
+    #f7f9fc 100%
+  );
+  box-shadow: 2px 2px 12px rgba(18, 40, 70, 0.12);
+}
+
+.hp-page-swipe-curl.is-next .hp-page-swipe-curl__sheet {
+  right: 0;
+  left: auto;
+  width: 100%;
+  border-radius: 0.45rem 0 0 0.45rem;
+  background: linear-gradient(
+    270deg,
+    rgba(26, 74, 141, 0.12) 0%,
+    #fff 42%,
+    #f7f9fc 100%
+  );
+  box-shadow: -2px 2px 12px rgba(18, 40, 70, 0.12);
+}
+
+/* Dog-ear fold — suggests a page corner being tugged */
+.hp-page-swipe-curl__fold {
+  position: absolute;
+  top: 0.35rem;
+  width: 0.78rem;
+  height: 0.78rem;
+  background: linear-gradient(
+    135deg,
+    #dfe6f0 0%,
+    #f3f6fa 48%,
+    rgba(255, 255, 255, 0) 52%
+  );
+}
+
+.hp-page-swipe-curl.is-next .hp-page-swipe-curl__fold {
+  right: 0;
+  background: linear-gradient(
+    -135deg,
+    #cfd8e6 0%,
+    #eef2f7 46%,
+    rgba(255, 255, 255, 0) 50%
+  );
+  box-shadow: -1px 1px 2px rgba(18, 40, 70, 0.06);
+}
+
+.hp-page-swipe-curl.is-prev .hp-page-swipe-curl__fold {
+  left: 0;
+  background: linear-gradient(
+    135deg,
+    #cfd8e6 0%,
+    #eef2f7 46%,
+    rgba(255, 255, 255, 0) 50%
+  );
+  box-shadow: 1px 1px 2px rgba(18, 40, 70, 0.06);
+}
+
+@keyframes hp-page-curl-breathe-next {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translateX(5px);
+  }
+  50% {
+    opacity: 0.92;
+    transform: translateX(0);
+  }
+}
+
+@keyframes hp-page-curl-breathe-prev {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translateX(-5px);
+  }
+  50% {
+    opacity: 0.92;
+    transform: translateX(0);
+  }
+}
+
+.hp-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 @media (min-width: 900px) and (pointer: fine) {
-  .hp-page-swipe-hint {
+  .hp-page-swipe-edges {
     display: none;
   }
 }
