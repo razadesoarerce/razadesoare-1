@@ -12,18 +12,6 @@ const SWIPE_CLOSE_PX = 56;
 
 const asBlocks = (value) => (Array.isArray(value) ? value : []);
 
-const SunRays = ({ className = "" }) => (
-  <svg className={className} viewBox="0 0 64 24" aria-hidden>
-    <path
-      d="M4 18 Q8 4 12 18 M16 18 Q20 2 24 18 M28 18 Q32 6 36 18 M40 18 Q44 2 48 18 M52 18 Q56 6 60 18"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
 const ServiceIcon = ({ name }) => {
   if (name === "book") {
     return (
@@ -178,13 +166,10 @@ const EchipaNoastra = () => {
           <p className="hp-despre-intro__subtitle">{t("preview.team.subtitle")}</p>
         </section>
 
-        <section className="hp-section hp-offer hp-echipa-offer" aria-labelledby="hp-echipa-offer-title">
-          <div className="hp-section__head">
-            <SunRays className="hp-rays" />
-            <h2 id="hp-echipa-offer-title">{t("preview.team.offerTitle")}</h2>
-            <SunRays className="hp-rays" />
-          </div>
-          <p className="hp-section__lead">{t("preview.team.offerLead")}</p>
+        <section
+          className="hp-section hp-offer hp-echipa-offer"
+          aria-label={t("preview.team.offerTitle")}
+        >
           <div className="hp-offer__carousel">
             <Swiper
               modules={[Pagination]}
