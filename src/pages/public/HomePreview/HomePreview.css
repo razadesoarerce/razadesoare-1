@@ -1085,23 +1085,28 @@
   transform: translateY(-2px);
 }
 
-.hp-btn--primary {
+/* Beat `.hp button { background: none }` so <button class="hp-btn"> matches <a class="hp-btn"> */
+.hp a.hp-btn--primary,
+.hp button.hp-btn--primary {
   background: var(--hp-yellow);
   color: #1a1a1a;
   box-shadow: 0 8px 20px rgba(245, 197, 66, 0.35);
 }
 
-.hp-btn--primary:hover {
+.hp a.hp-btn--primary:hover,
+.hp button.hp-btn--primary:hover {
   background: var(--hp-yellow-hot);
 }
 
-.hp-btn--ghost {
+.hp a.hp-btn--ghost,
+.hp button.hp-btn--ghost {
   background: transparent;
   color: var(--hp-white);
   box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.9);
 }
 
-.hp-btn--ghost:hover {
+.hp a.hp-btn--ghost:hover,
+.hp button.hp-btn--ghost:hover {
   background: rgba(255, 255, 255, 0.12);
 }
 
@@ -2941,9 +2946,35 @@
   --hp-stack-gap: 1rem;
 }
 
-.hp--type-test .hp-section__head h2,
-.hp--type-test .hp-support .hp-section__head h2 {
+.hp--type-test .hp-section__head h2 {
   font-size: clamp(1.6rem, 4.7vw, 2.48rem);
+}
+
+/* Support title — keep rays tight to the text (not stretched to panel edges) */
+.hp--type-test .hp-support .hp-section__head {
+  justify-content: center;
+  gap: 0.3rem;
+  flex-wrap: nowrap;
+}
+
+.hp--type-test .hp-support .hp-section__head .hp-rays {
+  width: 2rem;
+  flex: 0 0 auto;
+}
+
+.hp--type-test .hp-support .hp-section__head h2 {
+  flex: 0 1 auto;
+  width: auto;
+  max-width: calc(100% - 4.6rem);
+  font-size: clamp(1.15rem, 4.4vw, 1.85rem);
+  white-space: nowrap;
+}
+
+@media (max-width: 360px) {
+  .hp--type-test .hp-support .hp-section__head h2 {
+    white-space: normal;
+    text-wrap: balance;
+  }
 }
 
 .hp--type-test .hp-section__lead {
@@ -2982,6 +3013,11 @@
 
 .hp--type-test .hp-section.hp-support {
   margin-bottom: var(--hp-stack-gap);
+}
+
+/* Gallery CTA — same rhythm as other section gaps */
+.hp--type-test .hp-life__cta {
+  margin-top: var(--hp-stack-gap);
 }
 
 /* Swipe dots one row lower */
