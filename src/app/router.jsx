@@ -60,6 +60,10 @@ const router = createBrowserRouter([
     element: <HomePreview />,
   },
   {
+    path: "/preview/test",
+    element: <HomePreview />,
+  },
+  {
     path: "/preview/despre-noi",
     element: <DespreNoi />,
   },

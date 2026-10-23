@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { PREVIEW_HOME, PREVIEW_DESPRE, PREVIEW_NAV } from "./previewNav";
+import { PREVIEW_HOME, PREVIEW_DESPRE, PREVIEW_TEST, PREVIEW_NAV } from "./previewNav";
 import PreviewLegalLinks from "./PreviewLegalLinks";
 import "./HomePreview.css";
 
@@ -259,6 +259,7 @@ const HomePreview = () => {
   const dockJustDraggedRef = useRef(false);
   const activeLang = i18n.language?.startsWith("en") ? "EN" : "RO";
   const dockScreenPos = dockPos ?? dockHomePos;
+  const isTypeTest = location.pathname === PREVIEW_TEST;
 
   const syncDockOutsideHero = (left, top, width, height) => {
     const dock = dockRef.current;
@@ -660,7 +661,7 @@ const HomePreview = () => {
 
   return (
     <div
-      className={`hp ${expandedOffer ? "hp--offer-open" : ""} ${menuOpen ? "hp--menu-open" : ""} ${contactOpen ? "hp--contact-open" : ""}`}
+      className={`hp${isTypeTest ? " hp--type-test" : ""}${expandedOffer ? " hp--offer-open" : ""}${menuOpen ? " hp--menu-open" : ""}${contactOpen ? " hp--contact-open" : ""}`}
     >
       {contactPanel}
       <div

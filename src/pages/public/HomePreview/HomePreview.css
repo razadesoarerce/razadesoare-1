@@ -2863,3 +2863,230 @@
     transition: none;
   }
 }
+
+/*
+ * Temporary /preview/test — same homepage, larger type.
+ * Body/card copy ≈ current subtitle (0.85rem); titles/leads scale ~1.18×.
+ * Section gaps match lead→carousel spacing in „Viața la Raza de Soare”.
+ */
+.hp--type-test {
+  --hp-stack-gap: 1rem;
+}
+
+.hp--type-test .hp-section__head h2,
+.hp--type-test .hp-support .hp-section__head h2 {
+  font-size: clamp(1.6rem, 4.7vw, 2.48rem);
+}
+
+.hp--type-test .hp-section__lead {
+  font-size: 1rem;
+  margin-bottom: var(--hp-stack-gap);
+}
+
+/* Equal vertical rhythm between homepage sections */
+.hp--type-test .hp-section,
+.hp--type-test .hp-offer {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.hp--type-test .hp-offer,
+.hp--type-test .hp-about,
+.hp--type-test .hp-life,
+.hp--type-test .hp-section.hp-support {
+  margin-top: var(--hp-stack-gap);
+}
+
+.hp--type-test .hp-about__intro {
+  padding-top: 0;
+  padding-bottom: var(--hp-stack-gap);
+}
+
+.hp--type-test .hp-section.hp-support {
+  margin-bottom: var(--hp-stack-gap);
+}
+
+/* Swipe dots one row lower */
+.hp--type-test .hp-offer-swiper,
+.hp--type-test .hp-life-swiper {
+  padding-bottom: 2.75rem;
+}
+
+.hp--type-test .hp-offer-swiper .swiper-pagination,
+.hp--type-test .hp-life-swiper .swiper-pagination {
+  bottom: 0.15rem;
+}
+
+.hp--type-test .hp-about__text p {
+  font-size: 1.09rem;
+}
+
+.hp--type-test .hp-offer-card__title {
+  font-size: 1.12rem;
+}
+
+.hp--type-test .hp-offer-card__text {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.hp--type-test .hp-offer-card__go {
+  font-size: 1.12rem;
+}
+
+.hp--type-test .hp-offer-expand__hint {
+  font-size: 0.85rem;
+}
+
+.hp--type-test .hp-offer-expand__panel h3 {
+  font-size: clamp(1.7rem, 4.7vw, 2.18rem);
+}
+
+.hp--type-test .hp-offer-expand__body,
+.hp--type-test .hp-offer-expand__body p,
+.hp--type-test .hp-offer-expand__list {
+  font-size: 1.09rem;
+}
+
+.hp--type-test .hp-btn {
+  font-size: 0.94rem;
+}
+
+.hp--type-test .hp-hero-card h1 {
+  font-size: clamp(1.12rem, 4.8vw, 1.42rem);
+}
+
+.hp--type-test .hp-btn.hp-btn--card-primary,
+.hp--type-test .hp-btn.hp-btn--card-ghost {
+  font-size: 0.57rem;
+}
+
+.hp--type-test .hp-life__caption {
+  font-size: 0.83rem;
+}
+
+.hp--type-test .hp-support-btn__title {
+  font-size: clamp(0.8rem, 2.6vw, 1.04rem);
+}
+
+.hp--type-test .hp-legal__link {
+  font-size: 0.85rem;
+}
+
+.hp--type-test .hp-legal__panel-title {
+  font-size: 1.12rem;
+}
+
+.hp--type-test .hp-legal__updated {
+  font-size: 0.8rem;
+}
+
+.hp--type-test .hp-legal__section-heading {
+  font-size: 0.97rem;
+}
+
+.hp--type-test .hp-legal__panel-body {
+  font-size: 0.97rem;
+}
+
+.hp--type-test .hp-credits__brand {
+  font-size: 0.68rem;
+}
+
+.hp--type-test .hp-credits__role {
+  font-size: 0.61rem;
+}
+
+.hp--type-test .hp-credits__name {
+  font-size: 0.85rem;
+}
+
+@media (min-width: 640px) {
+  .hp--type-test .hp-hero-card h1 {
+    font-size: 1.65rem;
+  }
+
+  .hp--type-test .hp-btn.hp-btn--card-primary,
+  .hp--type-test .hp-btn.hp-btn--card-ghost {
+    font-size: 0.73rem;
+  }
+
+  .hp--type-test .hp-btn {
+    font-size: 1.04rem;
+  }
+
+  .hp--type-test .hp-offer-card__title {
+    font-size: 1.36rem;
+  }
+
+  .hp--type-test .hp-offer-card__text {
+    font-size: 0.97rem;
+  }
+
+  .hp--type-test .hp-support-btn__title {
+    font-size: 1.06rem;
+  }
+
+  .hp--type-test .hp-legal__link {
+    font-size: 0.92rem;
+  }
+
+  .hp--type-test .hp-legal__panel-title {
+    font-size: 1.24rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .hp--type-test {
+    --hp-stack-gap: 1.35rem;
+  }
+
+  .hp--type-test .hp-hero-card h1 {
+    font-size: 1.95rem;
+  }
+
+  .hp--type-test .hp-btn.hp-btn--card-primary,
+  .hp--type-test .hp-btn.hp-btn--card-ghost {
+    font-size: 0.8rem;
+  }
+
+  .hp--type-test .hp-btn {
+    font-size: 1.09rem;
+  }
+
+  .hp--type-test .hp-section__lead {
+    font-size: 1.12rem;
+  }
+
+  .hp--type-test .hp-offer-card__title {
+    font-size: 1.53rem;
+  }
+
+  .hp--type-test .hp-offer-card__text {
+    font-size: 1.06rem;
+  }
+
+  .hp--type-test .hp-about__text p {
+    font-size: 1.18rem;
+  }
+
+  .hp--type-test .hp-support-btn__title {
+    font-size: 1.12rem;
+  }
+
+  .hp--type-test .hp-section,
+  .hp--type-test .hp-offer,
+  .hp--type-test .hp-about__intro {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .hp--type-test .hp-about__intro {
+    padding-bottom: var(--hp-stack-gap);
+  }
+
+  .hp--type-test .hp-offer-swiper,
+  .hp--type-test .hp-life-swiper {
+    padding-bottom: 3rem;
+  }
+}
