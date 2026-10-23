@@ -227,5 +227,37 @@
         ]
       }
     }
+  },
+  "about": {
+    "heroAria": "About us gallery",
+    "title": "About us",
+    "subtitle": "The school’s history and mission",
+    "storyImageAlt": "Raza de Soare Special School building",
+    "historyTitle": "History of Rază de Soare Special School",
+    "historyText": "Rază de Soare Special School is one of the projects of the Christian Foundation RCE “Speranța Copiilor” in Arad, which began its work in 1992. The school was founded in January 2002 as an educational and recovery center, first for the 8 children with disabilities from the “Casa Darius” residential and recovery center within the foundation.",
+    "blocksAria": "History and mission",
+    "banners": {
+      "b1": "Teacher and students at an activity on the orange table",
+      "b2": "Painting activity with autumn leaves",
+      "b3": "Two teachers and students at a classroom table"
+    },
+    "blocks": {
+      "vision": {
+        "title": "Expanding the vision",
+        "text": "While RCE’s vision initially focused on helping abandoned children from orphanages and placement centers, community demand led the services to expand also to children with severe disabilities from families."
+      },
+      "accreditation": {
+        "title": "Accreditation and authorization",
+        "text": "From 2002 to 2009, the Rază de Soare Educational Center operated with accreditation from the Ministry of Labor. In 2009, Rază de Soare Special School was authorized by the Ministry of Education for preschool and primary education and is now accredited for preschool, primary and lower-secondary cycles."
+      },
+      "education": {
+        "title": "Adapted education and personalized attention",
+        "text": "Over the years, “Rază de Soare” has grown steadily, offering adapted education for enrolled preschoolers and students. Our program covers kindergarten (small group) through 10th grade, with small classes (6–8 students) coordinated by two teachers per class, to ensure personalized attention and real progress for every student."
+      },
+      "mission": {
+        "title": "Our mission",
+        "text": "Over time, our mission has grown beyond teaching alone, becoming a holistic support center that promotes inclusion, personal development and the dignity of every child."
+      }
+    }
   }
 }
