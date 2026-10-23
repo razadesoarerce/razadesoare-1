@@ -2902,6 +2902,16 @@
   padding-bottom: var(--hp-stack-gap);
 }
 
+/* About image — same side margins as carousels / .hp-section */
+.hp--type-test .hp-about__media {
+  width: min(1120px, calc(100% - 1.5rem));
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: calc(var(--hp-radius) + 0.15rem);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
 .hp--type-test .hp-section.hp-support {
   margin-bottom: var(--hp-stack-gap);
 }
