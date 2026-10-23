@@ -60,10 +60,7 @@ const PreviewLegalLinks = () => {
                   id={`hp-legal-trigger-${id}`}
                   onClick={() => onToggle(id)}
                 >
-                  <span>{t(`preview.legal.${id}.title`)}</span>
-                  <span className="hp-legal__chevron" aria-hidden>
-                    {isOpen ? "▴" : "▾"}
-                  </span>
+                  {t(`preview.legal.${id}.title`)}
                 </button>
               </li>
             );
