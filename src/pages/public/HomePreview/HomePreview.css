@@ -3027,8 +3027,7 @@
  * Homepage-only rhythm (Acasă has .hp--type-test without .hp--preview-page).
  * Inner pages use .hp--preview-page + type-test for typography only.
  */
-/* Do not zero Support padding — it needs the same airy inset as inner pages */
-.hp--type-test:not(.hp--preview-page) .hp-section:not(.hp-support),
+.hp--type-test:not(.hp--preview-page) .hp-section,
 .hp--type-test:not(.hp--preview-page) .hp-offer {
   padding-top: 0;
   padding-bottom: 0;
@@ -3040,11 +3039,13 @@
   margin-top: var(--hp-stack-gap);
 }
 
-/* Same top air before Support as on inner pages (≈ section bottom padding) */
+/* Support keeps airy framed padding (homepage rhythm zeros .hp-section above) */
 .hp--type-test:not(.hp--preview-page) .hp-section.hp-support {
   margin-top: 2.5rem;
+  padding: 0.7rem 0.65rem 0.55rem;
 }
 
+/* Space between About CTA and full-bleed image — must follow the zero-padding rule */
 .hp--type-test:not(.hp--preview-page) .hp-about__intro {
   padding-top: 0;
   padding-bottom: var(--hp-stack-gap);
@@ -3239,7 +3240,7 @@
     font-size: 1.12rem;
   }
 
-  .hp--type-test:not(.hp--preview-page) .hp-section:not(.hp-support),
+  .hp--type-test:not(.hp--preview-page) .hp-section,
   .hp--type-test:not(.hp--preview-page) .hp-offer,
   .hp--type-test:not(.hp--preview-page) .hp-about__intro {
     padding-top: 0;
@@ -3257,6 +3258,13 @@
 
   .hp--type-test:not(.hp--preview-page) .hp-section.hp-support {
     margin-top: 3.5rem;
+    padding: 1rem 1.1rem 0.75rem;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 899px) {
+  .hp--type-test:not(.hp--preview-page) .hp-section.hp-support {
+    padding: 0.85rem 0.9rem 0.7rem;
   }
 }
 
