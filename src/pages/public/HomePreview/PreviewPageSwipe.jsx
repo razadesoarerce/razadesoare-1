@@ -1,0 +1,185 @@
+import { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { PREVIEW_NAV } from "./previewNav";
+
+const SWIPE_PX = 72;
+const SWIPE_RATIO = 1.35;
+const HINT_KEY = "hp-preview-page-swipe-hint-v1";
+const HINT_MS = 4200;
+const MOBILE_MQ = "(max-width: 899px), (pointer: coarse)";
+
+/** Zones where page-swipe must not compete with local gestures. */
+const IGNORE_SELECTOR = [
+  ".swiper",
+  ".swiper-slide",
+  ".swiper-pagination",
+  ".hp-dock",
+  ".hp-drawer",
+  ".hp-drawer-root",
+  ".hp-offer-expand",
+  ".hp-info-lightbox",
+  ".hp-info-zoom",
+  ".hp-contact-dd",
+  ".hp-blog-filters",
+  "input",
+  "textarea",
+  "select",
+  "[data-no-page-swipe]",
+].join(", ");
+
+const OVERLAY_BLOCK =
+  ".hp--menu-open, .hp--offer-open, .hp--contact-open, .hp-offer-expand, .hp-info-lightbox";
+
+const getNavIndex = (pathname) =>
+  PREVIEW_NAV.findIndex((item) => item.path === pathname);
+
+const isMobileSwipeContext = () =>
+  typeof window !== "undefined" && window.matchMedia(MOBILE_MQ).matches;
+
+/**
+ * Mobile-only horizontal swipe between preview menu pages.
+ * Ignores carousels / overlays; shows a one-shot discrete hint.
+ */
+const PreviewPageSwipe = () => {
+  const { t } = useTranslation();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const touchRef = useRef(null);
+  const [hintVisible, setHintVisible] = useState(false);
+  const [mobile, setMobile] = useState(false);
+
+  const navIndex = getNavIndex(location.pathname);
+  const canPrev = navIndex > 0;
+  const canNext = navIndex >= 0 && navIndex < PREVIEW_NAV.length - 1;
+
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_MQ);
+    const sync = () => setMobile(mq.matches);
+    sync();
+    mq.addEventListener?.("change", sync);
+    return () => mq.removeEventListener?.("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (!mobile || navIndex < 0) {
+      setHintVisible(false);
+      return undefined;
+    }
+    try {
+      if (window.localStorage.getItem(HINT_KEY) === "1") {
+        setHintVisible(false);
+        return undefined;
+      }
+      // Mark once so route changes don't re-flash the hint
+      window.localStorage.setItem(HINT_KEY, "1");
+    } catch {
+      /* ignore storage errors */
+    }
+    setHintVisible(true);
+    const timer = window.setTimeout(() => setHintVisible(false), HINT_MS);
+    return () => window.clearTimeout(timer);
+  }, [mobile, navIndex]);
+
+  useEffect(() => {
+    if (!mobile || navIndex < 0) return undefined;
+
+    const dismissHint = () => {
+      setHintVisible(false);
+      try {
+        window.localStorage.setItem(HINT_KEY, "1");
+      } catch {
+        /* ignore */
+      }
+    };
+
+    const onStart = (event) => {
+      if (!isMobileSwipeContext()) return;
+      if (document.querySelector(OVERLAY_BLOCK)) {
+        touchRef.current = null;
+        return;
+      }
+      const touch = event.changedTouches?.[0] ?? event.touches?.[0];
+      if (!touch) return;
+      const target = event.target;
+      if (target instanceof Element && target.closest(IGNORE_SELECTOR)) {
+        touchRef.current = null;
+        return;
+      }
+      touchRef.current = {
+        x: touch.clientX,
+        y: touch.clientY,
+        ignored: false,
+      };
+    };
+
+    const onMove = (event) => {
+      const start = touchRef.current;
+      if (!start || start.ignored) return;
+      const touch = event.touches?.[0];
+      if (!touch) return;
+      const dx = touch.clientX - start.x;
+      const dy = touch.clientY - start.y;
+      // Vertical scroll wins early — abandon page swipe for this gesture
+      if (Math.abs(dy) > 28 && Math.abs(dy) > Math.abs(dx) * 0.85) {
+        start.ignored = true;
+      }
+    };
+
+    const onEnd = (event) => {
+      const start = touchRef.current;
+      touchRef.current = null;
+      if (!start || start.ignored) return;
+      if (document.querySelector(OVERLAY_BLOCK)) return;
+      const touch = event.changedTouches?.[0];
+      if (!touch) return;
+      const dx = touch.clientX - start.x;
+      const dy = touch.clientY - start.y;
+      if (Math.abs(dx) < SWIPE_PX) return;
+      if (Math.abs(dx) < Math.abs(dy) * SWIPE_RATIO) return;
+
+      const index = getNavIndex(window.location.pathname);
+      if (index < 0) return;
+
+      // Finger left → next page; finger right → previous
+      if (dx < 0 && index < PREVIEW_NAV.length - 1) {
+        dismissHint();
+        navigate(PREVIEW_NAV[index + 1].path);
+      } else if (dx > 0 && index > 0) {
+        dismissHint();
+        navigate(PREVIEW_NAV[index - 1].path);
+      }
+    };
+
+    document.addEventListener("touchstart", onStart, { passive: true });
+    document.addEventListener("touchmove", onMove, { passive: true });
+    document.addEventListener("touchend", onEnd, { passive: true });
+    document.addEventListener("touchcancel", onEnd, { passive: true });
+    return () => {
+      document.removeEventListener("touchstart", onStart);
+      document.removeEventListener("touchmove", onMove);
+      document.removeEventListener("touchend", onEnd);
+      document.removeEventListener("touchcancel", onEnd);
+    };
+  }, [mobile, navIndex, navigate]);
+
+  if (!mobile || navIndex < 0 || !hintVisible) return null;
+
+  let hintText = t("preview.chrome.pageSwipeHint");
+  if (!canPrev && canNext) hintText = t("preview.chrome.pageSwipeHintNext");
+  if (canPrev && !canNext) hintText = t("preview.chrome.pageSwipeHintPrev");
+
+  return (
+    <div className="hp-page-swipe-hint" role="status" aria-live="polite">
+      <span className={`hp-page-swipe-hint__chev ${canPrev ? "" : "is-dim"}`} aria-hidden>
+        ‹
+      </span>
+      <p className="hp-page-swipe-hint__text">{hintText}</p>
+      <span className={`hp-page-swipe-hint__chev ${canNext ? "" : "is-dim"}`} aria-hidden>
+        ›
+      </span>
+    </div>
+  );
+};
+
+export default PreviewPageSwipe;

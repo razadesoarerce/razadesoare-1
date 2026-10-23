@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaFacebookF } from "react-icons/fa";
 import { PREVIEW_HOME, PREVIEW_NAV } from "./previewNav";
+import PreviewPageSwipe from "./PreviewPageSwipe";
 import "./HomePreview.css";
 
 const SWIPE_CLOSE_PX = 56;
@@ -348,6 +349,7 @@ const PreviewShell = ({ children, className = "" }) => {
       ) : null}
 
       {children}
+      <PreviewPageSwipe />
     </div>
   );
 };

@@ -15,6 +15,9 @@
     "menu": "Menu",
     "nav": "Navigation",
     "menuHint": "Swipe right or tap outside to close",
+    "pageSwipeHint": "Swipe left or right to change page",
+    "pageSwipeHintNext": "Swipe left for the next page",
+    "pageSwipeHintPrev": "Swipe right for the previous page",
     "langAria": "Active language {{lang}}. Press to switch.",
     "facebook": "Facebook"
   },

@@ -15,6 +15,9 @@
     "menu": "Meniu",
     "nav": "Navigare",
     "menuHint": "Swipe dreapta sau tap în afară pentru a închide",
+    "pageSwipeHint": "Glisează stânga sau dreapta pentru a schimba pagina",
+    "pageSwipeHintNext": "Glisează stânga pentru pagina următoare",
+    "pageSwipeHintPrev": "Glisează dreapta pentru pagina anterioară",
     "langAria": "Limba activă {{lang}}. Apasă pentru a schimba.",
     "facebook": "Facebook"
   },

@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { PREVIEW_HOME, PREVIEW_DESPRE, PREVIEW_NAV } from "./previewNav";
 import PreviewSupportFooter from "./PreviewSupportFooter";
+import PreviewPageSwipe from "./PreviewPageSwipe";
 import "./HomePreview.css";
 
 /** Pulsing sun mark — same animated sun used previously in the hero. */
@@ -970,6 +971,7 @@ const HomePreview = () => {
 
         <PreviewSupportFooter />
       </main>
+      <PreviewPageSwipe />
     </div>
   );
 };

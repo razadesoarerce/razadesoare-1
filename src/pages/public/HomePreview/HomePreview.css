@@ -1,3 +1,63 @@
+/* Mobile page-swipe hint — discrete, one-shot (see PreviewPageSwipe.jsx) */
+.hp-page-swipe-hint {
+  position: fixed;
+  left: 50%;
+  bottom: calc(1.15rem + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  max-width: min(18.5rem, calc(100vw - 5.5rem));
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(18, 40, 70, 0.72);
+  color: #fff;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(18, 40, 70, 0.22);
+  pointer-events: none;
+  animation: hp-page-swipe-hint-in 0.45s ease both;
+}
+
+.hp-page-swipe-hint__text {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+.hp-page-swipe-hint__chev {
+  flex-shrink: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.95;
+}
+
+.hp-page-swipe-hint__chev.is-dim {
+  opacity: 0.28;
+}
+
+@keyframes hp-page-swipe-hint-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (min-width: 900px) and (pointer: fine) {
+  .hp-page-swipe-hint {
+    display: none;
+  }
+}
+
 /* Isolated homepage mockup — scoped under .hp */
 
 .hp {
