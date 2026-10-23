@@ -765,6 +765,8 @@
 
 /* Despre noi — intro + story */
 .hp-section.hp-despre-intro {
+  /* Shared absolute indent — em would scale with each element's font-size */
+  --hp-despre-indent: 1.4rem;
   padding-top: 1.5rem;
   padding-bottom: 1.75rem;
 }
@@ -826,8 +828,7 @@
   color: var(--hp-blue);
   margin: 0 0 0.5rem;
   line-height: 1.25;
-  /* Match first-line indent on body paragraphs */
-  text-indent: 1.5em;
+  text-indent: var(--hp-despre-indent);
 }
 
 .hp-despre-intro__copy p,
@@ -838,7 +839,7 @@
   font-size: clamp(0.88rem, 2.2vw, 0.98rem);
   line-height: 1.65;
   text-align: left;
-  text-indent: 1.5em;
+  text-indent: var(--hp-despre-indent);
 }
 
 .hp-despre-blocks {
@@ -902,7 +903,7 @@
 }
 
 .hp-echipa-specialisti__banner {
-  border: 2px solid var(--hp-blue);
+  border: 0;
   border-radius: 1.1rem;
   background: rgba(26, 74, 141, 0.12);
   padding: 1.15rem 1.1rem 1.2rem;
