@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const LEGAL_IDS = ["privacy", "terms", "cookies"];
+const LEGAL_IDS = ["terms", "cookies", "privacy"];
 
 const asSections = (value) => (Array.isArray(value) ? value : []);
 
