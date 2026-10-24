@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { PREVIEW_HOME, PREVIEW_DESPRE } from "./previewNav";
+import { PREVIEW_HOME, PREVIEW_DESPRE, PREVIEW_GALERIE } from "./previewNav";
 import { clampDockPos, getDockViewportHome } from "./dockViewport";
 import { subscribeVisualViewport } from "../../../utils/visualViewport";
 import { PreviewMenuBackdrop, PreviewMenuPanel } from "./PreviewNavMenu";
@@ -887,9 +887,9 @@ const HomePreview = () => {
             </Swiper>
           </div>
           <div className="hp-life__cta">
-            <button type="button" className="hp-btn hp-btn--primary">
+            <Link to={PREVIEW_GALERIE} className="hp-btn hp-btn--primary">
               {t("preview.home.life.galleryCta")} <span aria-hidden>→</span>
-            </button>
+            </Link>
           </div>
         </section>
 

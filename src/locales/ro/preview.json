@@ -4,6 +4,7 @@
     "info": "Informații",
     "about": "Despre noi",
     "team": "Echipa noastră",
+    "gallery": "Galerie foto",
     "blog": "Blog"
   },
   "chrome": {
@@ -439,6 +440,12 @@
         "text": "De-a lungul timpului, misiunea noastră s-a extins dincolo de simpla predare, devenind un centru de sprijin holistic care promovează incluziunea, dezvoltarea personală și creșterea demnității fiecărui copil."
       }
     }
+  },
+  "gallery": {
+    "heroAria": "Galerie foto",
+    "coverAlt": "Comunitatea școlii Rază de Soare în fața clădirii, cu baloane albe",
+    "title": "Galerie foto",
+    "subtitle": "Momente din viața școlii — albumele vor apărea aici în curând."
   },
   "blog": {
     "heroAria": "Blog",

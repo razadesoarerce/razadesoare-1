@@ -4,6 +4,7 @@
     "info": "Information",
     "about": "About us",
     "team": "Our team",
+    "gallery": "Photo gallery",
     "blog": "Blog"
   },
   "chrome": {
@@ -439,6 +440,12 @@
         "text": "Over time, our mission has grown beyond teaching alone, becoming a holistic support center that promotes inclusion, personal development and the dignity of every child."
       }
     }
+  },
+  "gallery": {
+    "heroAria": "Photo gallery",
+    "coverAlt": "The Rază de Soare school community in front of the building, with white balloons",
+    "title": "Photo gallery",
+    "subtitle": "Moments from school life — albums will appear here soon."
   },
   "blog": {
     "heroAria": "Blog",

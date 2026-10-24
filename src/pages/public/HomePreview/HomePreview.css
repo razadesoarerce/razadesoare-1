@@ -551,6 +551,11 @@
   object-position: center;
 }
 
+/* Group photo — keep faces in frame (crowd sits lower in the image) */
+.hp-galerie-hero__cover {
+  object-position: center 42%;
+}
+
 /* Informații — expandable topic cards */
 .hp-info-cards {
   display: flex;
