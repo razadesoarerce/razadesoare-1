@@ -1341,10 +1341,10 @@ a.hp-galerie-card:hover {
 }
 
 .hp-page-mark {
-  width: 1.55rem;
-  height: 1.55rem;
+  width: 2.25rem;
+  height: 2.25rem;
   flex-shrink: 0;
-  margin-top: 0.2rem;
+  margin-top: 0.05rem;
   overflow: visible;
 }
 

@@ -11,14 +11,14 @@ const PreviewPageMark = ({ rays = 1 }) => {
       ? [startDeg]
       : Array.from({ length: count }, (_, i) => startDeg + ((endDeg - startDeg) * i) / (count - 1));
 
-  const inner = 5.6;
-  const outer = 13.2;
+  const inner = 7.1;
+  const outer = 14.4;
 
   return (
     <svg className="hp-page-mark" viewBox="0 0 32 32" aria-hidden>
-      <circle className="hp-page-mark__pulse" cx="16" cy="16" r="5.2" />
-      <circle className="hp-page-mark__core" cx="16" cy="16" r="3.15" />
-      <g className="hp-page-mark__rays" fill="none" stroke="#f5c542" strokeWidth="2.35" strokeLinecap="round">
+      <circle className="hp-page-mark__pulse" cx="16" cy="16" r="6.4" />
+      <circle className="hp-page-mark__core" cx="16" cy="16" r="4.35" />
+      <g className="hp-page-mark__rays" fill="none" stroke="#f5c542" strokeWidth="2.2" strokeLinecap="round">
         {angles.map((deg) => {
           const rad = (deg * Math.PI) / 180;
           const cos = Math.cos(rad);
