@@ -4,29 +4,13 @@ import { useTranslation } from "react-i18next";
 import { FaFacebookF } from "react-icons/fa";
 import { PREVIEW_HOME, PREVIEW_NAV } from "./previewNav";
 import PreviewPageSwipe from "./PreviewPageSwipe";
+import { clampDockPos, getDockViewportHome } from "./dockViewport";
+import { subscribeVisualViewport } from "../../../utils/visualViewport";
 import "./HomePreview.css";
 
 const SWIPE_CLOSE_PX = 56;
 const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v7";
 const DOCK_DRAG_THRESHOLD = 6;
-const DOCK_MARGIN = 12;
-
-const clampDockPos = (left, top, width = 80, height = 80) => {
-  const maxLeft = Math.max(DOCK_MARGIN, window.innerWidth - width - DOCK_MARGIN);
-  const maxTop = Math.max(DOCK_MARGIN, window.innerHeight - height - DOCK_MARGIN);
-  return {
-    left: Math.min(Math.max(DOCK_MARGIN, left), maxLeft),
-    top: Math.min(Math.max(DOCK_MARGIN, top), maxTop),
-  };
-};
-
-const getDockViewportHome = (width = 80, height = 80) =>
-  clampDockPos(
-    window.innerWidth - width - DOCK_MARGIN,
-    window.innerHeight - height - DOCK_MARGIN,
-    width,
-    height
-  );
 
 /**
  * Shared chrome for the new preview site: dock + drawer.
@@ -80,14 +64,6 @@ const PreviewShell = ({ children, className = "" }) => {
   }, [menuOpen]);
 
   useLayoutEffect(() => {
-    const applyHome = () => {
-      const el = dockRef.current;
-      const w = el?.offsetWidth ?? 80;
-      const h = el?.offsetHeight ?? 80;
-      setDockHomePos(getDockViewportHome(w, h));
-    };
-    applyHome();
-
     try {
       const raw = localStorage.getItem(DOCK_STORAGE_KEY);
       if (raw) {
@@ -103,20 +79,22 @@ const PreviewShell = ({ children, className = "" }) => {
       // ignore
     }
 
-    window.addEventListener("resize", applyHome);
-    return () => window.removeEventListener("resize", applyHome);
-  }, []);
-
-  useEffect(() => {
-    const onResize = () => {
+    const syncDockToVisualViewport = () => {
+      const el = dockRef.current;
+      const w = el?.offsetWidth ?? 80;
+      const h = el?.offsetHeight ?? 80;
+      const home = getDockViewportHome(w, h);
+      setDockHomePos((prev) =>
+        prev && prev.left === home.left && prev.top === home.top ? prev : home
+      );
       setDockPos((pos) => {
         if (!pos) return null;
-        const el = dockRef.current;
-        return clampDockPos(pos.left, pos.top, el?.offsetWidth, el?.offsetHeight);
+        const next = clampDockPos(pos.left, pos.top, w, h);
+        return next.left === pos.left && next.top === pos.top ? pos : next;
       });
     };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+
+    return subscribeVisualViewport(syncDockToVisualViewport);
   }, []);
 
   const closeMenu = () => setMenuOpen(false);

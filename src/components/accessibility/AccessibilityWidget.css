@@ -1,16 +1,24 @@
-/* Accessibility tool — bottom-left (preview dock stays bottom-right) */
+/* Accessibility tool — bottom-left, pinned to visual viewport (--vv-*) */
 
 .a11y-widget {
+  --a11y-toggle-size: 3rem;
+  --a11y-inset-x: max(0.75rem, env(safe-area-inset-left, 0px));
+  --a11y-inset-y: max(0.85rem, env(safe-area-inset-bottom, 0px));
+
   position: fixed;
-  left: max(0.75rem, env(safe-area-inset-left, 0px));
-  bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));
+  left: calc(var(--vv-left, 0px) + var(--a11y-inset-x));
+  top: calc(
+    var(--vv-top, 0px) + var(--vv-height, 100dvh) - var(--a11y-inset-y) - var(--a11y-toggle-size)
+  );
+  bottom: auto;
+  right: auto;
   z-index: 1200;
   font-family: "Nunito", "Segoe UI", system-ui, sans-serif;
 }
 
 .a11y-widget__toggle {
-  width: 3rem;
-  height: 3rem;
+  width: var(--a11y-toggle-size, 3rem);
+  height: var(--a11y-toggle-size, 3rem);
   border: 0;
   border-radius: 50%;
   display: grid;

@@ -4,6 +4,14 @@
     box-sizing: border-box;
   }
 
+  html {
+    /* Visual viewport pin — updated by VisualViewportSync; fallbacks before JS */
+    --vv-left: 0px;
+    --vv-top: 0px;
+    --vv-width: 100vw;
+    --vv-height: 100dvh;
+  }
+
   html,
   body {
     overflow-x: hidden;

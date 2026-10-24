@@ -8,6 +8,8 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { PREVIEW_HOME, PREVIEW_DESPRE, PREVIEW_NAV } from "./previewNav";
+import { clampDockPos, getDockViewportHome } from "./dockViewport";
+import { subscribeVisualViewport } from "../../../utils/visualViewport";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageSwipe from "./PreviewPageSwipe";
 import "./HomePreview.css";
@@ -156,7 +158,6 @@ const SunRays = ({ className = "" }) => (
 const SWIPE_CLOSE_PX = 56;
 const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v7";
 const DOCK_DRAG_THRESHOLD = 6;
-const DOCK_MARGIN = 12;
 const CONTACT_ADDRESS = "Arad, Strada Diogene nr 12";
 const CONTACT_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=" +
@@ -164,24 +165,6 @@ const CONTACT_MAPS_URL =
 const CONTACT_EMAIL = "razadesoarerce@yahoo.com";
 const CONTACT_PHONE_DISPLAY = "0257 214 805";
 const CONTACT_PHONE_TEL = "tel:+40257214805";
-
-const clampDockPos = (left, top, width = 80, height = 80) => {
-  const maxLeft = Math.max(DOCK_MARGIN, window.innerWidth - width - DOCK_MARGIN);
-  const maxTop = Math.max(DOCK_MARGIN, window.innerHeight - height - DOCK_MARGIN);
-  return {
-    left: Math.min(Math.max(DOCK_MARGIN, left), maxLeft),
-    top: Math.min(Math.max(DOCK_MARGIN, top), maxTop),
-  };
-};
-
-/** Default: floating bottom-right of the phone viewport (fixed while scrolling). */
-const getDockViewportHome = (width = 80, height = 80) =>
-  clampDockPos(
-    window.innerWidth - width - DOCK_MARGIN,
-    window.innerHeight - height - DOCK_MARGIN,
-    width,
-    height
-  );
 
 /** Center of dock vs Hero bounds — flips contrast when dock leaves the photo. */
 const isDockOutsideHeroRect = (heroEl, left, top, width, height) => {
@@ -360,21 +343,28 @@ const HomePreview = () => {
   }, []);
 
   useLayoutEffect(() => {
-    const syncHome = () => {
+    const syncDockToVisualViewport = () => {
       const dock = dockRef.current;
       const w = dock?.offsetWidth ?? 80;
       const h = dock?.offsetHeight ?? 80;
-      const next = getDockViewportHome(w, h);
-      setDockHomePos(next);
-      if (!dockPos) {
+      const home = getDockViewportHome(w, h);
+      setDockHomePos((prev) =>
+        prev && prev.left === home.left && prev.top === home.top ? prev : home
+      );
+
+      setDockPos((pos) => {
+        if (!pos) {
+          syncDockOutsideHero(home.left, home.top, w, h);
+          return null;
+        }
+        const next = clampDockPos(pos.left, pos.top, w, h);
         syncDockOutsideHero(next.left, next.top, w, h);
-      }
+        return next.left === pos.left && next.top === pos.top ? pos : next;
+      });
     };
 
-    syncHome();
-    window.addEventListener("resize", syncHome);
-    return () => window.removeEventListener("resize", syncHome);
-  }, [dockPos]);
+    return subscribeVisualViewport(syncDockToVisualViewport);
+  }, []);
 
   useLayoutEffect(() => {
     if (!dockScreenPos) return undefined;
@@ -390,25 +380,9 @@ const HomePreview = () => {
     };
 
     syncOutside();
-    window.addEventListener("resize", syncOutside);
     window.addEventListener("scroll", syncOutside, true);
-    return () => {
-      window.removeEventListener("resize", syncOutside);
-      window.removeEventListener("scroll", syncOutside, true);
-    };
+    return () => window.removeEventListener("scroll", syncOutside, true);
   }, [dockScreenPos]);
-
-  useEffect(() => {
-    const onResize = () => {
-      setDockPos((pos) => {
-        if (!pos) return null;
-        const el = dockRef.current;
-        return clampDockPos(pos.left, pos.top, el?.offsetWidth, el?.offsetHeight);
-      });
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
 
   const closeExpanded = () => setExpandedOffer(null);
   const closeMenu = () => setMenuOpen(false);
