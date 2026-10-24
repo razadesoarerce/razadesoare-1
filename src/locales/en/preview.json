@@ -457,13 +457,13 @@
     "nextPhoto": "Next photo",
     "lightboxAria": "Viewing album {{title}}",
     "albums": {
+      "promotia-2026": {
+        "title": "Class of 2026",
+        "coverAlt": "Class of 2026 graduates with teaching staff"
+      },
       "8-martie": {
         "title": "March 8",
         "coverAlt": "March 8 celebration — speech on stage"
-      },
-      "activitati-clasa": {
-        "title": "Classroom activities",
-        "coverAlt": "Educational activity in class"
       },
       "terapie-joaca": {
         "title": "Therapy through play",

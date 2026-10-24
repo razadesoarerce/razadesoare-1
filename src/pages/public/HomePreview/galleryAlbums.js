@@ -5,6 +5,20 @@
  */
 export const GALLERY_ALBUMS = [
   {
+    id: "promotia-2026",
+    cover: "/images/preview/galerie/promotia-2026/02.jpg",
+    accent: "sky",
+    photos: [
+      "/images/preview/galerie/promotia-2026/01.jpg",
+      "/images/preview/galerie/promotia-2026/02.jpg",
+      "/images/preview/galerie/promotia-2026/03.jpg",
+      "/images/preview/galerie/promotia-2026/04.jpg",
+      "/images/preview/galerie/promotia-2026/05.jpg",
+      "/images/preview/galerie/promotia-2026/06.jpg",
+      "/images/preview/galerie/promotia-2026/07.jpg",
+    ],
+  },
+  {
     id: "8-martie",
     cover: "/images/preview/galerie/8-martie/01.jpg",
     accent: "yellow",
@@ -15,12 +29,6 @@ export const GALLERY_ALBUMS = [
       "/images/preview/galerie/8-martie/04.jpg",
       "/images/preview/galerie/8-martie/05.jpg",
     ],
-  },
-  {
-    id: "activitati-clasa",
-    cover: "/images/preview/life-carusel-2.jpg",
-    accent: "sky",
-    photos: [],
   },
   {
     id: "terapie-joaca",
