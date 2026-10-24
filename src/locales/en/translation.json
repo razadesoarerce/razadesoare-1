@@ -1,5 +1,18 @@
 {
   "test": "Test",
+  "a11y": {
+    "open": "Open accessibility tool",
+    "close": "Close",
+    "title": "Accessibility",
+    "textSize": "Text size",
+    "textDecrease": "Decrease text size",
+    "textIncrease": "Increase text size",
+    "contrast": "Contrast",
+    "contrastNormal": "Normal",
+    "contrastHigh": "High",
+    "brightness": "Brightness",
+    "reset": "Reset settings"
+  },
   "nav": {
     "about": "About Us",
     "events": "Events",

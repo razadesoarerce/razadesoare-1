@@ -1,5 +1,18 @@
 {
   "test": "Test",
+  "a11y": {
+    "open": "Deschide instrumentul de accesibilitate",
+    "close": "Închide",
+    "title": "Accesibilitate",
+    "textSize": "Mărime text",
+    "textDecrease": "Micșorează textul",
+    "textIncrease": "Mărește textul",
+    "contrast": "Contrast",
+    "contrastNormal": "Normal",
+    "contrastHigh": "Ridicat",
+    "brightness": "Luminozitate",
+    "reset": "Resetează setările"
+  },
   "nav": {
     "about": "Despre noi",
     "events": "Evenimente",
