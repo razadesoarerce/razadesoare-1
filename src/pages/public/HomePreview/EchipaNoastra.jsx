@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
+import PreviewPageHead from "./PreviewPageHead";
 import { ECHIPA_OFFER_META, STAFF_CATEGORIES } from "./echipaOfferData";
 
 const SWIPE_CLOSE_PX = 56;
@@ -160,10 +161,12 @@ const EchipaNoastra = () => {
           className="hp-section hp-despre-intro hp-echipa-pagehead"
           aria-labelledby="hp-echipa-title"
         >
-          <h1 id="hp-echipa-title" className="hp-despre-intro__title">
-            {t("preview.team.title")}
-          </h1>
-          <p className="hp-despre-intro__subtitle">{t("preview.team.subtitle")}</p>
+          <PreviewPageHead
+            id="hp-echipa-title"
+            title={t("preview.team.title")}
+            subtitle={t("preview.team.subtitle")}
+            rays={3}
+          />
         </section>
 
         <section

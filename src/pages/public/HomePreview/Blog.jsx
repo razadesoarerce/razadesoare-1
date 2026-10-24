@@ -6,20 +6,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
+import PreviewPageHead from "./PreviewPageHead";
 import { BLOG_CATEGORIES, BLOG_FILTERS } from "./blogData";
 
 /** „Vezi toate” expands only when a category has more than this many articles. */
 const BLOG_EXPAND_AFTER = 3;
-
-const TitleSpark = () => (
-  <svg className="hp-blog__spark" viewBox="0 0 32 32" aria-hidden>
-    <g stroke="#f5c542" strokeWidth="2.4" strokeLinecap="round">
-      <line x1="16" y1="4" x2="16" y2="11" />
-      <line x1="24.5" y1="7.5" x2="20" y2="12.5" />
-      <line x1="27.5" y1="16" x2="21" y2="16" />
-    </g>
-  </svg>
-);
 
 const BlogCard = ({ article }) => (
   <article className="hp-blog-card">
@@ -91,14 +82,17 @@ const Blog = () => {
           </svg>
         </section>
 
-        <header className="hp-section hp-blog__header" aria-labelledby="hp-blog-title">
-          <div className="hp-blog__title-row">
-            <h1 id="hp-blog-title" className="hp-blog__title">
-              {t("preview.blog.title")}
-            </h1>
-            <TitleSpark />
-          </div>
-          <p className="hp-blog__subtitle">{t("preview.blog.subtitle")}</p>
+        <header
+          className="hp-section hp-despre-intro hp-blog__header"
+          aria-labelledby="hp-blog-title"
+        >
+          <PreviewPageHead
+            id="hp-blog-title"
+            title={t("preview.blog.title")}
+            subtitle={t("preview.blog.subtitle")}
+            rays={5}
+            subtitleClassName="hp-blog__subtitle"
+          />
         </header>
 
         <div

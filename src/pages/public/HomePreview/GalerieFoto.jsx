@@ -2,17 +2,8 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
+import PreviewPageHead from "./PreviewPageHead";
 import { GALLERY_ALBUMS, galleryAlbumPath } from "./galleryAlbums";
-
-const TitleSpark = () => (
-  <svg className="hp-galerie-pagehead__spark" viewBox="0 0 32 32" aria-hidden>
-    <g stroke="#f5c542" strokeWidth="2.4" strokeLinecap="round">
-      <line x1="16" y1="4" x2="16" y2="11" />
-      <line x1="24.5" y1="7.5" x2="20" y2="12.5" />
-      <line x1="27.5" y1="16" x2="21" y2="16" />
-    </g>
-  </svg>
-);
 
 /**
  * Photo gallery — albums listed newest → oldest (array order in galleryAlbums.js).
@@ -57,15 +48,13 @@ const GalerieFoto = () => {
           className="hp-section hp-despre-intro hp-galerie-pagehead"
           aria-labelledby="hp-galerie-title"
         >
-          <div className="hp-galerie-pagehead__title-row">
-            <h1 id="hp-galerie-title" className="hp-despre-intro__title">
-              {t("preview.gallery.title")}
-            </h1>
-            <TitleSpark />
-          </div>
-          <p className="hp-despre-intro__subtitle hp-galerie-pagehead__subtitle">
-            {t("preview.gallery.subtitle")}
-          </p>
+          <PreviewPageHead
+            id="hp-galerie-title"
+            title={t("preview.gallery.title")}
+            subtitle={t("preview.gallery.subtitle")}
+            rays={4}
+            subtitleClassName="hp-galerie-pagehead__subtitle"
+          />
         </section>
 
         <section

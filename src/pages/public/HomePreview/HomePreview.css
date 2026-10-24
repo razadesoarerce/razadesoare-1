@@ -563,25 +563,13 @@
   margin-top: 0;
 }
 
-.hp-galerie-pagehead__title-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.35rem;
-}
-
-.hp-galerie-pagehead__spark {
-  width: 1.35rem;
-  height: 1.35rem;
-  flex-shrink: 0;
-  margin-top: 0.2rem;
-}
-
 /* Gallery lead stays muted (not the orange page-eyebrow used on Despre) */
 .hp-galerie-pagehead__subtitle {
   color: var(--hp-muted);
   font-weight: 600;
   max-width: 36rem;
-  margin-bottom: 1.15rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hp-section.hp-galerie__grid {
@@ -755,6 +743,10 @@ a.hp-galerie-card:hover {
   text-decoration: none;
 }
 
+.hp-galerie-album__header {
+  text-align: center;
+}
+
 .hp-galerie-album__back:hover {
   color: var(--hp-blue);
 }
@@ -773,6 +765,7 @@ a.hp-galerie-card:hover {
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--hp-muted);
+  text-align: center;
 }
 
 .hp-galerie-album__grid {
@@ -1332,17 +1325,73 @@ a.hp-galerie-card:hover {
   font-family: var(--hp-display);
   font-size: clamp(1.85rem, 5vw, 2.5rem);
   color: var(--hp-blue);
-  margin: 0 0 0.35rem;
+  margin: 0;
   line-height: 1.15;
-  text-align: left;
+  text-align: center;
 }
 
 .hp-despre-intro__subtitle {
-  margin: 0 0 1.35rem;
+  margin: 0.35rem 0 1.35rem;
   color: #e08a2a;
   font-weight: 800;
   font-size: 0.95rem;
-  text-align: left;
+  text-align: center;
+}
+
+/* Centered page title + progressive sun mark */
+.hp-pagehead {
+  text-align: center;
+}
+
+.hp-pagehead__title-row {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.4rem;
+  max-width: 100%;
+}
+
+.hp-page-mark {
+  width: 1.55rem;
+  height: 1.55rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  overflow: visible;
+}
+
+.hp-page-mark__core {
+  fill: var(--hp-yellow);
+}
+
+.hp-page-mark__pulse {
+  fill: rgba(245, 197, 66, 0.4);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hp-page-mark-pulse 2.1s ease-in-out infinite;
+}
+
+.hp-page-mark__rays {
+  opacity: 0.95;
+}
+
+@keyframes hp-page-mark-pulse {
+  0%,
+  100% {
+    transform: scale(0.78);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.45);
+    opacity: 0.18;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-page-mark__pulse {
+    animation: none;
+    opacity: 0.35;
+    transform: scale(1.15);
+  }
 }
 
 /* Editorial: image 50% left, text wraps beside then continues below */
@@ -3287,40 +3336,17 @@ a.hp-galerie-card:hover {
 }
 
 /* Blog educațional — category carousels */
-.hp-blog__header {
-  padding-top: 1.75rem;
+.hp-section.hp-despre-intro.hp-blog__header {
+  padding-top: 1.5rem;
   padding-bottom: 0.75rem;
 }
 
-.hp-blog__title-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.35rem;
-}
-
-.hp-blog__title {
-  font-family: var(--hp-display);
-  font-size: clamp(1.75rem, 5.5vw, 2.35rem);
-  font-weight: 800;
-  color: var(--hp-blue);
-  margin: 0;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-}
-
-.hp-blog__spark {
-  width: 1.35rem;
-  height: 1.35rem;
-  flex-shrink: 0;
-  margin-top: 0.15rem;
-}
-
 .hp-blog__subtitle {
-  margin: 0.45rem 0 0;
   color: var(--hp-muted);
   font-weight: 600;
-  font-size: 0.92rem;
-  line-height: 1.4;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* 2×3 chip grid on phone — all categories visible, no horizontal swipe */
@@ -3518,10 +3544,6 @@ a.hp-galerie-card:hover {
 }
 
 @media (min-width: 640px) {
-  .hp-blog__header {
-    padding-top: 2.25rem;
-  }
-
   .hp-blog-card {
     border-radius: 0.75rem;
   }
@@ -3920,7 +3942,7 @@ a.hp-galerie-card:hover {
   font-size: 1.02rem;
 }
 
-.hp--type-test .hp-blog__title {
+.hp--type-test .hp-blog__header .hp-despre-intro__title {
   font-size: clamp(2.06rem, 6.5vw, 2.77rem);
 }
 

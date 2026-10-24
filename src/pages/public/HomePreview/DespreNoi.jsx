@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
+import PreviewPageHead from "./PreviewPageHead";
 
 const StoryRule = () => (
   <hr className="hp-despre-rule" aria-hidden />
@@ -77,10 +78,12 @@ const DespreNoi = () => {
         </section>
 
         <section className="hp-section hp-despre-intro" aria-labelledby="hp-despre-title">
-          <h1 id="hp-despre-title" className="hp-despre-intro__title">
-            {t("preview.about.title")}
-          </h1>
-          <p className="hp-despre-intro__subtitle">{t("preview.about.subtitle")}</p>
+          <PreviewPageHead
+            id="hp-despre-title"
+            title={t("preview.about.title")}
+            subtitle={t("preview.about.subtitle")}
+            rays={2}
+          />
 
           <div className="hp-despre-intro__row">
             <div className="hp-despre-intro__media">

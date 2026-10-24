@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
+import PreviewPageHead from "./PreviewPageHead";
 
 const CALENDAR_SRC = "/images/preview/informatii/calendar-an-scolar-2026-2027.png";
 
@@ -208,10 +209,12 @@ const Informatii = () => {
           className="hp-section hp-despre-intro hp-informatii"
           aria-labelledby="hp-informatii-title"
         >
-          <h1 id="hp-informatii-title" className="hp-despre-intro__title">
-            {t("preview.info.title")}
-          </h1>
-          <p className="hp-despre-intro__subtitle">{t("preview.info.subtitle")}</p>
+          <PreviewPageHead
+            id="hp-informatii-title"
+            title={t("preview.info.title")}
+            subtitle={t("preview.info.subtitle")}
+            rays={1}
+          />
 
           <div className="hp-informatii__intro">
             <div className="hp-informatii__intro-media">
