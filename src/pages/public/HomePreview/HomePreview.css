@@ -556,45 +556,41 @@
   object-position: center 42%;
 }
 
-/* Galerie foto — title + album cards (mockup layout) */
-.hp-galerie__header {
-  padding-top: 1.35rem;
-  padding-bottom: 1.15rem;
-  text-align: center;
+/* Galerie foto — same cover→title rhythm as Despre / Echipă / Informații */
+.hp-section.hp-despre-intro.hp-galerie-pagehead {
+  padding-top: 1.5rem;
+  padding-bottom: 0;
+  margin-top: 0;
 }
 
-.hp-galerie__spark {
-  display: block;
-  width: 1.45rem;
-  height: 1.45rem;
-  margin: 0 auto 0.45rem;
+.hp-galerie-pagehead__title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
 }
 
-.hp-galerie__title {
-  margin: 0;
-  font-family: var(--hp-display);
-  font-size: clamp(1.85rem, 6vw, 2.45rem);
-  font-weight: 800;
-  color: var(--hp-blue);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+.hp-galerie-pagehead__spark {
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
 }
 
-.hp-galerie__subtitle {
-  margin: 0.65rem auto 0;
-  max-width: 22rem;
+/* Gallery lead stays muted (not the orange page-eyebrow used on Despre) */
+.hp-galerie-pagehead__subtitle {
   color: var(--hp-muted);
   font-weight: 600;
-  font-size: 0.92rem;
-  line-height: 1.45;
+  max-width: 36rem;
+  margin-bottom: 1.15rem;
 }
 
-.hp-galerie__grid {
+.hp-section.hp-galerie__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.85rem 0.7rem;
-  padding-top: 0.25rem;
+  padding-top: 0;
   padding-bottom: 1.75rem;
+  margin-top: 0;
 }
 
 .hp-galerie-card {
@@ -698,12 +694,11 @@ a.hp-galerie-card:hover {
 }
 
 @media (min-width: 640px) {
-  .hp-galerie__subtitle {
-    max-width: 28rem;
+  .hp-galerie-pagehead__subtitle {
     font-size: 1rem;
   }
 
-  .hp-galerie__grid {
+  .hp-section.hp-galerie__grid {
     gap: 1.15rem 1rem;
     max-width: 36rem;
     margin-left: auto;
@@ -733,16 +728,22 @@ a.hp-galerie-card:hover {
 }
 
 @media (min-width: 900px) {
-  .hp-galerie__grid {
+  .hp-section.hp-galerie__grid {
     max-width: 42rem;
     gap: 1.35rem 1.2rem;
   }
 }
 
-/* Single album */
-.hp-galerie-album__header {
-  padding-top: 1.35rem;
+/* Single album — same post-cover / pagehead spacing */
+.hp-section.hp-despre-intro.hp-galerie-album__header {
+  padding-top: 1.5rem;
   padding-bottom: 0.85rem;
+  margin-top: 0;
+}
+
+.hp-section.hp-galerie-album__grid {
+  padding-top: 0;
+  margin-top: 0;
 }
 
 .hp-galerie-album__back {

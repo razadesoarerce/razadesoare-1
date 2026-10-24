@@ -30,11 +30,11 @@ const GalerieAlbum = () => {
   return (
     <PreviewShell>
       <main className="hp-page hp-galerie-album">
-        <header className="hp-section hp-galerie-album__header">
+        <header className="hp-section hp-despre-intro hp-galerie-album__header">
           <Link to={PREVIEW_GALERIE} className="hp-galerie-album__back">
             ← {t("preview.gallery.backToGallery")}
           </Link>
-          <h1 className="hp-galerie-album__title">{title}</h1>
+          <h1 className="hp-despre-intro__title hp-galerie-album__title">{title}</h1>
           <p className="hp-galerie-album__count">
             {t("preview.gallery.photoCount", { count: album.photos.length })}
           </p>

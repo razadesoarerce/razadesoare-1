@@ -5,7 +5,7 @@ import PreviewSupportFooter from "./PreviewSupportFooter";
 import { GALLERY_ALBUMS, galleryAlbumPath } from "./galleryAlbums";
 
 const TitleSpark = () => (
-  <svg className="hp-galerie__spark" viewBox="0 0 32 32" aria-hidden>
+  <svg className="hp-galerie-pagehead__spark" viewBox="0 0 32 32" aria-hidden>
     <g stroke="#f5c542" strokeWidth="2.4" strokeLinecap="round">
       <line x1="16" y1="4" x2="16" y2="11" />
       <line x1="24.5" y1="7.5" x2="20" y2="12.5" />
@@ -53,13 +53,20 @@ const GalerieFoto = () => {
           </svg>
         </section>
 
-        <header className="hp-section hp-galerie__header" aria-labelledby="hp-galerie-title">
-          <TitleSpark />
-          <h1 id="hp-galerie-title" className="hp-galerie__title">
-            {t("preview.gallery.title")}
-          </h1>
-          <p className="hp-galerie__subtitle">{t("preview.gallery.subtitle")}</p>
-        </header>
+        <section
+          className="hp-section hp-despre-intro hp-galerie-pagehead"
+          aria-labelledby="hp-galerie-title"
+        >
+          <div className="hp-galerie-pagehead__title-row">
+            <h1 id="hp-galerie-title" className="hp-despre-intro__title">
+              {t("preview.gallery.title")}
+            </h1>
+            <TitleSpark />
+          </div>
+          <p className="hp-despre-intro__subtitle hp-galerie-pagehead__subtitle">
+            {t("preview.gallery.subtitle")}
+          </p>
+        </section>
 
         <section
           className="hp-section hp-galerie__grid"
