@@ -448,10 +448,18 @@
     "subtitle": "Păstrăm în imagini momentele care aduc bucurie, progres și apartenență în viața copiilor noștri.",
     "albumsAria": "Albume foto",
     "seeAlbum": "Vezi albumul",
+    "comingSoon": "În curând",
+    "backToGallery": "Înapoi la galerie",
+    "photoCount": "{{count}} fotografii",
+    "photoAlt": "{{title}} — fotografia {{n}}",
+    "openPhoto": "Deschide fotografia {{n}} din {{total}}",
+    "prevPhoto": "Fotografia anterioară",
+    "nextPhoto": "Fotografia următoare",
+    "lightboxAria": "Vizualizare album {{title}}",
     "albums": {
-      "prima-zi": {
-        "title": "Prima zi la școală",
-        "coverAlt": "Copii la început de an școlar"
+      "8-martie": {
+        "title": "8 Martie",
+        "coverAlt": "Sărbătoarea de 8 Martie — discurs pe scenă"
       },
       "activitati-clasa": {
         "title": "Activități în clasă",

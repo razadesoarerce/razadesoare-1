@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
-import { GALLERY_ALBUMS } from "./galleryAlbums";
+import { GALLERY_ALBUMS, galleryAlbumPath } from "./galleryAlbums";
 
 const TitleSpark = () => (
   <svg className="hp-galerie__spark" viewBox="0 0 32 32" aria-hidden>
@@ -14,7 +15,7 @@ const TitleSpark = () => (
 );
 
 /**
- * Photo gallery — hero, title block, album cards (placeholders until real covers/photos).
+ * Photo gallery — albums listed newest → oldest (array order in galleryAlbums.js).
  */
 const GalerieFoto = () => {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ const GalerieFoto = () => {
     ...album,
     title: t(`preview.gallery.albums.${album.id}.title`),
     coverAlt: t(`preview.gallery.albums.${album.id}.coverAlt`),
+    ready: Boolean(album.photos?.length),
   }));
 
   return (
@@ -63,25 +65,50 @@ const GalerieFoto = () => {
           className="hp-section hp-galerie__grid"
           aria-label={t("preview.gallery.albumsAria")}
         >
-          {albums.map((album) => (
-            <article
-              key={album.id}
-              className={`hp-galerie-card hp-galerie-card--${album.accent}`}
-            >
-              <div className="hp-galerie-card__media">
-                <img src={album.cover} alt={album.coverAlt} loading="lazy" />
-              </div>
-              <div className="hp-galerie-card__body">
-                <div className="hp-galerie-card__text">
-                  <h2 className="hp-galerie-card__title">{album.title}</h2>
-                  <span className="hp-galerie-card__link">{t("preview.gallery.seeAlbum")}</span>
+          {albums.map((album) => {
+            const className = `hp-galerie-card hp-galerie-card--${album.accent}${
+              album.ready ? "" : " is-placeholder"
+            }`;
+            const body = (
+              <>
+                <div className="hp-galerie-card__media">
+                  <img src={album.cover} alt={album.coverAlt} loading="lazy" />
                 </div>
-                <span className="hp-galerie-card__go" aria-hidden>
-                  →
-                </span>
-              </div>
-            </article>
-          ))}
+                <div className="hp-galerie-card__body">
+                  <div className="hp-galerie-card__text">
+                    <h2 className="hp-galerie-card__title">{album.title}</h2>
+                    <span className="hp-galerie-card__link">
+                      {album.ready
+                        ? t("preview.gallery.seeAlbum")
+                        : t("preview.gallery.comingSoon")}
+                    </span>
+                  </div>
+                  <span className="hp-galerie-card__go" aria-hidden>
+                    →
+                  </span>
+                </div>
+              </>
+            );
+
+            if (album.ready) {
+              return (
+                <Link
+                  key={album.id}
+                  to={galleryAlbumPath(album.id)}
+                  className={className}
+                  aria-label={`${album.title} — ${t("preview.gallery.seeAlbum")}`}
+                >
+                  {body}
+                </Link>
+              );
+            }
+
+            return (
+              <article key={album.id} className={className} aria-disabled="true">
+                {body}
+              </article>
+            );
+          })}
         </section>
 
         <PreviewSupportFooter />

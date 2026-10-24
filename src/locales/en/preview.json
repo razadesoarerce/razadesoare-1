@@ -448,10 +448,18 @@
     "subtitle": "We keep in pictures the moments that bring joy, progress and belonging into our children’s lives.",
     "albumsAria": "Photo albums",
     "seeAlbum": "View album",
+    "comingSoon": "Coming soon",
+    "backToGallery": "Back to gallery",
+    "photoCount": "{{count}} photos",
+    "photoAlt": "{{title}} — photo {{n}}",
+    "openPhoto": "Open photo {{n}} of {{total}}",
+    "prevPhoto": "Previous photo",
+    "nextPhoto": "Next photo",
+    "lightboxAria": "Viewing album {{title}}",
     "albums": {
-      "prima-zi": {
-        "title": "First day of school",
-        "coverAlt": "Children at the start of the school year"
+      "8-martie": {
+        "title": "March 8",
+        "coverAlt": "March 8 celebration — speech on stage"
       },
       "activitati-clasa": {
         "title": "Classroom activities",
