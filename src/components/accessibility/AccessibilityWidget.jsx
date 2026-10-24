@@ -4,13 +4,15 @@ import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./AccessibilityWidget.css";
 
-const STORAGE_KEY = "rds-a11y-settings-v2";
 const FONT_STEPS = [0.875, 1, 1.125, 1.25, 1.375];
 const BRIGHTNESS_MIN = 0.75;
 const BRIGHTNESS_MAX = 1.25;
 const BRIGHTNESS_STEP = 0.05;
 const TTS_MIN_CHARS = 2;
+/** Legacy keys — cleared so old visits cannot override the native default. */
+const LEGACY_STORAGE_KEYS = ["rds-a11y-settings-v1", "rds-a11y-settings-v2"];
 
+/** Identity / native website look — every fresh page load starts here. */
 const DEFAULTS = {
   fontScale: 1,
   contrast: "normal", // normal | high
@@ -21,40 +23,44 @@ const DEFAULTS = {
 const speechSupported =
   typeof window !== "undefined" && "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
 
-const loadSettings = () => {
+const clearLegacyStorage = () => {
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { ...DEFAULTS };
-    const parsed = JSON.parse(raw);
-    return {
-      fontScale: FONT_STEPS.includes(parsed.fontScale) ? parsed.fontScale : 1,
-      contrast: parsed.contrast === "high" ? "high" : "normal",
-      brightness:
-        typeof parsed.brightness === "number" &&
-        parsed.brightness >= BRIGHTNESS_MIN &&
-        parsed.brightness <= BRIGHTNESS_MAX
-          ? parsed.brightness
-          : 1,
-      ttsEnabled: Boolean(parsed.ttsEnabled),
-    };
+    LEGACY_STORAGE_KEYS.forEach((key) => window.localStorage.removeItem(key));
   } catch {
-    return { ...DEFAULTS };
+    /* ignore */
   }
-};
-
-const applySettings = (settings) => {
-  const root = document.documentElement;
-  root.style.setProperty("--a11y-font-scale", String(settings.fontScale));
-  root.style.setProperty("--a11y-brightness", String(settings.brightness));
-  root.classList.toggle("a11y-high-contrast", settings.contrast === "high");
-  root.classList.toggle("a11y-font-scaled", settings.fontScale !== 1);
-  root.classList.toggle("a11y-brightness-tuned", settings.brightness !== 1);
-  root.classList.toggle("a11y-tts-on", settings.ttsEnabled);
 };
 
 const stopSpeech = () => {
   if (!speechSupported) return;
   window.speechSynthesis.cancel();
+};
+
+/** Apply prefs; when at DEFAULTS, strip all a11y side-effects so the site looks native. */
+const applySettings = (settings) => {
+  const root = document.documentElement;
+  const scaled = settings.fontScale !== 1;
+  const bright = settings.brightness !== 1;
+  const highContrast = settings.contrast === "high";
+
+  if (scaled) {
+    root.style.setProperty("--a11y-font-scale", String(settings.fontScale));
+  } else {
+    root.style.removeProperty("--a11y-font-scale");
+  }
+
+  if (bright || highContrast) {
+    root.style.setProperty("--a11y-brightness", String(settings.brightness));
+  } else {
+    root.style.removeProperty("--a11y-brightness");
+  }
+
+  root.classList.toggle("a11y-high-contrast", highContrast);
+  root.classList.toggle("a11y-font-scaled", scaled);
+  root.classList.toggle("a11y-brightness-tuned", bright);
+  root.classList.toggle("a11y-tts-on", settings.ttsEnabled);
+
+  if (!settings.ttsEnabled) stopSpeech();
 };
 
 const pickVoice = (lang) => {
@@ -111,23 +117,18 @@ const AccessibilityWidget = () => {
   const rootRef = useRef(null);
   const lastSpokenRef = useRef("");
   const [open, setOpen] = useState(false);
-  const [settings, setSettings] = useState(DEFAULTS);
+  // Always start from native defaults on each full page load (no localStorage restore).
+  const [settings, setSettings] = useState(() => ({ ...DEFAULTS }));
 
   const isAdmin = location.pathname.startsWith("/admin");
 
   useEffect(() => {
-    const initial = loadSettings();
-    setSettings(initial);
-    applySettings(initial);
+    clearLegacyStorage();
+    applySettings(DEFAULTS);
   }, []);
 
   useEffect(() => {
     applySettings(settings);
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
-    } catch {
-      /* ignore quota / private mode */
-    }
   }, [settings]);
 
   useEffect(() => {

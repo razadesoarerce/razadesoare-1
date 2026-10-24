@@ -99,17 +99,16 @@
 
   /*
    * Accessibility tool preferences (AccessibilityWidget).
-   * Font scale on html; contrast/brightness on #root so the widget stays unfiltered.
+   * Applied only when the user changes something — default = native site look
+   * (no forced html font-size, no filter on #root).
    */
-  html {
-    --a11y-font-scale: 1;
-    --a11y-brightness: 1;
-    font-size: calc(100% * var(--a11y-font-scale));
+  html.a11y-font-scaled {
+    font-size: calc(100% * var(--a11y-font-scale, 1));
   }
 
   /* Only when tuned — filter creates a containing block for position:fixed */
   html.a11y-brightness-tuned #root {
-    filter: brightness(var(--a11y-brightness));
+    filter: brightness(var(--a11y-brightness, 1));
   }
 
   html.a11y-high-contrast {
@@ -119,7 +118,7 @@
   html.a11y-high-contrast #root {
     background: #000;
     color: #fff;
-    filter: brightness(var(--a11y-brightness)) contrast(1.35);
+    filter: brightness(var(--a11y-brightness, 1)) contrast(1.35);
   }
 
   html.a11y-high-contrast #root a {

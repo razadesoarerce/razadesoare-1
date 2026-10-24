@@ -171,7 +171,7 @@
           "heading": "2. What data we process",
           "paragraphs": [
             "On the public area of the site we do not collect personal data through our own online forms. If you contact us by email, phone or social media, we process the data you send us (for example name, email address, phone number and message content) in order to reply.",
-            "Your browser may store technical preferences locally, without identifying you as a person: RO/EN language, the floating menu position on the preview site, and accessibility tool settings (text size, contrast, brightness and the read-selected-text / text-to-speech option).",
+            "Your browser may store technical preferences locally, without identifying you as a person: RO/EN language and the floating menu position on the preview site. The accessibility tool does not store settings on your device; every page load starts from the native look.",
             "The read-selected-text feature (text-to-speech), when enabled, runs locally through the browser / operating system. Selected text is not sent to the school’s servers; voice quality depends on your device.",
             "The site administration area is for authorised staff only. Sign-in uses Firebase Authentication, which stores session data needed for the account to work."
           ]
@@ -195,7 +195,7 @@
           "heading": "5. Retention",
           "paragraphs": [
             "Contact messages are kept as long as needed to handle the request and afterwards for any legally required archiving or to defend legal rights.",
-            "Preferences saved in the browser (including accessibility settings) remain until you delete them in your device settings, reset them in the accessibility tool, or until a site update replaces them."
+            "Preferences saved in the browser (language, menu position) remain until you delete them in your device settings or until a site update replaces them. Accessibility-tool adjustments are not persisted and return to the native defaults on page reload; you can also reset them anytime from the tool panel."
           ]
         },
         {
@@ -290,7 +290,8 @@
           "heading": "2. What we use on this site",
           "paragraphs": [
             "At present, on the public area of the site we do not set analytics, advertising or behavioural tracking cookies.",
-            "We use local browser storage (localStorage) for: language preference (Romanian / English); the floating menu position on the preview site; accessibility tool settings (text size, contrast, brightness, enabling read-selected-text). This data stays on your device and is not sent to us as a marketing profile.",
+            "We use local browser storage (localStorage) for: language preference (Romanian / English); the floating menu position on the preview site. This data stays on your device and is not sent to us as a marketing profile.",
+            "The accessibility tool (text size, contrast, brightness, read-selected-text) does not store preferences on your device: every page load starts with the native / default site look. Adjustments stay active only for the current browsing session on that page (until reload).",
             "Optionally, during a browsing session the browser may temporarily keep (sessionStorage) a technical flag related to showing mobile navigation hints. It does not identify you and disappears when the session ends.",
             "Read-selected-text (text-to-speech), when enabled, uses the browser / system speech API. We do not upload the selected content to our servers for analytics or advertising.",
             "For sign-in to the administration area (authorised staff only), Firebase Authentication session mechanisms may be used, as needed for account security."
@@ -307,15 +308,15 @@
         {
           "heading": "4. Legal basis and necessity",
           "paragraphs": [
-            "The technical storage above is used to provide the features you request (showing the site in the chosen language, keeping the interface preference and accessibility settings). Under ePrivacy rules, such strictly necessary means may be used without a separate consent banner.",
+            "The technical storage above is used to provide the features you request (showing the site in the chosen language and keeping the interface preference). Under ePrivacy rules, such strictly necessary means may be used without a separate consent banner.",
             "If we later add statistics or marketing tools that require consent, we will update this section and ask for your agreement before enabling them."
           ]
         },
         {
           "heading": "5. How you can control browser data",
           "paragraphs": [
-            "You can delete cookies and site data in your browser settings (history / privacy / site data). After deletion, language, menu position and accessibility settings may return to defaults.",
-            "In the accessibility tool you can tap “Reset settings” to restore text size, contrast, brightness and text reading to defaults, without deleting other browser data.",
+            "You can delete cookies and site data in your browser settings (history / privacy / site data). After deletion, language and menu position may return to defaults.",
+            "In the accessibility tool you can tap “Reset settings” to immediately restore text size, contrast, brightness and text reading to the native site look, without deleting other browser data.",
             "Most browsers allow blocking third-party cookies; this usually does not affect the main content of our site in the current setup."
           ]
         },
