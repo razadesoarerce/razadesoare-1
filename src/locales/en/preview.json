@@ -171,15 +171,16 @@
           "heading": "2. What data we process",
           "paragraphs": [
             "On the public area of the site we do not collect personal data through our own online forms. If you contact us by email, phone or social media, we process the data you send us (for example name, email address, phone number and message content) in order to reply.",
-            "Your browser may store technical preferences locally (RO/EN language and the floating menu position on the preview site), without identifying you as a person.",
+            "Your browser may store technical preferences locally, without identifying you as a person: RO/EN language, the floating menu position on the preview site, and accessibility tool settings (text size, contrast, brightness and the read-selected-text / text-to-speech option).",
+            "The read-selected-text feature (text-to-speech), when enabled, runs locally through the browser / operating system. Selected text is not sent to the school’s servers; voice quality depends on your device.",
             "The site administration area is for authorised staff only. Sign-in uses Firebase Authentication, which stores session data needed for the account to work."
           ]
         },
         {
           "heading": "3. Purposes and legal bases",
           "paragraphs": [
-            "We process data to: communicate with people interested in the school; keep the site running and secure; and meet legal obligations where they apply.",
-            "Legal bases may include: legitimate interest (running an informational website), steps at the request of the person (replying to contact), and, where required, a legal obligation or consent."
+            "We process data to: communicate with people interested in the school; keep the site running and secure; provide accessibility features you turn on; and meet legal obligations where they apply.",
+            "Legal bases may include: legitimate interest (running an informational website and user-requested accessibility tools), steps at the request of the person (replying to contact), and, where required, a legal obligation or consent."
           ]
         },
         {
@@ -194,7 +195,7 @@
           "heading": "5. Retention",
           "paragraphs": [
             "Contact messages are kept as long as needed to handle the request and afterwards for any legally required archiving or to defend legal rights.",
-            "Preferences saved in the browser remain until you delete them in your device settings or until a site update replaces them."
+            "Preferences saved in the browser (including accessibility settings) remain until you delete them in your device settings, reset them in the accessibility tool, or until a site update replaces them."
           ]
         },
         {
@@ -232,7 +233,8 @@
         {
           "heading": "2. Purpose of the site",
           "paragraphs": [
-            "The site provides general information about the school, activities, team, admission and ways to support us (including redirecting 3.5% of income tax or volunteering). Content is informational and does not replace official direct communication with the institution where law or school procedures require it."
+            "The site provides general information about the school, activities, team, admission and ways to support us (including redirecting 3.5% of income tax or volunteering). Content is informational and does not replace official direct communication with the institution where law or school procedures require it.",
+            "The site includes an accessibility tool (the person-in-a-circle icon at the bottom-left), which lets you adjust text size, contrast, brightness and, optionally, read selected text aloud. These features are provided to make information easier to access; using them is optional."
           ]
         },
         {
@@ -288,7 +290,9 @@
           "heading": "2. What we use on this site",
           "paragraphs": [
             "At present, on the public area of the site we do not set analytics, advertising or behavioural tracking cookies.",
-            "We use local browser storage (localStorage) for: language preference (Romanian / English) and the floating menu position on the preview site. This data stays on your device and is not sent to us as a marketing profile.",
+            "We use local browser storage (localStorage) for: language preference (Romanian / English); the floating menu position on the preview site; accessibility tool settings (text size, contrast, brightness, enabling read-selected-text). This data stays on your device and is not sent to us as a marketing profile.",
+            "Optionally, during a browsing session the browser may temporarily keep (sessionStorage) a technical flag related to showing mobile navigation hints. It does not identify you and disappears when the session ends.",
+            "Read-selected-text (text-to-speech), when enabled, uses the browser / system speech API. We do not upload the selected content to our servers for analytics or advertising.",
             "For sign-in to the administration area (authorised staff only), Firebase Authentication session mechanisms may be used, as needed for account security."
           ]
         },
@@ -296,20 +300,22 @@
           "heading": "3. Third-party services",
           "paragraphs": [
             "When loading fonts (Google Fonts), the browser may contact Google servers, which may process technical connection data under Google’s policy.",
-            "When you follow external links (Facebook, formular230.ro, Google Maps), those sites may set their own cookies, outside our control."
+            "When you follow external links (Facebook, formular230.ro, Google Maps), those sites may set their own cookies, outside our control.",
+            "Speech synthesis for reading text may use components provided by the operating system or browser; those may have their own device-level policies, which we do not control."
           ]
         },
         {
           "heading": "4. Legal basis and necessity",
           "paragraphs": [
-            "The technical storage above is used to provide the features you request (showing the site in the chosen language and keeping the interface preference). Under ePrivacy rules, such strictly necessary means may be used without a separate consent banner.",
+            "The technical storage above is used to provide the features you request (showing the site in the chosen language, keeping the interface preference and accessibility settings). Under ePrivacy rules, such strictly necessary means may be used without a separate consent banner.",
             "If we later add statistics or marketing tools that require consent, we will update this section and ask for your agreement before enabling them."
           ]
         },
         {
           "heading": "5. How you can control browser data",
           "paragraphs": [
-            "You can delete cookies and site data in your browser settings (history / privacy / site data). After deletion, language and menu position may return to defaults.",
+            "You can delete cookies and site data in your browser settings (history / privacy / site data). After deletion, language, menu position and accessibility settings may return to defaults.",
+            "In the accessibility tool you can tap “Reset settings” to restore text size, contrast, brightness and text reading to defaults, without deleting other browser data.",
             "Most browsers allow blocking third-party cookies; this usually does not affect the main content of our site in the current setup."
           ]
         },

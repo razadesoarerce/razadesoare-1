@@ -171,15 +171,16 @@
           "heading": "2. Ce date prelucrăm",
           "paragraphs": [
             "Pe zona publică a site-ului nu colectăm date personale prin formulare online proprii. Dacă ne contactați prin e-mail, telefon sau rețele sociale, prelucrăm datele pe care ni le transmiteți (de exemplu nume, adresă de e-mail, număr de telefon și conținutul mesajului), pentru a răspunde solicitării.",
-            "În browserul dumneavoastră pot fi stocate local preferințe tehnice (limba RO/EN și poziția meniului flotant pe site-ul preview), fără a identifica persoana.",
+            "În browserul dumneavoastră pot fi stocate local preferințe tehnice, fără a identifica persoana: limba RO/EN, poziția meniului flotant pe site-ul preview și setările instrumentului de accesibilitate (mărime text, contrast, luminozitate și opțiunea de citire text-to-speech).",
+            "Funcția de citire a textului selectat (text-to-speech) rulează local, prin mecanismele browserului / sistemului de operare. Textul selectat nu ne este transmis pe serverele școlii; calitatea vocii depinde de dispozitivul dumneavoastră.",
             "Zona de administrare a site-ului este destinată doar personalului autorizat. Autentificarea folosește un serviciu de tip Firebase Authentication, care stochează date de sesiune necesare funcționării contului."
           ]
         },
         {
           "heading": "3. Scopuri și temeiuri legale",
           "paragraphs": [
-            "Prelucrăm datele pentru: comunicarea cu persoanele interesate de activitatea școlii; asigurarea funcționării și securității site-ului; respectarea obligațiilor legale, atunci când există.",
-            "Temeiurile pot include: interesul legitim (funcționarea unui site informativ), executarea unor demersuri la cererea persoanei (răspuns la contact) și, după caz, obligația legală sau consimțământul, atunci când legea o cere."
+            "Prelucrăm datele pentru: comunicarea cu persoanele interesate de activitatea școlii; asigurarea funcționării și securității site-ului; oferirea unor funcții de accesibilitate pe care le activați; respectarea obligațiilor legale, atunci când există.",
+            "Temeiurile pot include: interesul legitim (funcționarea unui site informativ și a instrumentelor de accesibilitate solicitate de utilizator), executarea unor demersuri la cererea persoanei (răspuns la contact) și, după caz, obligația legală sau consimțământul, atunci când legea o cere."
           ]
         },
         {
@@ -194,7 +195,7 @@
           "heading": "5. Durata stocării",
           "paragraphs": [
             "Mesajele de contact se păstrează atât cât este necesar pentru soluționarea solicitării și, ulterior, pe perioada impusă de arhivare sau de apărarea unor drepturi în justiție.",
-            "Preferințele salvate în browser rămân până le ștergeți din setările dispozitivului sau până la o actualizare a site-ului care le înlocuiește."
+            "Preferințele salvate în browser (inclusiv setările de accesibilitate) rămân până le ștergeți din setările dispozitivului, le resetați din instrumentul de accesibilitate sau până la o actualizare a site-ului care le înlocuiește."
           ]
         },
         {
@@ -232,7 +233,8 @@
         {
           "heading": "2. Scopul site-ului",
           "paragraphs": [
-            "Site-ul prezintă informații generale despre școală, activități, echipă, admitere și modalități de sprijin (inclusiv redirecționarea a 3,5% din impozit sau voluntariat). Conținutul are caracter informativ și nu înlocuiește comunicarea oficială directă cu instituția, acolo unde legea sau procedurile școlare o cer."
+            "Site-ul prezintă informații generale despre școală, activități, echipă, admitere și modalități de sprijin (inclusiv redirecționarea a 3,5% din impozit sau voluntariat). Conținutul are caracter informativ și nu înlocuiește comunicarea oficială directă cu instituția, acolo unde legea sau procedurile școlare o cer.",
+            "Site-ul include un instrument de accesibilitate (iconița cu silueta unei persoane într-un cerc, în colțul din stânga jos), care permite ajustarea mărimii textului, a contrastului, a luminozității și, opțional, citirea textului selectat. Aceste funcții sunt puse la dispoziție pentru a facilita accesul la informații; utilizarea lor este opțională."
           ]
         },
         {
@@ -288,7 +290,9 @@
           "heading": "2. Ce folosim pe acest site",
           "paragraphs": [
             "În prezent, pe zona publică a site-ului nu setăm cookie-uri de analiză, publicitate sau urmărire comportamentală.",
-            "Folosim stocare locală în browser (localStorage) pentru: preferința de limbă (română / engleză) și poziția meniului flotant pe site-ul preview. Aceste date rămân pe dispozitivul dumneavoastră și nu ne sunt transmise ca profil de marketing.",
+            "Folosim stocare locală în browser (localStorage) pentru: preferința de limbă (română / engleză); poziția meniului flotant pe site-ul preview; setările instrumentului de accesibilitate (mărime text, contrast, luminozitate, activarea citirii textului selectat). Aceste date rămân pe dispozitivul dumneavoastră și nu ne sunt transmise ca profil de marketing.",
+            "Opțional, pe durata sesiunii de navigare, browserul poate reține temporar (sessionStorage) un indicator tehnic legat de afișarea indiciilor de navigare pe mobil. Acest indicator nu identifică persoana și dispare la închiderea sesiunii.",
+            "Citirea textului selectat (text-to-speech), când este activată, folosește API-ul de vorbire al browserului / sistemului. Nu încărcăm pe serverele noastre conținutul selecției în scop de analiză sau publicitate.",
             "Pentru autentificarea în zona de administrare (doar personal autorizat) pot fi folosite mecanisme de sesiune ale serviciului Firebase Authentication, necesare pentru securitatea contului."
           ]
         },
@@ -296,20 +300,22 @@
           "heading": "3. Servicii terțe",
           "paragraphs": [
             "La încărcarea fonturilor (Google Fonts) browserul poate contacta servere ale Google, care pot prelucra date tehnice de conexiune conform politicii Google.",
-            "Când accesați linkuri externe (Facebook, formular230.ro, hărți Google), acele site-uri își pot seta propriile cookie-uri, în afara controlului nostru."
+            "Când accesați linkuri externe (Facebook, formular230.ro, hărți Google), acele site-uri își pot seta propriile cookie-uri, în afara controlului nostru.",
+            "Sinteza vocală pentru citirea textului poate folosi componente furnizate de sistemul de operare sau de browser; acestea pot avea politici proprii la nivelul dispozitivului, pe care nu le controlăm."
           ]
         },
         {
           "heading": "4. Temei și necesitate",
           "paragraphs": [
-            "Stocările tehnice menționate mai sus sunt folosite pentru a oferi funcțiile pe care le solicitați (afișarea site-ului în limba aleasă și păstrarea preferinței de interfață). Conform legislației privind confidențialitatea în comunicații electronice, astfel de mijloace strict necesare pot fi folosite fără un banner de consimțământ separat.",
+            "Stocările tehnice menționate mai sus sunt folosite pentru a oferi funcțiile pe care le solicitați (afișarea site-ului în limba aleasă, păstrarea preferinței de interfață și a setărilor de accesibilitate). Conform legislației privind confidențialitatea în comunicații electronice, astfel de mijloace strict necesare pot fi folosite fără un banner de consimțământ separat.",
             "Dacă în viitor vom introduce instrumente de statistică sau marketing care necesită consimțământ, vom actualiza această secțiune și vom solicita acordul dumneavoastră înainte de activare."
           ]
         },
         {
           "heading": "5. Cum puteți controla datele din browser",
           "paragraphs": [
-            "Puteți șterge cookie-urile și datele site-ului din setările browserului (istoric / confidențialitate / datele site-urilor). După ștergere, limba și poziția meniului pot reveni la valorile implicite.",
+            "Puteți șterge cookie-urile și datele site-ului din setările browserului (istoric / confidențialitate / datele site-urilor). După ștergere, limba, poziția meniului și setările de accesibilitate pot reveni la valorile implicite.",
+            "Din instrumentul de accesibilitate puteți apăsa „Resetează setările” pentru a readuce mărimea textului, contrastul, luminozitatea și citirea textului la valorile implicite, fără a șterge alte date din browser.",
             "Majoritatea browserelor permit blocarea cookie-urilor terțe; acest lucru nu afectează, de regulă, conținutul principal al site-ului nostru în configurația actuală."
           ]
         },
