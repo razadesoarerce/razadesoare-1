@@ -225,26 +225,6 @@ const EchipaNoastra = () => {
               <span className="hp-echipa-specialisti__accent" aria-hidden />
               <p>{t("preview.team.specialistsText")}</p>
             </div>
-            <svg
-              className="hp-echipa-specialisti__icon"
-              viewBox="0 0 64 48"
-              aria-hidden
-            >
-              <g
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="22" cy="14" r="6" />
-                <path d="M8 38c1.2-8 6.2-12 14-12s12.8 4 14 12" />
-                <circle cx="42" cy="13" r="5.2" />
-                <path d="M32 38c1-6.5 5-10 10-10s9 3.5 10 10" />
-                <circle cx="32" cy="20" r="4.6" />
-                <path d="M24 38c.8-5 3.8-8 8-8s7.2 3 8 8" />
-              </g>
-            </svg>
           </div>
 
           {staffCategories.map((category) => {

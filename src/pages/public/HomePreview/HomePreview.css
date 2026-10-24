@@ -1583,16 +1583,6 @@ a.hp-galerie-card:hover {
   max-width: 36rem;
 }
 
-.hp-echipa-specialisti__icon {
-  position: relative;
-  z-index: 1;
-  flex-shrink: 0;
-  width: 3.4rem;
-  height: 2.55rem;
-  margin-top: 0.15rem;
-  color: var(--hp-blue);
-  opacity: 0.88;
-}
 
 .hp-echipa-staff {
   margin-bottom: var(--hp-stack-gap, 1rem);
@@ -1720,11 +1710,6 @@ a.hp-galerie-card:hover {
     padding: 1.2rem 1.25rem 1.3rem 1.35rem;
     border-radius: 1.4rem;
     gap: 1.25rem;
-  }
-
-  .hp-echipa-specialisti__icon {
-    width: 4.25rem;
-    height: 3.2rem;
   }
 
   .hp-echipa-specialisti__accent {
