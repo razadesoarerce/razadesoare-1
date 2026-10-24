@@ -1524,20 +1524,53 @@ a.hp-galerie-card:hover {
 }
 
 .hp-echipa-specialisti__banner {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
   border: 0;
-  border-radius: 1.1rem;
-  background: rgba(26, 74, 141, 0.12);
-  padding: 1rem 1rem 1.05rem;
+  border-radius: 1.25rem;
+  padding: 1.05rem 1rem 1.15rem 1.1rem;
   margin-bottom: var(--hp-stack-gap, 1rem);
+  overflow: hidden;
+  background:
+    radial-gradient(
+      120% 90% at 100% 100%,
+      rgba(91, 164, 214, 0.28) 0%,
+      rgba(207, 232, 248, 0.35) 32%,
+      rgba(255, 255, 255, 0) 62%
+    ),
+    #fff;
+  box-shadow:
+    0 2px 10px rgba(26, 74, 141, 0.06),
+    0 12px 28px rgba(18, 40, 70, 0.08);
+}
+
+.hp-echipa-specialisti__copy {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  flex: 1;
 }
 
 .hp-echipa-specialisti__banner h2 {
   font-family: var(--hp-display);
   font-size: clamp(1.25rem, 3.6vw, 1.75rem);
+  font-weight: 800;
   color: var(--hp-blue);
-  margin: 0 0 0.4rem;
+  margin: 0;
   line-height: 1.2;
-  text-align: center;
+  text-align: left;
+}
+
+.hp-echipa-specialisti__accent {
+  display: block;
+  width: 2.65rem;
+  height: 0.28rem;
+  margin: 0.45rem 0 0.65rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--hp-yellow) 0%, #e8a820 100%);
 }
 
 .hp-echipa-specialisti__banner p {
@@ -1546,6 +1579,19 @@ a.hp-galerie-card:hover {
   font-weight: 600;
   font-size: 0.9rem;
   line-height: 1.55;
+  text-align: left;
+  max-width: 36rem;
+}
+
+.hp-echipa-specialisti__icon {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 3.4rem;
+  height: 2.55rem;
+  margin-top: 0.15rem;
+  color: var(--hp-blue);
+  opacity: 0.88;
 }
 
 .hp-echipa-staff {
@@ -1671,7 +1717,18 @@ a.hp-galerie-card:hover {
   }
 
   .hp-echipa-specialisti__banner {
-    padding: 1.1rem 1.2rem 1.15rem;
+    padding: 1.2rem 1.25rem 1.3rem 1.35rem;
+    border-radius: 1.4rem;
+    gap: 1.25rem;
+  }
+
+  .hp-echipa-specialisti__icon {
+    width: 4.25rem;
+    height: 3.2rem;
+  }
+
+  .hp-echipa-specialisti__accent {
+    width: 3rem;
   }
 
   .hp-echipa-staff__name {
