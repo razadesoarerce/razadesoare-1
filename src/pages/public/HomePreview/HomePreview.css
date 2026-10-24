@@ -563,15 +563,6 @@
   margin-top: 0;
 }
 
-/* Gallery lead stays muted (not the orange page-eyebrow used on Despre) */
-.hp-galerie-pagehead__subtitle {
-  color: var(--hp-muted);
-  font-weight: 600;
-  max-width: 36rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .hp-section.hp-galerie__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -682,10 +673,6 @@ a.hp-galerie-card:hover {
 }
 
 @media (min-width: 640px) {
-  .hp-galerie-pagehead__subtitle {
-    font-size: 1rem;
-  }
-
   .hp-section.hp-galerie__grid {
     gap: 1.15rem 1rem;
     max-width: 36rem;
@@ -1331,10 +1318,12 @@ a.hp-galerie-card:hover {
 }
 
 .hp-despre-intro__subtitle {
-  margin: 0.35rem 0 1.35rem;
-  color: #e08a2a;
-  font-weight: 800;
-  font-size: 0.95rem;
+  margin: 0.35rem auto 1.35rem;
+  max-width: 36rem;
+  color: var(--hp-muted);
+  font-weight: 600;
+  font-size: 0.92rem;
+  line-height: 1.4;
   text-align: center;
 }
 
@@ -3341,14 +3330,6 @@ a.hp-galerie-card:hover {
   padding-bottom: 0.75rem;
 }
 
-.hp-blog__subtitle {
-  color: var(--hp-muted);
-  font-weight: 600;
-  max-width: 36rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* 2×3 chip grid on phone — all categories visible, no horizontal swipe */
 .hp-blog-filters {
   display: grid;
@@ -3902,7 +3883,7 @@ a.hp-galerie-card:hover {
 }
 
 .hp--type-test .hp-despre-intro__subtitle {
-  font-size: 1.12rem;
+  font-size: 1.09rem;
 }
 
 .hp--type-test .hp-despre-intro__copy h2,
@@ -3944,10 +3925,6 @@ a.hp-galerie-card:hover {
 
 .hp--type-test .hp-blog__header .hp-despre-intro__title {
   font-size: clamp(2.06rem, 6.5vw, 2.77rem);
-}
-
-.hp--type-test .hp-blog__subtitle {
-  font-size: 1.09rem;
 }
 
 .hp--type-test .hp-blog-category__title {

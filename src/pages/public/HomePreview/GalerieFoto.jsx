@@ -53,7 +53,6 @@ const GalerieFoto = () => {
             title={t("preview.gallery.title")}
             subtitle={t("preview.gallery.subtitle")}
             rays={4}
-            subtitleClassName="hp-galerie-pagehead__subtitle"
           />
         </section>
 

@@ -91,7 +91,6 @@ const Blog = () => {
             title={t("preview.blog.title")}
             subtitle={t("preview.blog.subtitle")}
             rays={5}
-            subtitleClassName="hp-blog__subtitle"
           />
         </header>
 
