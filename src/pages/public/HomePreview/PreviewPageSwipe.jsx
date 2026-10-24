@@ -44,6 +44,7 @@ const IGNORE_SELECTOR = [
   ".hp-contact-dd",
   ".hp-blog-filters",
   ".hp-page-swipe-edges",
+  ".hp-galerie-lightbox",
   "input",
   "textarea",
   "select",
@@ -51,7 +52,7 @@ const IGNORE_SELECTOR = [
 ].join(", ");
 
 const OVERLAY_BLOCK =
-  ".hp--menu-open, .hp--offer-open, .hp--contact-open, .hp-offer-expand, .hp-info-lightbox";
+  ".hp--menu-open, .hp--offer-open, .hp--contact-open, .hp-offer-expand, .hp-info-lightbox, .hp-galerie-lightbox";
 
 const getNavIndex = (pathname) =>
   PREVIEW_NAV.findIndex((item) => item.path === pathname);

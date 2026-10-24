@@ -790,10 +790,11 @@ a.hp-galerie-card:hover {
 .hp-galerie-lightbox {
   position: fixed;
   inset: 0;
-  z-index: 90;
+  z-index: 95;
   display: grid;
   place-items: center;
   padding: 1rem;
+  touch-action: pan-y;
 }
 
 .hp-galerie-lightbox__backdrop {
@@ -801,8 +802,11 @@ a.hp-galerie-card:hover {
   inset: 0;
   border: 0;
   padding: 0;
-  background: rgba(12, 28, 52, 0.78);
   cursor: pointer;
+  background: rgba(10, 22, 42, 0.55);
+  backdrop-filter: blur(14px) saturate(0.85);
+  -webkit-backdrop-filter: blur(14px) saturate(0.85);
+  animation: hp-fade-in 0.2s ease;
 }
 
 .hp-galerie-lightbox__frame {
@@ -814,6 +818,7 @@ a.hp-galerie-card:hover {
   flex-direction: column;
   align-items: center;
   gap: 0.55rem;
+  touch-action: none;
 }
 
 .hp-galerie-lightbox__frame img {
@@ -824,7 +829,11 @@ a.hp-galerie-card:hover {
   height: auto;
   object-fit: contain;
   border-radius: 0.65rem;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .hp-galerie-lightbox__meta {
