@@ -294,7 +294,7 @@
             "În prezent, pe zona publică a site-ului nu setăm cookie-uri de analiză, publicitate sau urmărire comportamentală.",
             "Folosim stocare locală în browser (localStorage) pentru: preferința de limbă (română / engleză); poziția meniului flotant pe site-ul preview. Aceste date rămân pe dispozitivul dumneavoastră și nu ne sunt transmise ca profil de marketing.",
             "Instrumentul de accesibilitate (mărime text, contrast, luminozitate, citirea textului selectat) nu salvează preferințe pe dispozitiv: la fiecare încărcare a paginii site-ul pornește în aspectul nativ / implicit. Ajustările rămân active doar pe durata sesiunii de navigare în aceeași pagină (până la reîncărcare).",
-            "Opțional, pe durata sesiunii de navigare, browserul poate reține temporar (sessionStorage) un indicator tehnic legat de afișarea indiciilor de navigare pe mobil. Acest indicator nu identifică persoana și dispare la închiderea sesiunii.",
+            "Opțional, folosim localStorage pentru un indicator tehnic legat de indiciile de navigare pe mobil (swipe între pagini): după ce ați folosit o dată gestul, indiciile nu mai apar. Indicatorul nu identifică persoana.",
             "Citirea textului selectat (text-to-speech), când este activată, folosește API-ul de vorbire al browserului / sistemului. Nu încărcăm pe serverele noastre conținutul selecției în scop de analiză sau publicitate.",
             "Pentru autentificarea în zona de administrare (doar personal autorizat) pot fi folosite mecanisme de sesiune ale serviciului Firebase Authentication, necesare pentru securitatea contului."
           ]

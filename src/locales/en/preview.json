@@ -294,7 +294,7 @@
             "At present, on the public area of the site we do not set analytics, advertising or behavioural tracking cookies.",
             "We use local browser storage (localStorage) for: language preference (Romanian / English); the floating menu position on the preview site. This data stays on your device and is not sent to us as a marketing profile.",
             "The accessibility tool (text size, contrast, brightness, read-selected-text) does not store preferences on your device: every page load starts with the native / default site look. Adjustments stay active only for the current browsing session on that page (until reload).",
-            "Optionally, during a browsing session the browser may temporarily keep (sessionStorage) a technical flag related to showing mobile navigation hints. It does not identify you and disappears when the session ends.",
+            "Optionally, we use localStorage for a technical flag related to mobile navigation hints (swipe between pages): after you use the gesture once, the hints no longer appear. The flag does not identify you.",
             "Read-selected-text (text-to-speech), when enabled, uses the browser / system speech API. We do not upload the selected content to our servers for analytics or advertising.",
             "For sign-in to the administration area (authorised staff only), Firebase Authentication session mechanisms may be used, as needed for account security."
           ]

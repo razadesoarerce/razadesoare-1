@@ -18,7 +18,8 @@
 }
 
 /*
- * Permanent mobile swipe affordance — portaled to document.body.
+ * First-visit mobile swipe affordance — portaled to document.body.
+ * Shown until the user completes one page swipe, then dismissed (localStorage).
  * Position: just below the cover/hero (matches .hp-hero 16:9 + max-height),
  * glued to the left and/or right screen edges.
  *   • left edge  ‹  = previous page (hidden on Acasă)

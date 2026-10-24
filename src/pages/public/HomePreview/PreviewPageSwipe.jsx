@@ -8,9 +8,27 @@ const SWIPE_PX = 72;
 const SWIPE_RATIO = 1.35;
 const FADE_MS = 240;
 const MOBILE_MQ = "(max-width: 899px)";
+/** After one successful page swipe, edge peeks stay hidden. */
+const SWIPE_HINT_KEY = "hp-preview-page-swipe-hint-v1";
 
 /** Survives HomePreview ↔ PreviewShell remounts during swipe navigation. */
 let pendingPageEnter = false;
+
+const readSwipeHintDismissed = () => {
+  try {
+    return window.localStorage.getItem(SWIPE_HINT_KEY) === "1";
+  } catch {
+    return false;
+  }
+};
+
+const persistSwipeHintDismissed = () => {
+  try {
+    window.localStorage.setItem(SWIPE_HINT_KEY, "1");
+  } catch {
+    /* ignore */
+  }
+};
 
 /** Zones where page-swipe must not compete with local gestures. */
 const IGNORE_SELECTOR = [
@@ -47,7 +65,7 @@ const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
 /**
  * Mobile-only horizontal swipe between preview menu pages.
- * Permanent edge peeks (mid-screen, left/right) + fade page transition.
+ * Edge peeks show until the first successful page swipe, then stay hidden.
  */
 const PreviewPageSwipe = () => {
   const { t } = useTranslation();
@@ -56,10 +74,18 @@ const PreviewPageSwipe = () => {
   const touchRef = useRef(null);
   const navigatingRef = useRef(false);
   const [mobile, setMobile] = useState(false);
+  const [showHints, setShowHints] = useState(() =>
+    typeof window !== "undefined" ? !readSwipeHintDismissed() : false
+  );
 
   const navIndex = getNavIndex(location.pathname);
   const canPrev = navIndex > 0;
   const canNext = navIndex >= 0 && navIndex < PREVIEW_NAV.length - 1;
+
+  const dismissHints = () => {
+    setShowHints(false);
+    persistSwipeHintDismissed();
+  };
 
   useEffect(() => {
     const mq = window.matchMedia(MOBILE_MQ);
@@ -93,6 +119,7 @@ const PreviewPageSwipe = () => {
     const goTo = async (path) => {
       if (navigatingRef.current) return;
       navigatingRef.current = true;
+      dismissHints();
       const root = getHpRoot();
       root?.classList.remove("hp--page-enter");
       root?.classList.add("hp--page-leave");
@@ -165,9 +192,9 @@ const PreviewPageSwipe = () => {
       document.removeEventListener("touchend", onEnd);
       document.removeEventListener("touchcancel", onEnd);
     };
-  }, [mobile, navIndex, navigate]);
+  }, [mobile, navIndex, navigate, showHints]);
 
-  if (!mobile || navIndex < 0 || typeof document === "undefined") {
+  if (!mobile || navIndex < 0 || !showHints || typeof document === "undefined") {
     return null;
   }
 
