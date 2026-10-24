@@ -457,6 +457,10 @@
     "nextPhoto": "Fotografia următoare",
     "lightboxAria": "Vizualizare album {{title}}",
     "albums": {
+      "an-nou-scolar": {
+        "title": "An nou școlar",
+        "coverAlt": "Deschiderea anului școlar — bun venit la școală"
+      },
       "promotia-2026": {
         "title": "Promoția 2026",
         "coverAlt": "Absolvenții Promoției 2026 împreună cu cadrele didactice"
@@ -464,10 +468,6 @@
       "8-martie": {
         "title": "8 Martie",
         "coverAlt": "Sărbătoarea de 8 Martie — discurs pe scenă"
-      },
-      "terapie-joaca": {
-        "title": "Terapie prin joacă",
-        "coverAlt": "Copil la terapie prin joacă"
       },
       "ateliere-creative": {
         "title": "Ateliere creative",

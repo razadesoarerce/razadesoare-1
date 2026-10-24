@@ -5,6 +5,21 @@
  */
 export const GALLERY_ALBUMS = [
   {
+    id: "an-nou-scolar",
+    cover: "/images/preview/galerie/an-nou-scolar/06.jpg",
+    accent: "mint",
+    photos: [
+      "/images/preview/galerie/an-nou-scolar/01.jpg",
+      "/images/preview/galerie/an-nou-scolar/02.jpg",
+      "/images/preview/galerie/an-nou-scolar/03.jpg",
+      "/images/preview/galerie/an-nou-scolar/04.jpg",
+      "/images/preview/galerie/an-nou-scolar/05.jpg",
+      "/images/preview/galerie/an-nou-scolar/06.jpg",
+      "/images/preview/galerie/an-nou-scolar/07.jpg",
+      "/images/preview/galerie/an-nou-scolar/08.jpg",
+    ],
+  },
+  {
     id: "promotia-2026",
     cover: "/images/preview/galerie/promotia-2026/02.jpg",
     accent: "sky",
@@ -31,15 +46,9 @@ export const GALLERY_ALBUMS = [
     ],
   },
   {
-    id: "terapie-joaca",
-    cover: "/images/preview/life-carusel-3.jpg",
-    accent: "pink",
-    photos: [],
-  },
-  {
     id: "ateliere-creative",
     cover: "/images/preview/life-carusel-4.jpg",
-    accent: "mint",
+    accent: "pink",
     photos: [],
   },
 ];

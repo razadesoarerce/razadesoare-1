@@ -457,6 +457,10 @@
     "nextPhoto": "Next photo",
     "lightboxAria": "Viewing album {{title}}",
     "albums": {
+      "an-nou-scolar": {
+        "title": "New school year",
+        "coverAlt": "School year opening — welcome to school"
+      },
       "promotia-2026": {
         "title": "Class of 2026",
         "coverAlt": "Class of 2026 graduates with teaching staff"
@@ -464,10 +468,6 @@
       "8-martie": {
         "title": "March 8",
         "coverAlt": "March 8 celebration — speech on stage"
-      },
-      "terapie-joaca": {
-        "title": "Therapy through play",
-        "coverAlt": "Child in play therapy"
       },
       "ateliere-creative": {
         "title": "Creative workshops",
