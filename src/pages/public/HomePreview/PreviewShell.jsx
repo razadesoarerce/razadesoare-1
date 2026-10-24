@@ -2,18 +2,19 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaFacebookF } from "react-icons/fa";
-import { PREVIEW_HOME, PREVIEW_NAV } from "./previewNav";
+import { PREVIEW_HOME } from "./previewNav";
 import PreviewPageSwipe from "./PreviewPageSwipe";
+import { PreviewMenuBackdrop, PreviewMenuPanel } from "./PreviewNavMenu";
 import { clampDockPos, getDockViewportHome } from "./dockViewport";
 import { subscribeVisualViewport } from "../../../utils/visualViewport";
 import "./HomePreview.css";
 
-const SWIPE_CLOSE_PX = 56;
 const DOCK_STORAGE_KEY = "hp-preview-dock-pos-v7";
 const DOCK_DRAG_THRESHOLD = 6;
+const MENU_FLIP_BELOW_PX = 210;
 
 /**
- * Shared chrome for the new preview site: dock + drawer.
+ * Shared chrome for the new preview site: dock + compact nav panel.
  * Inner pages use navy dock contrast (is-outside-hero).
  */
 const PreviewShell = ({ children, className = "" }) => {
@@ -24,12 +25,14 @@ const PreviewShell = ({ children, className = "" }) => {
   const [dockPos, setDockPos] = useState(null);
   const [dockHomePos, setDockHomePos] = useState(null);
   const [dockDragging, setDockDragging] = useState(false);
-  const menuSwipeStart = useRef(null);
   const dockRef = useRef(null);
   const dockDragRef = useRef(null);
   const dockJustDraggedRef = useRef(false);
   const activeLang = i18n.language?.startsWith("en") ? "EN" : "RO";
   const dockScreenPos = dockPos ?? dockHomePos;
+  const menuPlaceBelow = Boolean(
+    dockScreenPos && dockScreenPos.top < MENU_FLIP_BELOW_PX
+  );
 
   useEffect(() => {
     const id = "home-preview-fonts";
@@ -190,25 +193,6 @@ const PreviewShell = ({ children, className = "" }) => {
     navigate(path);
   };
 
-  const onMenuTouchStart = (event) => {
-    const touch = event.touches[0];
-    if (!touch) return;
-    menuSwipeStart.current = { x: touch.clientX, y: touch.clientY };
-  };
-
-  const onMenuTouchEnd = (event) => {
-    const start = menuSwipeStart.current;
-    menuSwipeStart.current = null;
-    if (!start) return;
-    const touch = event.changedTouches[0];
-    if (!touch) return;
-    const dx = touch.clientX - start.x;
-    const dy = touch.clientY - start.y;
-    if (dx >= SWIPE_CLOSE_PX && Math.abs(dx) > Math.abs(dy) * 1.25) {
-      closeMenu();
-    }
-  };
-
   return (
     <div className={`hp hp--preview-page hp--type-test is-outside-hero-page ${menuOpen ? "hp--menu-open" : ""} ${className}`.trim()}>
       <div
@@ -248,7 +232,7 @@ const PreviewShell = ({ children, className = "" }) => {
           className={`hp-dock__btn hp-dock__menu ${menuOpen ? "is-open" : ""}`}
           aria-label={menuOpen ? t("preview.chrome.closeMenu") : t("preview.chrome.openMenu")}
           aria-expanded={menuOpen}
-          aria-controls="hp-drawer"
+          aria-controls="hp-menu-panel"
           onClick={() => setMenuOpen((open) => !open)}
         >
           <span />
@@ -272,59 +256,16 @@ const PreviewShell = ({ children, className = "" }) => {
         >
           {activeLang}
         </button>
+        {menuOpen ? (
+          <PreviewMenuPanel
+            onClose={closeMenu}
+            onNavClick={onNavClick}
+            placeBelow={menuPlaceBelow}
+          />
+        ) : null}
       </div>
 
-      {menuOpen ? (
-        <div className="hp-drawer-root">
-          <button
-            type="button"
-            className="hp-drawer__backdrop"
-            aria-label={t("preview.chrome.closeMenu")}
-            onClick={closeMenu}
-          />
-          <aside
-            id="hp-drawer"
-            className="hp-drawer"
-            role="dialog"
-            aria-modal="true"
-            aria-label={t("preview.chrome.menu")}
-            onTouchStart={onMenuTouchStart}
-            onTouchEnd={onMenuTouchEnd}
-          >
-            <div className="hp-drawer__head">
-              <p className="hp-drawer__hint">
-                {t("preview.chrome.menuHint")}
-              </p>
-              <button
-                type="button"
-                className="hp-drawer__close"
-                onClick={closeMenu}
-                aria-label={t("preview.chrome.close")}
-              >
-                ×
-              </button>
-            </div>
-            <nav className="hp-drawer__nav" aria-label={t("preview.chrome.nav")}>
-              {PREVIEW_NAV.map((item) => {
-                const isActive = item.path && location.pathname === item.path;
-                const disabled = !item.path;
-                return (
-                  <button
-                    key={item.labelKey}
-                    type="button"
-                    className={`hp-drawer__link ${isActive ? "is-active" : ""} ${disabled ? "is-disabled" : ""}`}
-                    onClick={() => onNavClick(item.path)}
-                    disabled={disabled}
-                    aria-current={isActive ? "page" : undefined}
-                  >
-                    {t(item.labelKey)}
-                  </button>
-                );
-              })}
-            </nav>
-          </aside>
-        </div>
-      ) : null}
+      {menuOpen ? <PreviewMenuBackdrop onClose={closeMenu} /> : null}
 
       {children}
       <PreviewPageSwipe />

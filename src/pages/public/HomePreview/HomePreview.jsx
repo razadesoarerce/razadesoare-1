@@ -7,12 +7,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { PREVIEW_HOME, PREVIEW_DESPRE, PREVIEW_NAV } from "./previewNav";
+import { PREVIEW_HOME, PREVIEW_DESPRE } from "./previewNav";
 import { clampDockPos, getDockViewportHome } from "./dockViewport";
 import { subscribeVisualViewport } from "../../../utils/visualViewport";
+import { PreviewMenuBackdrop, PreviewMenuPanel } from "./PreviewNavMenu";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageSwipe from "./PreviewPageSwipe";
 import "./HomePreview.css";
+
+const MENU_FLIP_BELOW_PX = 210;
 
 /** Pulsing sun mark — same animated sun used previously in the hero. */
 const HeroCardSun = () => (
@@ -215,7 +218,6 @@ const HomePreview = () => {
   const [dockDragging, setDockDragging] = useState(false);
   const [dockOutsideHero, setDockOutsideHero] = useState(false);
   const swipeStart = useRef(null);
-  const menuSwipeStart = useRef(null);
   const dockRef = useRef(null);
   const heroRef = useRef(null);
   const contactTriggerRef = useRef(null);
@@ -506,25 +508,9 @@ const HomePreview = () => {
     }
   };
 
-  const onMenuTouchStart = (event) => {
-    const touch = event.touches[0];
-    if (!touch) return;
-    menuSwipeStart.current = { x: touch.clientX, y: touch.clientY };
-  };
-
-  const onMenuTouchEnd = (event) => {
-    const start = menuSwipeStart.current;
-    menuSwipeStart.current = null;
-    if (!start) return;
-    const touch = event.changedTouches[0];
-    if (!touch) return;
-    const dx = touch.clientX - start.x;
-    const dy = touch.clientY - start.y;
-    // Swipe right closes the right-side drawer
-    if (dx >= SWIPE_CLOSE_PX && Math.abs(dx) > Math.abs(dy) * 1.1) {
-      closeMenu();
-    }
-  };
+  const menuPlaceBelow = Boolean(
+    dockScreenPos && dockScreenPos.top < MENU_FLIP_BELOW_PX
+  );
 
   const contactPanel =
     contactOpen && contactPanelPos
@@ -656,7 +642,7 @@ const HomePreview = () => {
           className={`hp-dock__btn hp-dock__menu ${menuOpen ? "is-open" : ""}`}
           aria-label={menuOpen ? t("preview.chrome.closeMenu") : t("preview.chrome.openMenu")}
           aria-expanded={menuOpen}
-          aria-controls="hp-drawer"
+          aria-controls="hp-menu-panel"
           onClick={() => setMenuOpen((open) => !open)}
         >
           <span />
@@ -680,52 +666,16 @@ const HomePreview = () => {
         >
           {activeLang}
         </button>
+        {menuOpen ? (
+          <PreviewMenuPanel
+            onClose={closeMenu}
+            onNavClick={onNavClick}
+            placeBelow={menuPlaceBelow}
+          />
+        ) : null}
       </div>
 
-      {menuOpen ? (
-        <div className="hp-drawer-root">
-          <button
-            type="button"
-            className="hp-drawer__backdrop"
-            aria-label={t("preview.chrome.closeMenu")}
-            onClick={closeMenu}
-          />
-          <aside
-            id="hp-drawer"
-            className="hp-drawer"
-            role="dialog"
-            aria-modal="true"
-            aria-label={t("preview.chrome.menu")}
-            onTouchStart={onMenuTouchStart}
-            onTouchEnd={onMenuTouchEnd}
-          >
-            <div className="hp-drawer__head">
-              <p className="hp-drawer__hint">{t("preview.chrome.menuHint")}</p>
-              <button type="button" className="hp-drawer__close" onClick={closeMenu} aria-label={t("preview.chrome.close")}>
-                ×
-              </button>
-            </div>
-            <nav className="hp-drawer__nav" aria-label={t("preview.chrome.nav")}>
-              {PREVIEW_NAV.map((item) => {
-                const isActive = item.path && location.pathname === item.path;
-                const disabled = !item.path;
-                return (
-                  <button
-                    key={item.labelKey}
-                    type="button"
-                    className={`hp-drawer__link ${isActive ? "is-active" : ""} ${disabled ? "is-disabled" : ""}`}
-                    onClick={() => onNavClick(item.path)}
-                    disabled={disabled}
-                    aria-current={isActive ? "page" : undefined}
-                  >
-                    {t(item.labelKey)}
-                  </button>
-                );
-              })}
-            </nav>
-          </aside>
-        </div>
-      ) : null}
+      {menuOpen ? <PreviewMenuBackdrop onClose={closeMenu} /> : null}
 
       <main>
         <section ref={heroRef} className="hp-hero" aria-labelledby="hp-hero-title">
