@@ -1536,10 +1536,11 @@ a.hp-galerie-card:hover {
   overflow: hidden;
   background:
     radial-gradient(
-      120% 90% at 100% 100%,
-      rgba(91, 164, 214, 0.28) 0%,
-      rgba(207, 232, 248, 0.35) 32%,
-      rgba(255, 255, 255, 0) 62%
+      125% 95% at 100% 100%,
+      rgba(91, 164, 214, 0.55) 0%,
+      rgba(91, 164, 214, 0.32) 28%,
+      rgba(207, 232, 248, 0.45) 48%,
+      rgba(255, 255, 255, 0) 72%
     ),
     #fff;
   box-shadow:
