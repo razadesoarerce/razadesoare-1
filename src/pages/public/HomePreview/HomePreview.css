@@ -1534,18 +1534,33 @@ a.hp-galerie-card:hover {
   padding: 1.05rem 1rem 1.15rem 1.1rem;
   margin-bottom: var(--hp-stack-gap, 1rem);
   overflow: hidden;
-  background:
-    radial-gradient(
-      125% 95% at 100% 100%,
-      rgba(91, 164, 214, 0.55) 0%,
-      rgba(91, 164, 214, 0.32) 28%,
-      rgba(207, 232, 248, 0.45) 48%,
-      rgba(255, 255, 255, 0) 72%
-    ),
-    #fff;
+  background: #fff;
   box-shadow:
     0 2px 10px rgba(26, 74, 141, 0.06),
     0 12px 28px rgba(18, 40, 70, 0.08);
+}
+
+/* Clear wave edge vs white — bottom-right fill */
+.hp-echipa-specialisti__banner::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(62%, 18rem);
+  height: 88%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(
+      155deg,
+      rgba(147, 198, 232, 0.55) 0%,
+      rgba(91, 164, 214, 0.62) 55%,
+      rgba(70, 148, 205, 0.68) 100%
+    );
+  /* Soft S-curve: white on the left, blue on the right */
+  clip-path: path(
+    "M 78 0 C 58 18 92 34 68 52 C 42 72 78 88 52 100 L 100 100 L 100 0 Z"
+  );
 }
 
 .hp-echipa-specialisti__copy {
