@@ -11,6 +11,11 @@
     "contrastNormal": "Normal",
     "contrastHigh": "Ridicat",
     "brightness": "Luminozitate",
+    "tts": "Citire text (text-to-speech)",
+    "ttsOn": "Activă — selectează text pentru a-l auzi",
+    "ttsOff": "Inactivă",
+    "ttsHint": "Când e activă, textul pe care îl selectezi pe pagină este citit automat.",
+    "ttsUnsupported": "Browserul tău nu suportă citirea textului.",
     "reset": "Resetează setările"
   },
   "nav": {

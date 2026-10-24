@@ -4,17 +4,22 @@ import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./AccessibilityWidget.css";
 
-const STORAGE_KEY = "rds-a11y-settings-v1";
+const STORAGE_KEY = "rds-a11y-settings-v2";
 const FONT_STEPS = [0.875, 1, 1.125, 1.25, 1.375];
 const BRIGHTNESS_MIN = 0.75;
 const BRIGHTNESS_MAX = 1.25;
 const BRIGHTNESS_STEP = 0.05;
+const TTS_MIN_CHARS = 2;
 
 const DEFAULTS = {
   fontScale: 1,
   contrast: "normal", // normal | high
   brightness: 1,
+  ttsEnabled: false,
 };
+
+const speechSupported =
+  typeof window !== "undefined" && "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
 
 const loadSettings = () => {
   try {
@@ -30,6 +35,7 @@ const loadSettings = () => {
         parsed.brightness <= BRIGHTNESS_MAX
           ? parsed.brightness
           : 1,
+      ttsEnabled: Boolean(parsed.ttsEnabled),
     };
   } catch {
     return { ...DEFAULTS };
@@ -43,6 +49,39 @@ const applySettings = (settings) => {
   root.classList.toggle("a11y-high-contrast", settings.contrast === "high");
   root.classList.toggle("a11y-font-scaled", settings.fontScale !== 1);
   root.classList.toggle("a11y-brightness-tuned", settings.brightness !== 1);
+  root.classList.toggle("a11y-tts-on", settings.ttsEnabled);
+};
+
+const stopSpeech = () => {
+  if (!speechSupported) return;
+  window.speechSynthesis.cancel();
+};
+
+const pickVoice = (lang) => {
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices.length) return null;
+  const primary = lang.startsWith("en") ? "en" : "ro";
+  return (
+    voices.find((voice) => voice.lang?.toLowerCase().startsWith(primary)) ||
+    voices.find((voice) => voice.lang?.toLowerCase().startsWith("en")) ||
+    voices[0] ||
+    null
+  );
+};
+
+const speakText = (text, lang) => {
+  if (!speechSupported) return;
+  const cleaned = text.replace(/\s+/g, " ").trim();
+  if (cleaned.length < TTS_MIN_CHARS) return;
+
+  stopSpeech();
+  const utterance = new SpeechSynthesisUtterance(cleaned);
+  utterance.lang = lang.startsWith("en") ? "en-US" : "ro-RO";
+  const voice = pickVoice(lang);
+  if (voice) utterance.voice = voice;
+  utterance.rate = 1;
+  utterance.pitch = 1;
+  window.speechSynthesis.speak(utterance);
 };
 
 /** Standard accessibility person-in-circle mark (ISA-style). */
@@ -63,13 +102,14 @@ const AccessibilityIcon = () => (
 
 /**
  * Site-wide accessibility tool (RO institutional expectation):
- * text size, contrast, brightness — fixed person-in-circle control.
+ * text size, contrast, brightness, read-selection TTS.
  */
 const AccessibilityWidget = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const panelId = useId();
   const rootRef = useRef(null);
+  const lastSpokenRef = useRef("");
   const [open, setOpen] = useState(false);
   const [settings, setSettings] = useState(DEFAULTS);
 
@@ -106,6 +146,67 @@ const AccessibilityWidget = () => {
     };
   }, [open]);
 
+  /* Warm up voice list (Chrome loads async) */
+  useEffect(() => {
+    if (!speechSupported) return undefined;
+    const warm = () => window.speechSynthesis.getVoices();
+    warm();
+    window.speechSynthesis.addEventListener?.("voiceschanged", warm);
+    return () => window.speechSynthesis.removeEventListener?.("voiceschanged", warm);
+  }, []);
+
+  /* Read selected text while TTS is on */
+  useEffect(() => {
+    if (!settings.ttsEnabled || !speechSupported) {
+      stopSpeech();
+      lastSpokenRef.current = "";
+      return undefined;
+    }
+
+    const maybeSpeakSelection = () => {
+      const selection = window.getSelection?.();
+      if (!selection || selection.isCollapsed || selection.rangeCount === 0) {
+        return;
+      }
+      const anchor = selection.anchorNode;
+      const node = anchor?.nodeType === Node.TEXT_NODE ? anchor.parentElement : anchor;
+      if (node instanceof Element && node.closest(".a11y-widget")) {
+        return;
+      }
+      const text = selection.toString();
+      const cleaned = text.replace(/\s+/g, " ").trim();
+      if (cleaned.length < TTS_MIN_CHARS) return;
+      if (cleaned === lastSpokenRef.current) return;
+      lastSpokenRef.current = cleaned;
+      speakText(cleaned, i18n.language || "ro");
+    };
+
+    const onSelectionChange = () => {
+      // Debounce slightly so drag-select finishes before speaking
+      window.clearTimeout(onSelectionChange._timer);
+      onSelectionChange._timer = window.setTimeout(maybeSpeakSelection, 280);
+    };
+
+    document.addEventListener("mouseup", maybeSpeakSelection);
+    document.addEventListener("touchend", maybeSpeakSelection, { passive: true });
+    document.addEventListener("keyup", maybeSpeakSelection);
+    document.addEventListener("selectionchange", onSelectionChange);
+
+    return () => {
+      window.clearTimeout(onSelectionChange._timer);
+      document.removeEventListener("mouseup", maybeSpeakSelection);
+      document.removeEventListener("touchend", maybeSpeakSelection);
+      document.removeEventListener("keyup", maybeSpeakSelection);
+      document.removeEventListener("selectionchange", onSelectionChange);
+      stopSpeech();
+    };
+  }, [settings.ttsEnabled, i18n.language]);
+
+  useEffect(() => {
+    stopSpeech();
+    lastSpokenRef.current = "";
+  }, [location.pathname]);
+
   const update = useCallback((patch) => {
     setSettings((current) => ({ ...current, ...patch }));
   }, []);
@@ -117,7 +218,20 @@ const AccessibilityWidget = () => {
     update({ fontScale: next });
   };
 
-  const reset = () => setSettings({ ...DEFAULTS });
+  const reset = () => {
+    stopSpeech();
+    lastSpokenRef.current = "";
+    setSettings({ ...DEFAULTS });
+  };
+
+  const toggleTts = () => {
+    const next = !settings.ttsEnabled;
+    if (!next) {
+      stopSpeech();
+      lastSpokenRef.current = "";
+    }
+    update({ ttsEnabled: next });
+  };
 
   if (isAdmin || typeof document === "undefined") return null;
 
@@ -127,7 +241,7 @@ const AccessibilityWidget = () => {
   return createPortal(
     <div
       ref={rootRef}
-      className={`a11y-widget ${open ? "is-open" : ""}`}
+      className={`a11y-widget ${open ? "is-open" : ""} ${settings.ttsEnabled ? "is-tts-on" : ""}`}
       data-no-page-swipe
     >
       <button
@@ -224,6 +338,27 @@ const AccessibilityWidget = () => {
               onChange={(event) => update({ brightness: Number(event.target.value) })}
               aria-label={t("a11y.brightness")}
             />
+          </div>
+
+          <div className="a11y-widget__group">
+            <p className="a11y-widget__label">{t("a11y.tts")}</p>
+            {speechSupported ? (
+              <>
+                <button
+                  type="button"
+                  className={`a11y-widget__chip a11y-widget__chip--wide ${
+                    settings.ttsEnabled ? "is-active" : ""
+                  }`}
+                  onClick={toggleTts}
+                  aria-pressed={settings.ttsEnabled}
+                >
+                  {settings.ttsEnabled ? t("a11y.ttsOn") : t("a11y.ttsOff")}
+                </button>
+                <p className="a11y-widget__hint">{t("a11y.ttsHint")}</p>
+              </>
+            ) : (
+              <p className="a11y-widget__hint">{t("a11y.ttsUnsupported")}</p>
+            )}
           </div>
 
           <button type="button" className="a11y-widget__reset" onClick={reset}>

@@ -160,6 +160,24 @@
   color: #fff;
 }
 
+.a11y-widget__chip--wide {
+  width: 100%;
+}
+
+.a11y-widget__hint {
+  margin: 0.45rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #5b6775;
+}
+
+.a11y-widget.is-tts-on .a11y-widget__toggle {
+  box-shadow:
+    0 6px 18px rgba(18, 40, 70, 0.28),
+    0 0 0 3px rgba(245, 197, 66, 0.85);
+}
+
 .a11y-widget__slider {
   width: 100%;
   accent-color: #1a4a8d;
@@ -191,7 +209,8 @@ html.a11y-high-contrast .a11y-widget__close {
   color: #fff;
 }
 
-html.a11y-high-contrast .a11y-widget__label {
+html.a11y-high-contrast .a11y-widget__label,
+html.a11y-high-contrast .a11y-widget__hint {
   color: #ddd;
 }
 

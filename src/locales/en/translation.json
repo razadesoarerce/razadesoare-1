@@ -11,6 +11,11 @@
     "contrastNormal": "Normal",
     "contrastHigh": "High",
     "brightness": "Brightness",
+    "tts": "Read text (text-to-speech)",
+    "ttsOn": "On — select text to hear it",
+    "ttsOff": "Off",
+    "ttsHint": "When on, text you select on the page is read aloud automatically.",
+    "ttsUnsupported": "Your browser does not support text-to-speech.",
     "reset": "Reset settings"
   },
   "nav": {
