@@ -1,12 +1,29 @@
 import { useTranslation } from "react-i18next";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
+import { GALLERY_ALBUMS } from "./galleryAlbums";
+
+const TitleSpark = () => (
+  <svg className="hp-galerie__spark" viewBox="0 0 32 32" aria-hidden>
+    <g stroke="#f5c542" strokeWidth="2.4" strokeLinecap="round">
+      <line x1="16" y1="4" x2="16" y2="11" />
+      <line x1="24.5" y1="7.5" x2="20" y2="12.5" />
+      <line x1="27.5" y1="16" x2="21" y2="16" />
+    </g>
+  </svg>
+);
 
 /**
- * Photo gallery page — cover + title scaffold; album content comes next.
+ * Photo gallery — hero, title block, album cards (placeholders until real covers/photos).
  */
 const GalerieFoto = () => {
   const { t } = useTranslation();
+
+  const albums = GALLERY_ALBUMS.map((album) => ({
+    ...album,
+    title: t(`preview.gallery.albums.${album.id}.title`),
+    coverAlt: t(`preview.gallery.albums.${album.id}.coverAlt`),
+  }));
 
   return (
     <PreviewShell>
@@ -34,14 +51,37 @@ const GalerieFoto = () => {
           </svg>
         </section>
 
-        <section
-          className="hp-section hp-despre-intro"
-          aria-labelledby="hp-galerie-title"
-        >
-          <h1 id="hp-galerie-title" className="hp-despre-intro__title">
+        <header className="hp-section hp-galerie__header" aria-labelledby="hp-galerie-title">
+          <TitleSpark />
+          <h1 id="hp-galerie-title" className="hp-galerie__title">
             {t("preview.gallery.title")}
           </h1>
-          <p className="hp-despre-intro__subtitle">{t("preview.gallery.subtitle")}</p>
+          <p className="hp-galerie__subtitle">{t("preview.gallery.subtitle")}</p>
+        </header>
+
+        <section
+          className="hp-section hp-galerie__grid"
+          aria-label={t("preview.gallery.albumsAria")}
+        >
+          {albums.map((album) => (
+            <article
+              key={album.id}
+              className={`hp-galerie-card hp-galerie-card--${album.accent}`}
+            >
+              <div className="hp-galerie-card__media">
+                <img src={album.cover} alt={album.coverAlt} loading="lazy" />
+              </div>
+              <div className="hp-galerie-card__body">
+                <div className="hp-galerie-card__text">
+                  <h2 className="hp-galerie-card__title">{album.title}</h2>
+                  <span className="hp-galerie-card__link">{t("preview.gallery.seeAlbum")}</span>
+                </div>
+                <span className="hp-galerie-card__go" aria-hidden>
+                  →
+                </span>
+              </div>
+            </article>
+          ))}
         </section>
 
         <PreviewSupportFooter />

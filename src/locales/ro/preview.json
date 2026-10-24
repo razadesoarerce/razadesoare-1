@@ -445,7 +445,27 @@
     "heroAria": "Galerie foto",
     "coverAlt": "Comunitatea școlii Rază de Soare în fața clădirii, cu baloane albe",
     "title": "Galerie foto",
-    "subtitle": "Momente din viața școlii — albumele vor apărea aici în curând."
+    "subtitle": "Păstrăm în imagini momentele care aduc bucurie, progres și apartenență în viața copiilor noștri.",
+    "albumsAria": "Albume foto",
+    "seeAlbum": "Vezi albumul",
+    "albums": {
+      "prima-zi": {
+        "title": "Prima zi la școală",
+        "coverAlt": "Copii la început de an școlar"
+      },
+      "activitati-clasa": {
+        "title": "Activități în clasă",
+        "coverAlt": "Activitate educativă în clasă"
+      },
+      "terapie-joaca": {
+        "title": "Terapie prin joacă",
+        "coverAlt": "Copil la terapie prin joacă"
+      },
+      "ateliere-creative": {
+        "title": "Ateliere creative",
+        "coverAlt": "Atelier creativ cu culori"
+      }
+    }
   },
   "blog": {
     "heroAria": "Blog",

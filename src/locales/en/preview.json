@@ -445,7 +445,27 @@
     "heroAria": "Photo gallery",
     "coverAlt": "The Rază de Soare school community in front of the building, with white balloons",
     "title": "Photo gallery",
-    "subtitle": "Moments from school life — albums will appear here soon."
+    "subtitle": "We keep in pictures the moments that bring joy, progress and belonging into our children’s lives.",
+    "albumsAria": "Photo albums",
+    "seeAlbum": "View album",
+    "albums": {
+      "prima-zi": {
+        "title": "First day of school",
+        "coverAlt": "Children at the start of the school year"
+      },
+      "activitati-clasa": {
+        "title": "Classroom activities",
+        "coverAlt": "Educational activity in class"
+      },
+      "terapie-joaca": {
+        "title": "Therapy through play",
+        "coverAlt": "Child in play therapy"
+      },
+      "ateliere-creative": {
+        "title": "Creative workshops",
+        "coverAlt": "Creative workshop with paint"
+      }
+    }
   },
   "blog": {
     "heroAria": "Blog",
