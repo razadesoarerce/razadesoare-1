@@ -88,7 +88,6 @@ const GALLERY_META = [
   { id: "g3", src: "/images/preview/life-carusel-3.jpg", frame: "portrait" },
   { id: "g4", src: "/images/preview/life-carusel-4.jpg", frame: "portrait" },
   { id: "g5", src: "/images/preview/life-carusel-5.jpg", frame: "portrait" },
-  { id: "g6", src: "/images/preview/life-carusel-6.jpg", frame: "portrait" },
   { id: "g7", src: "/images/preview/life-carusel-7.jpg", frame: "portrait" },
 ];
 
