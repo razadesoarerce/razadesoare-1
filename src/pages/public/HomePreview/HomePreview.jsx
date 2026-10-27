@@ -408,7 +408,9 @@ const HomePreview = () => {
       origTop: rect.top,
       dragging: false,
     };
-    el.setPointerCapture?.(event.pointerId);
+    /* Do not setPointerCapture here — capturing the dock on pointerdown
+       retargets the following click to the dock, so Home/Menu/FB/Lang
+       never receive it (broken on desktop mouse). Capture only after drag. */
   };
 
   const onDockPointerMove = (event) => {
@@ -418,12 +420,13 @@ const HomePreview = () => {
     const dy = event.clientY - state.startY;
     if (!state.dragging && Math.hypot(dx, dy) < DOCK_DRAG_THRESHOLD) return;
 
+    const el = dockRef.current;
     if (!state.dragging) {
       state.dragging = true;
       setDockDragging(true);
+      el?.setPointerCapture?.(event.pointerId);
     }
 
-    const el = dockRef.current;
     const next = clampDockPos(
       state.origLeft + dx,
       state.origTop + dy,

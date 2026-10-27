@@ -122,7 +122,7 @@ const PreviewShell = ({ children, className = "" }) => {
       origTop: rect.top,
       dragging: false,
     };
-    el.setPointerCapture?.(event.pointerId);
+    /* Defer setPointerCapture until drag starts so button/link clicks work. */
   };
 
   const onDockPointerMove = (event) => {
@@ -131,11 +131,12 @@ const PreviewShell = ({ children, className = "" }) => {
     const dx = event.clientX - state.startX;
     const dy = event.clientY - state.startY;
     if (!state.dragging && Math.hypot(dx, dy) < DOCK_DRAG_THRESHOLD) return;
+    const el = dockRef.current;
     if (!state.dragging) {
       state.dragging = true;
       setDockDragging(true);
+      el?.setPointerCapture?.(event.pointerId);
     }
-    const el = dockRef.current;
     setDockPos(
       clampDockPos(
         state.origLeft + dx,
