@@ -177,26 +177,18 @@
   display: block;
 }
 
-/* Body copy — justify across all preview pages (titles stay as designed) */
-.hp-section__lead,
-.hp-about__text p,
-.hp-offer-card__text,
+/* Long card / panel copy — justify; short leads & titles keep left / center */
 .hp-offer-expand__body,
 .hp-offer-expand__detail,
 .hp-offer-expand__list,
 .hp-despre-intro__copy p,
 .hp-despre-block p,
-.hp-informatii__lead-text,
-.hp-info-card__text,
 .hp-info-card__panel,
 .hp-info-card__panel > p,
 .hp-info-list,
 .hp-info-legal__text,
-.hp-echipa-specialisti__banner p,
-.hp-echipa-expand-item .hp-offer-expand__detail,
 .hp-legal__panel-body,
-.hp-legal__panel-body p,
-.hp-galerie-card__text p {
+.hp-legal__panel-body p {
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
@@ -1318,6 +1310,7 @@ a.hp-galerie-card:hover {
   font-size: clamp(0.88rem, 2.2vw, 0.98rem);
   font-weight: 600;
   line-height: 1.65;
+  text-align: left;
 }
 
 @media (min-width: 720px) {
@@ -1360,7 +1353,7 @@ a.hp-galerie-card:hover {
   font-weight: 600;
   font-size: 0.92rem;
   line-height: 1.4;
-  text-align: center;
+  text-align: left;
 }
 
 /* Centered page title + progressive sun mark */
@@ -1470,6 +1463,15 @@ a.hp-galerie-card:hover {
   font-size: clamp(0.88rem, 2.2vw, 0.98rem);
   line-height: 1.65;
   text-indent: var(--hp-despre-indent);
+}
+
+.hp-informatii__lead-text,
+.hp-info-card__text,
+.hp-echipa-specialisti__banner p,
+.hp-about__text p,
+.hp-offer-card__text,
+.hp-galerie-card__text p {
+  text-align: left;
 }
 
 .hp-despre-blocks {
@@ -1611,6 +1613,7 @@ a.hp-galerie-card:hover {
   font-size: 0.9rem;
   line-height: 1.55;
   max-width: 36rem;
+  text-align: left;
 }
 
 
@@ -2262,6 +2265,7 @@ a.hp-galerie-card:hover {
 }
 
 .hp-section__lead {
+  text-align: left;
   color: var(--hp-muted);
   max-width: 34rem;
   margin: 0 auto 1rem;
@@ -2381,6 +2385,8 @@ a.hp-galerie-card:hover {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-align: left;
+  width: 100%;
 }
 
 .hp-offer-card__go {
@@ -2516,10 +2522,12 @@ a.hp-galerie-card:hover {
   font-weight: 800;
   font-size: 0.95rem;
   color: var(--hp-blue-deep);
+  text-align: left;
 }
 
 .hp-offer-expand__body {
   margin: 0 0 1.25rem;
+  text-align: justify;
 }
 
 .hp-offer-expand__detail {
@@ -2528,6 +2536,7 @@ a.hp-galerie-card:hover {
   font-size: 0.92rem;
   line-height: 1.55;
   font-weight: 600;
+  text-align: justify;
 }
 
 .hp-offer-expand__detail:last-child {
@@ -2541,6 +2550,7 @@ a.hp-galerie-card:hover {
   font-size: 0.92rem;
   line-height: 1.55;
   font-weight: 600;
+  text-align: justify;
 }
 
 .hp-offer-expand__list li {
@@ -2629,6 +2639,7 @@ a.hp-galerie-card:hover {
   width: 100%;
   font-size: 0.92rem;
   line-height: 1.55;
+  text-align: left;
 }
 
 .hp-about__media {
