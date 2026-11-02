@@ -177,14 +177,18 @@
   display: block;
 }
 
-/* Justify only on Informații + Despre noi (cards / long page copy) */
+/* Justify: Informații + Despre noi + carousel offer cards (home / echipa) */
 .hp-despre-intro__copy p,
 .hp-despre-block p,
 .hp-informatii__lead-text,
 .hp-info-card__panel,
 .hp-info-card__panel > p,
 .hp-info-list,
-.hp-info-legal__text {
+.hp-info-legal__text,
+.hp-offer-card__text,
+.hp-offer-expand__body,
+.hp-offer-expand__detail,
+.hp-offer-expand__list {
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
@@ -1463,7 +1467,6 @@ a.hp-galerie-card:hover {
 .hp-info-card__text,
 .hp-echipa-specialisti__banner p,
 .hp-about__text p,
-.hp-offer-card__text,
 .hp-galerie-card__text p,
 .hp-section__lead,
 .hp-offer-expand__lead {
@@ -2381,7 +2384,6 @@ a.hp-galerie-card:hover {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-align: center;
   width: 100%;
 }
 
