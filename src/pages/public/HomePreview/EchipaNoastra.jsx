@@ -359,13 +359,15 @@ const EchipaNoastra = () => {
                   </div>
                 ))}
               </div>
-              <button
-                type="button"
-                className="hp-btn hp-btn--primary hp-offer-expand__close"
-                onClick={closeExpanded}
-              >
-                {t("preview.chrome.close")}
-              </button>
+              <div className="hp-offer-expand__footer">
+                <button
+                  type="button"
+                  className="hp-btn hp-btn--primary hp-offer-expand__close"
+                  onClick={closeExpanded}
+                >
+                  {t("preview.chrome.close")}
+                </button>
+              </div>
             </article>
           </div>
         ) : null}

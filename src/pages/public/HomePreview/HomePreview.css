@@ -2423,7 +2423,7 @@ a.hp-galerie-card:hover {
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   border-radius: 1.5rem 1.5rem 1.25rem 1.25rem;
-  padding: 0.85rem 1.25rem 1.35rem;
+  padding: 0.85rem 1.25rem 0;
   text-align: center;
   box-shadow: 0 24px 60px rgba(18, 54, 106, 0.28);
   animation: hp-offer-rise 0.32s cubic-bezier(0.22, 1, 0.36, 1);
@@ -2531,9 +2531,34 @@ a.hp-galerie-card:hover {
   margin-bottom: 0;
 }
 
-.hp-offer-expand__body + .hp-offer-expand__close,
-.hp-offer-expand__detail + .hp-offer-expand__close {
-  margin-top: 0.25rem;
+/* Sticky close bar — always visible at the bottom of the sheet */
+.hp-offer-expand__footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
+  margin: 0.35rem -1.25rem 0;
+  padding: 0.75rem 1.25rem calc(0.95rem + env(safe-area-inset-bottom, 0px));
+  border-radius: 0 0 1.25rem 1.25rem;
+}
+
+.hp-offer-expand__panel--pink .hp-offer-expand__footer {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 245, 249, 0) 0%,
+    #fff5f9 34%
+  );
+}
+
+.hp-offer-expand__panel--blue .hp-offer-expand__footer {
+  background: linear-gradient(180deg, rgba(243, 249, 253, 0) 0%, #f3f9fd 34%);
+}
+
+.hp-offer-expand__panel--yellow .hp-offer-expand__footer {
+  background: linear-gradient(180deg, rgba(255, 249, 232, 0) 0%, #fff9e8 34%);
+}
+
+.hp-offer-expand__panel--green .hp-offer-expand__footer {
+  background: linear-gradient(180deg, rgba(243, 251, 242, 0) 0%, #f3fbf2 34%);
 }
 
 .hp-offer-expand__close {
@@ -3330,7 +3355,14 @@ a.hp-galerie-card:hover {
 
   .hp-offer-expand__panel {
     border-radius: 1.5rem;
-    padding: 1.25rem 1.5rem 1.5rem;
+    padding: 1.25rem 1.5rem 0;
+  }
+
+  .hp-offer-expand__footer {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    padding: 0.85rem 1.5rem calc(1.15rem + env(safe-area-inset-bottom, 0px));
+    border-radius: 0 0 1.5rem 1.5rem;
   }
 
   .hp-offer-card__go {
