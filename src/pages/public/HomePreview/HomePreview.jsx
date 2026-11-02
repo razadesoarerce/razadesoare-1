@@ -605,6 +605,7 @@ const HomePreview = () => {
   return (
     <div
       className={`hp hp--type-test${expandedOffer ? " hp--offer-open" : ""}${menuOpen ? " hp--menu-open" : ""}${contactOpen ? " hp--contact-open" : ""}`}
+      lang={activeLang === "EN" ? "en" : "ro"}
     >
       {contactPanel}
       <div

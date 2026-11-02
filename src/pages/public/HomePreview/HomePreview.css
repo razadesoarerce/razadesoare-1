@@ -177,6 +177,32 @@
   display: block;
 }
 
+/* Body copy — justify across all preview pages (titles stay as designed) */
+.hp-section__lead,
+.hp-about__text p,
+.hp-offer-card__text,
+.hp-offer-expand__body,
+.hp-offer-expand__detail,
+.hp-offer-expand__list,
+.hp-despre-intro__copy p,
+.hp-despre-block p,
+.hp-informatii__lead-text,
+.hp-info-card__text,
+.hp-info-card__panel,
+.hp-info-card__panel > p,
+.hp-info-list,
+.hp-info-legal__text,
+.hp-echipa-specialisti__banner p,
+.hp-echipa-expand-item .hp-offer-expand__detail,
+.hp-legal__panel-body,
+.hp-legal__panel-body p,
+.hp-galerie-card__text p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
 /* Floating 2x2 dock — bottom right, ~60% of original size */
 .hp-dock {
   --hp-dock-cell: 1.64rem;
@@ -1443,7 +1469,6 @@ a.hp-galerie-card:hover {
   font-weight: 600;
   font-size: clamp(0.88rem, 2.2vw, 0.98rem);
   line-height: 1.65;
-  text-align: left;
   text-indent: var(--hp-despre-indent);
 }
 
@@ -1585,7 +1610,6 @@ a.hp-galerie-card:hover {
   font-weight: 600;
   font-size: 0.9rem;
   line-height: 1.55;
-  text-align: left;
   max-width: 36rem;
 }
 
@@ -2238,7 +2262,6 @@ a.hp-galerie-card:hover {
 }
 
 .hp-section__lead {
-  text-align: center;
   color: var(--hp-muted);
   max-width: 34rem;
   margin: 0 auto 1rem;
@@ -2497,7 +2520,6 @@ a.hp-galerie-card:hover {
 
 .hp-offer-expand__body {
   margin: 0 0 1.25rem;
-  text-align: left;
 }
 
 .hp-offer-expand__detail {
@@ -2506,7 +2528,6 @@ a.hp-galerie-card:hover {
   font-size: 0.92rem;
   line-height: 1.55;
   font-weight: 600;
-  text-align: left;
 }
 
 .hp-offer-expand__detail:last-child {
@@ -2520,7 +2541,6 @@ a.hp-galerie-card:hover {
   font-size: 0.92rem;
   line-height: 1.55;
   font-weight: 600;
-  text-align: left;
 }
 
 .hp-offer-expand__list li {
@@ -2599,7 +2619,6 @@ a.hp-galerie-card:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
 }
 
 .hp-about__text p {
@@ -2607,6 +2626,7 @@ a.hp-galerie-card:hover {
   font-weight: 600;
   margin: 0 0 1.35rem;
   max-width: 34rem;
+  width: 100%;
   font-size: 0.92rem;
   line-height: 1.55;
 }
