@@ -29,6 +29,11 @@
   pointer-events: none;
 }
 
+/* Hard hide after first successful page swipe (Chrome remount safety) */
+html.hp-swipe-hint-dismissed .hp-page-swipe-edges {
+  display: none !important;
+}
+
 .hp-page-swipe-curl {
   /* Hero height ≈ min(15.5rem, 100vw × 9/16), then a small gap under the wave */
   --hp-swipe-hint-top: calc(min(15.5rem, 100vw * 9 / 16) + 0.55rem);

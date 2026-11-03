@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { setAppLanguage } from "../../i18n";
 import "./navbar.css";
 
 const Navbar = () => {
@@ -106,24 +107,24 @@ const Navbar = () => {
           <div className="language-slider language-slider-desktop">
             <button
               type="button"
-              className={i18n.language === "ro" ? "active" : ""}
-              onClick={() => i18n.changeLanguage("ro")}
+              className={!i18n.language.startsWith("en") ? "active" : ""}
+              onClick={() => setAppLanguage("ro")}
             >
               RO
             </button>
             <button
               type="button"
-              className={i18n.language === "en" ? "active" : ""}
-              onClick={() => i18n.changeLanguage("en")}
+              className={i18n.language.startsWith("en") ? "active" : ""}
+              onClick={() => setAppLanguage("en")}
             >
               EN
             </button>
           </div>
           <div className="language-slider language-slider-mobile">
-            {i18n.language === "ro" ? (
-              <button type="button" onClick={() => i18n.changeLanguage("en")}>EN</button>
+            {i18n.language.startsWith("en") ? (
+              <button type="button" onClick={() => setAppLanguage("ro")}>RO</button>
             ) : (
-              <button type="button" onClick={() => i18n.changeLanguage("ro")}>RO</button>
+              <button type="button" onClick={() => setAppLanguage("en")}>EN</button>
             )}
           </div>
         </div>

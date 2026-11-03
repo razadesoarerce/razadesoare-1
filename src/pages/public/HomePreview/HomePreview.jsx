@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { setAppLanguage } from "../../../i18n";
 import { PREVIEW_HOME, PREVIEW_DESPRE, PREVIEW_GALERIE } from "./previewNav";
 import { clampDockPos, getDockViewportHome } from "./dockViewport";
 import { subscribeVisualViewport } from "../../../utils/visualViewport";
@@ -466,7 +467,7 @@ const HomePreview = () => {
   };
 
   const toggleLanguage = () => {
-    i18n.changeLanguage(activeLang === "RO" ? "en" : "ro");
+    setAppLanguage(activeLang === "RO" ? "en" : "ro");
   };
 
   const goHome = () => {

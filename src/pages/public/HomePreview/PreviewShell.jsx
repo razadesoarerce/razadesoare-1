@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FaFacebookF } from "react-icons/fa";
+import { setAppLanguage } from "../../../i18n";
 import { PREVIEW_HOME } from "./previewNav";
 import PreviewPageSwipe from "./PreviewPageSwipe";
 import { PreviewMenuBackdrop, PreviewMenuPanel } from "./PreviewNavMenu";
@@ -172,7 +173,7 @@ const PreviewShell = ({ children, className = "" }) => {
   };
 
   const toggleLanguage = () => {
-    i18n.changeLanguage(activeLang === "RO" ? "en" : "ro");
+    setAppLanguage(activeLang === "RO" ? "en" : "ro");
   };
 
   const goHome = () => {

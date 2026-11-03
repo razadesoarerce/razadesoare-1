@@ -10,25 +10,41 @@ const FADE_MS = 240;
 const MOBILE_MQ = "(max-width: 899px)";
 /** After one successful page swipe, edge peeks stay hidden. */
 const SWIPE_HINT_KEY = "hp-preview-page-swipe-hint-v1";
+const SWIPE_HINT_CLASS = "hp-swipe-hint-dismissed";
 
 /** Survives HomePreview ↔ PreviewShell remounts during swipe navigation. */
 let pendingPageEnter = false;
+/** In-memory mirror — Chrome remounts can race localStorage reads. */
+let swipeHintDismissedMemory = false;
 
 const readSwipeHintDismissed = () => {
+  if (swipeHintDismissedMemory) return true;
   try {
-    return window.localStorage.getItem(SWIPE_HINT_KEY) === "1";
+    if (window.localStorage.getItem(SWIPE_HINT_KEY) === "1") {
+      swipeHintDismissedMemory = true;
+      return true;
+    }
   } catch {
-    return false;
+    /* ignore */
   }
+  return false;
 };
 
 const persistSwipeHintDismissed = () => {
+  swipeHintDismissedMemory = true;
   try {
     window.localStorage.setItem(SWIPE_HINT_KEY, "1");
   } catch {
     /* ignore */
   }
+  if (typeof document !== "undefined") {
+    document.documentElement.classList.add(SWIPE_HINT_CLASS);
+  }
 };
+
+if (typeof window !== "undefined" && readSwipeHintDismissed()) {
+  document.documentElement.classList.add(SWIPE_HINT_CLASS);
+}
 
 /** Zones where page-swipe must not compete with local gestures. */
 const IGNORE_SELECTOR = [
@@ -84,8 +100,8 @@ const PreviewPageSwipe = () => {
   const canNext = navIndex >= 0 && navIndex < PREVIEW_NAV.length - 1;
 
   const dismissHints = () => {
-    setShowHints(false);
     persistSwipeHintDismissed();
+    setShowHints(false);
   };
 
   useEffect(() => {
@@ -105,6 +121,8 @@ const PreviewPageSwipe = () => {
 
     if (!pendingPageEnter) return undefined;
     pendingPageEnter = false;
+    // Belt-and-suspenders: always hide hints after a swipe navigation lands.
+    dismissHints();
     root.classList.remove("hp--page-enter");
     void root.offsetWidth;
     root.classList.add("hp--page-enter");
@@ -112,6 +130,7 @@ const PreviewPageSwipe = () => {
       root.classList.remove("hp--page-enter");
     }, FADE_MS + 80);
     return () => window.clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- only on route change
   }, [location.pathname]);
 
   useEffect(() => {
@@ -193,9 +212,15 @@ const PreviewPageSwipe = () => {
       document.removeEventListener("touchend", onEnd);
       document.removeEventListener("touchcancel", onEnd);
     };
-  }, [mobile, navIndex, navigate, showHints]);
+  }, [mobile, navIndex, navigate]);
 
-  if (!mobile || navIndex < 0 || !showHints || typeof document === "undefined") {
+  if (
+    !mobile ||
+    navIndex < 0 ||
+    !showHints ||
+    readSwipeHintDismissed() ||
+    typeof document === "undefined"
+  ) {
     return null;
   }
 
