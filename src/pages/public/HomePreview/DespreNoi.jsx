@@ -13,9 +13,9 @@ const StoryRule = () => (
 );
 
 const BANNER_META = [
+  { id: "b3", src: "/images/preview/despre/banner-3.jpg" },
   { id: "b1", src: "/images/preview/despre/banner-1.jpg" },
   { id: "b2", src: "/images/preview/despre/banner-2.jpg" },
-  { id: "b3", src: "/images/preview/despre/banner-3.jpg" },
 ];
 
 const STORY_BLOCK_IDS = ["vision", "accreditation", "education", "mission"];
