@@ -2,7 +2,7 @@ import PreviewPageMark from "./PreviewPageMark";
 
 /**
  * Shared centered page title + subtitle with progressive sun mark.
- * rays: Informații=1, Despre=2, Echipă=3, Galerie=4, Blog=5
+ * rays: Informații=1, Despre=2, Echipă=3, Galerie=4
  */
 const PreviewPageHead = ({
   id,

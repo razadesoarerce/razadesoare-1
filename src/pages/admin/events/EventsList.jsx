@@ -107,7 +107,6 @@ const EventsList = () => {
                   <td>{formatDate(event.createdAt)}</td>
                   <td>
                     <Link to={`/admin/events/edit/${event.id}`} className="admin-action-btn admin-edit-btn">Edit</Link>
-                    <a href={`${window.location.origin}/evenimente/${event.id}`} target="_blank" rel="noopener noreferrer" className="admin-action-btn admin-preview-btn">Preview</a>
                     <button type="button" onClick={() => handleDelete(event)} className="admin-action-btn admin-delete-btn">
                       Delete
                     </button>

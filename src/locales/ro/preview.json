@@ -4,8 +4,21 @@
     "info": "Informații",
     "about": "Despre noi",
     "team": "Echipa noastră",
-    "gallery": "Galerie foto",
-    "blog": "Blog"
+    "gallery": "Galerie foto"
+  },
+  "seo": {
+    "homeTitle": "Școala Specială Rază de Soare – Educație adaptată pentru copii cu CES",
+    "homeDescription": "Școala Specială Rază de Soare din Arad oferă educație adaptată, terapii și sprijin pentru copii cu cerințe educaționale speciale. Strada Diogene nr. 12.",
+    "aboutTitle": "Despre noi – Școala Specială Rază de Soare",
+    "aboutDescription": "Istoricul și misiunea Școlii Speciale Rază de Soare din Arad, școală pentru copii cu cerințe educaționale speciale.",
+    "teamTitle": "Echipa noastră – Școala Specială Rază de Soare",
+    "teamDescription": "Conducerea, cadrele didactice și terapeuții Școlii Speciale Rază de Soare din Arad.",
+    "infoTitle": "Informații – Școala Specială Rază de Soare",
+    "infoDescription": "Admitere, documente de înscriere și structura anului școlar la Școala Specială Rază de Soare din Arad.",
+    "galleryTitle": "Galerie foto – Școala Specială Rază de Soare",
+    "galleryDescription": "Fotografii din activitățile și evenimentele Școlii Speciale Rază de Soare din Arad.",
+    "albumTitle": "{{title}} – Galerie foto – Școala Specială Rază de Soare",
+    "albumDescription": "Fotografii din albumul {{title}} al Școlii Speciale Rază de Soare din Arad."
   },
   "chrome": {
     "dockAria": "Controale rapide — poți muta dock-ul",
@@ -377,8 +390,7 @@
         "internalHeading": "Documente interne – Școala Specială „Rază de Soare”",
         "internalDocs": [
           "Regulament de Ordine Interioară",
-          "Formularul de înscriere al copilului în Școala Specială Rază de Soare",
-          "Formular 230"
+          "Formularul de înscriere al copilului în Școala Specială Rază de Soare"
         ],
         "rightsHeading": "Drepturile copilului cu dizabilitate",
         "legal": [
@@ -471,53 +483,6 @@
       "ateliere-creative": {
         "title": "Ateliere creative",
         "coverAlt": "Atelier creativ cu culori"
-      }
-    }
-  },
-  "blog": {
-    "heroAria": "Blog",
-    "coverAlt": "Completarea unui formular pe birou — noutăți și informații de la școală",
-    "title": "Blog educațional",
-    "subtitle": "Informații utile pentru părinți și copii cu CES",
-    "filtersAria": "Filtrează după categorie",
-    "seeAll": "Vezi toate",
-    "seeLess": "Vezi mai puțin",
-    "expandDisabledTitle": "Disponibil când categoria are mai mult de 3 articole",
-    "filters": {
-      "toate": "Toate",
-      "sfaturi": "Sfaturi",
-      "educatie": "Educație",
-      "psihologie": "Psihologie",
-      "logopedie": "Logopedie",
-      "kinetoterapie": "Kinetoterapie"
-    },
-    "categories": {
-      "sfaturi-parinti": "Sfaturi pentru părinți",
-      "educatie-speciala": "Educație specială",
-      "psihologie": "Psihologie",
-      "logopedie": "Logopedie",
-      "kinetoterapie": "Kinetoterapie"
-    },
-    "articles": {
-      "sfaturi-parinti-1": {
-        "title": "Cum putem crea o rutină zilnică liniștitoare pentru copil",
-        "coverAlt": "Joc împreună la masă"
-      },
-      "educatie-speciala-1": {
-        "title": "Activități pentru dezvoltarea atenției și concentrării",
-        "coverAlt": "Activitate cu carte senzorială"
-      },
-      "psihologie-1": {
-        "title": "Cum îi ajutăm pe copii să își gestioneze emoțiile",
-        "coverAlt": "Joc educativ la masă"
-      },
-      "logopedie-1": {
-        "title": "Cum stimulăm vorbirea la copii prin joc",
-        "coverAlt": "Activitate creativă ghidată cu un copil"
-      },
-      "kinetoterapie-1": {
-        "title": "Exerciții simple pentru dezvoltarea motricității la copii",
-        "coverAlt": "Activitate de mișcare ghidată"
       }
     }
   }

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import PageSeo from "../../../components/common/PageSeo";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import { PREVIEW_GALERIE } from "./previewNav";
@@ -147,6 +148,11 @@ const GalerieAlbum = () => {
 
   return (
     <PreviewShell>
+      <PageSeo
+        title={t("preview.seo.albumTitle", { title })}
+        description={t("preview.seo.albumDescription", { title })}
+        path={`/galerie-foto/${album.id}`}
+      />
       <main className="hp-page hp-galerie-album">
         <header className="hp-section hp-despre-intro hp-galerie-album__header">
           <Link to={PREVIEW_GALERIE} className="hp-galerie-album__back">

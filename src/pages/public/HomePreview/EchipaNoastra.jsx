@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import PageSeo from "../../../components/common/PageSeo";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageHead from "./PreviewPageHead";
@@ -133,6 +134,11 @@ const EchipaNoastra = () => {
 
   return (
     <PreviewShell className={expanded ? "hp--offer-open" : ""}>
+      <PageSeo
+        title={t("preview.seo.teamTitle")}
+        description={t("preview.seo.teamDescription")}
+        path="/echipa-noastra"
+      />
       <main className="hp-page">
         <section
           className="hp-hero hp-despre-hero hp-echipa-hero"

@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
+import PageSeo from "../../../components/common/PageSeo";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageHead from "./PreviewPageHead";
@@ -16,12 +17,29 @@ const INFO_CARD_META = [
 
 const asStringList = (value) => (Array.isArray(value) ? value : []);
 
-const DownloadPlaceholder = ({ label, downloadLabel }) => (
+/** Same order as preview.info.cards.documente.internalDocs. */
+const INTERNAL_DOC_FILES = [
+  {
+    href: "/documents/regulament-de-ordine-interioara.pdf",
+    download: "Regulament de ordine interioara.pdf",
+  },
+  {
+    href: "/documents/formular-inscriere.doc",
+    download: "Formular inscriere.doc",
+  },
+];
+
+const DownloadLink = ({ label, href, download, downloadLabel }) => (
   <li className="hp-info-doc">
     <span className="hp-info-doc__name">{label}</span>
-    <button type="button" className="hp-info-download" disabled>
+    <a
+      className="hp-info-download"
+      href={href}
+      download={download}
+      aria-label={`${downloadLabel}: ${label}`}
+    >
       {downloadLabel}
-    </button>
+    </a>
   </li>
 );
 
@@ -122,13 +140,19 @@ const CardPanel = ({ id, t }) => {
         <p>{t(`${base}.intro`)}</p>
         <h3 className="hp-info-panel__heading">{t(`${base}.internalHeading`)}</h3>
         <ul className="hp-info-docs">
-          {asStringList(t(`${base}.internalDocs`, { returnObjects: true })).map((label) => (
-            <DownloadPlaceholder
-              key={label}
-              label={label}
-              downloadLabel={t("preview.info.download")}
-            />
-          ))}
+          {asStringList(t(`${base}.internalDocs`, { returnObjects: true })).map((label, index) => {
+            const file = INTERNAL_DOC_FILES[index];
+            if (!file) return null;
+            return (
+              <DownloadLink
+                key={file.href}
+                label={label}
+                href={file.href}
+                download={file.download}
+                downloadLabel={t("preview.info.download")}
+              />
+            );
+          })}
         </ul>
         <h3 className="hp-info-panel__heading">{t(`${base}.rightsHeading`)}</h3>
         <ul className="hp-info-legal">
@@ -181,6 +205,11 @@ const Informatii = () => {
 
   return (
     <PreviewShell>
+      <PageSeo
+        title={t("preview.seo.infoTitle")}
+        description={t("preview.seo.infoDescription")}
+        path="/informatii"
+      />
       <main className="hp-page">
         <section
           className="hp-hero hp-despre-hero hp-echipa-hero"

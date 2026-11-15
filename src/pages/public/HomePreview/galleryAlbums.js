@@ -56,4 +56,4 @@ export const GALLERY_ALBUMS = [
 export const getGalleryAlbum = (id) =>
   GALLERY_ALBUMS.find((album) => album.id === id) ?? null;
 
-export const galleryAlbumPath = (id) => `/preview/galerie-foto/${id}`;
+export const galleryAlbumPath = (id) => `/galerie-foto/${id}`;

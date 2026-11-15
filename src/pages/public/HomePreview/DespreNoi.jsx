@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import PageSeo from "../../../components/common/PageSeo";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageHead from "./PreviewPageHead";
@@ -37,6 +38,11 @@ const DespreNoi = () => {
 
   return (
     <PreviewShell>
+      <PageSeo
+        title={t("preview.seo.aboutTitle")}
+        description={t("preview.seo.aboutDescription")}
+        path="/despre-noi"
+      />
       <main className="hp-page">
         <section
           className="hp-hero hp-despre-hero"

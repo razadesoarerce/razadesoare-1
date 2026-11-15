@@ -58,7 +58,6 @@ const IGNORE_SELECTOR = [
   ".hp-info-lightbox",
   ".hp-info-zoom",
   ".hp-contact-dd",
-  ".hp-blog-filters",
   ".hp-page-swipe-edges",
   ".hp-galerie-lightbox",
   "input",

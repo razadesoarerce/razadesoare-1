@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import PageSeo from "../../../components/common/PageSeo";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageHead from "./PreviewPageHead";
@@ -20,6 +21,11 @@ const GalerieFoto = () => {
 
   return (
     <PreviewShell>
+      <PageSeo
+        title={t("preview.seo.galleryTitle")}
+        description={t("preview.seo.galleryDescription")}
+        path="/galerie-foto"
+      />
       <main className="hp-page hp-galerie">
         <section
           className="hp-hero hp-despre-hero hp-echipa-hero"

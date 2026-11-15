@@ -23,7 +23,7 @@
  * Position: just below the cover/hero (matches .hp-hero 16:9 + max-height),
  * glued to the left and/or right screen edges.
  *   • left edge  ‹  = previous page (hidden on Acasă)
- *   • right edge ›  = next page (hidden on Blog)
+ *   • right edge ›  = next page (hidden on Galerie foto)
  */
 .hp-page-swipe-edges {
   pointer-events: none;
@@ -1129,9 +1129,11 @@ a.hp-galerie-card:hover {
   line-height: 1.35;
 }
 
-.hp button.hp-info-download,
-.hp-info-download {
+.hp a.hp-info-download {
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
   background: var(--hp-blue);
@@ -1139,8 +1141,17 @@ a.hp-galerie-card:hover {
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.02em;
-  opacity: 0.55;
-  cursor: not-allowed;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hp a.hp-info-download:hover,
+.hp a.hp-info-download:focus-visible {
+  filter: brightness(1.12);
+  outline: 2px solid rgba(26, 74, 141, 0.35);
+  outline-offset: 2px;
 }
 
 .hp-info-legal {
@@ -3466,240 +3477,12 @@ a.hp-galerie-card:hover {
   }
 }
 
-/* Blog educațional — category carousels */
-.hp-section.hp-despre-intro.hp-blog__header {
-  padding-top: 1.5rem;
-  padding-bottom: 0.75rem;
-}
-
-/* 2×3 chip grid on phone — all categories visible, no horizontal swipe */
-.hp-blog-filters {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.4rem;
-  padding-top: 0.55rem;
-  padding-bottom: 0.45rem;
-}
-
-.hp-blog-filters__chip {
-  width: 100%;
-  min-width: 0;
-  border: 1px solid rgba(26, 74, 141, 0.16);
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--hp-blue);
-  font-family: inherit;
-  font-size: clamp(0.62rem, 2.7vw, 0.72rem);
-  font-weight: 700;
-  line-height: 1.15;
-  padding: 0.52rem 0.3rem;
-  border-radius: 0.7rem;
-  cursor: pointer;
-  text-align: center;
-  white-space: nowrap;
-  box-shadow: 0 1px 3px rgba(26, 74, 141, 0.04);
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease,
-    box-shadow 0.15s ease, transform 0.15s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.hp-blog-filters__chip:hover,
-.hp-blog-filters__chip:focus-visible {
-  border-color: rgba(26, 74, 141, 0.32);
-  box-shadow: 0 3px 10px rgba(26, 74, 141, 0.08);
-  outline: none;
-}
-
-.hp-blog-filters__chip:active {
-  transform: scale(0.98);
-}
-
-.hp-blog-filters__chip.is-active {
-  background: var(--hp-blue);
-  border-color: var(--hp-blue);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(26, 74, 141, 0.22);
-}
-
-@media (min-width: 640px) {
-  .hp-blog-filters {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 0.45rem;
-  }
-
-  .hp-blog-filters__chip {
-    width: auto;
-    font-size: 0.78rem;
-    padding: 0.48rem 0.85rem;
-    border-radius: 999px;
-  }
-}
-
-.hp-blog-category {
-  padding-top: 1.15rem;
-  padding-bottom: 0.5rem;
-}
-
-.hp-blog-category__head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-.hp-blog-category__title {
-  font-family: var(--hp-display);
-  font-size: clamp(1.15rem, 3.5vw, 1.35rem);
-  font-weight: 800;
-  color: var(--hp-blue);
-  margin: 0;
-  line-height: 1.2;
-}
-
-.hp-blog-category__all {
-  flex-shrink: 0;
-  border: 0;
-  background: transparent;
-  color: var(--hp-blue);
-  font-family: inherit;
-  font-size: 0.82rem;
-  font-weight: 700;
-  padding: 0;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.hp-blog-category__all:hover:not(:disabled),
-.hp-blog-category__all:focus-visible:not(:disabled) {
-  text-decoration: underline;
-  outline: none;
-}
-
-.hp-blog-category__all.is-disabled,
-.hp-blog-category__all:disabled {
-  color: rgba(26, 74, 141, 0.35);
-  cursor: default;
-  text-decoration: none;
-}
-
-.hp-blog-category__carousel {
-  width: 100%;
-  overflow: hidden;
-}
-
-/* Expanded: all articles in a grid — pushes categories below */
-.hp-blog-category__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.55rem;
-  padding-bottom: 0.75rem;
-  animation: hp-blog-expand-in 0.28s ease-out;
-}
-
-@keyframes hp-blog-expand-in {
-  from {
-    opacity: 0;
-    transform: translateY(-0.35rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hp-blog-swiper {
-  padding-bottom: 1.35rem;
-}
-
-.hp-blog-swiper .swiper-slide {
-  height: auto;
-}
-
-.hp-blog-swiper .swiper-pagination-bullet {
-  background: rgba(26, 74, 141, 0.22);
-  opacity: 1;
-  width: 6px;
-  height: 6px;
-}
-
-.hp-blog-swiper .swiper-pagination-bullet-active {
-  background: var(--hp-blue);
-}
-
-.hp-blog-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  border-radius: 0.65rem;
-  border: 1px solid rgba(26, 74, 141, 0.12);
-  background: #fff;
-  overflow: hidden;
-  box-shadow: 0 3px 10px rgba(26, 74, 141, 0.05);
-}
-
-.hp-blog-card__media {
-  aspect-ratio: 5 / 4;
-  overflow: hidden;
-  background: #eef2f7;
-}
-
-.hp-blog-card__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.hp-blog-card__title {
-  margin: 0;
-  padding: 0.4rem 0.45rem 0.5rem;
-  font-family: var(--hp-display);
-  font-size: 0.68rem;
-  font-weight: 800;
-  line-height: 1.25;
-  color: var(--hp-blue);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-@media (min-width: 640px) {
-  .hp-blog-card {
-    border-radius: 0.75rem;
-  }
-
-  .hp-blog-card__title {
-    font-size: 0.75rem;
-    padding: 0.5rem 0.55rem 0.6rem;
-  }
-
-  .hp-blog-category__grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-  }
-}
-
-@media (min-width: 900px) {
-  .hp-blog-card__title {
-    font-size: 0.8rem;
-  }
-
-  .hp-blog-category__grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.85rem;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .hp-hero__bg,
   .hp-hero-card__sun,
   .hp-hero-card__sun-core,
   .hp-hero-card__sun-rays,
   .hp-contact-dd__panel,
-  .hp-blog-category__grid,
   .hp-offer-card,
   .hp-support-btn,
   .hp-life__item img,
@@ -4063,18 +3846,6 @@ a.hp-galerie-card:hover {
 .hp--type-test .hp-info-list,
 .hp--type-test .hp-info-legal__text {
   font-size: 1.02rem;
-}
-
-.hp--type-test .hp-blog__header .hp-despre-intro__title {
-  font-size: clamp(2.06rem, 6.5vw, 2.77rem);
-}
-
-.hp--type-test .hp-blog-category__title {
-  font-size: clamp(1.18rem, 3.5vw, 1.42rem);
-}
-
-.hp--type-test .hp-blog-card__title {
-  font-size: clamp(0.92rem, 2.8vw, 1.06rem);
 }
 
 .hp--type-test .hp-echipa-specialisti__banner h2 {

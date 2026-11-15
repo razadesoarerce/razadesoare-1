@@ -8,6 +8,7 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { setAppLanguage } from "../../../i18n";
+import PageSeo from "../../../components/common/PageSeo";
 import { PREVIEW_HOME, PREVIEW_DESPRE, PREVIEW_GALERIE } from "./previewNav";
 import { clampDockPos, getDockViewportHome } from "./dockViewport";
 import { subscribeVisualViewport } from "../../../utils/visualViewport";
@@ -608,6 +609,11 @@ const HomePreview = () => {
       className={`hp hp--type-test${expandedOffer ? " hp--offer-open" : ""}${menuOpen ? " hp--menu-open" : ""}${contactOpen ? " hp--contact-open" : ""}`}
       lang={activeLang === "EN" ? "en" : "ro"}
     >
+      <PageSeo
+        title={t("preview.seo.homeTitle")}
+        description={t("preview.seo.homeDescription")}
+        path="/"
+      />
       {contactPanel}
       <div
         ref={dockRef}

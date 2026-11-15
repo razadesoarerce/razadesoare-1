@@ -1,6 +1,23 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/preview", "destination": "/", "permanent": true },
+    { "source": "/preview/test", "destination": "/", "permanent": true },
+    { "source": "/preview/blog", "destination": "/", "permanent": true },
+    { "source": "/preview/:path*", "destination": "/:path*", "permanent": true },
+    { "source": "/despre/echipa", "destination": "/echipa-noastra", "permanent": true },
+    { "source": "/despre/echipa/:path*", "destination": "/echipa-noastra", "permanent": true },
+    { "source": "/despre", "destination": "/despre-noi", "permanent": true },
+    { "source": "/despre/:path*", "destination": "/despre-noi", "permanent": true },
+    { "source": "/educatie", "destination": "/", "permanent": true },
+    { "source": "/educatie/:path*", "destination": "/", "permanent": true },
+    { "source": "/informatii/admitere", "destination": "/informatii", "permanent": true },
+    { "source": "/informatii/documente", "destination": "/informatii", "permanent": true },
+    { "source": "/informatii/structura-anului-scolar", "destination": "/informatii", "permanent": true },
+    { "source": "/evenimente", "destination": "/", "permanent": true },
+    { "source": "/evenimente/:path*", "destination": "/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
