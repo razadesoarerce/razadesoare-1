@@ -1889,6 +1889,7 @@ a.hp-galerie-card:hover {
   overflow: hidden;
 }
 
+.hp-hero__picture,
 .hp-hero__bg,
 .hp-hero__shade {
   position: absolute;
@@ -1896,11 +1897,26 @@ a.hp-galerie-card:hover {
   z-index: -2;
 }
 
+.hp-hero__picture {
+  display: block;
+  overflow: hidden;
+}
+
 .hp-hero__bg {
-  background-size: cover;
-  background-position: center 42%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
   transform: scale(1.02);
   animation: hp-kenburns 18s ease-in-out infinite alternate;
+}
+
+@media (min-width: 900px) {
+  .hp-hero__bg {
+    /* Desktop banner keeps building + people on the right in frame */
+    object-position: center 48%;
+  }
 }
 
 /* Soft wash — glass card carries its own contrast */

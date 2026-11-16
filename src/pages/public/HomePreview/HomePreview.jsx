@@ -169,6 +169,8 @@ const CONTACT_MAPS_URL =
 const CONTACT_EMAIL = "razadesoarerce@yahoo.com";
 const CONTACT_PHONE_DISPLAY = "0257 214 805";
 const CONTACT_PHONE_TEL = "tel:+40257214805";
+const CONTACT_PHONE_MOBILE_DISPLAY = "0741 058 138";
+const CONTACT_PHONE_MOBILE_TEL = "tel:+40741058138";
 
 /** Center of dock vs Hero bounds — flips contrast when dock leaves the photo. */
 const isDockOutsideHeroRect = (heroEl, left, top, width, height) => {
@@ -599,6 +601,32 @@ const HomePreview = () => {
                 ›
               </span>
             </a>
+            <a
+              className="hp-contact-dd__row"
+              href={CONTACT_PHONE_MOBILE_TEL}
+              aria-label={t("preview.contact.callAria", {
+                phone: CONTACT_PHONE_MOBILE_DISPLAY,
+              })}
+            >
+              <span className="hp-contact-dd__icon" aria-hidden>
+                <svg viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.2 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"
+                  />
+                </svg>
+              </span>
+              <span className="hp-contact-dd__text">
+                <span className="hp-contact-dd__label">{t("preview.contact.phone")}</span>
+                <span className="hp-contact-dd__value">
+                  {CONTACT_PHONE_MOBILE_DISPLAY}
+                </span>
+                <span className="hp-contact-dd__action">{t("preview.contact.call")}</span>
+              </span>
+              <span className="hp-contact-dd__go" aria-hidden>
+                ›
+              </span>
+            </a>
           </div>,
           document.body
         )
@@ -689,12 +717,18 @@ const HomePreview = () => {
 
       <main>
         <section ref={heroRef} className="hp-hero" aria-labelledby="hp-hero-title">
-          <div
-            className="hp-hero__bg"
-            style={{
-              backgroundImage: "url(/images/preview/hero-main.jpg)",
-            }}
-          />
+          <picture className="hp-hero__picture">
+            <source
+              media="(min-width: 900px)"
+              srcSet="/images/preview/desktop/hero-main.jpeg"
+            />
+            <img
+              className="hp-hero__bg"
+              src="/images/preview/hero-main.jpg"
+              alt=""
+              decoding="async"
+            />
+          </picture>
           <div className="hp-hero__shade" />
           <div className="hp-hero__content">
             <article className="hp-hero-card hp-glass">
