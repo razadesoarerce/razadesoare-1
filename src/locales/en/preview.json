@@ -170,9 +170,11 @@
   "legal": {
     "aria": "Legal information",
     "collapse": "Close",
+    "visitors": "Visitors: {{count}}",
+    "visitorsAria": "Total number of site visitors",
     "privacy": {
       "title": "Privacy policy",
-      "updated": "Last updated: October 2026",
+      "updated": "Last updated: November 2026",
       "sections": [
         {
           "heading": "1. Who we are",
@@ -185,7 +187,8 @@
           "heading": "2. What data we process",
           "paragraphs": [
             "On the public area of the site we do not collect personal data through our own online forms. If you contact us by email, phone or social media, we process the data you send us (for example name, email address, phone number and message content) in order to reply.",
-            "Your browser may store technical preferences locally, without identifying you as a person: RO/EN language and the floating menu position on the preview site. The accessibility tool does not store settings on your device; every page load starts from the native look.",
+            "Your browser may store technical preferences locally, without identifying you as a person: RO/EN language, the floating menu position, and a technical flag that limits visit counting to at most once per day on the same device. The accessibility tool does not store settings on your device; every page load starts from the native look.",
+            "The site shows an anonymous visitor counter (total). The counter increases at most once per day per browser and does not store names, email, IP address or other identifying data on our side. The total is kept in Firebase Firestore, which is also used for other technical site features.",
             "The read-selected-text feature (text-to-speech), when enabled, runs locally through the browser / operating system. Selected text is not sent to the school’s servers; voice quality depends on your device.",
             "The site administration area is for authorised staff only. Sign-in uses Firebase Authentication, which stores session data needed for the account to work."
           ]
@@ -193,14 +196,15 @@
         {
           "heading": "3. Purposes and legal bases",
           "paragraphs": [
-            "We process data to: communicate with people interested in the school; keep the site running and secure; provide accessibility features you turn on; and meet legal obligations where they apply.",
-            "Legal bases may include: legitimate interest (running an informational website and user-requested accessibility tools), steps at the request of the person (replying to contact), and, where required, a legal obligation or consent."
+            "We process data to: communicate with people interested in the school; keep the site running and secure; provide accessibility features you turn on; show an anonymous indicator of interest in the site (the visitor counter); and meet legal obligations where they apply.",
+            "Legal bases may include: legitimate interest (running an informational website, user-requested accessibility tools and an anonymous statistical counter without profiling), steps at the request of the person (replying to contact), and, where required, a legal obligation or consent."
           ]
         },
         {
           "heading": "4. Recipients and third-party services",
           "paragraphs": [
             "The site is hosted on cloud infrastructure (Vercel). Google Fonts may be used to display fonts. Those services may process IP address and technical connection data under their own policies.",
+            "For administration sign-in and for the anonymous visitor counter we use Firebase (Google). Firebase may process technical connection data under Google / Firebase policies; our counter does not link visits to an identifiable person.",
             "Links to external sites (for example the 3.5% tax redirection form on formular230.ro or the school’s Facebook page) lead to independent controllers. We do not control how they process data after you leave our site.",
             "We do not sell personal data and we do not use it for behavioural advertising on this site."
           ]
@@ -209,7 +213,7 @@
           "heading": "5. Retention",
           "paragraphs": [
             "Contact messages are kept as long as needed to handle the request and afterwards for any legally required archiving or to defend legal rights.",
-            "Preferences saved in the browser (language, menu position) remain until you delete them in your device settings or until a site update replaces them. Accessibility-tool adjustments are not persisted and return to the native defaults on page reload; you can also reset them anytime from the tool panel."
+            "Preferences saved in the browser (language, menu position, daily counter flag) remain until you delete them in your device settings or until a site update replaces them. The anonymous visitor total is kept for as long as the site uses this indicator. Accessibility-tool adjustments are not persisted and return to the native defaults on page reload; you can also reset them anytime from the tool panel."
           ]
         },
         {
@@ -292,7 +296,7 @@
     },
     "cookies": {
       "title": "Cookies",
-      "updated": "Last updated: October 2026",
+      "updated": "Last updated: November 2026",
       "sections": [
         {
           "heading": "1. What cookies are",
@@ -303,8 +307,9 @@
         {
           "heading": "2. What we use on this site",
           "paragraphs": [
-            "At present, on the public area of the site we do not set analytics, advertising or behavioural tracking cookies.",
-            "We use local browser storage (localStorage) for: language preference (Romanian / English); the floating menu position on the preview site. This data stays on your device and is not sent to us as a marketing profile.",
+            "At present, on the public area of the site we do not set advertising or behavioural tracking cookies, and we do not use Google Analytics or similar profiling tools.",
+            "We use local browser storage (localStorage) for: language preference (Romanian / English); the floating menu position; a daily flag for the anonymous visitor counter (at most one count per day on the same browser). This data stays on your device and is not sent to us as a marketing profile.",
+            "The visitor counter shown in the site footer is an anonymous total kept in Firebase Firestore. We do not link visits to tracking cookies, to an IP address stored by us, or to a public-area user account.",
             "The accessibility tool (text size, contrast, brightness, read-selected-text) does not store preferences on your device: every page load starts with the native / default site look. Adjustments stay active only for the current browsing session on that page (until reload).",
             "Optionally, we use localStorage for a technical flag related to mobile navigation hints (swipe between pages): after you use the gesture once, the hints no longer appear. The flag does not identify you.",
             "Read-selected-text (text-to-speech), when enabled, uses the browser / system speech API. We do not upload the selected content to our servers for analytics or advertising.",
@@ -315,6 +320,7 @@
           "heading": "3. Third-party services",
           "paragraphs": [
             "When loading fonts (Google Fonts), the browser may contact Google servers, which may process technical connection data under Google’s policy.",
+            "Firebase (used for administration and for the anonymous counter) may process technical connection data under Google / Firebase policies.",
             "When you follow external links (Facebook, formular230.ro, Google Maps), those sites may set their own cookies, outside our control.",
             "Speech synthesis for reading text may use components provided by the operating system or browser; those may have their own device-level policies, which we do not control."
           ]
@@ -322,14 +328,14 @@
         {
           "heading": "4. Legal basis and necessity",
           "paragraphs": [
-            "The technical storage above is used to provide the features you request (showing the site in the chosen language and keeping the interface preference). Under ePrivacy rules, such strictly necessary means may be used without a separate consent banner.",
-            "If we later add statistics or marketing tools that require consent, we will update this section and ask for your agreement before enabling them."
+            "The technical storage above is used to provide the features you request (showing the site in the chosen language and keeping the interface preference) and for an anonymous statistical counter without individual profiling. Under ePrivacy rules, such strictly necessary / technical means may be used without a separate consent banner.",
+            "If we later add detailed statistics or marketing tools that require consent, we will update this section and ask for your agreement before enabling them."
           ]
         },
         {
           "heading": "5. How you can control browser data",
           "paragraphs": [
-            "You can delete cookies and site data in your browser settings (history / privacy / site data). After deletion, language and menu position may return to defaults.",
+            "You can delete cookies and site data in your browser settings (history / privacy / site data). After deletion, language, menu position and the daily counter flag may return to defaults (a new visit that day may be counted again on that device).",
             "In the accessibility tool you can tap “Reset settings” to immediately restore text size, contrast, brightness and text reading to the native site look, without deleting other browser data.",
             "Most browsers allow blocking third-party cookies; this usually does not affect the main content of our site in the current setup."
           ]

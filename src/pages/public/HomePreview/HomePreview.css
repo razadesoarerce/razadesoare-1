@@ -3019,6 +3019,16 @@ a.hp-galerie-card:hover {
   color: var(--hp-blue-deep, #0d2a54);
 }
 
+.hp-legal__visitors {
+  margin: 0.65rem 0 0;
+  text-align: center;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(26, 74, 141, 0.48);
+  line-height: 1.3;
+}
+
 .hp-legal__panel {
   margin-top: 0.85rem;
   padding: 0.85rem 0.75rem 0.9rem;

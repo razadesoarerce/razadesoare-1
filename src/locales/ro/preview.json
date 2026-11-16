@@ -170,9 +170,11 @@
   "legal": {
     "aria": "Informații legale",
     "collapse": "Închide",
+    "visitors": "Vizitatori: {{count}}",
+    "visitorsAria": "Număr total de vizitatori ai site-ului",
     "privacy": {
       "title": "Politica de confidențialitate",
-      "updated": "Actualizată: octombrie 2026",
+      "updated": "Actualizată: noiembrie 2026",
       "sections": [
         {
           "heading": "1. Cine suntem",
@@ -185,7 +187,8 @@
           "heading": "2. Ce date prelucrăm",
           "paragraphs": [
             "Pe zona publică a site-ului nu colectăm date personale prin formulare online proprii. Dacă ne contactați prin e-mail, telefon sau rețele sociale, prelucrăm datele pe care ni le transmiteți (de exemplu nume, adresă de e-mail, număr de telefon și conținutul mesajului), pentru a răspunde solicitării.",
-            "În browserul dumneavoastră pot fi stocate local preferințe tehnice, fără a identifica persoana: limba RO/EN și poziția meniului flotant pe site-ul preview. Instrumentul de accesibilitate nu salvează setări pe dispozitiv; la fiecare încărcare a paginii aspectul pornește de la starea nativă.",
+            "În browserul dumneavoastră pot fi stocate local preferințe tehnice, fără a identifica persoana: limba RO/EN, poziția meniului flotant și un indicator tehnic care limitează numărarea vizitelor la cel mult una pe zi pe același dispozitiv. Instrumentul de accesibilitate nu salvează setări pe dispozitiv; la fiecare încărcare a paginii aspectul pornește de la starea nativă.",
+            "Site-ul afișează un contor anonim de vizitatori (total). Contorul crește cel mult o dată pe zi pe browser, fără a stoca nume, e-mail, adresă IP sau alte date de identificare. Valoarea totală este păstrată în Firebase Firestore, folosit și pentru alte funcții tehnice ale site-ului.",
             "Funcția de citire a textului selectat (text-to-speech) rulează local, prin mecanismele browserului / sistemului de operare. Textul selectat nu ne este transmis pe serverele școlii; calitatea vocii depinde de dispozitivul dumneavoastră.",
             "Zona de administrare a site-ului este destinată doar personalului autorizat. Autentificarea folosește un serviciu de tip Firebase Authentication, care stochează date de sesiune necesare funcționării contului."
           ]
@@ -193,14 +196,15 @@
         {
           "heading": "3. Scopuri și temeiuri legale",
           "paragraphs": [
-            "Prelucrăm datele pentru: comunicarea cu persoanele interesate de activitatea școlii; asigurarea funcționării și securității site-ului; oferirea unor funcții de accesibilitate pe care le activați; respectarea obligațiilor legale, atunci când există.",
-            "Temeiurile pot include: interesul legitim (funcționarea unui site informativ și a instrumentelor de accesibilitate solicitate de utilizator), executarea unor demersuri la cererea persoanei (răspuns la contact) și, după caz, obligația legală sau consimțământul, atunci când legea o cere."
+            "Prelucrăm datele pentru: comunicarea cu persoanele interesate de activitatea școlii; asigurarea funcționării și securității site-ului; oferirea unor funcții de accesibilitate pe care le activați; afișarea unui indicator anonim de interes față de site (contorul de vizitatori); respectarea obligațiilor legale, atunci când există.",
+            "Temeiurile pot include: interesul legitim (funcționarea unui site informativ, a instrumentelor de accesibilitate solicitate de utilizator și a unui contor statistic anonim, fără profilare), executarea unor demersuri la cererea persoanei (răspuns la contact) și, după caz, obligația legală sau consimțământul, atunci când legea o cere."
           ]
         },
         {
           "heading": "4. Destinatari și servicii terțe",
           "paragraphs": [
             "Site-ul este găzduit pe infrastructură de tip cloud (Vercel). Pentru afișarea fonturilor pot fi folosite servicii Google Fonts. Acestea pot prelucra adresa IP și date tehnice de conexiune, conform politicilor proprii.",
+            "Pentru autentificare (admin) și pentru contorul anonim de vizitatori folosim Firebase (Google). Firebase poate prelucra date tehnice de conexiune conform politicilor Google / Firebase; contorul nostru nu asociază vizitele cu o persoană identificabilă.",
             "Linkurile către site-uri externe (de exemplu formularul de redirecționare 3,5% pe formular230.ro sau pagina Facebook a școlii) duc către operatori independenți. Nu controlăm modul în care aceștia prelucrează datele după ce părăsiți site-ul nostru.",
             "Nu vindem date personale și nu le folosim pentru publicitate comportamentală pe acest site."
           ]
@@ -209,7 +213,7 @@
           "heading": "5. Durata stocării",
           "paragraphs": [
             "Mesajele de contact se păstrează atât cât este necesar pentru soluționarea solicitării și, ulterior, pe perioada impusă de arhivare sau de apărarea unor drepturi în justiție.",
-            "Preferințele salvate în browser (limba, poziția meniului) rămân până le ștergeți din setările dispozitivului sau până la o actualizare a site-ului care le înlocuiește. Ajustările din instrumentul de accesibilitate nu sunt persistate și revin la valorile implicite (aspectul nativ) la reîncărcarea paginii; le puteți reseta oricând și din panoul instrumentului."
+            "Preferințele salvate în browser (limba, poziția meniului, indicatorul zilnic al contorului) rămân până le ștergeți din setările dispozitivului sau până la o actualizare a site-ului care le înlocuiește. Totalul anonim al vizitatorilor este păstrat cât timp site-ul folosește acest indicator. Ajustările din instrumentul de accesibilitate nu sunt persistate și revin la valorile implicite (aspectul nativ) la reîncărcarea paginii; le puteți reseta oricând și din panoul instrumentului."
           ]
         },
         {
@@ -292,7 +296,7 @@
     },
     "cookies": {
       "title": "Cookies",
-      "updated": "Actualizată: octombrie 2026",
+      "updated": "Actualizată: noiembrie 2026",
       "sections": [
         {
           "heading": "1. Ce sunt cookie-urile",
@@ -303,8 +307,9 @@
         {
           "heading": "2. Ce folosim pe acest site",
           "paragraphs": [
-            "În prezent, pe zona publică a site-ului nu setăm cookie-uri de analiză, publicitate sau urmărire comportamentală.",
-            "Folosim stocare locală în browser (localStorage) pentru: preferința de limbă (română / engleză); poziția meniului flotant pe site-ul preview. Aceste date rămân pe dispozitivul dumneavoastră și nu ne sunt transmise ca profil de marketing.",
+            "În prezent, pe zona publică a site-ului nu setăm cookie-uri de publicitate sau de urmărire comportamentală și nu folosim Google Analytics sau instrumente similare de profilare.",
+            "Folosim stocare locală în browser (localStorage) pentru: preferința de limbă (română / engleză); poziția meniului flotant; un indicator zilnic legat de contorul anonim de vizitatori (cel mult o numărare pe zi pe același browser). Aceste date rămân pe dispozitivul dumneavoastră și nu ne sunt transmise ca profil de marketing.",
+            "Contorul de vizitatori afișat în subsolul site-ului este un total anonim păstrat în Firebase Firestore. Nu asociem vizitele cu cookie-uri de tracking, cu adresa IP stocată de noi sau cu un cont de utilizator pe zona publică.",
             "Instrumentul de accesibilitate (mărime text, contrast, luminozitate, citirea textului selectat) nu salvează preferințe pe dispozitiv: la fiecare încărcare a paginii site-ul pornește în aspectul nativ / implicit. Ajustările rămân active doar pe durata sesiunii de navigare în aceeași pagină (până la reîncărcare).",
             "Opțional, folosim localStorage pentru un indicator tehnic legat de indiciile de navigare pe mobil (swipe între pagini): după ce ați folosit o dată gestul, indiciile nu mai apar. Indicatorul nu identifică persoana.",
             "Citirea textului selectat (text-to-speech), când este activată, folosește API-ul de vorbire al browserului / sistemului. Nu încărcăm pe serverele noastre conținutul selecției în scop de analiză sau publicitate.",
@@ -315,6 +320,7 @@
           "heading": "3. Servicii terțe",
           "paragraphs": [
             "La încărcarea fonturilor (Google Fonts) browserul poate contacta servere ale Google, care pot prelucra date tehnice de conexiune conform politicii Google.",
+            "Firebase (folosit pentru administrare și pentru contorul anonim) poate prelucra date tehnice de conexiune conform politicilor Google / Firebase.",
             "Când accesați linkuri externe (Facebook, formular230.ro, hărți Google), acele site-uri își pot seta propriile cookie-uri, în afara controlului nostru.",
             "Sinteza vocală pentru citirea textului poate folosi componente furnizate de sistemul de operare sau de browser; acestea pot avea politici proprii la nivelul dispozitivului, pe care nu le controlăm."
           ]
@@ -322,14 +328,14 @@
         {
           "heading": "4. Temei și necesitate",
           "paragraphs": [
-            "Stocările tehnice menționate mai sus sunt folosite pentru a oferi funcțiile pe care le solicitați (afișarea site-ului în limba aleasă și păstrarea preferinței de interfață). Conform legislației privind confidențialitatea în comunicații electronice, astfel de mijloace strict necesare pot fi folosite fără un banner de consimțământ separat.",
-            "Dacă în viitor vom introduce instrumente de statistică sau marketing care necesită consimțământ, vom actualiza această secțiune și vom solicita acordul dumneavoastră înainte de activare."
+            "Stocările tehnice menționate mai sus sunt folosite pentru a oferi funcțiile pe care le solicitați (afișarea site-ului în limba aleasă, păstrarea preferinței de interfață) și pentru un contor statistic anonim, fără profilare individuală. Conform legislației privind confidențialitatea în comunicații electronice, astfel de mijloace strict necesare / tehnice pot fi folosite fără un banner de consimțământ separat.",
+            "Dacă în viitor vom introduce instrumente de statistică detaliată sau marketing care necesită consimțământ, vom actualiza această secțiune și vom solicita acordul dumneavoastră înainte de activare."
           ]
         },
         {
           "heading": "5. Cum puteți controla datele din browser",
           "paragraphs": [
-            "Puteți șterge cookie-urile și datele site-ului din setările browserului (istoric / confidențialitate / datele site-urilor). După ștergere, limba și poziția meniului pot reveni la valorile implicite.",
+            "Puteți șterge cookie-urile și datele site-ului din setările browserului (istoric / confidențialitate / datele site-urilor). După ștergere, limba, poziția meniului și indicatorul zilnic al contorului pot reveni la valorile implicite (o nouă vizită din ziua respectivă poate fi numărată din nou pe acel dispozitiv).",
             "Din instrumentul de accesibilitate puteți apăsa „Resetează setările” pentru a readuce imediat mărimea textului, contrastul, luminozitatea și citirea textului la aspectul nativ al site-ului, fără a șterge alte date din browser.",
             "Majoritatea browserelor permit blocarea cookie-urilor terțe; acest lucru nu afectează, de regulă, conținutul principal al site-ului nostru în configurația actuală."
           ]

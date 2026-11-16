@@ -1,15 +1,40 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { trackSiteViewOncePerDay } from "../../../services/siteViewsService";
 
 const LEGAL_IDS = ["terms", "cookies", "privacy"];
 
 const asSections = (value) => (Array.isArray(value) ? value : []);
 
+const formatVisitors = (count, locale) => {
+  try {
+    return new Intl.NumberFormat(locale?.startsWith("en") ? "en-GB" : "ro-RO").format(
+      count
+    );
+  } catch {
+    return String(count);
+  }
+};
+
 /** White legal strip under credits — links expand content below on the same page. */
 const PreviewLegalLinks = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [openId, setOpenId] = useState(null);
+  const [visitors, setVisitors] = useState(null);
   const panelRef = useRef(null);
+  const trackedRef = useRef(false);
+
+  useEffect(() => {
+    if (trackedRef.current) return undefined;
+    trackedRef.current = true;
+    let cancelled = false;
+    trackSiteViewOncePerDay().then((total) => {
+      if (!cancelled && total > 0) setVisitors(total);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const openItem = openId
     ? {
@@ -103,6 +128,14 @@ const PreviewLegalLinks = () => {
               {t("preview.legal.collapse")}
             </button>
           </div>
+        ) : null}
+
+        {visitors != null ? (
+          <p className="hp-legal__visitors" aria-label={t("preview.legal.visitorsAria")}>
+            {t("preview.legal.visitors", {
+              count: formatVisitors(visitors, i18n.language),
+            })}
+          </p>
         ) : null}
       </div>
     </section>
