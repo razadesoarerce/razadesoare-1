@@ -199,11 +199,11 @@ html.hp-swipe-hint-dismissed .hp-page-swipe-edges {
   -webkit-hyphens: auto;
 }
 
-/* Floating 2x2 dock — bottom right, ~60% of original size */
+/* Floating 2x2 dock — bottom right (~30% larger than previous size) */
 .hp-dock {
-  --hp-dock-cell: 1.64rem;
-  --hp-dock-gap: 0.23rem;
-  --hp-dock-pad: 0.26rem;
+  --hp-dock-cell: 2.13rem;
+  --hp-dock-gap: 0.3rem;
+  --hp-dock-pad: 0.34rem;
   --hp-dock-size: calc(
     (2 * var(--hp-dock-cell)) + var(--hp-dock-gap) + (2 * var(--hp-dock-pad))
   );
@@ -220,7 +220,7 @@ html.hp-swipe-hint-dismissed .hp-page-swipe-edges {
   width: var(--hp-dock-size);
   height: var(--hp-dock-size);
   box-sizing: border-box;
-  border-radius: 0.67rem;
+  border-radius: 0.87rem;
   /* Same frost as hero glass card — no outer border */
   background: rgba(255, 255, 255, 0.12);
   border: none;
@@ -261,7 +261,7 @@ html.hp-swipe-hint-dismissed .hp-page-swipe-edges {
   place-items: center;
   width: 100%;
   height: 100%;
-  border-radius: 0.48rem;
+  border-radius: 0.62rem;
   color: inherit;
   background: transparent;
   transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
@@ -284,37 +284,37 @@ html.hp-swipe-hint-dismissed .hp-page-swipe-edges {
 }
 
 .hp-dock__btn svg {
-  width: 0.67rem;
-  height: 0.67rem;
+  width: 0.87rem;
+  height: 0.87rem;
 }
 
 .hp-dock__lang {
   font-family: var(--hp-display);
   font-weight: 700;
-  font-size: 0.5rem;
+  font-size: 0.65rem;
   letter-spacing: 0.02em;
 }
 
 .hp-dock__facebook {
-  font-size: 0.58rem;
+  font-size: 0.75rem;
 }
 
 .hp-dock__menu {
-  gap: 2px;
+  gap: 2.5px;
   place-content: center;
 }
 
 .hp-dock__menu span {
   display: block;
-  width: 0.67rem;
-  height: 1.5px;
+  width: 0.87rem;
+  height: 2px;
   border-radius: 2px;
   background: currentColor;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 .hp-dock__menu.is-open span:nth-child(1) {
-  transform: translateY(3.4px) rotate(45deg);
+  transform: translateY(4.4px) rotate(45deg);
 }
 
 .hp-dock__menu.is-open span:nth-child(2) {
@@ -322,7 +322,7 @@ html.hp-swipe-hint-dismissed .hp-page-swipe-edges {
 }
 
 .hp-dock__menu.is-open span:nth-child(3) {
-  transform: translateY(-3.4px) rotate(-45deg);
+  transform: translateY(-4.4px) rotate(-45deg);
 }
 
 /* Compact menu panel — anchored to dock (not a full-height drawer) */
@@ -1869,9 +1869,9 @@ a.hp-galerie-card:hover {
 
 /* Hero — wide 16:9 banner (phone-first), glass card scaled to mockup */
 .hp-hero {
-  --hp-dock-cell: 1.64rem;
-  --hp-dock-gap: 0.23rem;
-  --hp-dock-pad: 0.26rem;
+  --hp-dock-cell: 2.13rem;
+  --hp-dock-gap: 0.3rem;
+  --hp-dock-pad: 0.34rem;
   --hp-dock-size: calc(
     (2 * var(--hp-dock-cell)) + var(--hp-dock-gap) + (2 * var(--hp-dock-pad))
   );
@@ -3227,9 +3227,9 @@ a.hp-galerie-card:hover {
 @media (min-width: 640px) {
   .hp-dock,
   .hp-hero {
-    --hp-dock-cell: 1.78rem;
-    --hp-dock-gap: 0.25rem;
-    --hp-dock-pad: 0.28rem;
+    --hp-dock-cell: 2.31rem;
+    --hp-dock-gap: 0.33rem;
+    --hp-dock-pad: 0.36rem;
   }
 
   .hp-hero {
