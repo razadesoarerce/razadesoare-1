@@ -27,6 +27,10 @@ const INTERNAL_DOC_FILES = [
     href: "/documents/formular-inscriere.doc",
     download: "Formular inscriere.doc",
   },
+  {
+    href: "/documents/oferta-educationala-2026-2027.pdf",
+    download: "Oferta educationala 2026-2027.pdf",
+  },
 ];
 
 const DownloadLink = ({ label, href, download, downloadLabel }) => (
