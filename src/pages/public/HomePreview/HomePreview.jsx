@@ -1058,10 +1058,15 @@ const HomePreview = () => {
           </div>
           <div className="hp-life__carousel">
             <Swiper
+              key={isDesktop ? "life-desktop" : "life-mobile"}
               modules={[Pagination]}
               slidesPerView={isDesktop ? "auto" : 2}
               spaceBetween={isDesktop ? 10 : 12}
               centerInsufficientSlides={isDesktop}
+              watchOverflow
+              updateOnWindowResize
+              observer
+              observeParents
               pagination={{ clickable: true }}
               grabCursor
               className="hp-life-swiper"

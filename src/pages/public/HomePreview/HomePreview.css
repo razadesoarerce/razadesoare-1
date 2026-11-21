@@ -3760,10 +3760,6 @@ a.hp-galerie-card:hover {
     min-width: 0;
   }
 
-  .hp--type-test:not(.hp--preview-page) .hp-life-swiper .swiper-wrapper {
-    justify-content: center;
-  }
-
   .hp--type-test:not(.hp--preview-page) .hp-life .hp-section__head {
     justify-content: center;
     margin-bottom: 0;
@@ -3792,13 +3788,16 @@ a.hp-galerie-card:hover {
     margin-bottom: 0;
   }
 
-  /* ~30% + 20%; full-res sources, CSS scale only */
+  /*
+   * Fixed rem slide width (not vw) so Swiper gaps stay stable on window resize.
+   * Centering when slides don’t fill the row is handled by centerInsufficientSlides.
+   */
   .hp--type-test:not(.hp--preview-page) .hp-life-slide--desktop {
-    width: auto;
+    width: 11rem;
   }
 
   .hp--type-test:not(.hp--preview-page) .hp-life__item {
-    width: clamp(9rem, 14.4vw, 13.8rem);
+    width: 100%;
   }
 
   .hp--type-test:not(.hp--preview-page) .hp-life__item--portrait {
