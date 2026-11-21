@@ -39,6 +39,7 @@
   "contact": {
     "panelAria": "Date de contact",
     "cta": "Contactează-ne",
+    "navLabel": "Contact",
     "address": "Adresă",
     "openMap": "Deschide pe hartă",
     "openMapAria": "Deschide adresa pe Google Maps: {{address}}",
@@ -60,7 +61,7 @@
       "cards": {
         "mission": {
           "title": "Misiune și Viziune",
-          "text": "Un mediu sigur, adaptat, în care fiecare copil contează.",
+          "text": "Un mediu sigur și adaptat, unde fiecare copil este văzut, sprijinit și încurajat să crească.",
           "headline": "Misiune & Viziune",
           "detailParagraphs": [
             "Școala Specială „Rază de Soare” își asumă misiunea de a oferi sprijin educațional, recuperator, emoțional și spiritual elevilor cu dizabilități grave-severe, promovând incluziunea și creșterea demnității fiecărui copil. Dorim să oferim fiecărui copil cu cerințe educaționale speciale un mediu sigur, stabil și adaptat nevoilor sale individuale, în care dezvoltarea personală, autonomia și comunicarea să fie priorități fundamentale.",
@@ -84,7 +85,7 @@
         },
         "education": {
           "title": "Educație",
-          "text": "Fiecare copil învață în felul său.",
+          "text": "Fiecare copil învață în ritmul lui, cu metode adaptate nevoilor și potențialului său.",
           "headline": "Educație – Fiecare copil învață în felul său",
           "detailParagraphs": [
             "La Școala Specială „Rază de Soare”, educația este o responsabilitate pe care o tratăm cu seriozitate, profesionalism și grijă față de fiecare copil. Credem că fiecare elev merită acces la o educație de calitate, adaptată nevoilor și posibilităților sale.",
@@ -95,7 +96,7 @@
         },
         "development": {
           "title": "Dezvoltare",
-          "text": "Fiecare pas înainte contează.",
+          "text": "Fiecare pas înainte contează — de la autonomie și comunicare, până la încredere în sine.",
           "headline": "Dezvoltare – Fiecare pas înainte contează",
           "detailParagraphs": [
             "Fiecare copil are propriul ritm de învățare și dezvoltare. La Școala Specială „Rază de Soare”, ne dorim ca fiecare copil cu cerințe educaționale speciale (CES) să primească sprijinul și încurajarea de care are nevoie pentru a-și dezvolta abilitățile și a deveni, pas cu pas, mai independent.",
@@ -107,7 +108,7 @@
         },
         "activities": {
           "title": "Activități",
-          "text": "Fiecare experiență contează.",
+          "text": "Creativitate, joacă și experiențe care aduc bucurie și sprijină dezvoltarea fiecărui copil.",
           "headline": "Activități – Fiecare experiență contează",
           "detailParagraphs": [
             "La Școala Specială „Rază de Soare”, credem că fiecare copil merită bucuria de a descoperi, de a încerca și de a reuși, în propriul ritm.",
@@ -127,6 +128,8 @@
     },
     "life": {
       "title": "Momente la Rază de Soare",
+      "titleLine1": "Momente la",
+      "titleLine2": "Rază de Soare",
       "lead": "Momente din activitățile și evenimentele noastre.",
       "galleryCta": "Vezi galeria foto",
       "gallery": {

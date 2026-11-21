@@ -9,6 +9,7 @@ import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageHead from "./PreviewPageHead";
 import { ECHIPA_OFFER_META, STAFF_CATEGORIES } from "./echipaOfferData";
+import { useDesktopLayout } from "./useDesktopLayout";
 
 const SWIPE_CLOSE_PX = 56;
 
@@ -71,6 +72,7 @@ const ServiceIcon = ({ name }) => {
 /** New-site team page — parallel to old /despre/echipa. */
 const EchipaNoastra = () => {
   const { t } = useTranslation();
+  const isDesktop = useDesktopLayout();
   const [expandedId, setExpandedId] = useState(null);
   const swipeStart = useRef(null);
 
@@ -180,23 +182,11 @@ const EchipaNoastra = () => {
           aria-label={t("preview.team.offerTitle")}
         >
           <div className="hp-offer__carousel">
-            <Swiper
-              modules={[Pagination]}
-              slidesPerView={2}
-              spaceBetween={12}
-              pagination={{ clickable: true }}
-              grabCursor
-              className="hp-offer-swiper"
-              onTouchStart={() => {
-                if (expandedId) closeExpanded();
-              }}
-              onSlideChange={() => {
-                if (expandedId) closeExpanded();
-              }}
-            >
-              {offerCards.map((card) => (
-                <SwiperSlide key={card.id}>
+            {isDesktop ? (
+              <div className="hp-offer__grid">
+                {offerCards.map((card) => (
                   <button
+                    key={card.id}
                     type="button"
                     className={`hp-offer-card hp-offer-card--${card.tone} ${
                       expandedId === card.id ? "is-active" : ""
@@ -218,9 +208,51 @@ const EchipaNoastra = () => {
                       →
                     </span>
                   </button>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                ))}
+              </div>
+            ) : (
+              <Swiper
+                modules={[Pagination]}
+                slidesPerView={2}
+                spaceBetween={12}
+                pagination={{ clickable: true }}
+                grabCursor
+                className="hp-offer-swiper"
+                onTouchStart={() => {
+                  if (expandedId) closeExpanded();
+                }}
+                onSlideChange={() => {
+                  if (expandedId) closeExpanded();
+                }}
+              >
+                {offerCards.map((card) => (
+                  <SwiperSlide key={card.id}>
+                    <button
+                      type="button"
+                      className={`hp-offer-card hp-offer-card--${card.tone} ${
+                        expandedId === card.id ? "is-active" : ""
+                      }`}
+                      onClick={() => setExpandedId(card.id)}
+                      aria-expanded={expandedId === card.id}
+                      aria-controls="hp-echipa-offer-expanded"
+                    >
+                      <span className="hp-offer-card__icon" aria-hidden>
+                        {card.imageIcon ? (
+                          <img src={card.imageIcon} alt="" />
+                        ) : (
+                          <ServiceIcon name={card.icon} />
+                        )}
+                      </span>
+                      <span className="hp-offer-card__title">{card.title}</span>
+                      <span className="hp-offer-card__text">{card.text}</span>
+                      <span className="hp-offer-card__go" aria-hidden>
+                        →
+                      </span>
+                    </button>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            )}
           </div>
         </section>
 

@@ -80,43 +80,61 @@ const PreviewSupportFooter = () => {
 
   return (
     <>
-      <section className="hp-section hp-support" aria-labelledby="hp-support-title">
-        <div className="hp-section__head">
-          <SunRays className="hp-rays" />
-          <h2 id="hp-support-title">{t("preview.home.support.title")}</h2>
-          <SunRays className="hp-rays" />
-        </div>
-        <div className="hp-support__frame">
-          <a
-            className="hp-support-btn hp-support-btn--tax"
-            href={SUPPORT_FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="hp-support-btn__badge" aria-hidden>
-              3,5%
-            </span>
-            <span className="hp-support-btn__title">{t("preview.home.support.taxTitle")}</span>
-          </a>
-          {supportCards.map((card) => (
-            <button
-              key={card.id}
-              type="button"
-              className={`hp-support-btn hp-support-btn--${card.tone} ${
-                expandedId === card.id ? "is-active" : ""
-              }`}
-              onClick={() => setExpandedId(card.id)}
-              aria-expanded={expandedId === card.id}
-              aria-controls="hp-support-expanded"
+      <div className="hp-footer-card">
+        <section className="hp-section hp-support" aria-labelledby="hp-support-title">
+          <div className="hp-section__head">
+            <SunRays className="hp-rays" />
+            <h2 id="hp-support-title">{t("preview.home.support.title")}</h2>
+            <SunRays className="hp-rays" />
+          </div>
+          <div className="hp-support__frame">
+            <a
+              className="hp-support-btn hp-support-btn--tax"
+              href={SUPPORT_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <span className="hp-support-btn__badge" aria-hidden>
-                {card.badge}
+                3,5%
               </span>
-              <span className="hp-support-btn__title">{card.title}</span>
-            </button>
-          ))}
-        </div>
-      </section>
+              <span className="hp-support-btn__title">{t("preview.home.support.taxTitle")}</span>
+            </a>
+            {supportCards.map((card) => (
+              <button
+                key={card.id}
+                type="button"
+                className={`hp-support-btn hp-support-btn--${card.tone} ${
+                  expandedId === card.id ? "is-active" : ""
+                }`}
+                onClick={() => setExpandedId(card.id)}
+                aria-expanded={expandedId === card.id}
+                aria-controls="hp-support-expanded"
+              >
+                <span className="hp-support-btn__badge" aria-hidden>
+                  {card.badge}
+                </span>
+                <span className="hp-support-btn__title">{card.title}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <footer className="hp-credits" aria-label={t("preview.home.credits.aria")}>
+          <div className="hp-credits__inner">
+            <p className="hp-credits__brand">{t("preview.home.credits.brand")}</p>
+            <ul className="hp-credits__list">
+              <li>
+                <span className="hp-credits__role">{t("preview.home.credits.webDev")}</span>
+                <span className="hp-credits__name">Lolea Florentin Alin</span>
+              </li>
+              <li>
+                <span className="hp-credits__role">{t("preview.home.credits.design")}</span>
+                <span className="hp-credits__name">Roxin Mariana</span>
+              </li>
+            </ul>
+          </div>
+        </footer>
+      </div>
 
       {expanded ? (
         <div
@@ -163,22 +181,6 @@ const PreviewSupportFooter = () => {
           </article>
         </div>
       ) : null}
-
-      <footer className="hp-credits" aria-label={t("preview.home.credits.aria")}>
-        <div className="hp-credits__inner">
-          <p className="hp-credits__brand">{t("preview.home.credits.brand")}</p>
-          <ul className="hp-credits__list">
-            <li>
-              <span className="hp-credits__role">{t("preview.home.credits.webDev")}</span>
-              <span className="hp-credits__name">Lolea Florentin Alin</span>
-            </li>
-            <li>
-              <span className="hp-credits__role">{t("preview.home.credits.design")}</span>
-              <span className="hp-credits__name">Roxin Mariana</span>
-            </li>
-          </ul>
-        </div>
-      </footer>
 
       <PreviewLegalLinks />
     </>

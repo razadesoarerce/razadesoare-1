@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -16,6 +16,7 @@ import { PreviewMenuBackdrop, PreviewMenuPanel } from "./PreviewNavMenu";
 import DesktopTopNav from "./DesktopTopNav";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageSwipe from "./PreviewPageSwipe";
+import { useDesktopLayout } from "./useDesktopLayout";
 import "./HomePreview.css";
 
 const MENU_FLIP_BELOW_PX = 210;
@@ -55,6 +56,63 @@ const HeroCardSun = () => (
     </svg>
   </span>
 );
+
+/** Premium geometric sun mark for the desktop brand panel (replaces official crest). */
+const HeroBrandMark = () => {
+  const rawId = useId().replace(/:/g, "");
+  const coreId = `hp-brand-core-${rawId}`;
+  const glowId = `hp-brand-glow-${rawId}`;
+
+  return (
+    <span className="hp-hero__mark" aria-hidden>
+      <svg className="hp-hero__mark-svg" viewBox="0 0 96 96" role="img">
+        <defs>
+          <radialGradient id={glowId} cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#f5c542" stopOpacity="0.35" />
+            <stop offset="70%" stopColor="#f5c542" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="#f5c542" stopOpacity="0" />
+          </radialGradient>
+          <radialGradient id={coreId} cx="38%" cy="32%" r="68%">
+            <stop offset="0%" stopColor="#fff6d6" />
+            <stop offset="42%" stopColor="#f5c542" />
+            <stop offset="100%" stopColor="#e08a2a" />
+          </radialGradient>
+        </defs>
+        <circle cx="48" cy="48" r="30" fill={`url(#${glowId})`} />
+        <g className="hp-hero__mark-rays" stroke="#e08a2a" strokeLinecap="round">
+          {Array.from({ length: 24 }, (_, i) => {
+            const tier = i % 3;
+            const outer = tier === 0 ? 8 : tier === 1 ? 12 : 15.5;
+            const inner = tier === 0 ? 21 : tier === 1 ? 21 : 21;
+            const width = tier === 0 ? 1.15 : tier === 1 ? 0.9 : 0.7;
+            return (
+              <line
+                key={i}
+                x1="48"
+                y1={outer}
+                x2="48"
+                y2={inner}
+                strokeWidth={width}
+                opacity={tier === 2 ? 0.55 : 0.85}
+                transform={`rotate(${i * 15} 48 48)`}
+              />
+            );
+          })}
+        </g>
+        <circle cx="48" cy="48" r="13.5" fill={`url(#${coreId})`} />
+        <circle
+          cx="48"
+          cy="48"
+          r="13.5"
+          fill="none"
+          stroke="#e08a2a"
+          strokeWidth="0.6"
+          opacity="0.35"
+        />
+      </svg>
+    </span>
+  );
+};
 
 const OFFER_CARD_META = [
   {
@@ -186,6 +244,7 @@ const HomePreview = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
+  const isDesktop = useDesktopLayout();
   const [expandedOffer, setExpandedOffer] = useState(null);
 
   const offerCards = OFFER_CARD_META.map((meta) => {
@@ -254,9 +313,9 @@ const HomePreview = () => {
     const link = document.createElement("link");
     link.id = id;
     link.rel = "stylesheet";
-    // Nunito + latin-ext: Romanian diacritics (ă â î ș ț) stay correct in bold titles/body
+    // Nunito body + Cormorant Garamond display (latin-ext for Romanian diacritics)
     link.href =
-      "https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&subset=latin,latin-ext&display=swap";
+      "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Nunito:wght@400;600;700;800&display=swap";
     document.head.appendChild(link);
     return undefined;
   }, []);
@@ -647,10 +706,6 @@ const HomePreview = () => {
         path="/"
       />
       {contactPanel}
-      <DesktopTopNav
-        contactTriggerRef={contactTriggerRef}
-        onContactClick={() => setContactOpen((open) => !open)}
-      />
       <div
         ref={dockRef}
         className={`hp-dock ${dockPos ? "is-custom-pos" : "is-home-pos"} ${dockDragging ? "is-dragging" : ""} ${dockOutsideHero ? "is-outside-hero" : ""}`}
@@ -726,13 +781,10 @@ const HomePreview = () => {
       <main>
         <section ref={heroRef} className="hp-hero" aria-labelledby="hp-hero-title">
           <div className="hp-hero__brand">
-            <img
-              className="hp-hero__logo"
-              src="/logo_raza_de_soare.png"
-              alt=""
-              decoding="async"
-            />
-            <p className="hp-hero__school">{t("preview.home.heroSchoolName")}</p>
+            <HeroBrandMark />
+            <p className="hp-hero__school">
+              <span className="hp-hero__school-text">{t("preview.home.heroSchoolName")}</span>
+            </p>
             <h1 id="hp-hero-title" className="hp-hero__desktop-title">
               {t("preview.home.heroTitle")}
             </h1>
@@ -802,31 +854,26 @@ const HomePreview = () => {
           </svg>
         </section>
 
+        <DesktopTopNav
+          contactTriggerRef={contactTriggerRef}
+          onContactClick={() => setContactOpen((open) => !open)}
+        />
+
         <section className="hp-section hp-offer" aria-labelledby="hp-offer-title">
-          <div className="hp-section__head">
-            <SunRays className="hp-rays" />
-            <h2 id="hp-offer-title">{t("preview.home.offer.title")}</h2>
-            <SunRays className="hp-rays" />
+          <div className="hp-offer__intro">
+            <div className="hp-section__head">
+              <SunRays className="hp-rays" />
+              <h2 id="hp-offer-title">{t("preview.home.offer.title")}</h2>
+              <SunRays className="hp-rays" />
+            </div>
+            <p className="hp-section__lead">{t("preview.home.offer.lead")}</p>
           </div>
-          <p className="hp-section__lead">{t("preview.home.offer.lead")}</p>
           <div className="hp-offer__carousel">
-            <Swiper
-              modules={[Pagination]}
-              slidesPerView={2}
-              spaceBetween={12}
-              pagination={{ clickable: true }}
-              grabCursor
-              className="hp-offer-swiper"
-              onTouchStart={() => {
-                if (expandedOffer) closeExpanded();
-              }}
-              onSlideChange={() => {
-                if (expandedOffer) closeExpanded();
-              }}
-            >
-              {offerCards.map((card) => (
-                <SwiperSlide key={card.id}>
+            {isDesktop ? (
+              <div className="hp-offer__grid">
+                {offerCards.map((card) => (
                   <button
+                    key={card.id}
                     type="button"
                     className={`hp-offer-card hp-offer-card--${card.tone} ${
                       expandedOffer?.id === card.id ? "is-active" : ""
@@ -848,9 +895,51 @@ const HomePreview = () => {
                       →
                     </span>
                   </button>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                ))}
+              </div>
+            ) : (
+              <Swiper
+                modules={[Pagination]}
+                slidesPerView={2}
+                spaceBetween={12}
+                pagination={{ clickable: true }}
+                grabCursor
+                className="hp-offer-swiper"
+                onTouchStart={() => {
+                  if (expandedOffer) closeExpanded();
+                }}
+                onSlideChange={() => {
+                  if (expandedOffer) closeExpanded();
+                }}
+              >
+                {offerCards.map((card) => (
+                  <SwiperSlide key={card.id}>
+                    <button
+                      type="button"
+                      className={`hp-offer-card hp-offer-card--${card.tone} ${
+                        expandedOffer?.id === card.id ? "is-active" : ""
+                      }`}
+                      onClick={() => setExpandedOffer(card)}
+                      aria-expanded={expandedOffer?.id === card.id}
+                      aria-controls="hp-offer-expanded"
+                    >
+                      <span className="hp-offer-card__icon" aria-hidden>
+                        {card.imageIcon ? (
+                          <img src={card.imageIcon} alt="" />
+                        ) : (
+                          <Icon name={card.icon} />
+                        )}
+                      </span>
+                      <span className="hp-offer-card__title">{card.title}</span>
+                      <span className="hp-offer-card__text">{card.text}</span>
+                      <span className="hp-offer-card__go" aria-hidden>
+                        →
+                      </span>
+                    </button>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            )}
           </div>
 
           {expandedCard ? (
@@ -919,8 +1008,10 @@ const HomePreview = () => {
           ) : null}
         </section>
 
-        <section className="hp-about" aria-labelledby="hp-about-title">
-          <div className="hp-section hp-about__intro">
+        <hr className="hp-despre-rule hp-home-rule" aria-hidden />
+
+        <section className="hp-section hp-about" aria-labelledby="hp-about-title">
+          <div className="hp-about__intro">
             <div className="hp-section__head">
               <SunRays className="hp-rays" />
               <h2 id="hp-about-title">{t("preview.home.about.title")}</h2>
@@ -934,43 +1025,56 @@ const HomePreview = () => {
             </div>
           </div>
           <div className="hp-about__media">
-            <img
-              src="/images/preview/about-noi.jpg"
-              alt={t("preview.home.about.imageAlt")}
-            />
+            <picture>
+              <source
+                media="(min-width: 900px)"
+                srcSet="/images/preview/desktop/about-noi.jpg"
+              />
+              <img
+                src="/images/preview/about-noi.jpg"
+                alt={t("preview.home.about.imageAlt")}
+              />
+            </picture>
           </div>
         </section>
 
+        <hr className="hp-despre-rule hp-home-rule" aria-hidden />
+
         <section className="hp-section hp-life" aria-labelledby="hp-life-title">
-          <div className="hp-section__head">
-            <SunRays className="hp-rays" />
-            <h2 id="hp-life-title">{t("preview.home.life.title")}</h2>
-            <SunRays className="hp-rays" />
+          <div className="hp-life__intro">
+            <div className="hp-section__head">
+              <SunRays className="hp-rays" />
+              <h2 id="hp-life-title" className="hp-life__title">
+                {t("preview.home.life.title")}
+              </h2>
+              <SunRays className="hp-rays" />
+            </div>
+            <p className="hp-section__lead">{t("preview.home.life.lead")}</p>
+            <div className="hp-life__cta">
+              <Link to={PREVIEW_GALERIE} className="hp-btn hp-btn--primary">
+                {t("preview.home.life.galleryCta")} <span aria-hidden>→</span>
+              </Link>
+            </div>
           </div>
-          <p className="hp-section__lead">{t("preview.home.life.lead")}</p>
           <div className="hp-life__carousel">
             <Swiper
               modules={[Pagination]}
-              slidesPerView={2}
-              spaceBetween={12}
+              slidesPerView={isDesktop ? "auto" : 2}
+              spaceBetween={isDesktop ? 10 : 12}
+              centerInsufficientSlides={isDesktop}
               pagination={{ clickable: true }}
               grabCursor
               className="hp-life-swiper"
             >
               {gallery.map((item) => (
-                <SwiperSlide key={item.id}>
+                <SwiperSlide key={item.id} className={isDesktop ? "hp-life-slide--desktop" : undefined}>
                   <figure className={`hp-life__item hp-life__item--${item.frame}`}>
-                    <img src={item.src} alt={item.alt} loading="lazy" />
+                    <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
                     <figcaption className="hp-life__caption">{item.label}</figcaption>
                   </figure>
                 </SwiperSlide>
               ))}
             </Swiper>
-          </div>
-          <div className="hp-life__cta">
-            <Link to={PREVIEW_GALERIE} className="hp-btn hp-btn--primary">
-              {t("preview.home.life.galleryCta")} <span aria-hidden>→</span>
-            </Link>
           </div>
         </section>
 

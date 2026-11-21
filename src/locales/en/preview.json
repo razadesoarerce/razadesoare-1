@@ -39,6 +39,7 @@
   "contact": {
     "panelAria": "Contact details",
     "cta": "Contact us",
+    "navLabel": "Contact",
     "address": "Address",
     "openMap": "Open on map",
     "openMapAria": "Open address on Google Maps: {{address}}",
@@ -60,7 +61,7 @@
       "cards": {
         "mission": {
           "title": "Mission & Vision",
-          "text": "A safe, adapted environment where every child matters.",
+          "text": "A safe, adapted place where every child is seen, supported and encouraged to grow.",
           "headline": "Mission & Vision",
           "detailParagraphs": [
             "Rază de Soare Special School is committed to offering educational, recovery, emotional and spiritual support to students with severe disabilities, promoting inclusion and the dignity of every child. We want to give every child with special educational needs a safe, stable environment adapted to their individual needs, where personal development, autonomy and communication are fundamental priorities.",
@@ -84,7 +85,7 @@
         },
         "education": {
           "title": "Education",
-          "text": "Every child learns in their own way.",
+          "text": "Every child learns at their own pace, with methods adapted to their needs and potential.",
           "headline": "Education – Every child learns in their own way",
           "detailParagraphs": [
             "At Rază de Soare Special School, education is a responsibility we approach with seriousness, professionalism and care for every child. We believe every student deserves access to quality education adapted to their needs and abilities.",
@@ -95,7 +96,7 @@
         },
         "development": {
           "title": "Development",
-          "text": "Every step forward matters.",
+          "text": "Every step forward matters — from autonomy and communication to growing self-confidence.",
           "headline": "Development – Every step forward matters",
           "detailParagraphs": [
             "Every child has their own pace of learning and development. At Rază de Soare Special School, we want every child with special educational needs (SEN) to receive the support and encouragement they need to build skills and become, step by step, more independent.",
@@ -107,7 +108,7 @@
         },
         "activities": {
           "title": "Activities",
-          "text": "Every experience matters.",
+          "text": "Creativity, play and experiences that bring joy and support each child’s development.",
           "headline": "Activities – Every experience matters",
           "detailParagraphs": [
             "At Rază de Soare Special School, we believe every child deserves the joy of discovering, trying and succeeding — at their own pace.",
@@ -127,6 +128,8 @@
     },
     "life": {
       "title": "Moments at Rază de Soare",
+      "titleLine1": "Moments at",
+      "titleLine2": "Rază de Soare",
       "lead": "Moments from our activities and events.",
       "galleryCta": "See photo gallery",
       "gallery": {

@@ -47,6 +47,8 @@ const DesktopTopNav = ({ onContactClick, contactTriggerRef }) => {
           })}
         </nav>
 
+        <span className="hp-topnav__divider" aria-hidden />
+
         <div className="hp-topnav__tools">
           {typeof onContactClick === "function" ? (
             <button
@@ -56,7 +58,7 @@ const DesktopTopNav = ({ onContactClick, contactTriggerRef }) => {
               data-contact-trigger
               onClick={onContactClick}
             >
-              {t("preview.contact.cta")}
+              {t("preview.contact.navLabel")}
             </button>
           ) : null}
           <button
@@ -78,6 +80,7 @@ const DesktopTopNav = ({ onContactClick, contactTriggerRef }) => {
           </a>
         </div>
       </div>
+      <hr className="hp-despre-rule hp-topnav__rule" aria-hidden />
     </header>
   );
 };

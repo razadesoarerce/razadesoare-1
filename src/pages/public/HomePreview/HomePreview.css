@@ -147,6 +147,8 @@ html.hp-swipe-hint-dismissed .hp-page-swipe-edges {
   --hp-text: #1f2a37;
   --hp-muted: #5b6775;
   --hp-white: #ffffff;
+  --hp-rule: #e08a2a;
+  --hp-rule-thickness: 1px;
   --hp-radius: 1.5rem;
   --hp-font: "Nunito", "Segoe UI", system-ui, sans-serif;
   /* Titles use Nunito too: Fredoka bold lacks consistent Romanian diacritics (ă) */
@@ -1367,7 +1369,7 @@ a.hp-galerie-card:hover {
 }
 
 .hp-informatii .hp-despre-rule {
-  margin: 0.95rem auto;
+  margin: 1.15rem auto;
 }
 
 /* Despre noi — intro + story */
@@ -1523,25 +1525,25 @@ a.hp-galerie-card:hover {
   margin: 0;
 }
 
-/* Orange divider — 90% width, fades into white at both ends */
+/* Shared orange divider — one thickness everywhere (Informații, Despre, desktop nav) */
 .hp-despre-rule {
   display: block;
   width: 90%;
-  height: 1.5px;
+  height: var(--hp-rule-thickness);
   margin: 1.15rem auto;
   border: 0;
   padding: 0;
   background: linear-gradient(
     90deg,
-    rgba(224, 138, 42, 0) 0%,
-    rgba(224, 138, 42, 0.2) 10%,
-    rgba(224, 138, 42, 0.85) 28%,
-    #e08a2a 50%,
-    rgba(224, 138, 42, 0.85) 72%,
-    rgba(224, 138, 42, 0.2) 90%,
-    rgba(224, 138, 42, 0) 100%
+    transparent 0%,
+    color-mix(in srgb, var(--hp-rule) 12%, transparent) 12%,
+    color-mix(in srgb, var(--hp-rule) 45%, transparent) 30%,
+    color-mix(in srgb, var(--hp-rule) 55%, transparent) 50%,
+    color-mix(in srgb, var(--hp-rule) 45%, transparent) 70%,
+    color-mix(in srgb, var(--hp-rule) 12%, transparent) 88%,
+    transparent 100%
   );
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .hp-page .hp-credits {
@@ -1775,7 +1777,7 @@ a.hp-galerie-card:hover {
   }
 
   .hp-despre-rule {
-    margin: 1.35rem auto;
+    margin: 1.15rem auto;
   }
 
   .hp-echipa-specialisti__banner {
@@ -2389,8 +2391,11 @@ a.hp-galerie-card:hover {
   width: 100%;
   height: 100%;
   min-height: 11.5rem;
-  box-shadow: 0 6px 18px rgba(26, 74, 141, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1.5px solid transparent;
+  box-shadow:
+    0 1px 2px rgba(18, 40, 70, 0.06),
+    0 8px 22px rgba(18, 40, 70, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -2398,26 +2403,32 @@ a.hp-galerie-card:hover {
 .hp-offer-card:hover,
 .hp-offer-card.is-active {
   transform: translateY(-4px);
-  box-shadow: 0 14px 30px rgba(26, 74, 141, 0.12);
+  box-shadow:
+    0 2px 4px rgba(18, 40, 70, 0.07),
+    0 16px 34px rgba(18, 40, 70, 0.14);
 }
 
 .hp-offer-card--pink {
-  background: #fde8f0;
+  background: linear-gradient(165deg, #fff5f8 0%, #fbdce8 100%);
+  border-color: color-mix(in srgb, var(--hp-pink-deep) 28%, transparent);
   color: var(--hp-pink-deep);
 }
 
 .hp-offer-card--blue {
-  background: #e7f3fc;
+  background: linear-gradient(165deg, #f3f9fd 0%, #d7ebf8 100%);
+  border-color: color-mix(in srgb, var(--hp-sky-deep) 28%, transparent);
   color: var(--hp-sky-deep);
 }
 
 .hp-offer-card--yellow {
-  background: #fff3cc;
+  background: linear-gradient(165deg, #fff9e6 0%, #ffe29a 100%);
+  border-color: color-mix(in srgb, #d4a017 32%, transparent);
   color: #d4a017;
 }
 
 .hp-offer-card--green {
-  background: #e7f6e5;
+  background: linear-gradient(165deg, #f3faf1 0%, #d5efd1 100%);
+  border-color: color-mix(in srgb, var(--hp-mint-deep) 28%, transparent);
   color: var(--hp-mint-deep);
 }
 
@@ -2437,7 +2448,7 @@ a.hp-galerie-card:hover {
 }
 
 .hp-offer-card__title {
-  margin: 0 0 0.25rem;
+  margin: 0 0 0.35rem;
   font-family: var(--hp-display);
   font-size: 0.95rem;
   font-weight: 700;
@@ -2445,23 +2456,25 @@ a.hp-galerie-card:hover {
 }
 
 .hp-offer-card__text {
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.75rem;
   color: var(--hp-muted);
   font-size: 0.72rem;
   line-height: 1.35;
   font-weight: 600;
   flex: 1;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   width: 100%;
-  text-align: left;
+  min-height: calc(1.35em * 2);
+  text-align: center;
 }
 
 .hp-offer-card__go {
   width: 1.85rem;
   height: 1.85rem;
+  margin-top: 0.15rem;
   border-radius: 50%;
   color: #fff;
   font-size: 0.95rem;
@@ -2796,16 +2809,28 @@ a.hp-galerie-card:hover {
   font-weight: 700;
 }
 
+.hp-life__title {
+  text-align: center;
+  line-height: 1.15;
+}
+
 .hp-life__cta {
   display: flex;
   justify-content: center;
   margin-top: 1.75rem;
 }
 
-/* Support — independent blue framed panel */
-.hp-section.hp-support {
+/* Footer shell — phone: transparent wrapper; desktop: one shared card */
+.hp-footer-card {
   width: min(1120px, calc(100% - 1.5rem));
   margin: 0 auto 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Support — independent blue framed panel */
+.hp-section.hp-support {
+  width: 100%;
+  margin: 0 0 1rem;
   padding: 0.7rem 0.65rem 0.55rem;
   box-sizing: border-box;
   background: var(--hp-blue);
@@ -2962,11 +2987,10 @@ a.hp-galerie-card:hover {
   background: rgba(108, 184, 107, 0.18);
 }
 
-/* Site credits — separate bar below support */
 /* Credits — framed blue panel (same language as Support), all preview pages */
 .hp-credits {
-  width: min(1120px, calc(100% - 1.5rem));
-  margin: 1rem auto;
+  width: 100%;
+  margin: 0;
   padding: 0.7rem 0.85rem;
   box-sizing: border-box;
   border-radius: 1rem;
@@ -3391,20 +3415,414 @@ a.hp-galerie-card:hover {
     position: sticky;
     top: 0;
     z-index: 40;
-    background: rgba(255, 255, 255, 0.92);
-    border-bottom: 1px solid rgba(26, 74, 141, 0.08);
-    backdrop-filter: blur(12px) saturate(1.1);
-    -webkit-backdrop-filter: blur(12px) saturate(1.1);
+    background: #ffffff;
+    border-bottom: 0;
+  }
+
+  /* Sit under the hero wave so cover → menu → content reads as one flow */
+  .hp-hero + .hp-topnav {
+    margin-top: -0.15rem;
+  }
+
+  .hp-topnav__rule {
+    margin: 0.15rem auto 0;
   }
 
   .hp-topnav__inner {
-    width: min(1180px, calc(100% - 2.5rem));
+    width: min(1480px, calc(100% - 3rem));
     margin: 0 auto;
     min-height: 3.35rem;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 1.75rem;
+    gap: 1.15rem;
+  }
+
+  /* Wide content band — full desktop surface, not a narrow portrait column */
+  .hp-section,
+  .hp-footer-card {
+    width: min(1480px, calc(100% - 3rem));
+  }
+
+  /* Legal strip stays full-bleed; center the links band inside */
+  .hp-legal {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .hp-legal__inner {
+    width: min(1480px, calc(100% - 3rem));
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hp-legal__links {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Nested sections must NOT inherit the 1480px page width (that caused overlap) */
+  .hp-footer-card > .hp-section,
+  .hp-footer-card > .hp-credits {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  /*
+   * Desktop footer: equal halves, divider on center.
+   * Each half centers its own content symmetrically.
+   */
+  .hp-footer-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    column-gap: 0;
+    margin: var(--hp-stack-gap, 1.35rem) auto 1.75rem;
+    padding: 0.55rem 0;
+    border-radius: 1.15rem;
+    background: var(--hp-blue);
+    box-shadow: 0 10px 28px rgba(18, 40, 70, 0.12);
+    box-sizing: border-box;
+  }
+
+  .hp-footer-card > .hp-section.hp-support {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 0 1.1rem;
+    background: transparent;
+    border-radius: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .hp-footer-card .hp-support .hp-section__head {
+    flex: 0 0 auto;
+    margin: 0;
+    gap: 0.3rem;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hp-footer-card .hp-support .hp-section__head .hp-rays {
+    width: 1.7rem;
+  }
+
+  .hp-footer-card .hp-support .hp-section__head h2 {
+    max-width: none;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .hp-footer-card .hp-support__frame {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    max-width: 100%;
+    gap: 0;
+  }
+
+  .hp-footer-card a.hp-support-btn,
+  .hp-footer-card button.hp-support-btn {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 0;
+    flex-direction: row;
+    gap: 0.35rem;
+    padding: 0.3rem 0.55rem;
+  }
+
+  .hp-footer-card a.hp-support-btn:first-child,
+  .hp-footer-card button.hp-support-btn:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .hp-footer-card a.hp-support-btn:last-child,
+  .hp-footer-card button.hp-support-btn:last-child {
+    padding-right: 0;
+  }
+
+  .hp-footer-card > .hp-credits,
+  .hp--type-test .hp-footer-card > .hp-credits {
+    position: static;
+    z-index: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 0 1.1rem;
+    border-radius: 0;
+    background: transparent;
+    border-top: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .hp-footer-card .hp-credits__inner {
+    width: auto !important;
+    max-width: 100%;
+    margin: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    text-align: center;
+  }
+
+  .hp-footer-card .hp-credits__brand {
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .hp-footer-card .hp-credits__list {
+    width: auto;
+    flex: 0 0 auto;
+    justify-content: center;
+  }
+
+  .hp-footer-card .hp-credits__list li {
+    flex: 0 0 auto;
+    align-items: center;
+    padding: 0 0.65rem;
+  }
+
+  .hp-home-rule {
+    width: min(1480px, calc(100% - 3rem));
+    margin: 1.75rem auto;
+  }
+
+  /* Homepage offer: cards left, “Ce oferim” copy right — same vertical band */
+  .hp--type-test:not(.hp--preview-page) .hp-offer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(12.5rem, 16rem);
+    column-gap: 1.75rem;
+    align-items: center;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-offer__intro {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    text-align: center;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-offer__carousel {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-offer > .hp-offer-expand {
+    grid-column: 1 / -1;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-offer .hp-section__head {
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  /* Rays crowd the narrow side column — title alone reads cleaner */
+  .hp--type-test:not(.hp--preview-page) .hp-offer .hp-section__head .hp-rays {
+    display: none;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-offer .hp-section__head h2 {
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-offer .hp-section__lead {
+    margin: 0;
+    max-width: 14rem;
+    text-align: center;
+  }
+
+  .hp-offer__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.15rem;
+    width: 100%;
+  }
+
+  .hp-offer__grid .hp-offer-card {
+    min-height: 15.5rem;
+    padding: 1.45rem 1.15rem 1.25rem;
+  }
+
+  .hp-offer__grid .hp-offer-card__text {
+    -webkit-line-clamp: 2;
+    min-height: calc(1.35em * 2);
+    text-align: center;
+  }
+
+  /* Homepage about: copy left, image right — same vertical band */
+  .hp--type-test:not(.hp--preview-page) .hp-about {
+    display: grid;
+    grid-template-columns: minmax(13rem, 16.5rem) minmax(0, 1fr);
+    column-gap: 1.75rem;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-about__intro {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0;
+    text-align: center;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-about__media {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    background: transparent;
+    border-radius: calc(var(--hp-radius) + 0.15rem);
+    overflow: visible;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-about .hp-section__head {
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-about .hp-section__head .hp-rays {
+    display: none;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-about .hp-section__head h2 {
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-about__text {
+    margin-top: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-about__text p {
+    margin: 0 0 1rem;
+    max-width: 15rem;
+    text-align: center;
+  }
+
+  /* Homepage life: title → lead → CTA → carousel (stacked) */
+  .hp--type-test:not(.hp--preview-page) .hp-life {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    width: 100%;
+    margin-bottom: 1.15rem;
+    text-align: center;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life__carousel {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life-swiper .swiper-wrapper {
+    justify-content: center;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life .hp-section__head {
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life .hp-section__head .hp-rays {
+    display: none;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life .hp-section__head h2,
+  .hp--type-test:not(.hp--preview-page) .hp-life__title {
+    text-align: center;
+    white-space: nowrap;
+    max-width: none;
+    line-height: 1.15;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life .hp-section__lead {
+    margin: 0;
+    max-width: 34rem;
+    text-align: center;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life__cta {
+    margin-top: 0.15rem;
+    margin-bottom: 0;
+  }
+
+  /* ~30% + 20%; full-res sources, CSS scale only */
+  .hp--type-test:not(.hp--preview-page) .hp-life-slide--desktop {
+    width: auto;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life__item {
+    width: clamp(9rem, 14.4vw, 13.8rem);
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life__item--portrait {
+    aspect-ratio: 4 / 5;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life__item--square {
+    aspect-ratio: 1 / 1;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life__item img {
+    object-fit: cover;
+    image-rendering: auto;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life__caption {
+    left: 0.3rem;
+    bottom: 0.3rem;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.58rem;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life-swiper {
+    padding-bottom: 1.5rem;
   }
 
   .hp-topnav__nav {
@@ -3414,12 +3832,20 @@ a.hp-galerie-card:hover {
     gap: 0.15rem 1.35rem;
   }
 
+  .hp-topnav__divider {
+    flex: 0 0 1px;
+    align-self: center;
+    width: 1px;
+    height: 1.05rem;
+    background: color-mix(in srgb, var(--hp-muted) 28%, transparent);
+  }
+
   .hp-topnav__link {
     margin: 0;
     padding: 0.35rem 0;
     border: 0;
     background: none;
-    color: rgba(26, 74, 141, 0.62);
+    color: var(--hp-muted);
     font-family: inherit;
     font-size: 0.92rem;
     font-weight: 600;
@@ -3431,52 +3857,63 @@ a.hp-galerie-card:hover {
 
   .hp-topnav__link:hover,
   .hp-topnav__link:focus-visible {
-    color: var(--hp-blue);
+    color: var(--hp-text);
     outline: none;
   }
 
   .hp-topnav__link.is-active {
-    color: var(--hp-blue-deep);
+    color: var(--hp-text);
     font-weight: 800;
+    box-shadow: inset 0 -2px 0 var(--hp-yellow);
   }
 
   .hp-topnav__tools {
+    --hp-topnav-tools-gap: 1rem;
     display: flex;
     align-items: center;
-    gap: 0.85rem;
+    gap: var(--hp-topnav-tools-gap);
     flex-shrink: 0;
   }
 
-  .hp-topnav__tool {
+  .hp-topnav__tool,
+  .hp-topnav__tools .hp-topnav__contact {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 1.5rem;
-    padding: 0.2rem 0;
+    min-width: 0;
+    margin: 0;
+    padding: 0.35rem 0;
     border: 0;
     background: none;
-    color: rgba(26, 74, 141, 0.58);
+    color: var(--hp-muted);
     font-family: inherit;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
     text-decoration: none;
+    box-shadow: none;
     cursor: pointer;
     transition: color 0.15s ease;
   }
 
   .hp-topnav__tool:hover,
-  .hp-topnav__tool:focus-visible {
-    color: var(--hp-blue);
+  .hp-topnav__tool:focus-visible,
+  .hp-topnav__tools .hp-topnav__contact:hover,
+  .hp-topnav__tools .hp-topnav__contact:focus-visible {
+    color: var(--hp-text);
     outline: none;
   }
 
   .hp-topnav__facebook {
+    width: 1.1rem;
     font-size: 0.95rem;
+    color: #1877f2;
   }
 
-  .hp-topnav__contact {
-    font-size: 0.88rem;
+  .hp-topnav__facebook:hover,
+  .hp-topnav__facebook:focus-visible {
+    color: #0d65d9;
   }
 
   .hp-dock,
@@ -3493,81 +3930,191 @@ a.hp-galerie-card:hover {
     min-height: 0;
     max-height: none;
     height: auto;
-    color: var(--hp-blue-deep);
+    color: var(--hp-text);
   }
 
   .hp-hero__brand {
+    --hp-hero-display: "Cormorant Garamond", "Times New Roman", serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    gap: 0.55rem;
-    padding: clamp(1.4rem, 3vw, 2.4rem) clamp(1.25rem, 3vw, 2.75rem);
-    background: linear-gradient(
-      105deg,
-      #ffffff 0%,
-      #f4f8fc 58%,
-      #eaf2fa 100%
-    );
+    align-items: center;
+    gap: 0;
+    padding: clamp(1.6rem, 3.2vw, 2.75rem) clamp(1.35rem, 3.2vw, 2.85rem);
+    background: #ffffff;
     position: relative;
     z-index: 1;
+    text-align: center;
   }
 
-  .hp-hero__logo {
-    width: clamp(3.4rem, 5vw, 4.6rem);
-    height: auto;
-    margin-bottom: 0.15rem;
+  .hp-hero__mark {
+    display: grid;
+    place-items: center;
+    width: clamp(3.6rem, 5.2vw, 4.85rem);
+    height: clamp(3.6rem, 5.2vw, 4.85rem);
+    margin: 0 0 0.85rem;
+    animation: hp-brand-mark-in 0.7s ease both;
+  }
+
+  .hp-hero__mark-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+  }
+
+  .hp-hero__mark-rays {
+    transform-origin: 48px 48px;
+    animation: hp-brand-rays 18s linear infinite;
   }
 
   .hp-hero__school {
-    margin: 0;
-    font-size: clamp(0.72rem, 1.1vw, 0.84rem);
+    margin: 0 0 0.75rem;
+    max-width: 20rem;
+    font-size: clamp(0.66rem, 0.9vw, 0.76rem);
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(26, 74, 141, 0.7);
-    line-height: 1.35;
+    color: var(--hp-muted);
+    line-height: 1.45;
+    animation: hp-brand-copy-in 0.65s ease 0.08s both;
+  }
+
+  .hp-hero__school-text {
+    display: inline-block;
   }
 
   .hp-hero__desktop-title {
+    position: relative;
     margin: 0;
-    font-family: var(--hp-display);
-    font-size: clamp(2rem, 3.4vw, 2.85rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
+    max-width: 12ch;
+    padding-bottom: 0.55rem;
+    font-family: var(--hp-hero-display);
+    font-size: clamp(2.35rem, 4.1vw, 3.35rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
     color: var(--hp-blue-deep);
+    animation: hp-brand-copy-in 0.7s ease 0.14s both;
+  }
+
+  .hp-hero__desktop-title::after {
+    content: "";
+    display: block;
+    width: 2.75rem;
+    height: 1px;
+    margin: 0.7rem auto 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--hp-rule) 22%,
+      var(--hp-rule) 78%,
+      transparent
+    );
+    opacity: 0.8;
   }
 
   .hp-hero__motto {
-    margin: 0.15rem 0 0;
-    max-width: 22rem;
-    font-size: clamp(0.95rem, 1.25vw, 1.08rem);
-    font-weight: 600;
+    margin: 0.7rem 0 0;
+    max-width: 18.5rem;
+    font-family: var(--hp-hero-display);
+    font-size: clamp(1.02rem, 1.35vw, 1.18rem);
+    font-weight: 500;
+    font-style: italic;
     line-height: 1.45;
     color: var(--hp-muted);
+    animation: hp-brand-copy-in 0.7s ease 0.22s both;
   }
 
   .hp-hero__contact {
-    margin-top: 0.55rem;
-    padding: 0;
+    position: relative;
+    margin-top: 1.2rem;
+    padding: 0.2rem 0.1rem 0.35rem;
     border: 0;
     background: none;
-    color: var(--hp-blue);
+    color: var(--hp-blue-deep);
     font-family: inherit;
-    font-size: 0.92rem;
+    font-size: 0.78rem;
     font-weight: 700;
-    text-decoration: underline;
-    text-decoration-color: rgba(26, 74, 141, 0.28);
-    text-underline-offset: 0.18em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
     cursor: pointer;
+    animation: hp-brand-copy-in 0.7s ease 0.3s both;
+  }
+
+  .hp-hero__contact::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--hp-rule) 20%,
+      var(--hp-rule) 80%,
+      transparent
+    );
+    transform: translateX(-50%) scaleX(0.72);
+    transform-origin: center;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    opacity: 0.75;
+  }
+
+  .hp-hero__contact:hover::after,
+  .hp-hero__contact:focus-visible::after {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 1;
   }
 
   .hp-hero__contact:hover,
   .hp-hero__contact:focus-visible {
     color: var(--hp-blue-deep);
-    text-decoration-color: rgba(26, 74, 141, 0.55);
     outline: none;
+  }
+
+  @keyframes hp-brand-mark-in {
+    from {
+      opacity: 0;
+      transform: scale(0.88) translateY(0.35rem);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes hp-brand-copy-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.45rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hp-brand-rays {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hp-hero__mark,
+    .hp-hero__school,
+    .hp-hero__desktop-title,
+    .hp-hero__motto,
+    .hp-hero__contact,
+    .hp-hero__mark-rays {
+      animation: none;
+    }
   }
 
   .hp-hero__media {
@@ -3587,22 +4134,22 @@ a.hp-galerie-card:hover {
   .hp-hero__fade {
     display: block;
     inset: 0 auto 0 0;
-    width: min(42%, 14rem);
+    width: min(46%, 15rem);
     background: linear-gradient(
       90deg,
-      #eaf2fa 0%,
-      rgba(234, 242, 250, 0.78) 28%,
-      rgba(234, 242, 250, 0.28) 62%,
-      rgba(234, 242, 250, 0) 100%
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.82) 26%,
+      rgba(255, 255, 255, 0.35) 58%,
+      rgba(255, 255, 255, 0) 100%
     );
   }
 
   .hp-hero__shade {
     background: linear-gradient(
       90deg,
-      rgba(234, 242, 250, 0.18) 0%,
-      rgba(10, 30, 60, 0.02) 35%,
-      rgba(10, 30, 60, 0.08) 100%
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(255, 255, 255, 0.04) 40%,
+      rgba(18, 40, 70, 0.06) 100%
     );
   }
 
@@ -3653,7 +4200,8 @@ a.hp-galerie-card:hover {
 
   .hp-offer-card__text {
     font-size: 0.9rem;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 2;
+    min-height: calc(1.35em * 2);
     margin-bottom: 0.9rem;
   }
 
@@ -3693,6 +4241,21 @@ a.hp-galerie-card:hover {
     aspect-ratio: 21 / 9;
   }
 
+  /* Desktop about photo — user wide crop; phone keeps square original */
+  .hp--type-test:not(.hp--preview-page) .hp-about__media picture {
+    display: block;
+    width: 100%;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-about__media img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+    object-position: center;
+    border-radius: calc(var(--hp-radius) + 0.15rem);
+  }
+
   .hp-life-swiper {
     padding-bottom: 2rem;
   }
@@ -3720,6 +4283,18 @@ a.hp-galerie-card:hover {
   .hp-section.hp-support {
     margin-bottom: 2rem;
     padding: 1rem 1.1rem 0.75rem;
+  }
+
+  .hp-footer-card > .hp-section.hp-support {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 1.1rem;
+  }
+
+  .hp-footer-card > .hp-credits {
+    margin: 0;
+    padding: 0 1.1rem;
   }
 }
 
@@ -3802,25 +4377,40 @@ a.hp-galerie-card:hover {
   margin-top: var(--hp-stack-gap);
 }
 
-/* Support keeps airy framed padding (homepage rhythm zeros .hp-section above) */
-.hp--type-test:not(.hp--preview-page) .hp-section.hp-support {
+/* Support / credits shell spacing on homepage */
+.hp--type-test:not(.hp--preview-page) .hp-footer-card {
   margin-top: 2.5rem;
-  padding: 0.7rem 0.65rem 0.55rem;
 }
 
-/* Space between About CTA and full-bleed image — must follow the zero-padding rule */
+@media (max-width: 899px) {
+  .hp--type-test:not(.hp--preview-page) .hp-section.hp-support {
+    margin-top: 0;
+    padding: 0.7rem 0.65rem 0.55rem;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-footer-card .hp-credits {
+    margin-top: var(--hp-stack-gap);
+  }
+}
+
+/* Mobile: space between About copy and image below */
 .hp--type-test:not(.hp--preview-page) .hp-about__intro {
   padding-top: 0;
   padding-bottom: var(--hp-stack-gap);
 }
 
 .hp--type-test:not(.hp--preview-page) .hp-about__media {
-  width: min(1120px, calc(100% - 1.5rem));
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   border-radius: calc(var(--hp-radius) + 0.15rem);
   overflow: hidden;
   box-sizing: border-box;
+}
+
+.hp-home-rule {
+  width: min(1120px, calc(100% - 1.5rem));
+  margin: 1.35rem auto;
 }
 
 .hp--type-test .hp-section.hp-support {
@@ -3831,8 +4421,10 @@ a.hp-galerie-card:hover {
   margin: var(--hp-stack-gap) auto;
 }
 
-.hp--type-test:not(.hp--preview-page) .hp-life__cta {
-  margin-top: var(--hp-stack-gap);
+@media (max-width: 899px) {
+  .hp--type-test:not(.hp--preview-page) .hp-life__cta {
+    margin-top: var(--hp-stack-gap);
+  }
 }
 
 .hp--type-test:not(.hp--preview-page) .hp-offer-swiper,
@@ -3856,6 +4448,8 @@ a.hp-galerie-card:hover {
 .hp--type-test .hp-offer-card__text {
   font-size: 0.85rem;
   line-height: 1.4;
+  -webkit-line-clamp: 2;
+  min-height: calc(1.4em * 2);
 }
 
 .hp--type-test .hp-offer-card__go {
@@ -4006,18 +4600,23 @@ a.hp-galerie-card:hover {
 
   .hp--type-test:not(.hp--preview-page) .hp-section,
   .hp--type-test:not(.hp--preview-page) .hp-offer,
-  .hp--type-test:not(.hp--preview-page) .hp-about__intro {
+  .hp--type-test:not(.hp--preview-page) .hp-about,
+  .hp--type-test:not(.hp--preview-page) .hp-about__intro,
+  .hp--type-test:not(.hp--preview-page) .hp-life {
     padding-top: 0;
     padding-bottom: 0;
   }
 
-  .hp--type-test:not(.hp--preview-page) .hp-about__intro {
-    padding-bottom: var(--hp-stack-gap);
+  .hp--type-test:not(.hp--preview-page) .hp-offer-swiper {
+    padding-bottom: 3rem;
   }
 
-  .hp--type-test:not(.hp--preview-page) .hp-offer-swiper,
   .hp--type-test:not(.hp--preview-page) .hp-life-swiper {
-    padding-bottom: 3rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-life__cta {
+    margin-top: 0.35rem;
   }
 
   /* Keep Echipa rhythm when .hp-section gains 3.5rem padding at desktop */
@@ -4037,9 +4636,16 @@ a.hp-galerie-card:hover {
     padding-bottom: 3rem;
   }
 
-  .hp--type-test:not(.hp--preview-page) .hp-section.hp-support {
+  .hp--type-test:not(.hp--preview-page) .hp-footer-card {
     margin-top: 3.5rem;
-    padding: 1rem 1.1rem 0.75rem;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-footer-card > .hp-section.hp-support {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 1.1rem;
+    background: transparent;
   }
 }
 
