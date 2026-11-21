@@ -13,6 +13,7 @@ import { PREVIEW_HOME, PREVIEW_DESPRE, PREVIEW_GALERIE } from "./previewNav";
 import { clampDockPos, getDockViewportHome } from "./dockViewport";
 import { subscribeVisualViewport } from "../../../utils/visualViewport";
 import { PreviewMenuBackdrop, PreviewMenuPanel } from "./PreviewNavMenu";
+import DesktopTopNav from "./DesktopTopNav";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageSwipe from "./PreviewPageSwipe";
 import "./HomePreview.css";
@@ -224,6 +225,7 @@ const HomePreview = () => {
   const dockRef = useRef(null);
   const heroRef = useRef(null);
   const contactTriggerRef = useRef(null);
+  const contactPhoneTriggerRef = useRef(null);
   const contactPanelRef = useRef(null);
   const dockDragRef = useRef(null);
   const dockJustDraggedRef = useRef(false);
@@ -283,14 +285,16 @@ const HomePreview = () => {
     }
 
     const syncPanelPos = () => {
-      const trigger = contactTriggerRef.current;
+      const trigger = [contactTriggerRef.current, contactPhoneTriggerRef.current].find(
+        (el) => el && el.getClientRects().length > 0
+      );
       if (!trigger) return;
       const rect = trigger.getBoundingClientRect();
-      const minWidth = Math.max(rect.width, 200);
+      const minWidth = Math.max(rect.width, 240);
       const maxLeft = Math.max(8, window.innerWidth - minWidth - 8);
       setContactPanelPos({
         top: rect.bottom + 6,
-        left: Math.min(rect.left, maxLeft),
+        left: Math.min(Math.max(8, rect.left), maxLeft),
         minWidth,
       });
     };
@@ -309,7 +313,7 @@ const HomePreview = () => {
 
     const onPointerDown = (event) => {
       const target = event.target;
-      if (contactTriggerRef.current?.contains(target)) return;
+      if (target.closest?.("[data-contact-trigger]")) return;
       if (contactPanelRef.current?.contains(target)) return;
       setContactOpen(false);
     };
@@ -643,6 +647,10 @@ const HomePreview = () => {
         path="/"
       />
       {contactPanel}
+      <DesktopTopNav
+        contactTriggerRef={contactTriggerRef}
+        onContactClick={() => setContactOpen((open) => !open)}
+      />
       <div
         ref={dockRef}
         className={`hp-dock ${dockPos ? "is-custom-pos" : "is-home-pos"} ${dockDragging ? "is-dragging" : ""} ${dockOutsideHero ? "is-outside-hero" : ""}`}
@@ -717,29 +725,56 @@ const HomePreview = () => {
 
       <main>
         <section ref={heroRef} className="hp-hero" aria-labelledby="hp-hero-title">
-          <picture className="hp-hero__picture">
-            <source
-              media="(min-width: 900px)"
-              srcSet="/images/preview/desktop/hero-main.jpeg"
-            />
+          <div className="hp-hero__brand">
             <img
-              className="hp-hero__bg"
-              src="/images/preview/hero-main.jpg"
+              className="hp-hero__logo"
+              src="/logo_raza_de_soare.png"
               alt=""
               decoding="async"
             />
-          </picture>
-          <div className="hp-hero__shade" />
+            <p className="hp-hero__school">{t("preview.home.heroSchoolName")}</p>
+            <h1 id="hp-hero-title" className="hp-hero__desktop-title">
+              {t("preview.home.heroTitle")}
+            </h1>
+            <p className="hp-hero__motto">{t("preview.home.heroMotto")}</p>
+            <button
+              type="button"
+              className="hp-hero__contact"
+              data-contact-trigger
+              onClick={() => setContactOpen((open) => !open)}
+            >
+              {t("preview.contact.cta")}
+            </button>
+          </div>
+
+          <div className="hp-hero__media">
+            <picture className="hp-hero__picture">
+              <source
+                media="(min-width: 900px)"
+                srcSet="/images/preview/desktop/hero-main.jpeg"
+              />
+              <img
+                className="hp-hero__bg"
+                src="/images/preview/hero-main.jpg"
+                alt=""
+                decoding="async"
+              />
+            </picture>
+            <div className="hp-hero__fade" aria-hidden />
+            <div className="hp-hero__shade" />
+          </div>
+
           <div className="hp-hero__content">
             <article className="hp-hero-card hp-glass">
               <HeroCardSun />
-              <h1 id="hp-hero-title">{t("preview.home.heroTitle")}</h1>
+              <p className="hp-hero__phone-title">{t("preview.home.heroTitle")}</p>
               <div className="hp-hero-card__actions">
                 <div className={`hp-contact-dd ${contactOpen ? "is-open" : ""}`}>
                   <button
                     type="button"
-                    ref={contactTriggerRef}
+                    ref={contactPhoneTriggerRef}
                     className="hp-btn hp-btn--card-ghost hp-contact-dd__trigger"
+                    data-contact-trigger
                     aria-expanded={contactOpen}
                     aria-controls="hp-contact-panel"
                     onClick={() => setContactOpen((open) => !open)}

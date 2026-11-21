@@ -6,6 +6,7 @@ import { setAppLanguage } from "../../../i18n";
 import { PREVIEW_HOME } from "./previewNav";
 import PreviewPageSwipe from "./PreviewPageSwipe";
 import { PreviewMenuBackdrop, PreviewMenuPanel } from "./PreviewNavMenu";
+import DesktopTopNav from "./DesktopTopNav";
 import { clampDockPos, getDockViewportHome } from "./dockViewport";
 import { subscribeVisualViewport } from "../../../utils/visualViewport";
 import "./HomePreview.css";
@@ -200,6 +201,7 @@ const PreviewShell = ({ children, className = "" }) => {
       className={`hp hp--preview-page hp--type-test is-outside-hero-page ${menuOpen ? "hp--menu-open" : ""} ${className}`.trim()}
       lang={activeLang === "EN" ? "en" : "ro"}
     >
+      <DesktopTopNav />
       <div
         ref={dockRef}
         className={`hp-dock is-outside-hero ${dockPos ? "is-custom-pos" : "is-home-pos"} ${dockDragging ? "is-dragging" : ""}`}

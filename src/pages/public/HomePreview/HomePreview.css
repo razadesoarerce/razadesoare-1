@@ -199,6 +199,11 @@ html.hp-swipe-hint-dismissed .hp-page-swipe-edges {
   -webkit-hyphens: auto;
 }
 
+/* Desktop top nav — hidden on phone; classic text band above the hero */
+.hp-topnav {
+  display: none;
+}
+
 /* Floating 2x2 dock — bottom right (~30% larger than previous size) */
 .hp-dock {
   --hp-dock-cell: 2.13rem;
@@ -1889,39 +1894,53 @@ a.hp-galerie-card:hover {
   overflow: hidden;
 }
 
-.hp-hero__picture,
-.hp-hero__bg,
-.hp-hero__shade {
+/* Phone: brand panel hidden; media fills the hero like the old single cover */
+.hp-hero__brand {
+  display: none;
+}
+
+.hp-hero__media {
   position: absolute;
   inset: 0;
-  z-index: -2;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hp-hero__picture,
+.hp-hero__bg,
+.hp-hero__shade,
+.hp-hero__fade {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
 .hp-hero__picture {
   display: block;
   overflow: hidden;
+  z-index: 0;
 }
 
 .hp-hero__bg {
   display: block;
   width: 100%;
   height: 100%;
+  max-width: none;
   object-fit: cover;
   object-position: center 42%;
   transform: scale(1.02);
   animation: hp-kenburns 18s ease-in-out infinite alternate;
 }
 
-@media (min-width: 900px) {
-  .hp-hero__bg {
-    /* Desktop banner keeps building + people on the right in frame */
-    object-position: center 48%;
-  }
+.hp-hero__fade {
+  display: none;
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* Soft wash — glass card carries its own contrast */
 .hp-hero__shade {
-  z-index: -1;
+  z-index: 1;
   background: linear-gradient(
     90deg,
     rgba(10, 30, 60, 0.14) 0%,
@@ -2066,7 +2085,8 @@ a.hp-galerie-card:hover {
   }
 }
 
-.hp-hero-card h1 {
+.hp-hero-card h1,
+.hp-hero__phone-title {
   font-family: var(--hp-display);
   font-weight: 800;
   font-size: clamp(0.95rem, 4.1vw, 1.2rem);
@@ -3328,7 +3348,8 @@ a.hp-galerie-card:hover {
     height: 2.15rem;
   }
 
-  .hp-hero-card h1 {
+  .hp-hero-card h1,
+  .hp-hero__phone-title {
     font-size: 1.4rem;
   }
 
@@ -3363,31 +3384,230 @@ a.hp-galerie-card:hover {
 
 }
 
-/* Desktop — 4 cards in a row like the mockup image */
+/* Desktop — classic top nav + split hero (brand | 3:1 cover) */
 @media (min-width: 900px) {
+  .hp-topnav {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid rgba(26, 74, 141, 0.08);
+    backdrop-filter: blur(12px) saturate(1.1);
+    -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  }
+
+  .hp-topnav__inner {
+    width: min(1180px, calc(100% - 2.5rem));
+    margin: 0 auto;
+    min-height: 3.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  .hp-topnav__nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.15rem 1.35rem;
+  }
+
+  .hp-topnav__link {
+    margin: 0;
+    padding: 0.35rem 0;
+    border: 0;
+    background: none;
+    color: rgba(26, 74, 141, 0.62);
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+
+  .hp-topnav__link:hover,
+  .hp-topnav__link:focus-visible {
+    color: var(--hp-blue);
+    outline: none;
+  }
+
+  .hp-topnav__link.is-active {
+    color: var(--hp-blue-deep);
+    font-weight: 800;
+  }
+
+  .hp-topnav__tools {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .hp-topnav__tool {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    padding: 0.2rem 0;
+    border: 0;
+    background: none;
+    color: rgba(26, 74, 141, 0.58);
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+
+  .hp-topnav__tool:hover,
+  .hp-topnav__tool:focus-visible {
+    color: var(--hp-blue);
+    outline: none;
+  }
+
+  .hp-topnav__facebook {
+    font-size: 0.95rem;
+  }
+
+  .hp-topnav__contact {
+    font-size: 0.88rem;
+  }
+
+  .hp-dock,
+  .hp-menu-root,
+  .hp-page-swipe-edges {
+    display: none !important;
+  }
+
   .hp-hero {
-    max-height: 24rem;
+    display: grid;
+    grid-template-columns: minmax(17rem, 0.38fr) minmax(22rem, 0.62fr);
+    align-items: stretch;
+    aspect-ratio: auto;
+    min-height: 0;
+    max-height: none;
+    height: auto;
+    color: var(--hp-blue-deep);
+  }
+
+  .hp-hero__brand {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.55rem;
+    padding: clamp(1.4rem, 3vw, 2.4rem) clamp(1.25rem, 3vw, 2.75rem);
+    background: linear-gradient(
+      105deg,
+      #ffffff 0%,
+      #f4f8fc 58%,
+      #eaf2fa 100%
+    );
+    position: relative;
+    z-index: 1;
+  }
+
+  .hp-hero__logo {
+    width: clamp(3.4rem, 5vw, 4.6rem);
+    height: auto;
+    margin-bottom: 0.15rem;
+  }
+
+  .hp-hero__school {
+    margin: 0;
+    font-size: clamp(0.72rem, 1.1vw, 0.84rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(26, 74, 141, 0.7);
+    line-height: 1.35;
+  }
+
+  .hp-hero__desktop-title {
+    margin: 0;
+    font-family: var(--hp-display);
+    font-size: clamp(2rem, 3.4vw, 2.85rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--hp-blue-deep);
+  }
+
+  .hp-hero__motto {
+    margin: 0.15rem 0 0;
+    max-width: 22rem;
+    font-size: clamp(0.95rem, 1.25vw, 1.08rem);
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--hp-muted);
+  }
+
+  .hp-hero__contact {
+    margin-top: 0.55rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--hp-blue);
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: rgba(26, 74, 141, 0.28);
+    text-underline-offset: 0.18em;
+    cursor: pointer;
+  }
+
+  .hp-hero__contact:hover,
+  .hp-hero__contact:focus-visible {
+    color: var(--hp-blue-deep);
+    text-decoration-color: rgba(26, 74, 141, 0.55);
+    outline: none;
+  }
+
+  .hp-hero__media {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    overflow: hidden;
+  }
+
+  .hp-hero__bg {
+    object-position: 72% 46%;
+    transform: none;
+    animation: none;
+  }
+
+  .hp-hero__fade {
+    display: block;
+    inset: 0 auto 0 0;
+    width: min(42%, 14rem);
+    background: linear-gradient(
+      90deg,
+      #eaf2fa 0%,
+      rgba(234, 242, 250, 0.78) 28%,
+      rgba(234, 242, 250, 0.28) 62%,
+      rgba(234, 242, 250, 0) 100%
+    );
+  }
+
+  .hp-hero__shade {
+    background: linear-gradient(
+      90deg,
+      rgba(234, 242, 250, 0.18) 0%,
+      rgba(10, 30, 60, 0.02) 35%,
+      rgba(10, 30, 60, 0.08) 100%
+    );
   }
 
   .hp-hero__content {
-    padding: 0.85rem 0 2.1rem;
-    padding-left: clamp(1.5rem, 4vw, 2.75rem);
-  }
-
-  .hp-hero-card {
-    width: min(34%, 16.5rem);
-    padding: 0.85rem 0.95rem 0.9rem;
-    gap: 0.2rem;
-    border-radius: 1.35rem;
-  }
-
-  .hp-hero-card__sun {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-
-  .hp-hero-card h1 {
-    font-size: 1.65rem;
+    display: none;
   }
 
   .hp-btn.hp-btn--card-primary,
@@ -3660,7 +3880,8 @@ a.hp-galerie-card:hover {
   font-size: 0.94rem;
 }
 
-.hp--type-test .hp-hero-card h1 {
+.hp--type-test .hp-hero-card h1,
+.hp--type-test .hp-hero__phone-title {
   font-size: clamp(1.12rem, 4.8vw, 1.42rem);
 }
 
