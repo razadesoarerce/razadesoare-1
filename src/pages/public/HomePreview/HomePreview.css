@@ -3403,8 +3403,8 @@ a.hp-galerie-card:hover {
     min-height: 3.35rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1.25rem;
+    justify-content: flex-end;
+    gap: 1.75rem;
   }
 
   .hp-topnav__nav {
