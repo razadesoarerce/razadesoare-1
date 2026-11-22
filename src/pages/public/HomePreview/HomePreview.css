@@ -2391,10 +2391,8 @@ a.hp-galerie-card:hover {
   width: 100%;
   height: 100%;
   min-height: 11.5rem;
-  border: 1.5px solid transparent;
-  box-shadow:
-    0 1px 2px rgba(18, 40, 70, 0.06),
-    0 8px 22px rgba(18, 40, 70, 0.1);
+  border: 0;
+  box-shadow: 0 6px 18px rgba(26, 74, 141, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
@@ -2403,32 +2401,26 @@ a.hp-galerie-card:hover {
 .hp-offer-card:hover,
 .hp-offer-card.is-active {
   transform: translateY(-4px);
-  box-shadow:
-    0 2px 4px rgba(18, 40, 70, 0.07),
-    0 16px 34px rgba(18, 40, 70, 0.14);
+  box-shadow: 0 14px 30px rgba(26, 74, 141, 0.12);
 }
 
 .hp-offer-card--pink {
-  background: linear-gradient(165deg, #fff5f8 0%, #fbdce8 100%);
-  border-color: color-mix(in srgb, var(--hp-pink-deep) 28%, transparent);
+  background: #fde8f0;
   color: var(--hp-pink-deep);
 }
 
 .hp-offer-card--blue {
-  background: linear-gradient(165deg, #f3f9fd 0%, #d7ebf8 100%);
-  border-color: color-mix(in srgb, var(--hp-sky-deep) 28%, transparent);
+  background: #e7f3fc;
   color: var(--hp-sky-deep);
 }
 
 .hp-offer-card--yellow {
-  background: linear-gradient(165deg, #fff9e6 0%, #ffe29a 100%);
-  border-color: color-mix(in srgb, #d4a017 32%, transparent);
+  background: #fff3cc;
   color: #d4a017;
 }
 
 .hp-offer-card--green {
-  background: linear-gradient(165deg, #f3faf1 0%, #d5efd1 100%);
-  border-color: color-mix(in srgb, var(--hp-mint-deep) 28%, transparent);
+  background: #e7f6e5;
   color: var(--hp-mint-deep);
 }
 
@@ -2448,7 +2440,7 @@ a.hp-galerie-card:hover {
 }
 
 .hp-offer-card__title {
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.25rem;
   font-family: var(--hp-display);
   font-size: 0.95rem;
   font-weight: 700;
@@ -2456,25 +2448,23 @@ a.hp-galerie-card:hover {
 }
 
 .hp-offer-card__text {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.55rem;
   color: var(--hp-muted);
   font-size: 0.72rem;
   line-height: 1.35;
   font-weight: 600;
   flex: 1;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   width: 100%;
-  min-height: calc(1.35em * 2);
-  text-align: center;
+  text-align: left;
 }
 
 .hp-offer-card__go {
   width: 1.85rem;
   height: 1.85rem;
-  margin-top: 0.15rem;
   border-radius: 50%;
   color: #fff;
   font-size: 0.95rem;
@@ -2820,17 +2810,19 @@ a.hp-galerie-card:hover {
   margin-top: 1.75rem;
 }
 
-/* Footer shell — phone: transparent wrapper; desktop: one shared card */
+/* Footer shell — phone: pass-through; desktop (≥900px): one shared card */
 .hp-footer-card {
-  width: min(1120px, calc(100% - 1.5rem));
-  margin: 0 auto 1.5rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  background: transparent;
 }
 
-/* Support — independent blue framed panel */
+/* Support — independent blue framed panel (phone default) */
 .hp-section.hp-support {
-  width: 100%;
-  margin: 0 0 1rem;
+  width: min(1120px, calc(100% - 1.5rem));
+  margin: 0 auto 1.5rem;
   padding: 0.7rem 0.65rem 0.55rem;
   box-sizing: border-box;
   background: var(--hp-blue);
@@ -2987,15 +2979,20 @@ a.hp-galerie-card:hover {
   background: rgba(108, 184, 107, 0.18);
 }
 
-/* Credits — framed blue panel (same language as Support), all preview pages */
+/* Credits — framed blue panel (phone default; desktop merges into footer card) */
 .hp-credits {
-  width: 100%;
-  margin: 0;
+  width: min(1120px, calc(100% - 1.5rem));
+  margin: 1rem auto;
   padding: 0.7rem 0.85rem;
   box-sizing: border-box;
   border-radius: 1rem;
   background: var(--hp-blue);
   color: rgba(255, 255, 255, 0.92);
+}
+
+/* Homepage orange rules — desktop only (phone stays without them) */
+.hp-home-rule {
+  display: none;
 }
 
 /* Legal links — white strip under credits; expand content below on click */
@@ -3602,8 +3599,55 @@ a.hp-galerie-card:hover {
   }
 
   .hp-home-rule {
+    display: block;
     width: min(1480px, calc(100% - 3rem));
     margin: 1.75rem auto;
+  }
+
+  /* Desktop-only offer card emphasis */
+  .hp-offer-card {
+    border: 1.5px solid transparent;
+    box-shadow:
+      0 1px 2px rgba(18, 40, 70, 0.06),
+      0 8px 22px rgba(18, 40, 70, 0.1);
+  }
+
+  .hp-offer-card:hover,
+  .hp-offer-card.is-active {
+    box-shadow:
+      0 2px 4px rgba(18, 40, 70, 0.07),
+      0 16px 34px rgba(18, 40, 70, 0.14);
+  }
+
+  .hp-offer-card--pink {
+    background: linear-gradient(165deg, #fff5f8 0%, #fbdce8 100%);
+    border-color: color-mix(in srgb, var(--hp-pink-deep) 28%, transparent);
+  }
+
+  .hp-offer-card--blue {
+    background: linear-gradient(165deg, #f3f9fd 0%, #d7ebf8 100%);
+    border-color: color-mix(in srgb, var(--hp-sky-deep) 28%, transparent);
+  }
+
+  .hp-offer-card--yellow {
+    background: linear-gradient(165deg, #fff9e6 0%, #ffe29a 100%);
+    border-color: color-mix(in srgb, #d4a017 32%, transparent);
+  }
+
+  .hp-offer-card--green {
+    background: linear-gradient(165deg, #f3faf1 0%, #d5efd1 100%);
+    border-color: color-mix(in srgb, var(--hp-mint-deep) 28%, transparent);
+  }
+
+  .hp-offer-card__title {
+    margin-bottom: 0.35rem;
+  }
+
+  .hp-offer-card__text {
+    margin-bottom: 0.75rem;
+    -webkit-line-clamp: 2;
+    min-height: calc(1.35em * 2);
+    text-align: center;
   }
 
   /* Homepage offer: cards left, “Ce oferim” copy right — same vertical band */
@@ -3680,6 +3724,9 @@ a.hp-galerie-card:hover {
     grid-template-columns: minmax(13rem, 16.5rem) minmax(0, 1fr);
     column-gap: 1.75rem;
     align-items: center;
+    width: min(1480px, calc(100% - 3rem));
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 0;
     padding-bottom: 0;
   }
@@ -3692,6 +3739,9 @@ a.hp-galerie-card:hover {
     align-items: center;
     justify-content: center;
     gap: 0.55rem;
+    width: auto;
+    max-width: none;
+    margin: 0;
     padding: 0;
     text-align: center;
   }
@@ -3735,7 +3785,7 @@ a.hp-galerie-card:hover {
     text-align: center;
   }
 
-  /* Homepage life: title → lead → CTA → carousel (stacked) */
+  /* Homepage life: title → lead → CTA → carousel (stacked; CTA reordered) */
   .hp--type-test:not(.hp--preview-page) .hp-life {
     display: flex;
     flex-direction: column;
@@ -3750,12 +3800,20 @@ a.hp-galerie-card:hover {
     align-items: center;
     justify-content: center;
     gap: 0.55rem;
+    order: 1;
     width: 100%;
-    margin-bottom: 1.15rem;
+    margin-bottom: 0.55rem;
     text-align: center;
   }
 
+  .hp--type-test:not(.hp--preview-page) .hp-life__cta {
+    order: 2;
+    margin-top: 0.15rem;
+    margin-bottom: 1.15rem;
+  }
+
   .hp--type-test:not(.hp--preview-page) .hp-life__carousel {
+    order: 3;
     width: 100%;
     min-width: 0;
   }
@@ -3781,11 +3839,6 @@ a.hp-galerie-card:hover {
     margin: 0;
     max-width: 34rem;
     text-align: center;
-  }
-
-  .hp--type-test:not(.hp--preview-page) .hp-life__cta {
-    margin-top: 0.15rem;
-    margin-bottom: 0;
   }
 
   /*
@@ -4399,7 +4452,7 @@ a.hp-galerie-card:hover {
 }
 
 .hp--type-test:not(.hp--preview-page) .hp-about__media {
-  width: 100%;
+  width: min(1120px, calc(100% - 1.5rem));
   margin-left: auto;
   margin-right: auto;
   border-radius: calc(var(--hp-radius) + 0.15rem);
@@ -4407,9 +4460,16 @@ a.hp-galerie-card:hover {
   box-sizing: border-box;
 }
 
-.hp-home-rule {
-  width: min(1120px, calc(100% - 1.5rem));
-  margin: 1.35rem auto;
+@media (min-width: 900px) {
+  .hp--type-test:not(.hp--preview-page) .hp-about__media {
+    width: 100%;
+  }
+
+  .hp--type-test .hp-offer-card__text {
+    -webkit-line-clamp: 2;
+    min-height: calc(1.4em * 2);
+    text-align: center;
+  }
 }
 
 .hp--type-test .hp-section.hp-support {
@@ -4447,8 +4507,6 @@ a.hp-galerie-card:hover {
 .hp--type-test .hp-offer-card__text {
   font-size: 0.85rem;
   line-height: 1.4;
-  -webkit-line-clamp: 2;
-  min-height: calc(1.4em * 2);
 }
 
 .hp--type-test .hp-offer-card__go {

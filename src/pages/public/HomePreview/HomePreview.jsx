@@ -1010,8 +1010,8 @@ const HomePreview = () => {
 
         <hr className="hp-despre-rule hp-home-rule" aria-hidden />
 
-        <section className="hp-section hp-about" aria-labelledby="hp-about-title">
-          <div className="hp-about__intro">
+        <section className="hp-about" aria-labelledby="hp-about-title">
+          <div className="hp-section hp-about__intro">
             <div className="hp-section__head">
               <SunRays className="hp-rays" />
               <h2 id="hp-about-title">{t("preview.home.about.title")}</h2>
@@ -1050,11 +1050,6 @@ const HomePreview = () => {
               <SunRays className="hp-rays" />
             </div>
             <p className="hp-section__lead">{t("preview.home.life.lead")}</p>
-            <div className="hp-life__cta">
-              <Link to={PREVIEW_GALERIE} className="hp-btn hp-btn--primary">
-                {t("preview.home.life.galleryCta")} <span aria-hidden>→</span>
-              </Link>
-            </div>
           </div>
           <div className="hp-life__carousel">
             <Swiper
@@ -1080,6 +1075,11 @@ const HomePreview = () => {
                 </SwiperSlide>
               ))}
             </Swiper>
+          </div>
+          <div className="hp-life__cta">
+            <Link to={PREVIEW_GALERIE} className="hp-btn hp-btn--primary">
+              {t("preview.home.life.galleryCta")} <span aria-hidden>→</span>
+            </Link>
           </div>
         </section>
 
