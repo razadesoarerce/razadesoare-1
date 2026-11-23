@@ -5014,19 +5014,49 @@ a.hp-galerie-card:hover {
     color: #fff;
   }
 
-  /* Symmetric vertical rhythm between bands / cards / media */
-  .hp--type-test:not(.hp--preview-page) .hp-band--offer + .hp-offer {
-    padding-top: 2.75rem;
-    padding-bottom: 2.75rem;
+  /* About band: white surface, blue type — same horizontal layout */
+  .hp--type-test:not(.hp--preview-page) .hp-band--about {
+    background: #ffffff;
+    color: var(--hp-blue);
+    border-top: 1px solid rgba(26, 74, 141, 0.08);
+    border-bottom: 1px solid rgba(26, 74, 141, 0.08);
   }
 
-  /* Hide phone/desktop leftover intros when bands carry the copy */
+  .hp--type-test:not(.hp--preview-page) .hp-band--about .hp-band__title {
+    color: var(--hp-blue-deep);
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-band--about .hp-band__divider {
+    background: color-mix(in srgb, var(--hp-blue) 28%, transparent);
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-band--about .hp-band__text {
+    color: var(--hp-muted);
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-band--about .hp-btn--yellow {
+    color: var(--hp-blue-deep);
+    border-color: var(--hp-yellow);
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-band--about .hp-btn--yellow:hover {
+    background: color-mix(in srgb, var(--hp-yellow) 22%, transparent);
+    color: var(--hp-blue-deep);
+  }
+
+  /* Cards above offer band; band sits under the grid */
   .hp--type-test:not(.hp--preview-page) .hp-offer {
     display: block;
     grid-template-columns: none;
     width: min(1480px, calc(100% - 3rem));
     margin-left: auto;
     margin-right: auto;
+    padding-top: 2.75rem;
+    padding-bottom: 2.75rem;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-offer + .hp-band--offer {
+    margin-top: 0;
   }
 
   .hp--type-test:not(.hp--preview-page) .hp-offer__intro {
@@ -5099,7 +5129,7 @@ a.hp-galerie-card:hover {
     background: transparent;
   }
 
-  /* —— About: band then full-bleed image —— */
+  /* —— About: full-bleed image then white horizontal band —— */
   .hp--type-test:not(.hp--preview-page) .hp-home-rule {
     display: none;
   }
@@ -5109,6 +5139,10 @@ a.hp-galerie-card:hover {
     width: 100%;
     margin: 0;
     padding: 0;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-about + .hp-band--about {
+    margin-top: 0;
   }
 
   .hp--type-test:not(.hp--preview-page) .hp-about__intro {

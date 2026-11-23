@@ -874,16 +874,6 @@ const HomePreview = () => {
           </svg>
         </section>
 
-        <section className="hp-band hp-band--offer" aria-labelledby="hp-offer-band-title">
-          <div className="hp-band__inner">
-            <h2 id="hp-offer-band-title" className="hp-band__title">
-              {t("preview.home.offer.title")}
-            </h2>
-            <span className="hp-band__divider" aria-hidden />
-            <p className="hp-band__text">{t("preview.home.offer.bandText")}</p>
-          </div>
-        </section>
-
         <section className="hp-section hp-offer" aria-labelledby="hp-offer-title">
           <div className="hp-offer__intro">
             <div className="hp-section__head">
@@ -1038,22 +1028,17 @@ const HomePreview = () => {
           ) : null}
         </section>
 
-        <hr className="hp-despre-rule hp-home-rule" aria-hidden />
-
-        <section className="hp-band hp-band--about" aria-labelledby="hp-about-band-title">
+        <section className="hp-band hp-band--offer" aria-labelledby="hp-offer-band-title">
           <div className="hp-band__inner">
-            <h2 id="hp-about-band-title" className="hp-band__title">
-              {t("preview.home.about.title")}
+            <h2 id="hp-offer-band-title" className="hp-band__title">
+              {t("preview.home.offer.title")}
             </h2>
             <span className="hp-band__divider" aria-hidden />
-            <div className="hp-band__copy">
-              <p className="hp-band__text">{t("preview.home.about.text")}</p>
-              <Link to={PREVIEW_DESPRE} className="hp-btn hp-btn--yellow">
-                {t("preview.home.about.cta")}
-              </Link>
-            </div>
+            <p className="hp-band__text">{t("preview.home.offer.bandText")}</p>
           </div>
         </section>
+
+        <hr className="hp-despre-rule hp-home-rule" aria-hidden />
 
         <section className="hp-about" aria-labelledby="hp-about-title">
           <div className="hp-section hp-about__intro">
@@ -1080,6 +1065,21 @@ const HomePreview = () => {
                 alt={t("preview.home.about.imageAlt")}
               />
             </picture>
+          </div>
+        </section>
+
+        <section className="hp-band hp-band--about" aria-labelledby="hp-about-band-title">
+          <div className="hp-band__inner">
+            <h2 id="hp-about-band-title" className="hp-band__title">
+              {t("preview.home.about.title")}
+            </h2>
+            <span className="hp-band__divider" aria-hidden />
+            <div className="hp-band__copy">
+              <p className="hp-band__text">{t("preview.home.about.text")}</p>
+              <Link to={PREVIEW_DESPRE} className="hp-btn hp-btn--yellow">
+                {t("preview.home.about.cta")}
+              </Link>
+            </div>
           </div>
         </section>
 
