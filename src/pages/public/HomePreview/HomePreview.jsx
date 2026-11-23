@@ -779,6 +779,12 @@ const HomePreview = () => {
       {menuOpen ? <PreviewMenuBackdrop onClose={closeMenu} /> : null}
 
       <main>
+        {/* Desktop only (CSS): trial placement above the cover on the homepage */}
+        <DesktopTopNav
+          contactTriggerRef={contactTriggerRef}
+          onContactClick={() => setContactOpen((open) => !open)}
+        />
+
         <section ref={heroRef} className="hp-hero" aria-labelledby="hp-hero-title">
           <div className="hp-hero__brand">
             <HeroBrandMark />
@@ -853,11 +859,6 @@ const HomePreview = () => {
             />
           </svg>
         </section>
-
-        <DesktopTopNav
-          contactTriggerRef={contactTriggerRef}
-          onContactClick={() => setContactOpen((open) => !open)}
-        />
 
         <section className="hp-section hp-offer" aria-labelledby="hp-offer-title">
           <div className="hp-offer__intro">
