@@ -34,6 +34,9 @@
     "pageSwipeHintNext": "Glisează stânga pentru pagina următoare",
     "pageSwipeHintPrev": "Glisează dreapta pentru pagina anterioară",
     "langAria": "Limba activă {{lang}}. Apasă pentru a schimba.",
+    "langRoAria": "Comută limba în română",
+    "langEnAria": "Comută limba în engleză",
+    "navBrand": "Școala Specială Rază de Soare",
     "facebook": "Facebook"
   },
   "contact": {
@@ -57,11 +60,13 @@
     "offer": {
       "title": "Ce oferim",
       "lead": "Activități și experiențe care sprijină dezvoltarea armonioasă a copiilor.",
+      "bandText": "Un mediu prietenos, sigur și adaptat, în care fiecare copil primește sprijinul de care are nevoie pentru a învăța, a se dezvolta și a-și descoperi potențialul.",
+      "readMore": "Citește mai mult",
       "expandHint": "Derulează pentru a citi · swipe stânga/dreapta sau tap în afară pentru a închide",
       "cards": {
         "mission": {
           "title": "Misiune și Viziune",
-          "text": "Un mediu sigur și adaptat, unde fiecare copil este văzut, sprijinit și încurajat să crească.",
+          "text": "Un mediu sigur și adaptat, unde fiecare copil este văzut, sprijinit și încurajat să crească, în ritmul lui, cu grijă și respect pentru demnitatea sa.",
           "headline": "Misiune & Viziune",
           "detailParagraphs": [
             "Școala Specială „Rază de Soare” își asumă misiunea de a oferi sprijin educațional, recuperator, emoțional și spiritual elevilor cu dizabilități grave-severe, promovând incluziunea și creșterea demnității fiecărui copil. Dorim să oferim fiecărui copil cu cerințe educaționale speciale un mediu sigur, stabil și adaptat nevoilor sale individuale, în care dezvoltarea personală, autonomia și comunicarea să fie priorități fundamentale.",
@@ -85,7 +90,7 @@
         },
         "education": {
           "title": "Educație",
-          "text": "Fiecare copil învață în ritmul lui, cu metode adaptate nevoilor și potențialului său.",
+          "text": "Fiecare copil învață în ritmul lui, cu metode adaptate nevoilor, potențialului și particularităților sale educaționale.",
           "headline": "Educație – Fiecare copil învață în felul său",
           "detailParagraphs": [
             "La Școala Specială „Rază de Soare”, educația este o responsabilitate pe care o tratăm cu seriozitate, profesionalism și grijă față de fiecare copil. Credem că fiecare elev merită acces la o educație de calitate, adaptată nevoilor și posibilităților sale.",
@@ -96,7 +101,7 @@
         },
         "development": {
           "title": "Dezvoltare",
-          "text": "Fiecare pas înainte contează — de la autonomie și comunicare, până la încredere în sine.",
+          "text": "Fiecare pas înainte contează — de la autonomie și comunicare, până la încredere în sine și abilități pentru viața de zi cu zi.",
           "headline": "Dezvoltare – Fiecare pas înainte contează",
           "detailParagraphs": [
             "Fiecare copil are propriul ritm de învățare și dezvoltare. La Școala Specială „Rază de Soare”, ne dorim ca fiecare copil cu cerințe educaționale speciale (CES) să primească sprijinul și încurajarea de care are nevoie pentru a-și dezvolta abilitățile și a deveni, pas cu pas, mai independent.",
@@ -108,7 +113,7 @@
         },
         "activities": {
           "title": "Activități",
-          "text": "Creativitate, joacă și experiențe care aduc bucurie și sprijină dezvoltarea fiecărui copil.",
+          "text": "Creativitate, joacă și experiențe care aduc bucurie, întăresc legăturile și sprijină dezvoltarea fiecărui copil.",
           "headline": "Activități – Fiecare experiență contează",
           "detailParagraphs": [
             "La Școala Specială „Rază de Soare”, credem că fiecare copil merită bucuria de a descoperi, de a încerca și de a reuși, în propriul ritm.",
@@ -131,6 +136,7 @@
       "titleLine1": "Momente la",
       "titleLine2": "Rază de Soare",
       "lead": "Momente din activitățile și evenimentele noastre.",
+      "bandText": "Din clasă, din curte și din comunitate — clipe care arată cum învățăm, ne bucurăm și creștem împreună, în fiecare zi, la Rază de Soare.",
       "galleryCta": "Vezi galeria foto",
       "gallery": {
         "g1": { "alt": "Pictură cu pensula — activitate creativă ghidată", "label": "Creativitate" },
@@ -144,8 +150,11 @@
     "support": {
       "title": "Fii o rază de speranță",
       "taxTitle": "Redirecționează",
+      "taxLabel": "Redirecționează 3,5%",
+      "taxCta": "Redirecționează",
       "donate": {
         "title": "Donează",
+        "cta": "Donează acum",
         "text": "Susține activitatea școlii.",
         "headline": "Donează: Fii parte din schimbare!",
         "detailParagraphs": [
@@ -156,6 +165,8 @@
       },
       "volunteer": {
         "title": "Fii voluntar",
+        "label": "Implică-te",
+        "cta": "Află cum poți ajuta",
         "text": "Implică-te alături de noi.",
         "headline": "Descoperă oportunitățile de voluntariat!",
         "detailParagraphs": [
@@ -163,7 +174,9 @@
           "Voluntariatul în cadrul școlii reprezintă o oportunitate de a acumula experiență practică, de a dobândi cunoștințe și de a înțelege mai bine particularitățile educației copiilor cu cerințe educaționale speciale.",
           "Dacă ești interesat să desfășori activități de voluntariat în cadrul școlii noastre, ne poți contacta telefonic sau prin e-mail pentru mai multe informații."
         ]
-      }
+      },
+      "contactTitle": "Contactează-ne",
+      "contactCta": "Contactează-ne"
     },
     "credits": {
       "aria": "Echipa de realizare a site-ului",

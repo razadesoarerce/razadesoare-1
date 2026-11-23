@@ -285,6 +285,7 @@ const HomePreview = () => {
   const heroRef = useRef(null);
   const contactTriggerRef = useRef(null);
   const contactPhoneTriggerRef = useRef(null);
+  const lastContactTriggerRef = useRef(null);
   const contactPanelRef = useRef(null);
   const dockDragRef = useRef(null);
   const dockJustDraggedRef = useRef(false);
@@ -344,9 +345,13 @@ const HomePreview = () => {
     }
 
     const syncPanelPos = () => {
-      const trigger = [contactTriggerRef.current, contactPhoneTriggerRef.current].find(
-        (el) => el && el.getClientRects().length > 0
-      );
+      const preferred = lastContactTriggerRef.current;
+      const trigger =
+        preferred && preferred.getClientRects().length > 0
+          ? preferred
+          : [contactTriggerRef.current, contactPhoneTriggerRef.current].find(
+              (el) => el && el.getClientRects().length > 0
+            );
       if (!trigger) return;
       const rect = trigger.getBoundingClientRect();
       const minWidth = Math.max(rect.width, 240);
@@ -782,7 +787,10 @@ const HomePreview = () => {
         {/* Desktop only (CSS): trial placement above the cover on the homepage */}
         <DesktopTopNav
           contactTriggerRef={contactTriggerRef}
-          onContactClick={() => setContactOpen((open) => !open)}
+          onContactClick={(event) => {
+            lastContactTriggerRef.current = event?.currentTarget ?? contactTriggerRef.current;
+            setContactOpen((open) => !open);
+          }}
         />
 
         <section ref={heroRef} className="hp-hero" aria-labelledby="hp-hero-title">
@@ -799,7 +807,10 @@ const HomePreview = () => {
               type="button"
               className="hp-hero__contact"
               data-contact-trigger
-              onClick={() => setContactOpen((open) => !open)}
+              onClick={(event) => {
+                lastContactTriggerRef.current = event.currentTarget;
+                setContactOpen((open) => !open);
+              }}
             >
               {t("preview.contact.cta")}
             </button>
@@ -835,7 +846,10 @@ const HomePreview = () => {
                     data-contact-trigger
                     aria-expanded={contactOpen}
                     aria-controls="hp-contact-panel"
-                    onClick={() => setContactOpen((open) => !open)}
+                    onClick={(event) => {
+                      lastContactTriggerRef.current = event.currentTarget;
+                      setContactOpen((open) => !open);
+                    }}
                   >
                     {t("preview.contact.cta")}{" "}
                     <span className="hp-contact-dd__chevron" aria-hidden>
@@ -860,6 +874,16 @@ const HomePreview = () => {
           </svg>
         </section>
 
+        <section className="hp-band hp-band--offer" aria-labelledby="hp-offer-band-title">
+          <div className="hp-band__inner">
+            <h2 id="hp-offer-band-title" className="hp-band__title">
+              {t("preview.home.offer.title")}
+            </h2>
+            <span className="hp-band__divider" aria-hidden />
+            <p className="hp-band__text">{t("preview.home.offer.bandText")}</p>
+          </div>
+        </section>
+
         <section className="hp-section hp-offer" aria-labelledby="hp-offer-title">
           <div className="hp-offer__intro">
             <div className="hp-section__head">
@@ -868,34 +892,6 @@ const HomePreview = () => {
                 {t("preview.home.offer.title")}
               </h2>
               <SunRays className="hp-rays" />
-            </div>
-            {/* Desktop only: same icon+title+text stack as neighbors (static, no expand) */}
-            <div className="hp-offer-card hp-offer-card--static" aria-hidden="true">
-              <span className="hp-offer-card__icon">
-                <svg viewBox="0 0 64 64" aria-hidden>
-                  {Array.from({ length: 12 }, (_, i) => (
-                    <line
-                      key={i}
-                      x1="32"
-                      y1={i % 2 === 0 ? 4 : 7}
-                      x2="32"
-                      y2="14"
-                      stroke="#e08a2a"
-                      strokeWidth={i % 2 === 0 ? 2.2 : 1.6}
-                      strokeLinecap="round"
-                      transform={`rotate(${i * 30} 32 32)`}
-                    />
-                  ))}
-                  <circle cx="32" cy="32" r="12" fill="#f5c542" />
-                  <circle cx="32" cy="32" r="12" fill="none" stroke="#e08a2a" strokeWidth="1.2" />
-                </svg>
-              </span>
-              <span className="hp-offer-card__title">
-                {t("preview.home.offer.title")}
-              </span>
-              <span className="hp-offer-card__text">
-                {t("preview.home.offer.lead")}
-              </span>
             </div>
             <p className="hp-section__lead">{t("preview.home.offer.lead")}</p>
           </div>
@@ -924,6 +920,9 @@ const HomePreview = () => {
                     <span className="hp-offer-card__text">{card.text}</span>
                     <span className="hp-offer-card__go" aria-hidden>
                       →
+                    </span>
+                    <span className="hp-offer-card__more">
+                      {t("preview.home.offer.readMore")}
                     </span>
                   </button>
                 ))}
@@ -1041,6 +1040,21 @@ const HomePreview = () => {
 
         <hr className="hp-despre-rule hp-home-rule" aria-hidden />
 
+        <section className="hp-band hp-band--about" aria-labelledby="hp-about-band-title">
+          <div className="hp-band__inner">
+            <h2 id="hp-about-band-title" className="hp-band__title">
+              {t("preview.home.about.title")}
+            </h2>
+            <span className="hp-band__divider" aria-hidden />
+            <div className="hp-band__copy">
+              <p className="hp-band__text">{t("preview.home.about.text")}</p>
+              <Link to={PREVIEW_DESPRE} className="hp-btn hp-btn--yellow">
+                {t("preview.home.about.cta")}
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <section className="hp-about" aria-labelledby="hp-about-title">
           <div className="hp-section hp-about__intro">
             <div className="hp-section__head">
@@ -1070,6 +1084,21 @@ const HomePreview = () => {
         </section>
 
         <hr className="hp-despre-rule hp-home-rule" aria-hidden />
+
+        <section className="hp-band hp-band--life" aria-labelledby="hp-life-band-title">
+          <div className="hp-band__inner">
+            <h2 id="hp-life-band-title" className="hp-band__title">
+              {t("preview.home.life.title")}
+            </h2>
+            <span className="hp-band__divider" aria-hidden />
+            <div className="hp-band__copy">
+              <p className="hp-band__text">{t("preview.home.life.bandText")}</p>
+              <Link to={PREVIEW_GALERIE} className="hp-btn hp-btn--yellow">
+                {t("preview.home.life.galleryCta")}
+              </Link>
+            </div>
+          </div>
+        </section>
 
         <section className="hp-section hp-life" aria-labelledby="hp-life-title">
           <div className="hp-life__intro">
@@ -1114,7 +1143,12 @@ const HomePreview = () => {
           </div>
         </section>
 
-        <PreviewSupportFooter />
+        <PreviewSupportFooter
+          onContactClick={(event) => {
+            lastContactTriggerRef.current = event?.currentTarget ?? null;
+            setContactOpen(true);
+          }}
+        />
       </main>
       <PreviewPageSwipe />
     </div>

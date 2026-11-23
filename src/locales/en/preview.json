@@ -34,6 +34,9 @@
     "pageSwipeHintNext": "Swipe left for the next page",
     "pageSwipeHintPrev": "Swipe right for the previous page",
     "langAria": "Active language {{lang}}. Press to switch.",
+    "langRoAria": "Switch language to Romanian",
+    "langEnAria": "Switch language to English",
+    "navBrand": "Rază de Soare Special School",
     "facebook": "Facebook"
   },
   "contact": {
@@ -57,11 +60,13 @@
     "offer": {
       "title": "What we offer",
       "lead": "Activities and experiences that support children’s well-rounded development.",
+      "bandText": "A friendly, safe and adapted environment where every child receives the support they need to learn, grow and discover their potential.",
+      "readMore": "Read more",
       "expandHint": "Scroll to read · swipe left/right or tap outside to close",
       "cards": {
         "mission": {
           "title": "Mission & Vision",
-          "text": "A safe, adapted place where every child is seen, supported and encouraged to grow.",
+          "text": "A safe, adapted place where every child is seen, supported and encouraged to grow — at their own pace, with care and respect for their dignity.",
           "headline": "Mission & Vision",
           "detailParagraphs": [
             "Rază de Soare Special School is committed to offering educational, recovery, emotional and spiritual support to students with severe disabilities, promoting inclusion and the dignity of every child. We want to give every child with special educational needs a safe, stable environment adapted to their individual needs, where personal development, autonomy and communication are fundamental priorities.",
@@ -85,7 +90,7 @@
         },
         "education": {
           "title": "Education",
-          "text": "Every child learns at their own pace, with methods adapted to their needs and potential.",
+          "text": "Every child learns at their own pace, with methods adapted to their needs, potential and educational particularities.",
           "headline": "Education – Every child learns in their own way",
           "detailParagraphs": [
             "At Rază de Soare Special School, education is a responsibility we approach with seriousness, professionalism and care for every child. We believe every student deserves access to quality education adapted to their needs and abilities.",
@@ -96,7 +101,7 @@
         },
         "development": {
           "title": "Development",
-          "text": "Every step forward matters — from autonomy and communication to growing self-confidence.",
+          "text": "Every step forward matters — from autonomy and communication to growing self-confidence and everyday life skills.",
           "headline": "Development – Every step forward matters",
           "detailParagraphs": [
             "Every child has their own pace of learning and development. At Rază de Soare Special School, we want every child with special educational needs (SEN) to receive the support and encouragement they need to build skills and become, step by step, more independent.",
@@ -108,7 +113,7 @@
         },
         "activities": {
           "title": "Activities",
-          "text": "Creativity, play and experiences that bring joy and support each child’s development.",
+          "text": "Creativity, play and experiences that bring joy, strengthen bonds and support each child’s development.",
           "headline": "Activities – Every experience matters",
           "detailParagraphs": [
             "At Rază de Soare Special School, we believe every child deserves the joy of discovering, trying and succeeding — at their own pace.",
@@ -131,6 +136,7 @@
       "titleLine1": "Moments at",
       "titleLine2": "Rază de Soare",
       "lead": "Moments from our activities and events.",
+      "bandText": "From the classroom, the yard and the community — moments that show how we learn, celebrate and grow together every day at Rază de Soare.",
       "galleryCta": "See photo gallery",
       "gallery": {
         "g1": { "alt": "Brush painting — guided creative activity", "label": "Creativity" },
@@ -144,8 +150,11 @@
     "support": {
       "title": "Be a ray of hope",
       "taxTitle": "Redirect",
+      "taxLabel": "Redirect 3.5%",
+      "taxCta": "Redirect",
       "donate": {
         "title": "Donate",
+        "cta": "Donate now",
         "text": "Support the school’s work.",
         "headline": "Donate: Be part of the change!",
         "detailParagraphs": [
@@ -156,6 +165,8 @@
       },
       "volunteer": {
         "title": "Volunteer",
+        "label": "Get involved",
+        "cta": "Learn how you can help",
         "text": "Get involved with us.",
         "headline": "Discover volunteering opportunities!",
         "detailParagraphs": [
@@ -163,7 +174,9 @@
           "Volunteering at the school is an opportunity to gain practical experience, build knowledge and better understand the specifics of educating children with special educational needs.",
           "If you would like to volunteer at our school, you can contact us by phone or email for more information."
         ]
-      }
+      },
+      "contactTitle": "Contact us",
+      "contactCta": "Contact us"
     },
     "credits": {
       "aria": "Website credits",

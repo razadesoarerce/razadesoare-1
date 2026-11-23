@@ -16,21 +16,33 @@ const formatVisitors = (count, locale) => {
   }
 };
 
-/** White legal strip under credits — links expand content below on the same page. */
-const PreviewLegalLinks = () => {
+/**
+ * Legal links + optional visitor counter.
+ * `inline` — links only (desktop credits row). Visitors render via `showVisitors`
+ * so they can sit outside `display: contents` layouts.
+ */
+const PreviewLegalLinks = ({
+  inline = false,
+  showVisitors = true,
+  visitorsOnly = false,
+} = {}) => {
   const { t, i18n } = useTranslation();
   const [openId, setOpenId] = useState(null);
   const [visitors, setVisitors] = useState(null);
   const panelRef = useRef(null);
-  const trackedRef = useRef(false);
 
   useEffect(() => {
-    if (trackedRef.current) return undefined;
-    trackedRef.current = true;
     let cancelled = false;
-    trackSiteViewOncePerDay().then((total) => {
-      if (!cancelled && total > 0) setVisitors(total);
-    });
+    // Once-per-day gate lives in siteViewsService (localStorage) —
+    // do not block remounts with a ref (Strict Mode would hide the counter).
+    trackSiteViewOncePerDay()
+      .then((total) => {
+        if (cancelled) return;
+        if (typeof total === "number" && total > 0) setVisitors(total);
+      })
+      .catch(() => {
+        /* keep hidden if Firestore is unavailable */
+      });
     return () => {
       cancelled = true;
     };
@@ -53,7 +65,6 @@ const PreviewLegalLinks = () => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const node = panelRef.current;
 
-    // Wait a paint so the panel is laid out before scrolling
     const frameId = window.requestAnimationFrame(() => {
       node.scrollIntoView({
         behavior: reduceMotion ? "auto" : "smooth",
@@ -69,74 +80,95 @@ const PreviewLegalLinks = () => {
     setOpenId((prev) => (prev === id ? null : id));
   };
 
+  const visitorsEl =
+    showVisitors && visitors != null ? (
+      <p className="hp-legal__visitors" aria-label={t("preview.legal.visitorsAria")}>
+        {t("preview.legal.visitors", {
+          count: formatVisitors(visitors, i18n.language),
+        })}
+      </p>
+    ) : null;
+
+  if (visitorsOnly) {
+    return visitorsEl;
+  }
+
+  const links = (
+    <ul className="hp-legal__links">
+      {LEGAL_IDS.map((id) => {
+        const isOpen = openId === id;
+        return (
+          <li key={id}>
+            <button
+              type="button"
+              className={`hp-legal__link${isOpen ? " is-open" : ""}`}
+              aria-expanded={isOpen}
+              aria-controls={`hp-legal-panel-${id}`}
+              id={`hp-legal-trigger-${id}`}
+              onClick={() => onToggle(id)}
+            >
+              {t(`preview.legal.${id}.title`)}
+            </button>
+          </li>
+        );
+      })}
+    </ul>
+  );
+
+  const panel = openItem ? (
+    <div
+      ref={panelRef}
+      className="hp-legal__panel is-revealed"
+      id={`hp-legal-panel-${openItem.id}`}
+      role="region"
+      aria-labelledby={`hp-legal-trigger-${openItem.id}`}
+      tabIndex={-1}
+    >
+      <h3 className="hp-legal__panel-title">{openItem.title}</h3>
+      {openItem.updated ? (
+        <p className="hp-legal__updated">{openItem.updated}</p>
+      ) : null}
+      <div className="hp-legal__panel-body">
+        {openItem.sections.map((section, index) => (
+          <div
+            key={`${openItem.id}-section-${index}`}
+            className="hp-legal__section"
+          >
+            {section.heading ? (
+              <h4 className="hp-legal__section-heading">{section.heading}</h4>
+            ) : null}
+            {(section.paragraphs || []).map((paragraph, pIndex) => (
+              <p key={`${openItem.id}-${index}-${pIndex}`}>{paragraph}</p>
+            ))}
+          </div>
+        ))}
+      </div>
+      <button
+        type="button"
+        className="hp-legal__collapse"
+        onClick={() => setOpenId(null)}
+      >
+        {t("preview.legal.collapse")}
+      </button>
+    </div>
+  ) : null;
+
+  if (inline) {
+    return (
+      <div className="hp-legal hp-legal--inline" aria-label={t("preview.legal.aria")}>
+        {links}
+        {panel}
+        {showVisitors ? visitorsEl : null}
+      </div>
+    );
+  }
+
   return (
     <section className="hp-legal" aria-label={t("preview.legal.aria")}>
       <div className="hp-legal__inner">
-        <ul className="hp-legal__links">
-          {LEGAL_IDS.map((id) => {
-            const isOpen = openId === id;
-            return (
-              <li key={id}>
-                <button
-                  type="button"
-                  className={`hp-legal__link${isOpen ? " is-open" : ""}`}
-                  aria-expanded={isOpen}
-                  aria-controls={`hp-legal-panel-${id}`}
-                  id={`hp-legal-trigger-${id}`}
-                  onClick={() => onToggle(id)}
-                >
-                  {t(`preview.legal.${id}.title`)}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-
-        {openItem ? (
-          <div
-            ref={panelRef}
-            className="hp-legal__panel is-revealed"
-            id={`hp-legal-panel-${openItem.id}`}
-            role="region"
-            aria-labelledby={`hp-legal-trigger-${openItem.id}`}
-            tabIndex={-1}
-          >
-            <h3 className="hp-legal__panel-title">{openItem.title}</h3>
-            {openItem.updated ? (
-              <p className="hp-legal__updated">{openItem.updated}</p>
-            ) : null}
-            <div className="hp-legal__panel-body">
-              {openItem.sections.map((section, index) => (
-                <div
-                  key={`${openItem.id}-section-${index}`}
-                  className="hp-legal__section"
-                >
-                  {section.heading ? (
-                    <h4 className="hp-legal__section-heading">{section.heading}</h4>
-                  ) : null}
-                  {(section.paragraphs || []).map((paragraph, pIndex) => (
-                    <p key={`${openItem.id}-${index}-${pIndex}`}>{paragraph}</p>
-                  ))}
-                </div>
-              ))}
-            </div>
-            <button
-              type="button"
-              className="hp-legal__collapse"
-              onClick={() => setOpenId(null)}
-            >
-              {t("preview.legal.collapse")}
-            </button>
-          </div>
-        ) : null}
-
-        {visitors != null ? (
-          <p className="hp-legal__visitors" aria-label={t("preview.legal.visitorsAria")}>
-            {t("preview.legal.visitors", {
-              count: formatVisitors(visitors, i18n.language),
-            })}
-          </p>
-        ) : null}
+        {links}
+        {panel}
+        {showVisitors ? visitorsEl : null}
       </div>
     </section>
   );

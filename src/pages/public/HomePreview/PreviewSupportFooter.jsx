@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SUPPORT_FORM_URL } from "./previewSupportData";
 import PreviewLegalLinks from "./PreviewLegalLinks";
+import { useDesktopLayout } from "./useDesktopLayout";
 
 const SWIPE_CLOSE_PX = 56;
 
@@ -24,9 +25,98 @@ const SunRays = ({ className = "" }) => (
   </svg>
 );
 
+const IconHeart = () => (
+  <svg className="hp-support-desk__icon" viewBox="0 0 48 48" aria-hidden>
+    <path
+      d="M24 40s-14-8.8-14-18.2C10 15.2 14.2 11 19.2 11c2.9 0 4.8 1.4 4.8 1.4S26 11 28.8 11C33.8 11 38 15.2 38 21.8 38 31.2 24 40 24 40z"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const IconTax = () => (
+  <svg className="hp-support-desk__icon" viewBox="0 0 48 48" aria-hidden>
+    <rect
+      x="10"
+      y="8"
+      width="28"
+      height="32"
+      rx="3"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+    />
+    <path
+      d="M16 16h16M16 22h16M16 28h10"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+    />
+    <text
+      x="30"
+      y="36"
+      textAnchor="middle"
+      fill="currentColor"
+      fontSize="9"
+      fontWeight="700"
+      fontFamily="system-ui,sans-serif"
+    >
+      3,5%
+    </text>
+  </svg>
+);
+
+const IconInvolve = () => (
+  <svg className="hp-support-desk__icon" viewBox="0 0 48 48" aria-hidden>
+    <circle cx="24" cy="16" r="6" fill="none" stroke="currentColor" strokeWidth="2.2" />
+    <path
+      d="M12 36c0-6 5.4-10 12-10s12 4 12 10"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M34 18c2.8 0 5 2.2 5 5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const IconContact = () => (
+  <svg className="hp-support-desk__icon" viewBox="0 0 48 48" aria-hidden>
+    <rect
+      x="8"
+      y="12"
+      width="32"
+      height="24"
+      rx="3"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+    />
+    <path
+      d="M10 14l14 11 14-11"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 /** Shared Support strip + credits bar for all preview-site pages. */
-const PreviewSupportFooter = () => {
+const PreviewSupportFooter = ({ onContactClick } = {}) => {
   const { t } = useTranslation();
+  const isDesktop = useDesktopLayout();
   const [expandedId, setExpandedId] = useState(null);
   const swipeStart = useRef(null);
 
@@ -80,60 +170,134 @@ const PreviewSupportFooter = () => {
 
   return (
     <>
-      <div className="hp-footer-card">
-        <section className="hp-section hp-support" aria-labelledby="hp-support-title">
-          <div className="hp-section__head">
-            <SunRays className="hp-rays" />
-            <h2 id="hp-support-title">{t("preview.home.support.title")}</h2>
-            <SunRays className="hp-rays" />
-          </div>
-          <div className="hp-support__frame">
-            <a
-              className="hp-support-btn hp-support-btn--tax"
-              href={SUPPORT_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="hp-support-btn__badge" aria-hidden>
-                3,5%
-              </span>
-              <span className="hp-support-btn__title">{t("preview.home.support.taxTitle")}</span>
-            </a>
-            {supportCards.map((card) => (
-              <button
-                key={card.id}
-                type="button"
-                className={`hp-support-btn hp-support-btn--${card.tone} ${
-                  expandedId === card.id ? "is-active" : ""
-                }`}
-                onClick={() => setExpandedId(card.id)}
-                aria-expanded={expandedId === card.id}
-                aria-controls="hp-support-expanded"
+      <div className="hp-footer-stack">
+        <div className="hp-footer-card">
+          <section className="hp-section hp-support" aria-labelledby="hp-support-title">
+            <div className="hp-section__head">
+              <SunRays className="hp-rays" />
+              <h2 id="hp-support-title">{t("preview.home.support.title")}</h2>
+              <SunRays className="hp-rays" />
+            </div>
+
+            {/* Mobile / tablet: existing support buttons */}
+            <div className="hp-support__frame">
+              <a
+                className="hp-support-btn hp-support-btn--tax"
+                href={SUPPORT_FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <span className="hp-support-btn__badge" aria-hidden>
-                  {card.badge}
+                  3,5%
                 </span>
-                <span className="hp-support-btn__title">{card.title}</span>
-              </button>
-            ))}
-          </div>
-        </section>
+                <span className="hp-support-btn__title">{t("preview.home.support.taxTitle")}</span>
+              </a>
+              {supportCards.map((card) => (
+                <button
+                  key={card.id}
+                  type="button"
+                  className={`hp-support-btn hp-support-btn--${card.tone} ${
+                    expandedId === card.id ? "is-active" : ""
+                  }`}
+                  onClick={() => setExpandedId(card.id)}
+                  aria-expanded={expandedId === card.id}
+                  aria-controls="hp-support-expanded"
+                >
+                  <span className="hp-support-btn__badge" aria-hidden>
+                    {card.badge}
+                  </span>
+                  <span className="hp-support-btn__title">{card.title}</span>
+                </button>
+              ))}
+            </div>
 
-        <footer className="hp-credits" aria-label={t("preview.home.credits.aria")}>
-          <div className="hp-credits__inner">
-            <p className="hp-credits__brand">{t("preview.home.credits.brand")}</p>
-            <ul className="hp-credits__list">
-              <li>
-                <span className="hp-credits__role">{t("preview.home.credits.webDev")}</span>
-                <span className="hp-credits__name">Lolea Florentin Alin</span>
-              </li>
-              <li>
-                <span className="hp-credits__role">{t("preview.home.credits.design")}</span>
-                <span className="hp-credits__name">Roxin Mariana</span>
-              </li>
-            </ul>
-          </div>
-        </footer>
+            {/* Desktop: tall blue banner columns */}
+            <div className="hp-support-desk">
+              <div className="hp-support-desk__col">
+                <IconHeart />
+                <p className="hp-support-desk__label">{t("preview.home.support.donate.title")}</p>
+                <button
+                  type="button"
+                  className="hp-support-desk__cta"
+                  onClick={() => setExpandedId("donate")}
+                >
+                  {t("preview.home.support.donate.cta")}
+                </button>
+              </div>
+              <span className="hp-support-desk__rule" aria-hidden />
+              <div className="hp-support-desk__col">
+                <IconTax />
+                <p className="hp-support-desk__label">{t("preview.home.support.taxLabel")}</p>
+                <a
+                  className="hp-support-desk__cta"
+                  href={SUPPORT_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t("preview.home.support.taxCta")}
+                </a>
+              </div>
+              <span className="hp-support-desk__rule" aria-hidden />
+              <div className="hp-support-desk__col">
+                <IconInvolve />
+                <p className="hp-support-desk__label">{t("preview.home.support.volunteer.label")}</p>
+                <button
+                  type="button"
+                  className="hp-support-desk__cta"
+                  onClick={() => setExpandedId("volunteer")}
+                >
+                  {t("preview.home.support.volunteer.cta")}
+                </button>
+              </div>
+              <span className="hp-support-desk__rule" aria-hidden />
+              <div className="hp-support-desk__col">
+                <IconContact />
+                <p className="hp-support-desk__label">{t("preview.home.support.contactTitle")}</p>
+                {typeof onContactClick === "function" ? (
+                  <button
+                    type="button"
+                    className="hp-support-desk__cta"
+                    data-contact-trigger
+                    onClick={onContactClick}
+                  >
+                    {t("preview.home.support.contactCta")}
+                  </button>
+                ) : (
+                  <span className="hp-support-desk__cta hp-support-desk__cta--muted">
+                    {t("preview.home.support.contactCta")}
+                  </span>
+                )}
+              </div>
+            </div>
+          </section>
+
+          <footer className="hp-credits" aria-label={t("preview.home.credits.aria")}>
+            <div className="hp-credits__inner">
+              <p className="hp-credits__brand">{t("preview.home.credits.brand")}</p>
+              {isDesktop ? (
+                <PreviewLegalLinks inline showVisitors={false} />
+              ) : null}
+              <ul className="hp-credits__list">
+                <li>
+                  <span className="hp-credits__role">{t("preview.home.credits.webDev")}</span>
+                  <span className="hp-credits__name">Lolea Florentin Alin</span>
+                </li>
+                <li>
+                  <span className="hp-credits__role">{t("preview.home.credits.design")}</span>
+                  <span className="hp-credits__name">Roxin Mariana</span>
+                </li>
+              </ul>
+            </div>
+            {/* Outside credits row so it is not affected by display:contents */}
+            {isDesktop ? (
+              <div className="hp-credits__visitors">
+                <PreviewLegalLinks visitorsOnly />
+              </div>
+            ) : null}
+          </footer>
+        </div>
+
+        {!isDesktop ? <PreviewLegalLinks /> : null}
       </div>
 
       {expanded ? (
@@ -181,8 +345,6 @@ const PreviewSupportFooter = () => {
           </article>
         </div>
       ) : null}
-
-      <PreviewLegalLinks />
     </>
   );
 };
