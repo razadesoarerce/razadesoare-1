@@ -3431,7 +3431,7 @@ a.hp-galerie-card:hover {
     min-height: 3.35rem;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 1.15rem;
   }
 
@@ -3663,10 +3663,11 @@ a.hp-galerie-card:hover {
     grid-row: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
-    gap: 0.55rem;
+    gap: 0;
     text-align: center;
+    align-self: stretch;
   }
 
   .hp--type-test:not(.hp--preview-page) .hp-offer__carousel {
@@ -3679,24 +3680,67 @@ a.hp-galerie-card:hover {
     grid-column: 1 / -1;
   }
 
+  /* Keep accessible title; hide phone chrome visually on desktop */
   .hp--type-test:not(.hp--preview-page) .hp-offer .hp-section__head {
-    justify-content: center;
-    margin-bottom: 0;
-  }
-
-  /* Rays crowd the narrow side column — title alone reads cleaner */
-  .hp--type-test:not(.hp--preview-page) .hp-offer .hp-section__head .hp-rays {
-    display: none;
-  }
-
-  .hp--type-test:not(.hp--preview-page) .hp-offer .hp-section__head h2 {
-    text-align: center;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
     white-space: nowrap;
+    border: 0;
   }
 
   .hp--type-test:not(.hp--preview-page) .hp-offer .hp-section__lead {
-    margin: 0;
-    max-width: 14rem;
+    display: none;
+  }
+
+  /*
+   * Static “Ce oferim” — desktop homepage only.
+   * Neighbor cards are <button>s, so `.hp button { background: none }` clears tone fills;
+   * this div must match that white + soft-shadow look (no tone fill / no colored border).
+   */
+  .hp-offer__intro > .hp-offer-card--static {
+    display: none;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-offer__intro > .hp-offer-card--static {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-height: 15.5rem;
+    padding: 1.45rem 1.15rem 1.25rem;
+    /* Match neighbor <button> cards: no tone fill (those are cleared by `.hp button`) */
+    background: #fff;
+    border: 0;
+    box-shadow:
+      0 1px 2px rgba(18, 40, 70, 0.06),
+      0 8px 22px rgba(18, 40, 70, 0.1);
+    pointer-events: none;
+    cursor: default;
+    color: inherit;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-offer__intro > .hp-offer-card--static:hover,
+  .hp--type-test:not(.hp--preview-page) .hp-offer__intro > .hp-offer-card--static:active {
+    transform: none;
+    box-shadow:
+      0 1px 2px rgba(18, 40, 70, 0.06),
+      0 8px 22px rgba(18, 40, 70, 0.1);
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-offer__intro > .hp-offer-card--static .hp-offer-card__title {
+    margin-bottom: 0.35rem;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-offer__intro > .hp-offer-card--static .hp-offer-card__text {
+    margin-bottom: 0;
+    -webkit-line-clamp: unset;
+    min-height: 0;
+    display: block;
+    overflow: visible;
     text-align: center;
   }
 

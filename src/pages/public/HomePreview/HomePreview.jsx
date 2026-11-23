@@ -864,8 +864,38 @@ const HomePreview = () => {
           <div className="hp-offer__intro">
             <div className="hp-section__head">
               <SunRays className="hp-rays" />
-              <h2 id="hp-offer-title">{t("preview.home.offer.title")}</h2>
+              <h2 id="hp-offer-title" className="hp-offer__phone-title">
+                {t("preview.home.offer.title")}
+              </h2>
               <SunRays className="hp-rays" />
+            </div>
+            {/* Desktop only: same icon+title+text stack as neighbors (static, no expand) */}
+            <div className="hp-offer-card hp-offer-card--static" aria-hidden="true">
+              <span className="hp-offer-card__icon">
+                <svg viewBox="0 0 64 64" aria-hidden>
+                  {Array.from({ length: 12 }, (_, i) => (
+                    <line
+                      key={i}
+                      x1="32"
+                      y1={i % 2 === 0 ? 4 : 7}
+                      x2="32"
+                      y2="14"
+                      stroke="#e08a2a"
+                      strokeWidth={i % 2 === 0 ? 2.2 : 1.6}
+                      strokeLinecap="round"
+                      transform={`rotate(${i * 30} 32 32)`}
+                    />
+                  ))}
+                  <circle cx="32" cy="32" r="12" fill="#f5c542" />
+                  <circle cx="32" cy="32" r="12" fill="none" stroke="#e08a2a" strokeWidth="1.2" />
+                </svg>
+              </span>
+              <span className="hp-offer-card__title">
+                {t("preview.home.offer.title")}
+              </span>
+              <span className="hp-offer-card__text">
+                {t("preview.home.offer.lead")}
+              </span>
             </div>
             <p className="hp-section__lead">{t("preview.home.offer.lead")}</p>
           </div>
