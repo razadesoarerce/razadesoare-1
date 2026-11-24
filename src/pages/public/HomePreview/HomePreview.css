@@ -2062,7 +2062,8 @@ a.hp-galerie-card:hover {
   animation: hp-kenburns 18s ease-in-out infinite alternate;
 }
 
-.hp-hero__fade {
+.hp-hero__fade,
+.hp-hero__fade-bottom {
   display: none;
   z-index: 1;
   pointer-events: none;
@@ -2845,6 +2846,11 @@ a.hp-galerie-card:hover {
   width: 100%;
   overflow: hidden;
   background: #f3f5f8;
+}
+
+/* Phone: no edge fades (desktop homepage enables them) */
+.hp-about__fade {
+  display: none;
 }
 
 .hp-about__media img {
@@ -4391,6 +4397,26 @@ a.hp-galerie-card:hover {
     );
   }
 
+  /* Soft white fade at the bottom of the cover photo */
+  .hp-hero__fade-bottom {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    height: min(36%, 6.5rem);
+    z-index: 2;
+    background: linear-gradient(
+      0deg,
+      #ffffff 0%,
+      #ffffff 8%,
+      rgba(255, 255, 255, 0.82) 28%,
+      rgba(255, 255, 255, 0.35) 58%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
   .hp-hero__shade {
     background: linear-gradient(
       90deg,
@@ -5182,7 +5208,8 @@ a.hp-galerie-card:hover {
   .hp--type-test:not(.hp--preview-page) .hp-band--about {
     background: #ffffff;
     color: var(--hp-blue);
-    border-top: 1px solid rgba(26, 74, 141, 0.08);
+    /* No border-top: it read as a hairline under the about-image bottom fade */
+    border-top: 0;
     border-bottom: 1px solid rgba(26, 74, 141, 0.08);
   }
 
@@ -5208,6 +5235,35 @@ a.hp-galerie-card:hover {
     color: var(--hp-blue-deep);
   }
 
+  /* Life / Momente: stacked title → text, centered (keep blue banner) */
+  .hp--type-test:not(.hp--preview-page) .hp-band--life .hp-band__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    text-align: center;
+    grid-template-columns: none;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-band--life .hp-band__divider {
+    display: none;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-band--life .hp-band__title {
+    max-width: none;
+    white-space: nowrap;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-band--life .hp-band__copy {
+    gap: 0.85rem;
+    width: 100%;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-band--life .hp-band__text {
+    max-width: 40rem;
+  }
+
   /* Cards above offer band; band sits under the grid */
   .hp--type-test:not(.hp--preview-page) .hp-offer {
     display: block;
@@ -5221,6 +5277,8 @@ a.hp-galerie-card:hover {
 
   .hp--type-test:not(.hp--preview-page) .hp-offer + .hp-band--offer {
     margin-top: 0;
+    /* Match .hp-offer padding-bottom — white gap cards↔band and band↔about image */
+    margin-bottom: 2.75rem;
   }
 
   .hp--type-test:not(.hp--preview-page) .hp-offer__intro {
@@ -5312,6 +5370,7 @@ a.hp-galerie-card:hover {
   }
 
   .hp--type-test:not(.hp--preview-page) .hp-about__media {
+    position: relative;
     width: 100%;
     max-width: none;
     margin: 0;
@@ -5329,6 +5388,41 @@ a.hp-galerie-card:hover {
     object-fit: cover;
     max-height: none;
     border-radius: 0;
+  }
+
+  /* Soft white fades top/bottom — same stops as cover .hp-hero__fade */
+  .hp--type-test:not(.hp--preview-page) .hp-about__fade {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: min(32%, 8.5rem);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-about__fade--top {
+    top: 0;
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.82) 26%,
+      rgba(255, 255, 255, 0.35) 58%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-about__fade--bottom {
+    bottom: 0;
+    /* Solid white at the edge so the image bottom seam never shows through */
+    background: linear-gradient(
+      0deg,
+      #ffffff 0%,
+      #ffffff 8%,
+      rgba(255, 255, 255, 0.82) 28%,
+      rgba(255, 255, 255, 0.35) 58%,
+      rgba(255, 255, 255, 0) 100%
+    );
   }
 
   /* —— Life: band then carousel with equal top/bottom white space —— */

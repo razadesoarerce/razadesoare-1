@@ -155,6 +155,7 @@ const EchipaNoastra = () => {
               alt={t("preview.team.coverAlt")}
             />
             <div className="hp-hero__fade" aria-hidden />
+            <div className="hp-hero__fade-bottom" aria-hidden />
             <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
           </div>
           <svg

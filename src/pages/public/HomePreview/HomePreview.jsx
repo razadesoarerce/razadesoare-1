@@ -762,6 +762,7 @@ const HomePreview = () => {
               />
             </picture>
             <div className="hp-hero__fade" aria-hidden />
+            <div className="hp-hero__fade-bottom" aria-hidden />
             <div className="hp-hero__shade" />
           </div>
 
@@ -997,6 +998,9 @@ const HomePreview = () => {
                 alt={t("preview.home.about.imageAlt")}
               />
             </picture>
+            {/* Desktop only (CSS): white edge fades into the image, like the cover */}
+            <div className="hp-about__fade hp-about__fade--top" aria-hidden />
+            <div className="hp-about__fade hp-about__fade--bottom" aria-hidden />
           </div>
         </section>
 
