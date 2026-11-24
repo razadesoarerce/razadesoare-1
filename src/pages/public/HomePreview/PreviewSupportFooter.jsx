@@ -275,7 +275,7 @@ const PreviewSupportFooter = ({ onContactClick } = {}) => {
             <div className="hp-credits__inner">
               <p className="hp-credits__brand">{t("preview.home.credits.brand")}</p>
               {isDesktop ? (
-                <PreviewLegalLinks inline showVisitors={false} />
+                <PreviewLegalLinks inline showVisitors={false} trackViews={false} />
               ) : null}
               <ul className="hp-credits__list">
                 <li>

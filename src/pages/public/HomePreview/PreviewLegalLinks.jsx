@@ -20,11 +20,13 @@ const formatVisitors = (count, locale) => {
  * Legal links + optional visitor counter.
  * `inline` — links only (desktop credits row). Visitors render via `showVisitors`
  * so they can sit outside `display: contents` layouts.
+ * `trackViews` — set false on companion instances so only one mount hits Firestore.
  */
 const PreviewLegalLinks = ({
   inline = false,
   showVisitors = true,
   visitorsOnly = false,
+  trackViews = true,
 } = {}) => {
   const { t, i18n } = useTranslation();
   const [openId, setOpenId] = useState(null);
@@ -32,9 +34,9 @@ const PreviewLegalLinks = ({
   const panelRef = useRef(null);
 
   useEffect(() => {
+    if (!trackViews) return undefined;
     let cancelled = false;
-    // Once-per-day gate lives in siteViewsService (localStorage) —
-    // do not block remounts with a ref (Strict Mode would hide the counter).
+    // Service dedupes concurrent calls; once-per-day gate is in localStorage.
     trackSiteViewOncePerDay()
       .then((total) => {
         if (cancelled) return;
@@ -46,7 +48,7 @@ const PreviewLegalLinks = ({
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [trackViews]);
 
   const openItem = openId
     ? {
