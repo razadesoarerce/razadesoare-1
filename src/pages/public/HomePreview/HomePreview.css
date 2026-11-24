@@ -1495,6 +1495,62 @@ a.hp-galerie-card:hover {
   display: block;
 }
 
+/* Phone: vision/accreditation stay in the full-width list below */
+.hp-despre-intro__copy-extra {
+  display: none;
+}
+
+/* Desktop: image height follows the text column; side blocks fill that column */
+@media (min-width: 900px) {
+  .hp-despre-intro__row {
+    display: grid;
+    grid-template-columns: minmax(14rem, 0.85fr) minmax(0, 1.35fr);
+    gap: 1.5rem 2rem;
+    align-items: stretch;
+  }
+
+  .hp-despre-intro__row::after {
+    display: none;
+  }
+
+  .hp-despre-intro__media {
+    float: none;
+    width: auto;
+    height: 100%;
+    margin: 0;
+    min-height: 0;
+    border-radius: 1rem;
+  }
+
+  .hp-despre-intro__media img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hp-despre-intro__copy {
+    min-width: 0;
+  }
+
+  .hp-despre-intro__copy-extra {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    margin-top: 1.15rem;
+  }
+
+  .hp-despre-intro__copy-extra .hp-despre-block h2 {
+    margin-top: 0;
+  }
+
+  .hp-despre-block--side,
+  .hp-despre-rule--side {
+    display: none;
+  }
+}
+
 .hp-despre-intro__copy h2,
 .hp-despre-block h2 {
   font-family: var(--hp-display);
@@ -1776,7 +1832,7 @@ a.hp-galerie-card:hover {
   color: var(--hp-blue-deep);
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) and (max-width: 899px) {
   .hp-despre-intro__media {
     width: calc(50% - 0.75rem);
     margin: 0 1.5rem 0.85rem 0;

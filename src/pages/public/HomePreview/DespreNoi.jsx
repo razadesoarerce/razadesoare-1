@@ -10,8 +10,8 @@ import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageHead from "./PreviewPageHead";
 import PreviewDesktopCoverBrand from "./PreviewDesktopCoverBrand";
 
-const StoryRule = () => (
-  <hr className="hp-despre-rule" aria-hidden />
+const StoryRule = ({ className = "" } = {}) => (
+  <hr className={`hp-despre-rule ${className}`.trim()} aria-hidden />
 );
 
 const BANNER_META = [
@@ -20,7 +20,17 @@ const BANNER_META = [
   { id: "b2", src: "/images/preview/despre/banner-2.jpg" },
 ];
 
-const STORY_BLOCK_IDS = ["vision", "accreditation", "education", "mission"];
+/** Shown beside the story image on desktop; full-width list on phone. */
+const SIDE_BLOCK_IDS = ["vision", "accreditation"];
+/** Always full-width under the intro row. */
+const REST_BLOCK_IDS = ["education", "mission"];
+
+const mapBlocks = (t, ids) =>
+  ids.map((id) => ({
+    id,
+    title: t(`preview.about.blocks.${id}.title`),
+    text: t(`preview.about.blocks.${id}.text`),
+  }));
 
 /** New-site About page — parallel to old /despre/* routes. */
 const DespreNoi = () => {
@@ -31,11 +41,8 @@ const DespreNoi = () => {
     alt: t(`preview.about.banners.${slide.id}`),
   }));
 
-  const storyBlocks = STORY_BLOCK_IDS.map((id) => ({
-    id,
-    title: t(`preview.about.blocks.${id}.title`),
-    text: t(`preview.about.blocks.${id}.text`),
-  }));
+  const sideBlocks = mapBlocks(t, SIDE_BLOCK_IDS);
+  const restBlocks = mapBlocks(t, REST_BLOCK_IDS);
 
   return (
     <PreviewShell>
@@ -106,11 +113,30 @@ const DespreNoi = () => {
             <div className="hp-despre-intro__copy">
               <h2>{t("preview.about.historyTitle")}</h2>
               <p>{t("preview.about.historyText")}</p>
+              {/* Desktop only: fill the column beside the image */}
+              <div className="hp-despre-intro__copy-extra">
+                {sideBlocks.map((block) => (
+                  <article key={`side-${block.id}`} className="hp-despre-block">
+                    <h2>{block.title}</h2>
+                    <p>{block.text}</p>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
 
           <div className="hp-despre-blocks" aria-label={t("preview.about.blocksAria")}>
-            {storyBlocks.map((block) => (
+            {/* Phone: vision + accreditation here; desktop: hidden (shown beside image) */}
+            {sideBlocks.map((block) => (
+              <Fragment key={block.id}>
+                <StoryRule className="hp-despre-rule--side" />
+                <article className="hp-despre-block hp-despre-block--side">
+                  <h2>{block.title}</h2>
+                  <p>{block.text}</p>
+                </article>
+              </Fragment>
+            ))}
+            {restBlocks.map((block) => (
               <Fragment key={block.id}>
                 <StoryRule />
                 <article className="hp-despre-block">
