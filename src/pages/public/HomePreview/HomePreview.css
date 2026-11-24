@@ -5508,6 +5508,10 @@ a.hp-galerie-card:hover {
     justify-content: stretch;
     text-align: left;
     flex-wrap: nowrap;
+    box-sizing: border-box;
+    /* Clear a11y (left) + scroll-top (right) floating circles */
+    padding-left: 3.5rem;
+    padding-right: 3.75rem;
   }
 
   /* brand | legal links | names — visitors/panel via display:contents */
@@ -5578,7 +5582,7 @@ a.hp-galerie-card:hover {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 0.45rem;
+    margin-top: 0.12rem;
     padding-bottom: 0;
   }
 
