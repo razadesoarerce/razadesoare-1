@@ -2329,6 +2329,21 @@ a.hp-galerie-card:hover {
   }
 }
 
+@keyframes hp-contact-dd-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hp-contact-dd__panel.is-above {
+  animation-name: hp-contact-dd-in-up;
+}
+
 .hp-contact-dd__row {
   display: flex;
   align-items: center;
@@ -5225,14 +5240,33 @@ a.hp-galerie-card:hover {
     color: var(--hp-muted);
   }
 
+  /* Match cover “Contactează-ne” size (about white band + life blue band) */
+  .hp--type-test:not(.hp--preview-page) .hp-band--about .hp-btn--yellow,
+  .hp--type-test:not(.hp--preview-page) .hp-band--life .hp-btn--yellow {
+    padding: 0.4rem 1rem 0.38rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-width: 2px;
+    transform: none;
+  }
+
   .hp--type-test:not(.hp--preview-page) .hp-band--about .hp-btn--yellow {
     color: var(--hp-blue-deep);
     border-color: var(--hp-yellow);
   }
 
-  .hp--type-test:not(.hp--preview-page) .hp-band--about .hp-btn--yellow:hover {
+  .hp--type-test:not(.hp--preview-page) .hp-band--about .hp-btn--yellow:hover,
+  .hp--type-test:not(.hp--preview-page) .hp-band--about .hp-btn--yellow:focus-visible {
     background: color-mix(in srgb, var(--hp-yellow) 22%, transparent);
     color: var(--hp-blue-deep);
+    transform: none;
+  }
+
+  .hp--type-test:not(.hp--preview-page) .hp-band--life .hp-btn--yellow:hover,
+  .hp--type-test:not(.hp--preview-page) .hp-band--life .hp-btn--yellow:focus-visible {
+    transform: none;
   }
 
   /* Life / Momente: stacked title → text, centered (keep blue banner) */
@@ -5703,6 +5737,30 @@ a.hp-galerie-card:hover {
 
   .hp-footer-stack .hp-credits__inner > .hp-legal--inline .hp-legal__link {
     font-size: 0.64rem;
+  }
+}
+
+/* Desktop chrome contact panel (nav + footer) — solid card, not phone glass */
+@media (min-width: 900px) {
+  .hp-contact-dd__panel--chrome {
+    background: #ffffff;
+    border: 1px solid rgba(26, 74, 141, 0.14);
+    box-shadow:
+      0 4px 14px rgba(18, 40, 70, 0.1),
+      0 16px 36px rgba(18, 40, 70, 0.12);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .hp-contact-dd__panel--chrome .hp-contact-dd__row:hover,
+  .hp-contact-dd__panel--chrome .hp-contact-dd__row:focus-visible {
+    background: rgba(26, 74, 141, 0.06);
+    border-color: rgba(26, 74, 141, 0.12);
+    box-shadow: none;
+  }
+
+  .hp-contact-dd__panel--chrome .hp-contact-dd__row:active {
+    background: rgba(26, 74, 141, 0.1);
   }
 }
 

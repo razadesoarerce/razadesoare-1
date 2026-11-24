@@ -18,6 +18,7 @@ import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageSwipe from "./PreviewPageSwipe";
 import PreviewDesktopCoverBrand from "./PreviewDesktopCoverBrand";
 import PreviewScrollTop from "./PreviewScrollTop";
+import { resolveContactPanelPos } from "./previewContact";
 import { useDesktopLayout } from "./useDesktopLayout";
 import "./HomePreview.css";
 
@@ -298,14 +299,7 @@ const HomePreview = () => {
               (el) => el && el.getClientRects().length > 0
             );
       if (!trigger) return;
-      const rect = trigger.getBoundingClientRect();
-      const minWidth = Math.max(rect.width, 240);
-      const maxLeft = Math.max(8, window.innerWidth - minWidth - 8);
-      setContactPanelPos({
-        top: rect.bottom + 6,
-        left: Math.min(Math.max(8, rect.left), maxLeft),
-        minWidth,
-      });
+      setContactPanelPos(resolveContactPanelPos(trigger));
     };
 
     syncPanelPos();
@@ -537,11 +531,16 @@ const HomePreview = () => {
           <div
             id="hp-contact-panel"
             ref={contactPanelRef}
-            className="hp-contact-dd__panel hp-glass"
+            className={`hp-contact-dd__panel ${
+              contactPanelPos.surface === "chrome"
+                ? "hp-contact-dd__panel--chrome"
+                : "hp-glass"
+            }${contactPanelPos.placement === "above" ? " is-above" : ""}`}
             role="region"
             aria-label={t("preview.contact.panelAria")}
             style={{
               top: contactPanelPos.top,
+              bottom: contactPanelPos.bottom,
               left: contactPanelPos.left,
               minWidth: contactPanelPos.minWidth,
             }}
@@ -777,6 +776,7 @@ const HomePreview = () => {
                     ref={contactPhoneTriggerRef}
                     className="hp-btn hp-btn--card-ghost hp-contact-dd__trigger"
                     data-contact-trigger
+                    data-contact-surface="cover"
                     aria-expanded={contactOpen}
                     aria-controls="hp-contact-panel"
                     onClick={(event) => {

@@ -261,6 +261,7 @@ const PreviewSupportFooter = ({ onContactClick } = {}) => {
                     type="button"
                     className="hp-support-desk__cta"
                     data-contact-trigger
+                    data-contact-surface="chrome"
                     onClick={handleContact}
                   >
                     {t("preview.home.support.contactCta")}

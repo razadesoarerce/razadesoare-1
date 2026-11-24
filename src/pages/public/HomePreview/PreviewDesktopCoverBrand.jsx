@@ -36,6 +36,7 @@ const PreviewDesktopCoverBrand = ({
           type="button"
           className="hp-hero__contact"
           data-contact-trigger
+          data-contact-surface="cover"
           ref={triggerRef}
           onClick={handleContact}
         >

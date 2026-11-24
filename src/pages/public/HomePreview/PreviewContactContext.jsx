@@ -18,6 +18,7 @@ import {
   CONTACT_PHONE_MOBILE_DISPLAY,
   CONTACT_PHONE_MOBILE_TEL,
   CONTACT_PHONE_TEL,
+  resolveContactPanelPos,
 } from "./previewContact";
 
 const PreviewContactContext = createContext(null);
@@ -59,14 +60,7 @@ export const PreviewContactProvider = ({ children }) => {
             ? contactTriggerRef.current
             : null;
       if (!trigger) return;
-      const rect = trigger.getBoundingClientRect();
-      const minWidth = Math.max(rect.width, 240);
-      const maxLeft = Math.max(8, window.innerWidth - minWidth - 8);
-      setContactPanelPos({
-        top: rect.bottom + 6,
-        left: Math.min(Math.max(8, rect.left), maxLeft),
-        minWidth,
-      });
+      setContactPanelPos(resolveContactPanelPos(trigger));
     };
 
     syncPanelPos();
@@ -105,11 +99,16 @@ export const PreviewContactProvider = ({ children }) => {
           <div
             id="hp-contact-panel"
             ref={contactPanelRef}
-            className="hp-contact-dd__panel hp-glass"
+            className={`hp-contact-dd__panel ${
+              contactPanelPos.surface === "chrome"
+                ? "hp-contact-dd__panel--chrome"
+                : "hp-glass"
+            }${contactPanelPos.placement === "above" ? " is-above" : ""}`}
             role="region"
             aria-label={t("preview.contact.panelAria")}
             style={{
               top: contactPanelPos.top,
+              bottom: contactPanelPos.bottom,
               left: contactPanelPos.left,
               minWidth: contactPanelPos.minWidth,
             }}

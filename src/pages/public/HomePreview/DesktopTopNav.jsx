@@ -75,6 +75,7 @@ const DesktopTopNav = ({ onContactClick, contactTriggerRef }) => {
               ref={contactTriggerRef}
               className="hp-topnav__link hp-topnav__contact"
               data-contact-trigger
+              data-contact-surface="chrome"
               onClick={onContactClick}
             >
               {t("preview.contact.navLabel")}
