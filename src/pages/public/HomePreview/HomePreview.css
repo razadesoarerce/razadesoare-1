@@ -1535,19 +1535,16 @@ a.hp-galerie-card:hover {
   }
 
   .hp-despre-intro__copy-extra {
-    display: flex;
-    flex-direction: column;
-    gap: 1.15rem;
-    margin-top: 1.15rem;
+    display: block;
   }
 
-  .hp-despre-intro__copy-extra .hp-despre-block h2 {
-    margin-top: 0;
+  /* Soften image shadow so it does not optically thicken the separator below */
+  .hp-despre-intro__media {
+    box-shadow: 0 6px 16px rgba(26, 74, 141, 0.1);
   }
 
-  .hp-despre-block--side,
-  .hp-despre-rule--side {
-    display: none;
+  .hp-despre-blocks {
+    margin-top: 0.5rem;
   }
 }
 
@@ -1588,25 +1585,60 @@ a.hp-galerie-card:hover {
   margin: 0;
 }
 
-/* Shared orange divider — one thickness everywhere (Informații, Despre, desktop nav) */
+/* Shared orange divider — identical 1px hairline everywhere (nav, Despre, Informații, home).
+   Pseudo-element line (not <hr> border/background): avoids DPR antialias variance by Y position. */
 .hp-despre-rule {
   display: block;
+  position: relative;
   width: 90%;
-  height: var(--hp-rule-thickness);
+  height: 0;
+  min-height: 0;
   margin: 1.15rem auto;
-  border: 0;
+  border: 0 none;
+  outline: none;
   padding: 0;
-  background: linear-gradient(
+  overflow: visible;
+  flex-shrink: 0;
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+  background: none;
+  box-shadow: none;
+  opacity: 1;
+}
+
+.hp-despre-rule::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--hp-rule-thickness);
+  pointer-events: none;
+  background-color: color-mix(in srgb, var(--hp-rule) 38%, #ffffff);
+  /* Soft ends via opacity mask — same on every rule, no vertical blur */
+  -webkit-mask-image: linear-gradient(
     90deg,
     transparent 0%,
-    color-mix(in srgb, var(--hp-rule) 12%, transparent) 12%,
-    color-mix(in srgb, var(--hp-rule) 45%, transparent) 30%,
-    color-mix(in srgb, var(--hp-rule) 55%, transparent) 50%,
-    color-mix(in srgb, var(--hp-rule) 45%, transparent) 70%,
-    color-mix(in srgb, var(--hp-rule) 12%, transparent) 88%,
+    #000 12%,
+    #000 88%,
     transparent 100%
   );
-  opacity: 1;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+}
+
+/* Desktop: hide phone duplicates of vision/accreditation (rules were left visible under the image) */
+@media (min-width: 900px) {
+  .hp-despre-block.hp-despre-block--side,
+  .hp-despre-rule.hp-despre-rule--side {
+    display: none;
+  }
 }
 
 .hp-page .hp-credits {
@@ -4206,16 +4238,18 @@ a.hp-galerie-card:hover {
     content: "";
     display: block;
     width: 2.35rem;
-    height: 1px;
+    height: var(--hp-rule-thickness);
+    min-height: var(--hp-rule-thickness);
+    max-height: var(--hp-rule-thickness);
     margin: 0.45rem auto 0;
     background: linear-gradient(
       90deg,
-      transparent,
-      var(--hp-rule) 22%,
-      var(--hp-rule) 78%,
-      transparent
+      transparent 0%,
+      color-mix(in srgb, var(--hp-rule) 40%, transparent) 14%,
+      color-mix(in srgb, var(--hp-rule) 40%, transparent) 86%,
+      transparent 100%
     );
-    opacity: 0.8;
+    opacity: 1;
   }
 
   .hp-hero__motto {
@@ -4254,18 +4288,18 @@ a.hp-galerie-card:hover {
     left: 50%;
     bottom: 0;
     width: 100%;
-    height: 1px;
+    height: var(--hp-rule-thickness);
     background: linear-gradient(
       90deg,
-      transparent,
-      var(--hp-rule) 20%,
-      var(--hp-rule) 80%,
-      transparent
+      transparent 0%,
+      color-mix(in srgb, var(--hp-rule) 40%, transparent) 14%,
+      color-mix(in srgb, var(--hp-rule) 40%, transparent) 86%,
+      transparent 100%
     );
     transform: translateX(-50%) scaleX(0.72);
     transform-origin: center;
     transition: transform 0.25s ease, opacity 0.25s ease;
-    opacity: 0.75;
+    opacity: 1;
   }
 
   .hp-hero__contact:hover::after,
@@ -5090,13 +5124,11 @@ a.hp-galerie-card:hover {
     content: "";
     display: block;
     width: 3.25rem;
-    height: var(--hp-rule-thickness, 2px);
+    height: var(--hp-rule-thickness);
+    min-height: var(--hp-rule-thickness);
+    max-height: var(--hp-rule-thickness);
     margin: 0.55rem auto 0;
-    background: linear-gradient(
-      90deg,
-      var(--hp-rule, #e08a2a) 0%,
-      color-mix(in srgb, var(--hp-rule, #e08a2a) 55%, transparent) 100%
-    );
+    background: color-mix(in srgb, var(--hp-rule) 40%, transparent);
   }
 
   .hp--type-test:not(.hp--preview-page) .hp-band__divider {
@@ -5223,13 +5255,11 @@ a.hp-galerie-card:hover {
     content: "";
     display: block;
     width: 2.75rem;
-    height: var(--hp-rule-thickness, 2px);
+    height: var(--hp-rule-thickness);
+    min-height: var(--hp-rule-thickness);
+    max-height: var(--hp-rule-thickness);
     margin-top: 0.5rem;
-    background: linear-gradient(
-      90deg,
-      var(--hp-rule, #e08a2a) 0%,
-      color-mix(in srgb, var(--hp-rule, #e08a2a) 40%, transparent) 100%
-    );
+    background: color-mix(in srgb, var(--hp-rule) 40%, transparent);
   }
 
   .hp--type-test:not(.hp--preview-page) .hp-offer__grid .hp-offer-card__text {

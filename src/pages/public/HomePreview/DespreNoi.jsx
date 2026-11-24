@@ -11,7 +11,11 @@ import PreviewPageHead from "./PreviewPageHead";
 import PreviewDesktopCoverBrand from "./PreviewDesktopCoverBrand";
 
 const StoryRule = ({ className = "" } = {}) => (
-  <hr className={`hp-despre-rule ${className}`.trim()} aria-hidden />
+  <div
+    className={`hp-despre-rule ${className}`.trim()}
+    role="separator"
+    aria-hidden
+  />
 );
 
 const BANNER_META = [
@@ -116,10 +120,13 @@ const DespreNoi = () => {
               {/* Desktop only: fill the column beside the image */}
               <div className="hp-despre-intro__copy-extra">
                 {sideBlocks.map((block) => (
-                  <article key={`side-${block.id}`} className="hp-despre-block">
-                    <h2>{block.title}</h2>
-                    <p>{block.text}</p>
-                  </article>
+                  <Fragment key={`side-${block.id}`}>
+                    <StoryRule />
+                    <article className="hp-despre-block">
+                      <h2>{block.title}</h2>
+                      <p>{block.text}</p>
+                    </article>
+                  </Fragment>
                 ))}
               </div>
             </div>
