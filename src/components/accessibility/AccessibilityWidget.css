@@ -48,6 +48,14 @@
   display: block;
 }
 
+/* Desktop only: enlarge white ring + person almost to the button edge */
+@media (min-width: 900px) {
+  .a11y-widget__icon {
+    width: 2.55rem;
+    height: 2.55rem;
+  }
+}
+
 .a11y-widget__panel {
   position: absolute;
   left: 0;

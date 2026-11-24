@@ -5373,11 +5373,11 @@ a.hp-galerie-card:hover {
     margin-top: 0;
   }
 
-  /* —— Tall blue footer banner (all preview pages on desktop) —— */
+  /* —— Compact blue footer banner (all preview pages on desktop) —— */
   .hp-footer-stack {
     display: block;
     width: 100%;
-    margin: 2rem 0 0;
+    margin: 1.25rem 0 0;
     background: var(--hp-blue);
     color: #fff;
   }
@@ -5401,7 +5401,7 @@ a.hp-galerie-card:hover {
   .hp-footer-stack .hp-footer-card > .hp-section.hp-support {
     width: 100%;
     max-width: none;
-    padding: clamp(3rem, 5.5vw, 4.75rem) clamp(1.5rem, 3vw, 2.5rem) 2.25rem;
+    padding: clamp(1.15rem, 2.2vw, 1.65rem) clamp(1.25rem, 2.5vw, 2rem) 0.85rem;
     align-items: stretch;
   }
 
@@ -5426,34 +5426,34 @@ a.hp-galerie-card:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    gap: 1.05rem;
-    padding: 0.75rem 1.15rem;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.2rem 0.75rem;
     text-align: center;
-    min-height: 11.5rem;
+    min-height: 0;
   }
 
   .hp-footer-stack .hp-support-desk__rule {
     width: 1px;
     align-self: center;
-    height: 4.25rem;
+    height: 2.15rem;
     min-height: 0;
     background: rgba(255, 255, 255, 0.45);
   }
 
   .hp-footer-stack .hp-support-desk__icon {
-    width: 3.25rem;
-    height: 3.25rem;
+    width: 1.85rem;
+    height: 1.85rem;
     color: #fff;
   }
 
   .hp-footer-stack .hp-support-desk__label {
     margin: 0;
     font-family: var(--hp-display);
-    font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+    font-size: clamp(0.82rem, 1.05vw, 0.98rem);
     font-weight: 800;
     color: #fff;
-    line-height: 1.2;
+    line-height: 1.15;
   }
 
   .hp a.hp-support-desk__cta,
@@ -5462,14 +5462,14 @@ a.hp-galerie-card:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: auto;
-    padding: 0.55rem 1.15rem;
+    margin-top: 0.15rem;
+    padding: 0.28rem 0.85rem;
     border: 1.5px solid rgba(255, 255, 255, 0.92);
     border-radius: 999px;
     background: transparent;
     color: #fff;
     font-family: inherit;
-    font-size: 0.78rem;
+    font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.02em;
     text-decoration: none;
@@ -5493,7 +5493,7 @@ a.hp-galerie-card:hover {
     display: block;
     width: min(1480px, calc(100% - 3rem));
     margin: 0 auto;
-    padding: 1.5rem 0 1.65rem;
+    padding: 0.65rem 0 0.7rem;
     border-left: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.35);
     background: transparent;
@@ -5578,17 +5578,33 @@ a.hp-galerie-card:hover {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 1.1rem;
-    padding-bottom: 0.15rem;
+    margin-top: 0.45rem;
+    padding-bottom: 0;
   }
 
   .hp-footer-stack .hp-credits__visitors .hp-legal__visitors {
     margin: 0;
     text-align: center;
     color: rgba(255, 255, 255, 0.85);
-    font-size: 0.78rem;
+    font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.02em;
+  }
+
+  .hp-footer-stack .hp-credits__brand {
+    font-size: 0.62rem;
+  }
+
+  .hp-footer-stack .hp-credits__role {
+    font-size: 0.55rem;
+  }
+
+  .hp-footer-stack .hp-credits__name {
+    font-size: 0.72rem;
+  }
+
+  .hp-footer-stack .hp-credits__inner > .hp-legal--inline .hp-legal__link {
+    font-size: 0.64rem;
   }
 }
 
