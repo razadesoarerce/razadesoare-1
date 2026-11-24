@@ -4051,37 +4051,49 @@ a.hp-galerie-card:hover {
     display: none !important;
   }
 
+  /*
+   * Desktop hero height is driven by the photo (3:1). The brand panel is
+   * absolutely filled to that same height so it cannot stretch the row and
+   * leave empty space under the image.
+   */
   .hp-hero {
-    display: grid;
-    grid-template-columns: minmax(17rem, 0.38fr) minmax(22rem, 0.62fr);
-    align-items: stretch;
+    display: block;
+    position: relative;
     aspect-ratio: auto;
     min-height: 0;
     max-height: none;
     height: auto;
     color: var(--hp-text);
+    overflow: hidden;
   }
 
   .hp-hero__brand {
     --hp-hero-display: "Cormorant Garamond", "Times New Roman", serif;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 38%;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0;
-    padding: clamp(1.6rem, 3.2vw, 2.75rem) clamp(1.35rem, 3.2vw, 2.85rem);
+    padding: clamp(0.65rem, 1.4vw, 1.15rem) clamp(0.85rem, 2vw, 1.75rem);
+    box-sizing: border-box;
     background: #ffffff;
-    position: relative;
-    z-index: 1;
     text-align: center;
+    overflow: hidden;
   }
 
   .hp-hero__mark {
     display: grid;
     place-items: center;
-    width: clamp(3.6rem, 5.2vw, 4.85rem);
-    height: clamp(3.6rem, 5.2vw, 4.85rem);
-    margin: 0 0 0.85rem;
+    width: clamp(2.4rem, 3.6vw, 3.5rem);
+    height: clamp(2.4rem, 3.6vw, 3.5rem);
+    margin: 0 0 0.45rem;
+    flex-shrink: 0;
     animation: hp-brand-mark-in 0.7s ease both;
   }
 
@@ -4117,9 +4129,9 @@ a.hp-galerie-card:hover {
     position: relative;
     margin: 0;
     max-width: 12ch;
-    padding-bottom: 0.55rem;
+    padding-bottom: 0.35rem;
     font-family: var(--hp-hero-display);
-    font-size: clamp(2.35rem, 4.1vw, 3.35rem);
+    font-size: clamp(1.65rem, 2.8vw, 2.55rem);
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.02;
@@ -4130,9 +4142,9 @@ a.hp-galerie-card:hover {
   .hp-hero__desktop-title::after {
     content: "";
     display: block;
-    width: 2.75rem;
+    width: 2.35rem;
     height: 1px;
-    margin: 0.7rem auto 0;
+    margin: 0.45rem auto 0;
     background: linear-gradient(
       90deg,
       transparent,
@@ -4144,31 +4156,32 @@ a.hp-galerie-card:hover {
   }
 
   .hp-hero__motto {
-    margin: 0.7rem 0 0;
-    max-width: 18.5rem;
+    margin: 0.4rem 0 0;
+    max-width: 16rem;
     font-family: var(--hp-hero-display);
-    font-size: clamp(1.02rem, 1.35vw, 1.18rem);
+    font-size: clamp(0.88rem, 1.1vw, 1.05rem);
     font-weight: 500;
     font-style: italic;
-    line-height: 1.45;
+    line-height: 1.35;
     color: var(--hp-muted);
     animation: hp-brand-copy-in 0.7s ease 0.22s both;
   }
 
   .hp-hero__contact {
     position: relative;
-    margin-top: 1.2rem;
+    margin-top: 0.65rem;
     padding: 0.2rem 0.1rem 0.35rem;
     border: 0;
     background: none;
     color: var(--hp-blue-deep);
     font-family: inherit;
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
+    flex-shrink: 0;
     animation: hp-brand-copy-in 0.7s ease 0.3s both;
   }
 
@@ -4249,9 +4262,16 @@ a.hp-galerie-card:hover {
   .hp-hero__media {
     position: relative;
     inset: auto;
-    width: 100%;
+    /* In-flow only — defines .hp-hero height; brand overlays the left 38% */
+    width: 62%;
+    margin-left: 38%;
     aspect-ratio: 3 / 1;
     overflow: hidden;
+  }
+
+  /* Wave sits on the photo edge only; hide on desktop split cover */
+  .hp-hero__wave {
+    display: none;
   }
 
   .hp-hero__bg {
@@ -4905,8 +4925,8 @@ a.hp-galerie-card:hover {
 
   /* Beat `.hp button { border: none; background: none }` */
   .hp button.hp-hero__contact {
-    margin-top: 1.35rem;
-    padding: 0.55rem 1.35rem 0.5rem;
+    margin-top: 0.65rem;
+    padding: 0.4rem 1rem 0.38rem;
     border: 2px solid var(--hp-yellow);
     border-radius: 999px;
     background: transparent;
