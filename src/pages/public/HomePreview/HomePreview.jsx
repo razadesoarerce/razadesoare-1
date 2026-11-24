@@ -96,6 +96,8 @@ const GALLERY_META = [
   { id: "g4", src: "/images/preview/life-carusel-4.jpg", frame: "portrait" },
   { id: "g5", src: "/images/preview/life-carusel-5.jpg", frame: "portrait" },
   { id: "g7", src: "/images/preview/life-carusel-7.jpg", frame: "portrait" },
+  { id: "g8", src: "/images/preview/life-carusel-8.jpg", frame: "portrait" },
+  { id: "g9", src: "/images/preview/life-carusel-9.jpg", frame: "portrait" },
 ];
 
 const asStringList = (value) => (Array.isArray(value) ? value : []);

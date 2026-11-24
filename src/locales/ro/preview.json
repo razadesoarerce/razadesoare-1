@@ -145,7 +145,9 @@
         "g3": { "alt": "Activitate cu carte senzorială și jocuri de masă", "label": "Descoperire" },
         "g4": { "alt": "Joc de societate — concentrare și interacțiune", "label": "Joc împreună" },
         "g5": { "alt": "Activitate de toamnă ghidată la masă", "label": "Îndrumare" },
-        "g7": { "alt": "Activitate de grup în clasă", "label": "În echipă" }
+        "g7": { "alt": "Activitate de grup în clasă", "label": "În echipă" },
+        "g8": { "alt": "Elevi și cadre didactice la activitate pe masa galbenă", "label": "Învățare împreună" },
+        "g9": { "alt": "Terapie pediatrică pe platformă de echilibru", "label": "Terapie" }
       }
     },
     "support": {
