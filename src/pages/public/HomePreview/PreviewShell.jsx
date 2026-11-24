@@ -8,6 +8,7 @@ import PreviewPageSwipe from "./PreviewPageSwipe";
 import { PreviewMenuBackdrop, PreviewMenuPanel } from "./PreviewNavMenu";
 import DesktopTopNav from "./DesktopTopNav";
 import { PreviewContactProvider, usePreviewContact } from "./PreviewContactContext";
+import PreviewScrollTop from "./PreviewScrollTop";
 import { clampDockPos, getDockViewportHome } from "./dockViewport";
 import { subscribeVisualViewport } from "../../../utils/visualViewport";
 import "./HomePreview.css";
@@ -331,6 +332,7 @@ const PreviewShellChrome = ({
       {menuOpen ? <PreviewMenuBackdrop onClose={closeMenu} /> : null}
 
       {children}
+      <PreviewScrollTop />
       <PreviewPageSwipe />
     </div>
   );

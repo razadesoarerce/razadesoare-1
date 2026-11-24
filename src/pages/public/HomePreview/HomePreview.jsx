@@ -17,6 +17,7 @@ import DesktopTopNav from "./DesktopTopNav";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageSwipe from "./PreviewPageSwipe";
 import PreviewDesktopCoverBrand from "./PreviewDesktopCoverBrand";
+import PreviewScrollTop from "./PreviewScrollTop";
 import { useDesktopLayout } from "./useDesktopLayout";
 import "./HomePreview.css";
 
@@ -1081,6 +1082,7 @@ const HomePreview = () => {
           }}
         />
       </main>
+      <PreviewScrollTop />
       <PreviewPageSwipe />
     </div>
   );
