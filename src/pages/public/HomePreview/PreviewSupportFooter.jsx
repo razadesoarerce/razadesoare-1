@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SUPPORT_FORM_URL } from "./previewSupportData";
 import PreviewLegalLinks from "./PreviewLegalLinks";
+import { usePreviewContact } from "./PreviewContactContext";
 import { useDesktopLayout } from "./useDesktopLayout";
 
 const SWIPE_CLOSE_PX = 56;
@@ -117,6 +118,8 @@ const IconContact = () => (
 const PreviewSupportFooter = ({ onContactClick } = {}) => {
   const { t } = useTranslation();
   const isDesktop = useDesktopLayout();
+  const sharedContact = usePreviewContact();
+  const handleContact = onContactClick || sharedContact?.onContactClick;
   const [expandedId, setExpandedId] = useState(null);
   const swipeStart = useRef(null);
 
@@ -253,12 +256,12 @@ const PreviewSupportFooter = ({ onContactClick } = {}) => {
               <div className="hp-support-desk__col">
                 <IconContact />
                 <p className="hp-support-desk__label">{t("preview.home.support.contactTitle")}</p>
-                {typeof onContactClick === "function" ? (
+                {typeof handleContact === "function" ? (
                   <button
                     type="button"
                     className="hp-support-desk__cta"
                     data-contact-trigger
-                    onClick={onContactClick}
+                    onClick={handleContact}
                   >
                     {t("preview.home.support.contactCta")}
                   </button>

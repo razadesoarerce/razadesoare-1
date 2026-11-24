@@ -600,6 +600,13 @@ html.hp-swipe-hint-dismissed .hp-page-swipe-edges {
   object-position: center;
 }
 
+/* Inner-page covers inside .hp-hero__media — keep phone look (no ken-burns) */
+.hp--preview-page .hp-hero__media > .hp-hero__bg {
+  transform: none;
+  animation: none;
+  object-position: center;
+}
+
 /* Group photo — keep faces in frame (crowd sits lower in the image) */
 .hp-galerie-hero__cover {
   object-position: center 42%;
@@ -4284,6 +4291,7 @@ a.hp-galerie-card:hover {
     display: block;
     inset: 0 auto 0 0;
     width: min(46%, 15rem);
+    z-index: 2;
     background: linear-gradient(
       90deg,
       #ffffff 0%,
@@ -4300,6 +4308,25 @@ a.hp-galerie-card:hover {
       rgba(255, 255, 255, 0.04) 40%,
       rgba(18, 40, 70, 0.06) 100%
     );
+  }
+
+  /*
+   * Inner pages use .hp-despre-hero__shade (dark vertical wash) on phone.
+   * On desktop, match homepage soft left→right blend so the white fade reads.
+   */
+  .hp-despre-hero .hp-despre-hero__shade {
+    z-index: 1;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(255, 255, 255, 0.04) 40%,
+      rgba(18, 40, 70, 0.06) 100%
+    );
+  }
+
+  .hp-despre-hero .hp-hero__fade {
+    display: block;
+    z-index: 2;
   }
 
   .hp-hero__content {
@@ -4923,23 +4950,52 @@ a.hp-galerie-card:hover {
     display: none;
   }
 
-  /* Beat `.hp button { border: none; background: none }` */
-  .hp button.hp-hero__contact {
+  /* Beat `.hp button { border: none; background: none }` — also style <a> contacts */
+  .hp button.hp-hero__contact,
+  .hp a.hp-hero__contact {
     margin-top: 0.65rem;
     padding: 0.4rem 1rem 0.38rem;
     border: 2px solid var(--hp-yellow);
     border-radius: 999px;
     background: transparent;
     letter-spacing: 0.08em;
+    text-decoration: none;
+    color: var(--hp-blue-deep);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .hp button.hp-hero__contact::after {
+  .hp button.hp-hero__contact::after,
+  .hp a.hp-hero__contact::after {
     display: none;
   }
 
   .hp button.hp-hero__contact:hover,
-  .hp button.hp-hero__contact:focus-visible {
+  .hp button.hp-hero__contact:focus-visible,
+  .hp a.hp-hero__contact:hover,
+  .hp a.hp-hero__contact:focus-visible {
     background: color-mix(in srgb, var(--hp-yellow) 22%, transparent);
+    color: var(--hp-blue-deep);
+  }
+
+  /*
+   * Inner-page covers (Despre / Informații / Echipă / Galerie): phone keeps
+   * full-bleed 16:9 + wave; desktop uses the same brand|photo split as home.
+   * Swiper / cover image live inside .hp-hero__media so height tracks the photo.
+   */
+  .hp--preview-page .hp-despre-hero .hp-despre-hero__swiper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hp--preview-page .hp-hero__media .hp-hero__bg,
+  .hp--preview-page .hp-hero__media .hp-despre-hero__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   /* —— Full-bleed blue bands (homepage) —— */

@@ -4,6 +4,7 @@ import PageSeo from "../../../components/common/PageSeo";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageHead from "./PreviewPageHead";
+import PreviewDesktopCoverBrand from "./PreviewDesktopCoverBrand";
 import { GALLERY_ALBUMS, galleryAlbumPath } from "./galleryAlbums";
 
 /**
@@ -31,12 +32,16 @@ const GalerieFoto = () => {
           className="hp-hero hp-despre-hero hp-echipa-hero"
           aria-label={t("preview.gallery.heroAria")}
         >
-          <img
-            className="hp-echipa-hero__cover hp-galerie-hero__cover"
-            src="/images/preview/galerie/cover.jpg"
-            alt={t("preview.gallery.coverAlt")}
-          />
-          <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
+          <PreviewDesktopCoverBrand titleId="hp-galerie-cover-title" />
+          <div className="hp-hero__media">
+            <img
+              className="hp-hero__bg hp-galerie-hero__cover"
+              src="/images/preview/galerie/cover.jpg"
+              alt={t("preview.gallery.coverAlt")}
+            />
+            <div className="hp-hero__fade" aria-hidden />
+            <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
+          </div>
           <svg
             className="hp-hero__wave"
             viewBox="0 0 1440 120"

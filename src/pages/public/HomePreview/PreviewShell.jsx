@@ -7,6 +7,7 @@ import { PREVIEW_HOME } from "./previewNav";
 import PreviewPageSwipe from "./PreviewPageSwipe";
 import { PreviewMenuBackdrop, PreviewMenuPanel } from "./PreviewNavMenu";
 import DesktopTopNav from "./DesktopTopNav";
+import { PreviewContactProvider, usePreviewContact } from "./PreviewContactContext";
 import { clampDockPos, getDockViewportHome } from "./dockViewport";
 import { subscribeVisualViewport } from "../../../utils/visualViewport";
 import "./HomePreview.css";
@@ -197,11 +198,66 @@ const PreviewShell = ({ children, className = "" }) => {
   };
 
   return (
+    <PreviewContactProvider>
+      <PreviewShellChrome
+        className={className}
+        activeLang={activeLang}
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+        dockRef={dockRef}
+        dockPos={dockPos}
+        dockScreenPos={dockScreenPos}
+        dockDragging={dockDragging}
+        onDockPointerDown={onDockPointerDown}
+        onDockPointerMove={onDockPointerMove}
+        onDockPointerUp={onDockPointerUp}
+        suppressDockClickIfDragged={suppressDockClickIfDragged}
+        goHome={goHome}
+        toggleLanguage={toggleLanguage}
+        onNavClick={onNavClick}
+        closeMenu={closeMenu}
+        menuPlaceBelow={menuPlaceBelow}
+        t={t}
+      >
+        {children}
+      </PreviewShellChrome>
+    </PreviewContactProvider>
+  );
+};
+
+/** Inner chrome that can read contact context for DesktopTopNav. */
+const PreviewShellChrome = ({
+  children,
+  className,
+  activeLang,
+  menuOpen,
+  setMenuOpen,
+  dockRef,
+  dockPos,
+  dockScreenPos,
+  dockDragging,
+  onDockPointerDown,
+  onDockPointerMove,
+  onDockPointerUp,
+  suppressDockClickIfDragged,
+  goHome,
+  toggleLanguage,
+  onNavClick,
+  closeMenu,
+  menuPlaceBelow,
+  t,
+}) => {
+  const contact = usePreviewContact();
+
+  return (
     <div
-      className={`hp hp--preview-page hp--type-test is-outside-hero-page ${menuOpen ? "hp--menu-open" : ""} ${className}`.trim()}
+      className={`hp hp--preview-page hp--type-test is-outside-hero-page ${menuOpen ? "hp--menu-open" : ""} ${contact?.contactOpen ? "hp--contact-open" : ""} ${className}`.trim()}
       lang={activeLang === "EN" ? "en" : "ro"}
     >
-      <DesktopTopNav />
+      <DesktopTopNav
+        contactTriggerRef={contact?.contactTriggerRef}
+        onContactClick={contact?.onContactClick}
+      />
       <div
         ref={dockRef}
         className={`hp-dock is-outside-hero ${dockPos ? "is-custom-pos" : "is-home-pos"} ${dockDragging ? "is-dragging" : ""}`}

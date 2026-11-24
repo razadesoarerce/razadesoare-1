@@ -8,6 +8,7 @@ import PageSeo from "../../../components/common/PageSeo";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageHead from "./PreviewPageHead";
+import PreviewDesktopCoverBrand from "./PreviewDesktopCoverBrand";
 import { ECHIPA_OFFER_META, STAFF_CATEGORIES } from "./echipaOfferData";
 import { useDesktopLayout } from "./useDesktopLayout";
 
@@ -146,12 +147,16 @@ const EchipaNoastra = () => {
           className="hp-hero hp-despre-hero hp-echipa-hero"
           aria-label={t("preview.team.heroAria")}
         >
-          <img
-            className="hp-echipa-hero__cover"
-            src="/images/preview/echipa/cover.jpg"
-            alt={t("preview.team.coverAlt")}
-          />
-          <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
+          <PreviewDesktopCoverBrand titleId="hp-echipa-cover-title" />
+          <div className="hp-hero__media">
+            <img
+              className="hp-hero__bg"
+              src="/images/preview/echipa/cover.jpg"
+              alt={t("preview.team.coverAlt")}
+            />
+            <div className="hp-hero__fade" aria-hidden />
+            <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
+          </div>
           <svg
             className="hp-hero__wave"
             viewBox="0 0 1440 120"

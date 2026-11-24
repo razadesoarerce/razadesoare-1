@@ -8,6 +8,7 @@ import PageSeo from "../../../components/common/PageSeo";
 import PreviewShell from "./PreviewShell";
 import PreviewSupportFooter from "./PreviewSupportFooter";
 import PreviewPageHead from "./PreviewPageHead";
+import PreviewDesktopCoverBrand from "./PreviewDesktopCoverBrand";
 
 const StoryRule = () => (
   <hr className="hp-despre-rule" aria-hidden />
@@ -48,28 +49,32 @@ const DespreNoi = () => {
           className="hp-hero hp-despre-hero"
           aria-label={t("preview.about.heroAria")}
         >
-          <Swiper
-            modules={[Pagination]}
-            slidesPerView={1}
-            spaceBetween={0}
-            loop
-            speed={450}
-            pagination={{ clickable: true }}
-            grabCursor
-            className="hp-despre-hero__swiper"
-          >
-            {bannerSlides.map((slide) => (
-              <SwiperSlide key={slide.src}>
-                <img
-                  className="hp-despre-hero__img"
-                  src={slide.src}
-                  alt={slide.alt}
-                  draggable={false}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
+          <PreviewDesktopCoverBrand titleId="hp-despre-cover-title" />
+          <div className="hp-hero__media">
+            <Swiper
+              modules={[Pagination]}
+              slidesPerView={1}
+              spaceBetween={0}
+              loop
+              speed={450}
+              pagination={{ clickable: true }}
+              grabCursor
+              className="hp-despre-hero__swiper"
+            >
+              {bannerSlides.map((slide) => (
+                <SwiperSlide key={slide.src}>
+                  <img
+                    className="hp-despre-hero__img"
+                    src={slide.src}
+                    alt={slide.alt}
+                    draggable={false}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <div className="hp-hero__fade" aria-hidden />
+            <div className="hp-hero__shade hp-despre-hero__shade" aria-hidden />
+          </div>
           <svg
             className="hp-hero__wave"
             viewBox="0 0 1440 120"
